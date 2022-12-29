@@ -63,7 +63,7 @@
           <div class="card-body" id="parent">                        
               <h3 class="card-title" style="display: inline-block;"><strong>Acerca de mí</strong></h3>
               <div style="display: inline-block; margin-left: 60%; position: relative;"  (click)="activarInput()">
-                  <a href="#acerca de mi">
+                  <a href=#>
                       <i class="fa-solid fa-square-pen" style="font-size:30px; color:rgb(36, 95, 184) !important"></i>
                   </a>
               </div>                                                               
@@ -71,7 +71,8 @@
               desafío personal estoy buscando mi primera experiencia
               laboral en el área de IT para poder aplicar mis conocimientos en un equipo de trabajo y
               crecer profesionalmente.</p>  
-              <input placeholder="Ingrese el nuevo texto" id="input_parrafo" style="display:none; width:100%" >                                                           
+              <input *ngIf="inputEstado" placeholder="Ingrese el nuevo texto" id="input_parrafo" style="width:100%" > 
+              <input  style="width:100%;display: none">                                                          
           </div>             
       </div>
   </article>          
