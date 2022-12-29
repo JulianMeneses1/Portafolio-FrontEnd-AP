@@ -1,0 +1,24 @@
+
+#boton:hover{background-color: rgb(62, 63, 65) !important}
+
+#menu {
+    background-color: #000000 !important; 
+
+} 
+
+#menu li > a {
+    font-size: 15px;
+    font-weight: bold;    
+    color: white;
+}
+
+article > div {background-color: #00253E !important;
+border-radius: 5% !important;}
+
+.conocimientos-iconos > img, a > img {height: 30px;
+margin-left: 10px;}
+
+footer {
+    background: #000000;
+    height: auto;
+}
