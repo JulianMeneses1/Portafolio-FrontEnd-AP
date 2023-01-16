@@ -2,7 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 body {
-    font-family: 'Montserrat', sans-serif !important;
+    font-family: 'Montserrat', sans-serif;
     background-color: #000000;
-    color: white !important
+    color: white;
+    padding-top: 5em
 }
+
+article > div {background-color: #00253E !important;
+border-radius: 5% !important;}
+
+.conocimientos-iconos > img, a > img {height: 30px;
+margin-left: 10px;}
+
+footer {
+    background: #000000;
+    height: auto;}

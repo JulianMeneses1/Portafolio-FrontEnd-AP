@@ -1,0 +1,18 @@
+<article id="acerca de mi" class="d-flex justify-content-center mt-3">
+    <div class="card my-3" style="width: 50%;">
+        <div class="card-body" id="parent">                        
+            <h3 class="card-title" style="display: inline-block;"><strong>Acerca de mí</strong></h3>
+            <div style="display: inline-block; margin-left: 60%; position: relative;"  (click)="activarInput()">
+                <a href=#>
+                    <fa-icon [icon]="faSquarePen" style="font-size:30px; color:rgb(36, 95, 184) !important"></fa-icon>
+                </a>
+            </div>                                                               
+            <p class="card-text">Estudiante de Desarrollo Web y Aplicaciones Digitales. Como 
+            desafío personal estoy buscando mi primera experiencia
+            laboral en el área de IT para poder aplicar mis conocimientos en un equipo de trabajo y
+            crecer profesionalmente.</p>  
+            <input *ngIf="inputEstado" placeholder="Ingrese el nuevo texto" id="input_parrafo" style="width:100%" > 
+            <input  style="width:100%;display: none">                                                          
+        </div>             
+    </div>
+</article>    

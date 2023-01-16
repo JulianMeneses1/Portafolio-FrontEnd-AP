@@ -1,0 +1,50 @@
+#boton_cv:hover, #boton_login:hover{
+    background-color: rgb(62, 63, 65) !important;    
+}
+
+#boton_cv{
+    padding:8px;
+    color:lightblue; 
+    background-color: black;
+    border: solid 2px lightblue;
+    border-radius: 10%;
+    margin-right: 50px
+}
+
+#boton_login{
+    width: 8em;
+    padding:8px;
+    color:lightblue; 
+    background-color: black;
+    border: solid 2px lightblue;
+    border-radius: 10%;
+}
+
+a > img {
+   height:3em
+}
+
+#menu {
+    background-color: #000000 !important; 
+
+}  
+
+#menu li > a {
+    font-size: 15px;
+    font-weight: bold;    
+    color: white;    
+}
+
+#menu li > a:hover {
+    color: lightblue 
+}
+
+
+@media screen and (max-width: 992px){ 
+    #nav-colapsado{
+    align-items: end !important     
+    }
+    #boton_cv{        
+    margin-right: 0px;
+}    
+}
