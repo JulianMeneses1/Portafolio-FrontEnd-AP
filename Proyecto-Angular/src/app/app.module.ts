@@ -12,6 +12,7 @@ import { ExperienciaLaboralComponent } from './components/experiencia-laboral/ex
 import { FormacionAcademicaComponent } from './components/formacion-academica/formacion-academica.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ModalLoginComponent } from './components/header/modal-login/modal-login.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FooterComponent } from './components/footer/footer.component';
     ExperienciaLaboralComponent,
     FormacionAcademicaComponent,
     ContactoComponent,
-    FooterComponent
+    FooterComponent,
+    ModalLoginComponent
   ],
   imports: [
     BrowserModule,
