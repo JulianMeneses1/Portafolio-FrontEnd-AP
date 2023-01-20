@@ -1,41 +1,44 @@
 <header>    
     <nav class="navbar navbar-expand-lg fixed-top p-1" id="menu">        
-            <a class="navbar-brand ms-3" href="#">
+        <div  class="container-fluid">
+            <a class="navbar-brand ms-3" (click)="contraerNav()" href="#">
                 <img id="logo" src="../assets/logo2.png">                
             </a>
-            <button class="navbar-toggler bg-secondary me-1" type="button" data-bs-toggle="collapse" 
+            <button class="navbar-toggler me-1" type="button" data-bs-toggle="collapse" 
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
             aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span> 
+                    <fa-icon [icon]="faBars"></fa-icon>
+                </span>
             </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <ul id="nav-colapsado" class="navbar-nav mb-2 me-2 mb-lg-0 align-items-center">                            
+            <div #navBar class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul id="nav-colapsado" class="navbar-nav mb-2 mb-lg-0 align-items-center">                            
                     <li class="nav-item">
-                        <a class="nav-link" href="#acerca de mi">Acerca de mí</a>
+                        <a class="nav-link link"  href="#acerca de mi" (click)="contraerNav()">Acerca de mí</a>
                     </li>                
                     <li class="nav-item">
-                        <a class="nav-link" href="#conocimientos">Conocimientos</a>
+                        <a class="nav-link link" href="#conocimientos" (click)="contraerNav()">Conocimientos</a>
                     </li>                            
                     <li class="nav-item">
-                        <a class="nav-link" href="#proyectos">Proyectos</a>
+                        <a class="nav-link link" href="#proyectos" (click)="contraerNav()">Proyectos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#experiencia laboral">Experiencia Laboral</a>
+                        <a class="nav-link link" href="#experiencia laboral" (click)="contraerNav()">Experiencia Laboral</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#formacion academica">Formación Académica</a>
+                        <a class="nav-link link" href="#formacion academica" (click)="contraerNav()">Formación Académica</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contacto">Contacto</a>
+                        <a class="nav-link link" href="#contacto" (click)="contraerNav()">Contacto</a>
                     </li>
                     <li class="nav-item ms-2">
-                        <a class="nav-link" href="#"> <button id="boton_cv" >Currículum</button></a>
+                        <a class="nav-link" href="#"> <button id="boton_cv" (click)="contraerNav()">Currículum</button></a>
                     </li>                    
                 </ul>  
-                <div class="d-flex justify-content-end me-lg-3 me-2">
-                    <a class="nav-link" href="#"> <button id="boton_login" >Login</button></a>
+                <div class="d-flex justify-content-end me-lg-2">
+                    <a class="nav-link" href="#"> <button id="boton_login" (click)="contraerNav()">Login</button></a>
                 </div>                      
             </div>
-        
-    </nav>
-   
+        </div>        
+    </nav>    
+</header>   

@@ -1,5 +1,7 @@
 #boton_cv:hover, #boton_login:hover{
-    background-color: rgb(62, 63, 65) !important;    
+    background-color: rgb(62, 63, 65) !important;
+    transform: scale(1.10) !important;
+       
 }
 
 #boton_cv{
@@ -9,6 +11,14 @@
     border: solid 2px lightblue;
     border-radius: 10%;
     margin-right: 50px
+}
+
+#menu {
+    background-color: black;
+}
+
+.hola {
+    display:none !important
 }
 
 #boton_login{
@@ -24,30 +34,36 @@
    height:3em
 }
 #logo:hover{
-    filter:drop-shadow(0px 0px 10px lightblue)    
+    filter:drop-shadow(0px 0px 10px lightblue);
+    transform: scale(1.10)   
 }
 
-#menu {
-    background-color: #000000 !important; 
-
-}  
-
-#menu li > a {
+.link {
     font-size: 15px;
     font-weight: bold;    
     color: white;    
 }
 
-#menu li > a:hover {
-    color: lightblue 
+.link:hover {
+    color: lightblue;
+    transform: scale(1.10)
+}
+
+fa-icon{
+    font-size:30px; 
+    color: rgb(131, 198, 221)
 }
 
 
 @media screen and (max-width: 992px){ 
     #nav-colapsado{
-    align-items: end !important     
+    align-items: end !important    
     }
     #boton_cv{        
     margin-right: 0px;
-}    
-}
+    }
+    #boton_login{
+        margin-bottom: 10px
+    }    
+}  
+    
