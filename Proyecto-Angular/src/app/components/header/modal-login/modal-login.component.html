@@ -26,8 +26,21 @@
                             placeholder="Ingrese su contraseña" >
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
-                        <button type="button" class="btn btn-danger" [ngClass]="{'btn-lg': pantallaGrande}" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" [ngClass]="{'btn-lg': pantallaGrande}" >Ingresar</button>
+                        <button 
+                            type="button" 
+                            class="btn btn-danger" 
+                            [ngClass]="{'btn-lg': pantallaGrande}" 
+                            data-bs-dismiss="modal">
+                            Cerrar
+                        </button>
+                        <button 
+                            type="button" 
+                            class="btn btn-primary" 
+                            [ngClass]="{'btn-lg': pantallaGrande}"
+                            (click)="alternarEdicion()"
+                            data-bs-dismiss="modal">
+                            Ingresar
+                        </button>
                     </div>
                 </div>
             </div>

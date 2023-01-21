@@ -13,6 +13,7 @@ import { FormacionAcademicaComponent } from './components/formacion-academica/fo
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ModalLoginComponent } from './components/header/modal-login/modal-login.component';
+import { ModoEdicionService } from './services/modo-edicion.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { ModalLoginComponent } from './components/header/modal-login/modal-login
     AppRoutingModule,
     FontAwesomeModule
   ],
-  providers: [],
+  providers: [ModoEdicionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

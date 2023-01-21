@@ -21,7 +21,7 @@
     display:none !important
 }
 
-#boton_login{
+#boton_login, #boton_logout{
     width: 8em;
     padding:8px;
     color:lightblue; 
@@ -55,7 +55,7 @@ fa-icon{
 }
 
 
-@media screen and (max-width: 992px){ 
+@media screen and (max-width: 1200px){ 
     #nav-colapsado{
     align-items: end !important    
     }

@@ -1,11 +1,24 @@
-<div class="d-flex justify-content-center align-items-center" style="height:92vh">    
-    <img src="../assets/Banner.jpg" width="100%" style="height:100%;">
-    <img src="../assets/Foto Perfil.jpg" style="border-radius: 50%; height: 25em;
-    z-index: 1; position: absolute">
-    <div style="position: absolute;z-index: 1; margin-bottom: 2em; align-self: end">
-        <h2 id="a" style="font-family:Blippo; text-align: center; font-weight: bold;">
-            Julián Meneses</h2>
-        <h5 style="font-family:Blippo;font-weight: bold; text-align: center;">Desarrollador Web Full Stack</h5>
+<div class="d-flex justify-content-center align-items-center" id="container">    
+    <div 
+        id="div-editar-banner"
+        class="d-flex align-items-start justify-content-end px-4"
+        *ngIf="modoEdicion">
+        <fa-icon [icon]="faSquarePen"></fa-icon>
+    </div>
+    <img 
+        id="banner" 
+        src="../assets/Banner.jpg"
+    >  
+    <div id="sub-container">
+        <div class="d-flex justify-content-end align-items-start" *ngIf="modoEdicion">
+            <fa-icon [icon]="faSquarePen"></fa-icon>
+        </div>
+        <img id="foto-perfil" src="../assets/Foto Perfil.jpg">
+        <div class="d-flex justify-content-end align-items-start" *ngIf="modoEdicion">
+            <fa-icon [icon]="faSquarePen" id="editar-texto"></fa-icon>
+        </div>
+        <h2>Julián Meneses </h2>
+        <h5>Desarrollador Web Full Stack</h5>
     </div>
 </div>
 

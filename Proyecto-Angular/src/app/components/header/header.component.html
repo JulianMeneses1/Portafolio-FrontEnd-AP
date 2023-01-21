@@ -1,5 +1,5 @@
-<header>    
-    <nav class="navbar navbar-expand-lg fixed-top p-1" id="menu">        
+<header> 
+    <nav class="navbar navbar-expand-xl fixed-top p-1" id="menu">        
         <div class="container-fluid">
             <a class="navbar-brand ms-3" (click)="contraerNav()" href="#">
                 <img id="logo" src="../assets/logo2.png">                
@@ -12,7 +12,7 @@
                 </span>
             </button>
             <div #navBar class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <ul id="nav-colapsado" class="navbar-nav mb-2 mb-lg-0 align-items-center">                            
+                <ul id="nav-colapsado" class="navbar-nav mb-2 mb-xl-0 align-items-center">                            
                     <li class="nav-item">
                         <a class="nav-link link"  href="#acerca de mi" (click)="contraerNav()">Acerca de mí</a>
                     </li>                
@@ -35,8 +35,22 @@
                         <a class="nav-link" href="#"> <button id="boton_cv" (click)="contraerNav()">Currículum</button></a>
                     </li>                    
                 </ul>  
-                <div class="d-flex justify-content-end me-lg-2">
-                    <a class="nav-link" href="#"> <button id="boton_login" (click)="contraerNav()" data-bs-toggle="modal" data-bs-target="#loginModal">Login </button></a>                                                 
+                <div class="d-flex justify-content-end me-xl-2">                    
+                    <button 
+                        id="boton_login" 
+                        (click)="contraerNav()" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#loginModal"
+                        *ngIf="!modoEdicion">
+                        Login 
+                    </button>
+                    <button 
+                        id="boton_logout" 
+                        (click)="contraerNav(); alternarEdicion()" 
+                        *ngIf="modoEdicion">
+                        Logout 
+                    </button>
+                                                                  
                 </div>                      
             </div>
         </div>        
