@@ -9,7 +9,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 export class HeaderComponent {  
   @ViewChild('navBar') navBar!:ElementRef;   
-  faBars = faBars
+  faBars = faBars 
 
   constructor(private renderer: Renderer2) {
 
@@ -17,6 +17,6 @@ export class HeaderComponent {
   
   contraerNav(){
     this.renderer.removeClass(this.navBar.nativeElement,"show")  
-  }  
+  }   
 }
 
