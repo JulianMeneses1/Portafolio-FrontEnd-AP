@@ -1,4 +1,4 @@
-#boton_cv:hover, #boton_login:hover{
+#boton_cv:hover, #boton_login:hover, #boton_logout:hover{
     background-color: rgb(62, 63, 65) !important;
     transform: scale(1.10) !important;
        
@@ -15,10 +15,6 @@
 
 #menu {
     background-color: black;
-}
-
-.hola {
-    display:none !important
 }
 
 #boton_login, #boton_logout{
