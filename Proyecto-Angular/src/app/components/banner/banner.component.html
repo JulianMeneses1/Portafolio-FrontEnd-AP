@@ -26,7 +26,7 @@
             id="foto-perfil" 
             src="../assets/Foto Perfil.jpg"
             #fotoPerfil>
-        <div class="d-flex justify-content-end align-items-start pe-3" *ngIf="modoEdicion">
+        <div class="d-flex justify-content-end align-items-start pe-2" *ngIf="modoEdicion">
             <fa-icon 
                 [icon]="faSquarePen" 
                 id="editar-texto"
@@ -34,8 +34,8 @@
                 data-bs-target="#textoModal">
             </fa-icon>
         </div>
-        <h2>Julián Meneses </h2>
-        <h5>Desarrollador Web Full Stack</h5>
+        <h2>{{titulo}}</h2>
+        <h5> {{subtitulo}}</h5>
     </div>
 </div>
 
@@ -55,7 +55,7 @@
             </div>
             <div class="modal-body">                                 
                 <div class="mb-3">
-                    <label for="user" class="form-label me-5 textoModal">Imagen actual</label>
+                    <label for="user"  class="form-label me-5 textoModal">Imagen actual</label>
                     <img class="imagenEdicion" src="../assets/Banner.jpg">
                 </div>                        
                 <label for="user" class="form-label textoModal">Nueva Imagen</label>
@@ -154,19 +154,19 @@
             <div class="modal-body">                                 
                 <div class="d-flex">
                     <label for="user" class="form-label etiquetaModal">Título actual</label>
-                    <p class="etiquetaModal"><b>Julián Meneses</b></p>                    
+                    <p class="etiquetaModal"><b>{{titulo}}</b></p>                    
                 </div>
                 <div class="d-flex align-items-baseline mb-3">
                     <label for="user" class="form-label etiquetaModal">Nuevo título</label>
-                    <input type="text" class="form-control inputModal" placeholder="Ingrese nuevo título">
+                    <input type="text" #nuevoTitulo class="form-control inputModal" placeholder="Ingrese nuevo título">
                 </div> 
                 <div class="d-flex align-items-baseline">
                     <label for="user" class="form-label etiquetaModal">Subtítulo actual</label>
-                    <p class="textoModal etiquetaModal"><b>Desarrollador Web Full Stack</b></p>                                       
+                    <p class="textoModal etiquetaModal"><b>{{subtitulo}}</b></p>                                       
                 </div>
                 <div class="d-flex align-items-baseline mb-1">
                     <label for="user" class="form-label etiquetaModal">Nuevo subtítulo</label>
-                    <input type="text" class="form-control  inputModal" placeholder="Ingrese nuevo subtítulo">
+                    <input type="text" #nuevoSubtitulo class="form-control inputModal" placeholder="Ingrese nuevo subtítulo">
                 </div>                
                 
                 <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
@@ -175,7 +175,7 @@
                         class="btn btn-danger" 
                         [ngClass]="{'btn-lg': pantallaGrande}" 
                         data-bs-dismiss="modal"
-                        (click)="eliminarImagen()">
+                        >
                         Cerrar
                     </button>
                     <button 
@@ -183,7 +183,8 @@
                         class="btn btn-primary" 
                         [ngClass]="{'btn-lg': pantallaGrande}"                            
                         data-bs-dismiss="modal"
-                        (click)="cambiarFotoPerfil()">
+                        (click)="cambiarTexto()"
+                        >
                         Aceptar
                     </button>
                 </div>

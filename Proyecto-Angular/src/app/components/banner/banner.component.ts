@@ -17,8 +17,13 @@ export class BannerComponent implements OnInit {
   suscripcion?:Subscription;
   nombreArchivo:string="";
   previsualizacionImagen: string="";
+  titulo:string="Julián Meneses";
+  subtitulo:string="Desarrollador Web Full Stack"
+  
   @ViewChild('banner') banner!:ElementRef; 
-  @ViewChild('fotoPerfil') fotoPerfil!:ElementRef;  
+  @ViewChild('fotoPerfil') fotoPerfil!:ElementRef; 
+  @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef; 
+  @ViewChild('nuevoSubtitulo') nuevoSubtitulo!:ElementRef;   
 
   constructor(private servicioEdicion : ModoEdicionService,
     private sanitizer: DomSanitizer,
@@ -56,6 +61,16 @@ export class BannerComponent implements OnInit {
     this.renderer.setAttribute(this.fotoPerfil.nativeElement,"src", this.previsualizacionImagen);
     this.previsualizacionImagen="";
     this.nombreArchivo=""
+  } 
+  cambiarTexto(){
+    if (this.nuevoTitulo.nativeElement.value!=="") {
+      this.titulo=this.nuevoTitulo.nativeElement.value;
+      this.nuevoTitulo.nativeElement.value=""
+    }
+    if (this.nuevoSubtitulo.nativeElement.value!=="") {
+      this.subtitulo=this.nuevoSubtitulo.nativeElement.value;
+      this.nuevoSubtitulo.nativeElement.value=""      
+      } 
   }
 
   // FUNCIÓN PARA EXTRAER LA URL DE LA IMAGEN

@@ -15,6 +15,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ModalLoginComponent } from './components/header/modal-login/modal-login.component';
 import { ModoEdicionService } from './services/modo-edicion.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,7 @@ import { ModoEdicionService } from './services/modo-edicion.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule, 
   ],
   providers: [ModoEdicionService],
   bootstrap: [AppComponent]
