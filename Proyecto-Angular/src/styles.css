@@ -3,13 +3,13 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #000000;
+    background-color: black;
     color: white;
     padding-top: 5em;
     overflow-x: hidden;
 }
 
-article > div {background-color: #00253E !important;
+article > div { background-color: black !important;
 border-radius: 5% !important;}
 
 .conocimientos-iconos > img, a > img {height: 30px;
