@@ -13,9 +13,15 @@
     margin-right: 50px
 }
 
-#menu {
-    background-color: black;
+.animacion-menu{
+    opacity: 1 !important;
+    transition: all 0.25s linear;        
 }
+
+#menu {
+    background-color: black;       
+}
+
 
 #boton_login, #boton_logout{
     width: 8em;
@@ -53,13 +59,15 @@ fa-icon{
 
 @media screen and (max-width: 1200px){ 
     #nav-colapsado{
-    align-items: end !important    
-    }
+    align-items: end !important;
+    } 
+    
     #boton_cv{        
     margin-right: 0px;
     }
     #boton_login{
         margin-bottom: 10px
-    } 
+    }
+   
 }  
     

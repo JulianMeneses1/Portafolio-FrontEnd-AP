@@ -5,8 +5,9 @@ body {
     font-family: 'Montserrat';
     background-color: black !important;
     color: white;
-    padding-top: 5em;    
+    padding-top: 5em;     
 }
+
 
 section > div{    
     background-color: black !important;
@@ -16,9 +17,38 @@ section {
     height: 100vh
 }
 
-.conocimientos-iconos > img, a > img {height: 30px;
-margin-left: 10px;}
+.conocimientos-iconos > img, a > img {
+    height: 30px;
+    margin-left: 10px;
+}
 
 footer {
     background: #000000;
-    height: auto;}
+    height: auto;
+}
+
+/* Modificando la barra de desplazamiento (scrollbar) */
+
+/* Funciona en Firefox */
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #495670 black;
+  }
+  
+/* Funciona en Chrome, Edge, y Safari */
+
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+    
+::-webkit-scrollbar-track {
+    background: black;      
+ 
+}  
+
+::-webkit-scrollbar-thumb {
+    background-color: #495670;    
+    border-radius: 10px; 
+    border: 3px solid black;}

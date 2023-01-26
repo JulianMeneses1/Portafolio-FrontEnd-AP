@@ -14,7 +14,8 @@ export class HeaderComponent {
   @ViewChild('navBar') navBar!:ElementRef;   
   faBars = faBars;
   modoEdicion:boolean=false;
-  suscripcion?:Subscription  
+  suscripcion?:Subscription;
+  
 
   constructor(private renderer: Renderer2,
     private servicioEdicion: ModoEdicionService) {
@@ -24,7 +25,9 @@ export class HeaderComponent {
   
   contraerNav(){
     this.renderer.removeClass(this.navBar.nativeElement,"show")  
-  } 
+    
+  }      
+  
   alternarEdicion(){
     this.servicioEdicion.alternarEdicion()
   }

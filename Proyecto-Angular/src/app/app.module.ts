@@ -14,6 +14,7 @@ import { ContactoComponent } from './components/contacto/contacto.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ModalLoginComponent } from './components/header/modal-login/modal-login.component';
 import { ModoEdicionService } from './services/modo-edicion.service';
+import { ScrollDirective } from './directives/menu-scroll.directive';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ModoEdicionService } from './services/modo-edicion.service';
     FormacionAcademicaComponent,
     ContactoComponent,
     FooterComponent,
-    ModalLoginComponent
+    ModalLoginComponent,
+    ScrollDirective
   ],
   imports: [
     BrowserModule,
