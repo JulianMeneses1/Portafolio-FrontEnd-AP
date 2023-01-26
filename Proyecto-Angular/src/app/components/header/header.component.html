@@ -11,9 +11,11 @@
                 data-bs-target="#navbarSupportedContent" 
                 aria-controls="navbarSupportedContent" 
                 aria-expanded="false" 
-                aria-label="Toggle navigation">
+                aria-label="Toggle navigation"
+                (click)="alternarScrolling()">
                 <span> 
-                    <fa-icon [icon]="faBars"></fa-icon>
+                    <fa-icon *ngIf="scrollVisible" [icon]="faBars"></fa-icon>
+                    <fa-icon *ngIf="!scrollVisible" [icon]="faX"></fa-icon>
                 </span>
             </button>
             <div #navBar class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">

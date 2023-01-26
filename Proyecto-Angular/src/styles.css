@@ -5,9 +5,13 @@ body {
     font-family: 'Montserrat';
     background-color: black !important;
     color: white;
-    padding-top: 5em;     
+    padding-top: 5em;
+    overflow-x: hidden;     
 }
 
+.scroll-hidden {
+    overflow: hidden;    
+}
 
 section > div{    
     background-color: black !important;
