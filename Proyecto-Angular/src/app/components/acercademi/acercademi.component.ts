@@ -13,7 +13,7 @@ export class AcercademiComponent implements OnInit{
   modoEdicion:boolean=false;
   suscripcion?:Subscription;
   titulo:string="Sobre mí";
-  texto:string="Hola! Soy Julián, Full Stack Developer. Empecé a incursionar en el mundo de la programación de forma autodidácta a partir de videos en YouTube, por allá a finales de 2021, \
+  texto:string="Hola! Soy Julián, full-stack web developer. Empecé a incursionar en el mundo de la programación de forma autodidácta a partir de videos en YouTube, por allá a finales de 2021, \
                 y actualmente estoy estudiando la carrera de Desarrollo Web y Aplicaciones Digitales. Me apasiona el diseño y desarrollo de sitios y aplicaciones web dinámicos y creativos. \
                 Estoy en búsqueda de nuevos desafíos laborales que pongan a prueba mis conocimientos, y me permitan tanto seguir aprendiendo como seguir creciendo profesionalmente."
                 

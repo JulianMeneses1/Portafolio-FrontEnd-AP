@@ -29,10 +29,19 @@
 }
 
 
-#boton_login, #boton_logout{
+#boton_login {
     width: 8em;
     padding:8px;
     color:lightblue; 
+    background-color: black;
+    border: solid 2px lightblue;
+    border-radius: 10%;
+}
+
+#boton_logout {
+    width: 8em;
+    padding:8px;
+    color:red; 
     background-color: black;
     border: solid 2px lightblue;
     border-radius: 10%;
