@@ -13,13 +13,19 @@
     margin-right: 50px
 }
 
-.animacion-menu{
-    opacity: 1 !important;
-    transition: all 0.25s linear;        
+.animacion-menu{    
+    transform: translateY(0px);
+    transition: transform 0.3s ease;
+            
+}
+
+.ocultar-menu{
+    transform: translateY(-78px)
 }
 
 #menu {
-    background-color: black;       
+    background-color: black;
+      
 }
 
 

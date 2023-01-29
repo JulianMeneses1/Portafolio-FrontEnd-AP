@@ -13,8 +13,8 @@ export class ScrollDirective {
 
   // Con HostBinding lo que hacemos es modificar al elemento vinculado la propiedad opacity, con el valor
   // que tiene la variable opacity, en un principio undefined 
-
-  @HostBinding('style.opacity') opacity!:number
+ 
+  @HostBinding('class.ocultar-menu') ok2!:boolean
   @HostBinding('class.animacion-menu') ok!:boolean
 
   // HostListener lo que hace es ejecutar una función al producirse el evento onScroll, 
@@ -23,10 +23,11 @@ export class ScrollDirective {
   @HostListener('window:scroll') onScroll (){ 
    
     if (this.ultimoScrollY<window.scrollY) {
-      this.ok = false  
-      this.opacity = 0          
+      this.ok = false        
+      this.ok2 = true        
     } else {      
-      this.ok=true    
+      this.ok=true
+      this.ok2 = false    
     }
     this.ultimoScrollY = window.scrollY
   }

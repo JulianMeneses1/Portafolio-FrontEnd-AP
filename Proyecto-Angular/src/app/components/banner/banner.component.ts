@@ -1,8 +1,10 @@
 import { Component, ElementRef, Renderer2, ViewChild, OnInit } from '@angular/core';
-import { faSquarePen } from '@fortawesome/free-solid-svg-icons';
+import { faSquarePen} from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+
 
 @Component({
   selector: 'app-banner',
@@ -12,7 +14,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 export class BannerComponent implements OnInit {
   faSquarePen = faSquarePen 
-  pantallaGrande:boolean=false; 
+  faGitHub= faGithub  
   modoEdicion:boolean=false;
   suscripcion?:Subscription;
   nombreArchivo:string="";
@@ -32,10 +34,8 @@ export class BannerComponent implements OnInit {
       value => this.modoEdicion = value)
   }
 
-  ngOnInit(): void {    
-    if(screen.width>1400){
-      this.pantallaGrande=true
-    }
+  ngOnInit(): void {   
+    
   }
 
   capturarImagen(event:any) {

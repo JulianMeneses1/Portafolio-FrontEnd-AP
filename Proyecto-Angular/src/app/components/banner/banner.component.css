@@ -10,12 +10,61 @@
 }
 
 #container{
-    height: 92vh;
+    height: 80vh;
 }
 
 #sub-container{
     position: absolute;
     z-index: 1;      
+}
+
+#contenedor-iconos-redes{
+    position: absolute; 
+    z-index: 5; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 100%; 
+    margin-top: -30px;
+}
+
+.botones-redes {
+    border-radius: 30px;
+    border: none;
+    background-color: #888;
+    height: 3.6rem;
+    width: 3.6em;
+    padding: 1px;
+    margin: 0px 8px    
+}
+
+.link-redes {
+    padding-right: 8.5px;   
+}
+
+.iconos-redes {
+    height: 2.3em;  
+}
+
+#boton-github{
+    border-radius: 30px;
+    border: none;
+    background-color: #888;
+    height: 3.6rem;
+    width: 3.6em;
+    padding-right: 10px;
+    margin-left: 6px    
+}
+
+#icono-github{
+    height:50px; 
+    position: relative; 
+    right: 29.9%;   
+}
+
+.botones-redes:hover, #boton-github:hover {    
+    filter: drop-shadow(0 0 7px lightblue);
+    transform: scale(1.05); 
 }
 
 h2, h5{
@@ -25,7 +74,7 @@ h2, h5{
     filter: drop-shadow(0 0 10px black)
 }
 
-fa-icon{
+.iconos-edicion{
     font-size:3em; 
     color:rgb(36, 95, 184);
     position:absolute;
@@ -49,11 +98,11 @@ fa-icon{
 }
 
 .etiquetaModal {
-    width: 35%
+    width: 30%
 }
 
 .inputModal {
-    width: 65%
+    width: 70%
 }
 
 .imagenEdicion{
@@ -73,6 +122,9 @@ fa-icon{
     }
     #foto-perfil{     
         height: 25em !important;   
-    }  
+    } 
+    #container{
+        height: 86vh;
+    } 
 }  
     

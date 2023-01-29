@@ -9,7 +9,6 @@ import { Subscription } from 'rxjs';
 })
 export class ModalLoginComponent implements OnInit {
 
-  pantallaGrande:boolean=false; 
   modoEdicion:boolean=false;
   suscripcion?:Subscription 
 
@@ -20,9 +19,7 @@ export class ModalLoginComponent implements OnInit {
   } 
 
   ngOnInit(): void {
-    if(screen.width>1400){
-      this.pantallaGrande=true
-    }
+   
   }
   alternarEdicion(){
     this.servicioEdicion.alternarEdicion()

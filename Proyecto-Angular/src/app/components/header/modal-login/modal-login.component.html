@@ -1,6 +1,5 @@
 <div 
-    class="modal fade" 
-    [ngClass]="{'modal-lg': pantallaGrande}"  
+    class="modal fade modal-lg"     
     id="loginModal" tabindex="-1" 
     aria-labelledby="loginModalLabel"
     aria-hidden="true"
@@ -33,15 +32,13 @@
             <div class="modal-footer d-flex justify-content-between">
                 <button 
                     type="button" 
-                    class="btn btn-danger" 
-                    [ngClass]="{'btn-lg': pantallaGrande}" 
+                    class="btn btn-danger"                     
                     data-bs-dismiss="modal">
                     Cerrar
                 </button>
                 <button 
                     type="button" 
-                    class="btn btn-primary" 
-                    [ngClass]="{'btn-lg': pantallaGrande}"
+                    class="btn btn-primary"                    
                     (click)="alternarEdicion()"
                     data-bs-dismiss="modal">
                     Ingresar
