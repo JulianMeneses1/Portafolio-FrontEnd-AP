@@ -4,6 +4,7 @@ import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { Conocimiento } from 'src/app/interfaces/conocimiento';
 import { Conocimientos } from 'src/app/interfaces/mosk-conocimientos';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-conocimientos',
@@ -16,12 +17,15 @@ export class ConocimientosComponent {
   faPlus = faPlus 
   modoEdicion:boolean=false;
   suscripcion?:Subscription;
+  nombreArchivo:string="";
+  previsualizacionImagen: string="";
 
   @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef; 
 
   conocimientos: Conocimiento[] = Conocimientos
 
-  constructor(private servicioEdicion : ModoEdicionService) 
+  constructor(private servicioEdicion : ModoEdicionService,
+    private sanitizer: DomSanitizer) 
   {
     this.suscripcion = this.servicioEdicion.onAlternar().subscribe(
       value => this.modoEdicion = value)
@@ -33,5 +37,36 @@ export class ConocimientosComponent {
       this.nuevoTitulo.nativeElement.value=""
     }   
   }
+
+  capturarImagen(event:any) {
+    const archivoCapturado = event.target.files[0]
+    this.nombreArchivo=event.target.files[0].name
+    this.extraerURL(archivoCapturado).then((imagen:any) => {
+      this.previsualizacionImagen=imagen.base
+    })    
+  }
+
+    // FUNCIÓN PARA EXTRAER LA URL DE LA IMAGEN
+
+    extraerURL = async ($event:any) => new Promise ((resolve, reject) => {
+      try {
+        const unsafeImg = window.URL.createObjectURL($event);
+        const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
+        const reader = new FileReader();
+        reader.readAsDataURL($event);
+        reader.onload = () => {
+          resolve({
+          base:reader.result
+          });
+        };
+        reader.onerror = error => {
+          resolve ({
+          base:null
+          });
+        };
+        } catch (e) {        
+        }
+      })
+  
 
 }
