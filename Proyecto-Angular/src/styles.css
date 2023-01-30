@@ -1,6 +1,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
+:root {
+    --skills-bar-length: 0%
+}
+
 body {
     font-family: 'Montserrat';
     background-color: black !important;
@@ -18,12 +22,7 @@ section > div{
 }
 
 section {
-    height: 100vh
-}
-
-.conocimientos-iconos > img, a > img {
-    height: 30px;
-    margin-left: 10px;
+    height: 100vh;    
 }
 
 footer {
@@ -56,3 +55,11 @@ footer {
     background-color: #495670;    
     border-radius: 10px; 
     border: 3px solid black;}
+
+
+@media screen and (min-width:1400px){
+    section {
+        height: 80vh !important
+    }
+    
+}

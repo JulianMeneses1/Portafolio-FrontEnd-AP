@@ -1,0 +1,11 @@
+<div class="w-100">
+    <div class="conocimientos-iconos d-flex align-items-center justify-content-between me-5">
+        <div class="d-flex align-items-center">
+            <label>{{conocimiento.nombre}}</label>
+            <img [src]="conocimiento.imagen">
+        </div>
+        <fa-icon [icon]="faX" *ngIf="modoEdicion" class="icono-borrar"></fa-icon>         
+    </div>
+    <div  [ngClass]=conocimiento.porcentajeProgreso appScrollConocimientos>
+    </div>  
+</div>         

@@ -1,0 +1,70 @@
+
+
+.conocimientos-iconos > img, .conocimientos-iconos > div > img{
+    height: 35px;
+    margin-left: 10px;  
+}
+
+.skills-bar {
+    width: 90%;
+    height: 9px;
+    background-color: #888;
+    border-radius: 25px;
+    margin-top: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.skills-bar::after{
+    content: "";
+    position: absolute;
+    height: 9px;    
+    background-color: rgb(46, 46, 192);
+    transition: all 0.3s ease;
+    width: 100%;
+    left: -100%;
+    animation: skills-bar-fill 2s ease forwards;
+    overflow: hidden;
+
+}
+
+.skills-bar--10::after {
+    --skills-bar-length:10%;
+}
+.skills-bar--20::after {
+    --skills-bar-length:20%;
+}
+.skills-bar--30::after {
+    --skills-bar-length:30%;
+}
+.skills-bar--40::after {
+    --skills-bar-length:40%;
+}
+.skills-bar--50::after {
+    --skills-bar-length:50%;
+}
+.skills-bar--60::after {
+    --skills-bar-length:60%;
+}
+.skills-bar--70::after {
+    --skills-bar-length:70%;
+}
+.skills-bar--80::after {
+    --skills-bar-length:80%;
+}
+.skills-bar--90::after {
+    --skills-bar-length:90%;
+}
+
+.icono-borrar {
+    color:red;
+    cursor: pointer;
+}
+
+
+@keyframes skills-bar-fill {
+    to{
+        transform: translateX(var(--skills-bar-length))
+    }
+}
+

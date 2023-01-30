@@ -14,7 +14,10 @@ import { ContactoComponent } from './components/contacto/contacto.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ModalLoginComponent } from './components/header/modal-login/modal-login.component';
 import { ModoEdicionService } from './services/modo-edicion.service';
-import { ScrollDirective } from './directives/menu-scroll.directive';
+import { ScrollMenuDirective } from './directives/menu-scroll.directive';
+import { ScrollAcercaDeMiDirective } from './directives/acercademi-scroll.directive';
+import { ScrollConocimientosDirective } from './directives/conocimientos-scroll.directive.ts';
+import { ConocimientosItemComponent } from './components/conocimientos/conocimientos-item/conocimientos-item.component';
 
 
 @NgModule({
@@ -30,7 +33,10 @@ import { ScrollDirective } from './directives/menu-scroll.directive';
     ContactoComponent,
     FooterComponent,
     ModalLoginComponent,
-    ScrollDirective
+    ScrollMenuDirective,
+    ConocimientosItemComponent,
+    ScrollAcercaDeMiDirective,
+    ScrollConocimientosDirective
   ],
   imports: [
     BrowserModule,

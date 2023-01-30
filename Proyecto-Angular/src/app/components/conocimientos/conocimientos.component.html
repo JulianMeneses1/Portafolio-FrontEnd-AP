@@ -1,13 +1,81 @@
-<section  class="d-flex justify-content-center align-items-center" id="conocimientos">
-    <div class="card my-3" style="width: 50%;">
-        <div class="card-body">
-            <h3 class="card-title"><strong>Conocimientos</strong></h3>
-            <div class="conocimientos-iconos my-3">HTML<img src="../assets/HTML.png"></div>
-            <div class="conocimientos-iconos my-3">CSS<img src="../assets/CSS.png"></div>
-            <div class="conocimientos-iconos my-3">JavaScript<img src="../assets/JS.png"></div>
-            <div class="conocimientos-iconos my-3">Python<img src="../assets/Python.png"></div>                
-            <div class="conocimientos-iconos my-3">Java<img src="../assets/Java.png"></div> 
-            <div class="conocimientos-iconos my-3">MySQL<img src="../assets/MySQL.png"></div>                                       
+<section  class="d-flex justify-content-center align-items-center" id="conocimientos" appScrollConocimientos>
+    <div class="card" id="container" >
+        <div class="my-2 d-flex justify-content-between align-items-center">
+            <h3><strong>{{titulo}}</strong></h3>
+            <div>
+                <fa-icon 
+                    [icon]="faPlus" 
+                    *ngIf="modoEdicion" 
+                    class="iconos-edicion">
+                </fa-icon> 
+                <fa-icon
+                    class="iconos-edicion"
+                    *ngIf="modoEdicion" 
+                    [icon]="faSquarePen"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#conocimientos-modal">
+                </fa-icon>
+            </div>
+            
         </div>
+        <div class="d-flex flex-wrap">
+            <app-conocimientos-item            
+                *ngFor="let conocimiento of conocimientos"
+                [conocimiento]="conocimiento"
+                class="conocimientos-div my-3 w-50 d-flex align-items-center"               
+            >
+            </app-conocimientos-item>  
+        </div>              
     </div>
+
+
+    <!-- MODAL TITULO -->
+
+    <div 
+    class="modal fade modal-lg"      
+    id="conocimientos-modal" tabindex="-1" 
+    aria-labelledby="textoModalLabel"
+    aria-hidden="true"
+    >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <h3 class="modal-title textoModal" id="textoModalLabel">Editar Título</h3>                        
+                </div>
+                <div class="modal-body">                                 
+                    <div class="d-flex">
+                        <label for="user" class="form-label etiquetaModal">Título actual</label>
+                        <p class="etiquetaModal" id="titulo"><b>{{titulo}}</b></p>                    
+                    </div>
+                    <div class="d-flex align-items-baseline mb-3">
+                        <label for="user" class="form-label etiquetaModal">Nuevo título</label>
+                        <input 
+                            #nuevoTitulo 
+                            type="text" 
+                            class="form-control inputModal" 
+                            placeholder="Ingrese nuevo título">
+                    </div>                 
+                    
+                    <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
+                        <button 
+                            type="button" 
+                            class="btn btn-danger"                            
+                            data-bs-dismiss="modal"
+                            >
+                            Cerrar
+                        </button>
+                        <button 
+                            type="button" 
+                            class="btn btn-primary"                                                      
+                            data-bs-dismiss="modal"
+                            (click)="cambiarTitulo()"                           
+                            >
+                            Aceptar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>                                        
 </section>
+

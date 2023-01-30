@@ -43,7 +43,8 @@
 }
 
 .iconos-redes {
-    height: 2.3em;  
+    height: 2.3em; 
+    margin-left: 9px; 
 }
 
 #boton-github{
@@ -57,9 +58,9 @@
 }
 
 #icono-github{
-    height:50px; 
+    height:55px; 
     position: relative; 
-    right: 29.9%;   
+    right: 15%;   
 }
 
 .botones-redes:hover, #boton-github:hover {    
