@@ -9,21 +9,6 @@ h3{
     color: lightblue;
 }
 
-.iconos-edicion {
-    font-size:2.5em; 
-    color:rgb(36, 95, 184);    
-    cursor: pointer;
-}
-
-.conocimientos-iconos > img, .conocimientos-iconos > div > img{
-    height: 35px;
-    margin-left: 10px;  
-}
-
-.conocimientos-iconos {
-    width: 35%;
-}
-
 .animacion-seccion{    
     transform: translateY(50px) !important;
     opacity: 1 !important;
@@ -31,11 +16,10 @@ h3{
 } 
 
 fa-icon{
-    font-size: 25px;
-    color: #fd4;
-    padding: 7px;    
-    transition: all 0.2s ease;
-
+    font-size:2.5em; 
+    color:rgb(36, 95, 184); 
+    padding: 7px;
+    cursor: pointer; 
 }
 
 .textoModal, .etiquetaModal, .inputModal {

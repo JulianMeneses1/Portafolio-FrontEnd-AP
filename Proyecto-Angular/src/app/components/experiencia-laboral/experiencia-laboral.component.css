@@ -1,0 +1,49 @@
+#container {
+    width: 70%;
+    opacity: 0;
+    transform: translateY(0px);
+    transition: all 0.5s ease
+}
+
+h3{
+    color: lightblue;
+}
+
+.animacion-seccion{    
+    transform: translateY(50px) !important;
+    opacity: 1 !important;
+    transition: all 0.5s ease;           
+} 
+
+fa-icon{
+    font-size:2.5em; 
+    color:rgb(36, 95, 184); 
+    padding: 7px;
+    cursor: pointer; 
+}
+
+.textoModal, .etiquetaModal, .inputModal {
+    color:black !important
+}
+
+.etiquetaModal {
+    width: 30%
+}
+
+.inputModal {
+    width: 70%
+}
+
+.imagenEdicion{
+    height: 8em;
+}
+
+.inputEdicion{
+    width: 11em
+}
+
+
+
+
+
+
