@@ -42,8 +42,76 @@ fa-icon{
     width: 11em
 }
 
+.container-lista-exp {
+   width: 30%       
+}
+
+.container-items-exp {
+    width: 70%;
+}
+
+.boton-exp-item {
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    height: 45px;
+    font-size: 15px;
+    padding: 0px 20px 2px;    
+    width: 100%;        
+    text-align: left;
+    border-left: solid 2px #495670;       
+}
+
+.boton-exp-item-seleccionado {
+    color: rgb(188, 230, 248)   
+}
+
+.boton-exp-item:focus{
+    color:rgb(188, 230, 248)    
+}
+
+.boton-exp-item:hover{
+    background-color: #030f22;
+    color:rgb(188, 230, 248)    
+}
+
+.lista-seleccion {
+    width: 2px;
+    position: absolute;
+    z-index: 10;
+    border-radius: 4px;
+    top: 0px;
+    left: 0px;   
+    height: 45px;
+    background-color: aqua;    
+}
+
+.animacion-lista-seleccion{    
+    transform: translateY(var(--exp-bar-position));    
+    transition: transform 0.25s ease;           
+} 
+
+.exp-bar--45 {
+    --exp-bar-position:45px;
+}
+
+.exp-bar--90 {
+    --exp-bar-position:90px;
+}
 
 
 
 
 
+@media screen and (max-width: 1050px) {
+
+    .container-lista-exp {
+        width: auto !important;      
+        
+    } 
+    .boton-exp-item{
+        margin-bottom: 4px;
+    }
+   
+}

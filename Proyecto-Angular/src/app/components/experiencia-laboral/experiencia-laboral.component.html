@@ -18,13 +18,23 @@
             </div>
             
         </div>
-        <div class="d-flex">
-            <div class="w-25">
-                <div *ngFor="let experiencia of experiencias">
-                    <div class="m-3">{{experiencia.empresa}}</div>               
-                </div>
+        <div class="d-flex my-2 position-relative">
+            <div class="me-4 container-lista-exp">                 
+                <button  
+                    *ngFor="let experiencia of experiencias" 
+                    [ngClass]="{'boton-exp-item-seleccionado': experiencia === experienciaSeleccionada}"      
+                    class="boton-exp-item"
+                    (click)="onSelect(experiencia)">
+                    {{experiencia.empresa}}
+                </button>               
+                <div                        
+                    class="lista-seleccion animacion-lista-seleccion"
+                    [ngClass]=posicion
+                    >
+                </div> 
             </div>
-            <div class="w-75">
+            
+            <div class="container-items-exp">
                 <app-experiencia-laboral-item            
                     *ngFor="let experiencia of experiencias"
                     [experiencia]="experiencia">

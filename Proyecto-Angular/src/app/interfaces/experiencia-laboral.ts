@@ -6,6 +6,7 @@ export interface Experiencia {
     url_empresa?: string,
     fecha_inicio: string,
     fecha_fin: string,
-    descripcion: string 
+    descripcion: string,
+    posicion: string  
 
 }
