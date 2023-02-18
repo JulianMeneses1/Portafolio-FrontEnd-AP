@@ -20,7 +20,9 @@ export class ConocimientosComponent {
   nombreArchivo:string="";
   previsualizacionImagen: string="";
 
-  @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef; 
+  @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
+  @ViewChild('nuevoNombre') nuevoNombre!:ElementRef; 
+  @ViewChild('nuevoNivel') nuevoNivel!:ElementRef;
 
   conocimientos: Conocimiento[] = Conocimientos
 
@@ -36,6 +38,17 @@ export class ConocimientosComponent {
       this.titulo=this.nuevoTitulo.nativeElement.value;
       this.nuevoTitulo.nativeElement.value=""
     }   
+  }
+
+  resetearTitulo(){
+    this.nuevoTitulo.nativeElement.value=""
+  }
+
+  resetearInputs() {
+    this.previsualizacionImagen=""
+    this.nombreArchivo=""
+    this.nuevoNombre.nativeElement.value=""
+    this.nuevoNivel.nativeElement.value=""  
   }
 
   capturarImagen(event:any) {

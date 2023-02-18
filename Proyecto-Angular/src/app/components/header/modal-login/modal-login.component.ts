@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 
@@ -10,7 +10,9 @@ import { Subscription } from 'rxjs';
 export class ModalLoginComponent implements OnInit {
 
   modoEdicion:boolean=false;
-  suscripcion?:Subscription 
+  suscripcion?:Subscription;
+  @ViewChild('usuario') usuario!:ElementRef; 
+  @ViewChild('contraseña') contraseña!:ElementRef;  
 
   constructor(private servicioEdicion: ModoEdicionService) {
 
@@ -23,6 +25,10 @@ export class ModalLoginComponent implements OnInit {
   }
   alternarEdicion(){
     this.servicioEdicion.alternarEdicion()
+  }
+  resetearInputs(){
+    this.usuario.nativeElement.value=""
+    this.contraseña.nativeElement.value=""
   }
 
 }

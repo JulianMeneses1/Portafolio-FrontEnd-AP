@@ -27,6 +27,10 @@ fa-icon{
     cursor: pointer;
 }
 
+fa-icon:hover{
+    color:lightblue
+}
+
 #editar-texto{
     font-size: 2.5em !important
 }

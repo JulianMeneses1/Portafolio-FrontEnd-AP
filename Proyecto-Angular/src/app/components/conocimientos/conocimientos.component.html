@@ -1,6 +1,6 @@
 <section  class="d-flex justify-content-center align-items-center" id="conocimientos" >
     <div class="card" id="container" appScrollConocimientos >
-        <div class="my-2 d-flex justify-content-between align-items-center">
+        <div class="my-2 d-flex justify-content-between align-items-baseline">
             <h3><strong>{{titulo}}</strong></h3>
             <div>
                 <fa-icon 
@@ -61,6 +61,7 @@
                             type="button" 
                             class="btn btn-danger"                            
                             data-bs-dismiss="modal"
+                            (click)="resetearTitulo()"
                             >
                             Cerrar
                         </button>
@@ -96,7 +97,7 @@
                     <div class="d-flex align-items-baseline mb-3">
                         <label for="user" class="form-label etiquetaModal">Nombre</label>
                         <input 
-                            #nuevoTitulo 
+                            #nuevoNombre 
                             type="text" 
                             class="form-control inputModal" 
                             placeholder="Ingrese nombre">
@@ -104,7 +105,7 @@
                     <div class="d-flex align-items-baseline mb-3">
                         <label for="user" class="form-label etiquetaModal">Nivel</label>
                         <input 
-                            #nuevoTitulo 
+                            #nuevoNivel 
                             type="text" 
                             class="form-control inputModal" 
                             placeholder="Ingrese nivel de progreso (entre 10 y 90)">
@@ -112,7 +113,7 @@
 
                     <div class="mb-2">
                         <label for="user" class="form-label etiquetaModal">Imagen</label>                                               
-                        <input class="inputEdicion me-2" (change)="capturarImagen($event)" type="file">
+                        <input class="inputEdicion me-2" (change)="capturarImagen($event)" #nuevaImagen type="file">
                         <label class="textoModal">{{nombreArchivo}}</label>             
                     </div>
                     <img *ngIf="previsualizacionImagen" class="imagenEdicion mb-1" [src]="previsualizacionImagen">                 
@@ -122,13 +123,14 @@
                             type="button" 
                             class="btn btn-danger"                            
                             data-bs-dismiss="modal"
+                            (click)="resetearInputs()"
                             >
                             Cerrar
                         </button>
                         <button 
                             type="button" 
                             class="btn btn-primary"                                                      
-                            data-bs-dismiss="modal"                                                       
+                            data-bs-dismiss="modal"                                                                                   
                             >
                             Aceptar
                         </button>

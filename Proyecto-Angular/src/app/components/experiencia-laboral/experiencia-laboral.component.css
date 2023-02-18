@@ -22,6 +22,15 @@ fa-icon{
     cursor: pointer; 
 }
 
+.icono-borrar:hover{    
+    transform: scale(1.2);
+    color:red !important
+}
+
+fa-icon:hover{
+    color:lightblue
+}
+
 .textoModal, .etiquetaModal, .inputModal {
     color:black !important
 }
@@ -43,7 +52,15 @@ fa-icon{
 }
 
 .container-lista-exp {
-   width: 30%       
+   width: 30%;
+   margin-right: 10px;       
+}
+
+.icono-borrar {
+    color:red;
+    cursor: pointer;
+    font-size: 1.5em;    
+    
 }
 
 .container-items-exp {
@@ -57,7 +74,7 @@ fa-icon{
     align-items: center;
     height: 45px;
     font-size: 15px;
-    padding: 0px 20px 2px;    
+    padding: 0px 15px;    
     width: 100%;        
     text-align: left;
     border-left: solid 2px #495670;       
@@ -101,14 +118,10 @@ fa-icon{
 }
 
 
-
-
-
 @media screen and (max-width: 1050px) {
 
     .container-lista-exp {
-        width: auto !important;      
-        
+        width: auto !important     
     } 
     .boton-exp-item{
         margin-bottom: 4px;

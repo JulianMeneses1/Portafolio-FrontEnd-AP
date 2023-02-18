@@ -1,5 +1,5 @@
 import { Component, Input} from '@angular/core';
-import { faX, faBarsProgress } from '@fortawesome/free-solid-svg-icons';
+import { faX} from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { Experiencia } from 'src/app/interfaces/experiencia-laboral';
@@ -10,8 +10,7 @@ import { Experiencias } from 'src/app/interfaces/mosk-experiencia-laboral';
   templateUrl: './experiencia-laboral-item.component.html',
   styleUrls: ['./experiencia-laboral-item.component.css']
 })
-export class ExperienciaLaboralItemComponent {
-  faX = faX;  
+export class ExperienciaLaboralItemComponent { 
   modoEdicion:boolean=false;
   suscripcion?:Subscription;
   

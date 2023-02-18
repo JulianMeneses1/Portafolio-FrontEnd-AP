@@ -22,6 +22,10 @@ fa-icon{
     cursor: pointer; 
 }
 
+fa-icon:hover{
+    color:lightblue
+}
+
 .textoModal, .etiquetaModal, .inputModal {
     color:black !important
 }

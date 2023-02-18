@@ -61,6 +61,10 @@
     cursor: pointer;
 }
 
+.icono-borrar:hover{    
+    transform: scale(1.3)
+}
+
 
 @keyframes skills-bar-fill {
     to{

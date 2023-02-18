@@ -40,4 +40,9 @@ export class AcercademiComponent implements OnInit{
       this.nuevoTexto.nativeElement.value=""      
       } 
   }
+
+  resetearInputs(){
+    this.nuevoTitulo.nativeElement.value=""
+    this.nuevoTexto.nativeElement.value=""  
+  }
 }

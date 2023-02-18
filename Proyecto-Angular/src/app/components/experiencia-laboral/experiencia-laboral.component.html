@@ -1,15 +1,17 @@
 <section class="d-flex justify-content-center align-items-center" id="experiencia laboral" >
     <div class="card" id="container" appScrollExpLaboral>
-        <div class="my-2 d-flex justify-content-between align-items-center">
+        <div class="my-2 d-flex justify-content-between align-items-baseline">
             <h3><strong>{{titulo}}</strong></h3>
             <div>
-                <fa-icon 
+                <fa-icon
+
                     [icon]="faPlus" 
                     *ngIf="modoEdicion" 
                     data-bs-toggle="modal" 
                     data-bs-target="#experiencia-modal">
                 </fa-icon> 
                 <fa-icon
+                    id="a"
                     *ngIf="modoEdicion" 
                     [icon]="faSquarePen"
                     data-bs-toggle="modal" 
@@ -26,7 +28,8 @@
                     class="boton-exp-item"
                     (click)="onSelect(experiencia)">
                     {{experiencia.empresa}}
-                </button>               
+                    <fa-icon [icon]="faX" *ngIf="modoEdicion" class="icono-borrar ms-auto"></fa-icon>
+                </button>                                    
                 <div                        
                     class="lista-seleccion animacion-lista-seleccion"
                     [ngClass]=posicion
@@ -76,6 +79,7 @@
                             type="button" 
                             class="btn btn-danger"                            
                             data-bs-dismiss="modal"
+                            (click)="resetearTitulo()" 
                             >
                             Cerrar
                         </button>

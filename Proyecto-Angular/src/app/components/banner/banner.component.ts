@@ -73,6 +73,11 @@ export class BannerComponent implements OnInit {
       } 
   }
 
+  resetearInputs () {
+    this.nuevoTitulo.nativeElement.value=""
+    this.nuevoSubtitulo.nativeElement.value=""    
+  }
+
   // FUNCIÓN PARA EXTRAER LA URL DE LA IMAGEN
 
   extraerURL = async ($event:any) => new Promise ((resolve, reject) => {

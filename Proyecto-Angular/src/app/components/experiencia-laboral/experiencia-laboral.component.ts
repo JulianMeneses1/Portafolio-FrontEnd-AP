@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, OnInit} from '@angular/core';
-import { faSquarePen, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faSquarePen, faPlus, faX } from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { Experiencia } from 'src/app/interfaces/experiencia-laboral';
@@ -15,7 +15,8 @@ export class ExperienciaLaboralComponent implements OnInit {
 
   titulo:string="Experiencia Laboral"
   faSquarePen = faSquarePen;
-  faPlus = faPlus 
+  faPlus = faPlus;
+  faX = faX;   
   modoEdicion:boolean=false;
   suscripcion?:Subscription;
   posicion:string="0px"
@@ -33,14 +34,18 @@ export class ExperienciaLaboralComponent implements OnInit {
 
   ngOnInit () {
 
-  }
+  } 
 
   cambiarTitulo(){
     if (this.nuevoTitulo.nativeElement.value!=="") {
       this.titulo=this.nuevoTitulo.nativeElement.value;
       this.nuevoTitulo.nativeElement.value=""
     }   
-  } 
+  }
+  
+  resetearTitulo () {
+    this.nuevoTitulo.nativeElement.value=""
+  }
 
   onSelect (experiencia: Experiencia): void {
     this.experienciaSeleccionada = experiencia   
