@@ -3,7 +3,7 @@
 
 :root {
     --skills-bar-length: 0%;
-    --exp-bar-position: 0px
+    --exp-bar-position-Y: 0px
 }
 
 body {

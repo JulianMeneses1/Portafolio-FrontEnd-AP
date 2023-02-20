@@ -1,70 +1,65 @@
-
-
-.conocimientos-iconos > img, .conocimientos-iconos > div > img{
-    height: 35px;
-    margin-left: 10px;  
+.container{
+    margin-top: 6px;
+    padding: 0px !important;
 }
 
-.skills-bar {
-    width: 90%;
-    height: 9px;
-    background-color: #888;
-    border-radius: 25px;
-    margin-top: 15px;
-    position: relative;
-    overflow: hidden;
+#titulo {
+    font-weight:bold;
+    color:white !important
 }
 
-.skills-bar::after{
+#duracion {
+    font-size:14px; 
+    margin-top:-10px
+}
+
+.container>div>p, a{
+    color: lightblue;
+}
+
+
+a:link, a:visited{
+    color: lightblue;
+    text-decoration: none;
+}
+
+a {
+    display: inline-block;
+    position: relative
+}
+
+a::after{
     content: "";
     position: absolute;
-    height: 9px;    
-    background-color: rgb(46, 46, 192);
-    transition: all 0.3s ease;
     width: 100%;
-    left: -100%;
-    animation: skills-bar-fill 2s ease forwards;
-    overflow: hidden;
-
+    height: 2px ;
+    left: 0;
+    bottom: 40%;
+    background-color: lightblue;
+    transform-origin: bottom left;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-out
 }
 
-.skills-bar--10::after {
-    --skills-bar-length:10%;
-}
-.skills-bar--20::after {
-    --skills-bar-length:20%;
-}
-.skills-bar--30::after {
-    --skills-bar-length:30%;
-}
-.skills-bar--40::after {
-    --skills-bar-length:40%;
-}
-.skills-bar--50::after {
-    --skills-bar-length:50%;
-}
-.skills-bar--60::after {
-    --skills-bar-length:60%;
-}
-.skills-bar--70::after {
-    --skills-bar-length:70%;
-}
-.skills-bar--80::after {
-    --skills-bar-length:80%;
-}
-.skills-bar--90::after {
-    --skills-bar-length:90%;
+a:hover::after{
+    transform-origin: bottom left;
+    transform: scaleX(1)
 }
 
-.icono-borrar {
-    color:red;
-    cursor: pointer;
-}
+@media screen and (max-width: 1050px) {
 
-
-@keyframes skills-bar-fill {
-    to{
-        transform: translateX(var(--skills-bar-length))
+   
+    .container-items-exp{
+        width: 100%;
+    } 
+    .container{
+        display:block !important;
+        margin-top: 20px
+    }    
+    a {
+        margin-bottom: 30px
     }
+    a::after{
+        bottom: 7%
+    }  
 }
-

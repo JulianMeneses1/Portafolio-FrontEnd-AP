@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { Experiencia } from '../interfaces/experiencia-laboral';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModoEdicionService {
 
+  private Url = "http://localhost:4200"
   private modoEdicion:boolean=false;
   private subject = new Subject<any>()
 
@@ -26,9 +28,3 @@ export class ModoEdicionService {
 
 
 
-
-
-//   onToggle():Observable<any>{
-//     return this.subject.asObservable();
-//   }
-// }

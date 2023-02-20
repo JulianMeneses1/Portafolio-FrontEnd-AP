@@ -1,9 +1,10 @@
-import { Component, ViewChild, ElementRef, OnInit} from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, Renderer2} from '@angular/core';
 import { faSquarePen, faPlus, faX } from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { Experiencia } from 'src/app/interfaces/experiencia-laboral';
 import { Experiencias } from 'src/app/interfaces/mosk-experiencia-laboral';
+
 
 
 @Component({
@@ -19,15 +20,16 @@ export class ExperienciaLaboralComponent implements OnInit {
   faX = faX;   
   modoEdicion:boolean=false;
   suscripcion?:Subscription;
-  posicion:string="0px"
-
-  @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef; 
-
-  experienciaSeleccionada:Experiencia=Experiencias[0]
+  posicion_Y:string="0px";
+  experienciaSeleccionada:Experiencia=Experiencias[0];
   experiencias: Experiencia[] = Experiencias
 
-  constructor(private servicioEdicion : ModoEdicionService) 
-  {
+  @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
+  @ViewChild('contenedorPrimerExp') contenedorPrimerExp!:ElementRef;  
+
+  constructor(private servicioEdicion : ModoEdicionService,
+    private renderer: Renderer2) 
+  {    
     this.suscripcion = this.servicioEdicion.onAlternar().subscribe(
       value => this.modoEdicion = value)
   }
@@ -49,7 +51,10 @@ export class ExperienciaLaboralComponent implements OnInit {
 
   onSelect (experiencia: Experiencia): void {
     this.experienciaSeleccionada = experiencia   
-    this.posicion=experiencia.posicion    
+    this.posicion_Y=experiencia.posicion_Y            
+  }
+  desaparecerPrimerExp(){
+    this.renderer.setStyle(this.contenedorPrimerExp.nativeElement,"display", "none");
   }
 }
 

@@ -9,8 +9,9 @@ export const Experiencias: Experiencia[] = [ // Hacemos que la variable Experien
         url_empresa: "https://procomitsolutions.com/es",
         fecha_inicio: "Septiembre 2022",
         fecha_fin: "Actualidad",
-        descripcion: "Me desempeño como desarrollador de apps a través de las herramientas Power Apps y Power Automate de Power Platform, perteneciente a Microsoft.",
-        posicion: "exp-bar--0"
+        descripcion: `Me desempeño como desarrollador de apps para escritorio y móviles a través de las herramientas Power Apps y Power Automate de Power Platform, perteneciente a Microsoft.
+        Trabajo en un equipo interdisciplinario con la metodología Scrum, teniendo reuniones diarias y sprints cada dos o tres semanas.`,
+        posicion_Y: "exp-bar-Y--0"
             
     },
     {
@@ -21,7 +22,7 @@ export const Experiencias: Experiencia[] = [ // Hacemos que la variable Experien
         fecha_inicio: "Marzo 2018",
         fecha_fin: "Febrero 2019",
         descripcion: "Trabajé como vendedor de los diferentes artículos que se ofrecían en el negocio.",
-        posicion: "exp-bar--45"  
+        posicion_Y: "exp-bar-Y--45"
              
     },
     {
@@ -32,7 +33,7 @@ export const Experiencias: Experiencia[] = [ // Hacemos que la variable Experien
         fecha_inicio: "Septiembre 2017",
         fecha_fin: "Diciembre 2017",
         descripcion: "Llevaba a cabo la tarea de llamar a clientes morosos para hacer un plan de financiación de sus deudas.",
-        posicion: "exp-bar--90"      
+        posicion_Y: "exp-bar-Y--90"     
              
     }
 ]

@@ -47,16 +47,13 @@ fa-icon:hover{
 }
 
 
-
-
-
-
 @media  screen and (max-width: 900px){
     .conocimientos-div{
         width: 100% !important;
     }
     section {
         height: auto !important;
+        margin-bottom: 60px;      
     }    
     
 } 

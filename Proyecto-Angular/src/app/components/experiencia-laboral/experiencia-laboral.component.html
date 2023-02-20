@@ -20,28 +20,39 @@
             </div>
             
         </div>
-        <div class="d-flex my-2 position-relative">
-            <div class="me-4 container-lista-exp">                 
+        <div class="d-flex my-2 position-relative" id="container-items-lista-exp">
+            <div class="me-2 container-lista-exp">                 
                 <button  
                     *ngFor="let experiencia of experiencias" 
                     [ngClass]="{'boton-exp-item-seleccionado': experiencia === experienciaSeleccionada}"      
                     class="boton-exp-item"
-                    (click)="onSelect(experiencia)">
+                    (click)="onSelect(experiencia); desaparecerPrimerExp()"
+                    [routerLink]="['experiencia',experiencia.id]">                   
                     {{experiencia.empresa}}
                     <fa-icon [icon]="faX" *ngIf="modoEdicion" class="icono-borrar ms-auto"></fa-icon>
                 </button>                                    
                 <div                        
                     class="lista-seleccion animacion-lista-seleccion"
-                    [ngClass]=posicion
+                    [ngClass]=posicion_Y
+                    
                     >
                 </div> 
-            </div>
-            
+            </div>          
             <div class="container-items-exp">
-                <app-experiencia-laboral-item            
-                    *ngFor="let experiencia of experiencias"
-                    [experiencia]="experiencia">
-                </app-experiencia-laboral-item>
+                <div #contenedorPrimerExp>
+                    <div class="d-flex align-items-baseline gap-1 container-primer-exp"> 
+                        <p id="titulo-primer-exp">{{experiencias[0].puesto}}</p>                        
+                        <div class="d-flex gap-1">
+                            <p>@</p>
+                            <a href="{{experiencias[0].url_empresa}}" target="_blank">{{experiencias[0].empresa}}</a> 
+                        </div>                       
+                    </div>
+                    <div>
+                        <p id="duracion-primer-exp">{{experiencias[0].fecha_inicio}} - {{experiencias[0].fecha_fin}}</p>
+                        <p>{{experiencias[0].descripcion}}</p>
+                    </div>
+                </div>
+                <router-outlet></router-outlet>                
             </div>  
         </div>              
     </div>

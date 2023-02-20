@@ -7,6 +7,6 @@ export interface Experiencia {
     fecha_inicio: string,
     fecha_fin: string,
     descripcion: string,
-    posicion: string  
+    posicion_Y: string
 
 }
