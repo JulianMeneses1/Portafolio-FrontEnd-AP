@@ -197,8 +197,8 @@ a:hover::after{
         padding: 0px 20px !important;
         text-align: center;          
         }    
-    .boton-exp-item:hover{        
-        background-color: none    
+    .boton-exp-item-seleccionado {
+        background-color: #495670;      
     }
 
     .lista-seleccion {
