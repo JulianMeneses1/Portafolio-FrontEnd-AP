@@ -22,7 +22,8 @@ export class ExperienciaLaboralComponent implements OnInit {
   suscripcion?:Subscription;
   posicion_Y:string="0px";
   experienciaSeleccionada:Experiencia=Experiencias[0];
-  experiencias: Experiencia[] = Experiencias
+  experiencias: Experiencia[] = Experiencias;
+  mostrarPrimerExp:boolean = true
 
   @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
   @ViewChild('contenedorPrimerExp') contenedorPrimerExp!:ElementRef;  
@@ -54,7 +55,10 @@ export class ExperienciaLaboralComponent implements OnInit {
     this.posicion_Y=experiencia.posicion_Y            
   }
   desaparecerPrimerExp(){
+    if (this.mostrarPrimerExp==true){
     this.renderer.setStyle(this.contenedorPrimerExp.nativeElement,"display", "none");
+    this.mostrarPrimerExp=false
+    }
   }
 }
 
