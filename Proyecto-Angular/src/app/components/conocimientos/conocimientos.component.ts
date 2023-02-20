@@ -21,8 +21,8 @@ export class ConocimientosComponent {
   previsualizacionImagen: string="";
 
   @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
-  @ViewChild('nuevoNombre') nuevoNombre!:ElementRef; 
-  @ViewChild('nuevoNivel') nuevoNivel!:ElementRef;
+  @ViewChild('Nombre') nuevoNombre!:ElementRef; 
+  @ViewChild('Nivel') nuevoNivel!:ElementRef;
 
   conocimientos: Conocimiento[] = Conocimientos
 

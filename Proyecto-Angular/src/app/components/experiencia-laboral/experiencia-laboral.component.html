@@ -124,36 +124,60 @@
                 <div class="modal-body">                           
                     
                     <div class="d-flex align-items-baseline mb-3">
-                        <label for="user" class="form-label etiquetaModal">Puesto</label>
+                        <label for="user" class="form-label etiquetaModal">Empresa</label>
                         <input 
-                            #nuevoTitulo 
+                            #empresa 
                             type="text" 
                             class="form-control inputModal" 
-                            placeholder="Ingrese nombre">
+                            placeholder="Ingrese el nombre de la empresa">
                     </div>
                     <div class="d-flex align-items-baseline mb-3">
                         <label for="user" class="form-label etiquetaModal">Puesto</label>
                         <input 
-                            #nuevoTitulo 
+                            #puesto
                             type="text" 
                             class="form-control inputModal" 
-                            placeholder="Ingrese nombre">
+                            placeholder="Ingrese su puesto en la empresa">
                     </div>
                     <div class="d-flex align-items-baseline mb-3">
-                        <label for="user" class="form-label etiquetaModal">Nivel</label>
+                        <label for="user" class="form-label etiquetaModal">URL</label>
                         <input 
-                            #nuevoTitulo 
+                            #url
                             type="text" 
                             class="form-control inputModal" 
-                            placeholder="Ingrese nivel de progreso (entre 10 y 90)">
+                            placeholder="Ingrese la url de la página web de la empresa">
                     </div>
-
+                    <div class="d-flex align-items-baseline mb-3">
+                        <label for="user" class="form-label etiquetaModal">Fecha Inicio</label>
+                        <input 
+                            #fechaInicio
+                            type="text" 
+                            class="form-control inputModal" 
+                            placeholder="Ingrese fecha de inicio (mes y año)">
+                    </div>
+                    <div class="d-flex align-items-baseline mb-3">
+                        <label for="user" class="form-label etiquetaModal">Fecha Fin</label>
+                        <input 
+                            #fechaFin
+                            type="text" 
+                            class="form-control inputModal" 
+                            placeholder="Ingrese fecha de finalización (mes y año)">
+                    </div>
+                    <div class="d-flex align-items-baseline mb-3">
+                        <label for="user" class="form-label etiquetaModal">Descripción</label>              
+                            <textarea
+                                #descripcion 
+                                maxlength="300"           
+                                class="form-control inputModal2" 
+                                placeholder="Ingrese descripción de su puesto en la empresa"></textarea>
+                    </div>
                     
                     <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
                         <button 
                             type="button" 
                             class="btn btn-danger"                            
                             data-bs-dismiss="modal"
+                            (click)="resetearInputs()"
                             >
                             Cerrar
                         </button>

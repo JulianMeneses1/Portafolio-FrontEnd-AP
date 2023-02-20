@@ -36,19 +36,21 @@ fa-icon:hover{
 }
 
 .etiquetaModal {
-    width: 30%
+    width: 25%
 }
 
 .inputModal {
-    width: 70%
-}
-
-.imagenEdicion{
-    height: 8em;
+    width: 75%
 }
 
 .inputEdicion{
     width: 11em
+}
+
+.inputModal2 {
+    overflow: auto;
+    max-height: 60px;
+    width: 75%;
 }
 
 .container-lista-exp {

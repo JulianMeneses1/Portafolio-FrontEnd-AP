@@ -26,7 +26,13 @@ export class ExperienciaLaboralComponent implements OnInit {
   mostrarPrimerExp:boolean = true
 
   @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
-  @ViewChild('contenedorPrimerExp') contenedorPrimerExp!:ElementRef;  
+  @ViewChild('contenedorPrimerExp') contenedorPrimerExp!:ElementRef;
+  @ViewChild('empresa') empresa!:ElementRef;  
+  @ViewChild('puesto') puesto!:ElementRef;  
+  @ViewChild('url') url!:ElementRef;  
+  @ViewChild('fechaInicio') fechaInicio!:ElementRef;  
+  @ViewChild('fechaFin') fechaFin!:ElementRef;  
+  @ViewChild('descripcion') descripcion!:ElementRef;  
 
   constructor(private servicioEdicion : ModoEdicionService,
     private renderer: Renderer2) 
@@ -59,6 +65,16 @@ export class ExperienciaLaboralComponent implements OnInit {
     this.renderer.setStyle(this.contenedorPrimerExp.nativeElement,"display", "none");
     this.mostrarPrimerExp=false
     }
+  }
+  resetearInputs() {
+
+    this.empresa.nativeElement.value=""
+    this.puesto.nativeElement.value=""
+    this.descripcion.nativeElement.value=""
+    this.fechaFin.nativeElement.value=""
+    this.fechaInicio.nativeElement.value=""
+    this.url.nativeElement.value=""
+
   }
 }
 

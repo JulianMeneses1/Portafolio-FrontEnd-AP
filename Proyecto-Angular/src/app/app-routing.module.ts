@@ -4,7 +4,7 @@ import { ExperienciaLaboralItemComponent } from './components/experiencia-labora
 
 const routes: Routes = [
  
-  {path:"experiencia/:id", component: ExperienciaLaboralItemComponent},
+  {path:"experiencia/:id", component: ExperienciaLaboralItemComponent, pathMatch: "full"},
   {path:'**', redirectTo:'', pathMatch: "full"}                         // si escriben cualquier cosa después de la url base (localhost:4200/) 
                                                                         // que no se corresponda con una de mis rutas, el usuario es redirigido a la
                                                                         // página principal
