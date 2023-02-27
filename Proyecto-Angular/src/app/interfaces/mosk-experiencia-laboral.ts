@@ -6,34 +6,34 @@ export const Experiencias: Experiencia[] = [ // Hacemos que la variable Experien
         id: 1,
         puesto: "App Developer (Power Platform)",
         empresa: "Procom IT Solutions",
-        url_empresa: "https://procomitsolutions.com/es",
-        fecha_inicio: "Septiembre 2022",
-        fecha_fin: "Actualidad",
+        urlEmpresa: "https://procomitsolutions.com/es",
+        fechaInicio: "Septiembre 2022",
+        fechaFin: "Actualidad",
         descripcion: `Me desempeño como desarrollador de apps para escritorio y móviles a través de las herramientas Power Apps y Power Automate de Power Platform, perteneciente a Microsoft.
         Trabajo en un equipo interdisciplinario con la metodología Scrum, teniendo reuniones diarias y sprints cada dos o tres semanas.`,
-        posicion_Y: "exp-bar-Y--0"
+        posicionY: "exp-bar-Y--0"
             
     },
     {
         id: 2,
         puesto: "Vendedor",
         empresa: "Distribuidora Argüello",
-        url_empresa: "https://www.google.com.ar",
-        fecha_inicio: "Marzo 2018",
-        fecha_fin: "Febrero 2019",
+        urlEmpresa: "https://www.google.com.ar",
+        fechaInicio: "Marzo 2018",
+        fechaFin: "Febrero 2019",
         descripcion: "Trabajé como vendedor de los diferentes artículos que se ofrecían en el negocio.",
-        posicion_Y: "exp-bar-Y--45"
+        posicionY: "exp-bar-Y--45"
              
     },
     {
         id: 3,
         puesto: "Secretario",
         empresa: "ByV Asociados",
-        url_empresa: "https://www.google.com.ar",
-        fecha_inicio: "Septiembre 2017",
-        fecha_fin: "Diciembre 2017",
+        urlEmpresa: "https://www.google.com.ar",
+        fechaInicio: "Septiembre 2017",
+        fechaFin: "Diciembre 2017",
         descripcion: "Llevaba a cabo la tarea de llamar a clientes morosos para hacer un plan de financiación de sus deudas.",
-        posicion_Y: "exp-bar-Y--90"     
+        posicionY: "exp-bar-Y--90"     
              
     }
 ]

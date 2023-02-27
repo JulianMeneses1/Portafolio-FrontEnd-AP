@@ -3,10 +3,10 @@ export interface Experiencia {
     id?: number,
     puesto:string,
     empresa: string,
-    url_empresa?: string,
-    fecha_inicio: string,
-    fecha_fin: string,
+    urlEmpresa?: string,
+    fechaInicio: string,
+    fechaFin: string,
     descripcion: string,
-    posicion_Y: string
+    posicionY: string
 
 }
