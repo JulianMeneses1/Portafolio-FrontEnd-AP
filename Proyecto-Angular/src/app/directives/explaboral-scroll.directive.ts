@@ -15,7 +15,6 @@ export class ExplaboralScrollDirective {
   // que tiene la variable opacity, en un principio undefined 
  
   @HostBinding('class.animacion-seccion') ok!:boolean
-  @HostBinding('class.skills-bar') ok2!:boolean
 
 
   // HostListener lo que hace es ejecutar una función al producirse el evento onScroll, 
@@ -26,25 +25,17 @@ export class ExplaboralScrollDirective {
     if (window.innerWidth>900){
    
       if (this.ultimoScrollY>1550) {
-        this.ok = true 
-        this.ok2 = true       
-                
+        this.ok = true           
       } else {
-        this.ok = false
-        this.ok2 = false        
-                
+        this.ok = false           
       } 
       this.ultimoScrollY = window.scrollY
     } else {
 
-      if (this.ultimoScrollY>1800) {
-        this.ok = true 
-        this.ok2 = true       
-                
+      if (this.ultimoScrollY>1850) {
+        this.ok = true                
       } else {
-        this.ok = false
-        this.ok2 = false        
-                
+        this.ok = false           
       } 
       this.ultimoScrollY = window.scrollY
     }

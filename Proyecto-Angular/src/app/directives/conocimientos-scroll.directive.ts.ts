@@ -21,7 +21,7 @@ export class ScrollConocimientosDirective {
   // HostListener lo que hace es ejecutar una función al producirse el evento onScroll, 
   // es decir al desplazarse el usuario hacia arriba o abajo en la pantalla
 
-  @HostListener('window:scroll') onScroll (){ 
+  @HostListener('window:scroll') onScroll (){     
    
     if (this.ultimoScrollY>900) {
       this.ok = true 
