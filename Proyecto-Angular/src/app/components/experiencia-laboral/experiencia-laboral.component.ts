@@ -5,8 +5,6 @@ import { Subscription } from 'rxjs';
 import { Experiencia } from 'src/app/interfaces/experiencia-laboral';
 import { Experiencias } from 'src/app/interfaces/mosk-experiencia-laboral';
 
-
-
 @Component({
   selector: 'app-experiencia-laboral',
   templateUrl: './experiencia-laboral.component.html',
@@ -58,7 +56,7 @@ export class ExperienciaLaboralComponent implements OnInit {
 
   onSelect (experiencia: Experiencia): void {
     this.experienciaSeleccionada = experiencia   
-    this.posicion_Y=experiencia.posicion_Y            
+    this.posicion_Y=experiencia.posicionY            
   }
   desaparecerPrimerExp(){
     if (this.mostrarPrimerExp==true){
