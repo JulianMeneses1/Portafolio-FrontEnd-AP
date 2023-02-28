@@ -1,0 +1,16 @@
+<div class="w-50">    
+            <img src="{{proyecto.imagen}}" style="max-height: 200px;">
+           
+      
+          
+ 
+ 
+</div>  
+<div class="w-50"> 
+    <h4>{{proyecto.nombre}}</h4>
+    <p>{{proyecto.descripcion}}</p>
+    <div *ngFor="let tecnologia of proyecto.tecnologias" class="mt-4"style="display:inline-block">
+        <label class="me-3">{{tecnologia}}</label></div>
+</div>       
+
+  <!-- <fa-icon [icon]="faX" *ngIf="modoEdicion" class="icono-borrar"></fa-icon>   -->   

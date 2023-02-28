@@ -20,6 +20,8 @@ import { ScrollConocimientosDirective } from './directives/conocimientos-scroll.
 import { ConocimientosItemComponent } from './components/conocimientos/conocimientos-item/conocimientos-item.component';
 import { ExplaboralScrollDirective } from './directives/explaboral-scroll.directive';
 import { ExperienciaLaboralItemComponent } from './components/experiencia-laboral/experiencia-laboral-item/experiencia-laboral-item.component';
+import { ProyectosItemComponent } from './components/proyectos/proyectos-item/proyectos-item.component';
+import { ScrollProyectosDirective } from './directives/proyectos-scroll.directive';
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { ExperienciaLaboralItemComponent } from './components/experiencia-labora
     ScrollAcercaDeMiDirective,
     ScrollConocimientosDirective,
     ExplaboralScrollDirective,
-    ExperienciaLaboralItemComponent
+    ScrollProyectosDirective,
+    ExperienciaLaboralItemComponent,
+    ProyectosItemComponent
   ],
   imports: [
     BrowserModule,

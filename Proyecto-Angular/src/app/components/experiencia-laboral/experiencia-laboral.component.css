@@ -2,9 +2,7 @@
     width: 70%;
     opacity: 0;
     transform: translateY(0px);
-    transition: all 0.5s ease;
-    height: 500px;
-    
+    transition: all 0.5s ease;    
 }
 
 h3{
@@ -166,6 +164,10 @@ a:hover::after{
 
 
 @media screen and (max-width: 1050px) {
+
+    #container {
+        margin-top: 100px;
+    }
 
     #container-items-lista-exp{
         display: block !important

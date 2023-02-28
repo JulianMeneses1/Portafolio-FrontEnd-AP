@@ -1,8 +1,143 @@
-<section  class="d-flex justify-content-center align-items-center"  id="proyectos">
-    <div class="card my-3"  style="width: 50%;">
-        <div class="card-body">
-          <h3 class="card-title" ><strong>Proyectos</strong></h3>
-          <p class="card-text" >Base de Datos SQL</p>                  
-        </div>
-    </div>
+<section  class="d-flex justify-content-center align-items-center" id="proyectos" >
+  <div class="card" id="container" appScrollProyectos>
+      <div class="my-2 d-flex justify-content-between align-items-baseline">
+          <h3><strong>{{titulo}}</strong></h3>
+          <div>
+              <fa-icon 
+                  [icon]="faPlus" 
+                  *ngIf="modoEdicion" 
+                  data-bs-toggle="modal" 
+                  data-bs-target="#proyecto-modal">
+              </fa-icon> 
+              <fa-icon
+                  *ngIf="modoEdicion" 
+                  [icon]="faSquarePen"
+                  data-bs-toggle="modal" 
+                  data-bs-target="#titulo-proyecto-modal">
+              </fa-icon>
+          </div>
+          
+      </div>
+      <div class="d-flex flex-wrap">
+          <app-proyectos-item            
+              *ngFor="let proyecto of proyectos"
+              [proyecto]="proyecto"
+              class="proyectos-div my-3 w-100 d-flex flex-wrap"               
+          >
+          </app-proyectos-item>  
+      </div>              
+  </div>
+
+
+  <!-- MODAL TITULO -->
+
+  <div 
+  class="modal fade modal-lg"      
+  id="titulo-proyecto-modal" tabindex="-1" 
+  aria-labelledby="textoModalLabel"
+  aria-hidden="true"
+  >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <div class="modal-header justify-content-center">
+                  <h3 class="modal-title textoModal" id="textoModalLabel">Editar Título</h3>                        
+              </div>
+              <div class="modal-body">                                 
+                  <div class="d-flex">
+                      <label for="user" class="form-label etiquetaModal">Título actual</label>
+                      <p class="etiquetaModal" id="titulo"><b>{{titulo}}</b></p>                    
+                  </div>
+                  <div class="d-flex align-items-baseline mb-3">
+                      <label for="user" class="form-label etiquetaModal">Nuevo título</label>
+                      <input 
+                          #nuevoTitulo 
+                          type="text" 
+                          class="form-control inputModal" 
+                          placeholder="Ingrese nuevo título">
+                  </div>                 
+                  
+                  <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
+                      <button 
+                          type="button" 
+                          class="btn btn-danger"                            
+                          data-bs-dismiss="modal"
+                          (click)="resetearTitulo()"
+                          >
+                          Cerrar
+                      </button>
+                      <button 
+                          type="button" 
+                          class="btn btn-primary"                                                      
+                          data-bs-dismiss="modal"
+                          (click)="cambiarTitulo()"                           
+                          >
+                          Aceptar
+                      </button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- MODAL AÑADIR PROYECTO -->
+
+  <div 
+  class="modal fade modal-lg"      
+  id="proyecto-modal" tabindex="-1" 
+  aria-labelledby="textoModalLabel"
+  aria-hidden="true"
+  >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <div class="modal-header justify-content-center">
+                  <h3 class="modal-title textoModal" id="textoModalLabel">Añadir Proyecto</h3>                        
+              </div>
+              <div class="modal-body">                           
+                  
+                  <div class="d-flex align-items-baseline mb-3">
+                      <label for="user" class="form-label etiquetaModal">Nombre</label>
+                      <input 
+                          #Nombre 
+                          type="text" 
+                          class="form-control inputModal" 
+                          placeholder="Ingrese nombre">
+                  </div>
+                  <div class="d-flex align-items-baseline mb-3">
+                      <label for="user" class="form-label etiquetaModal">Nivel</label>
+                      <input 
+                          #Nivel 
+                          type="text" 
+                          class="form-control inputModal" 
+                          placeholder="Ingrese nivel de progreso (entre 10 y 90)">
+                  </div>
+
+                  <div class="mb-2">
+                      <label for="user" class="form-label etiquetaModal">Imagen</label>                                               
+                      <input class="inputEdicion me-2" (change)="capturarImagen($event)" #nuevaImagen type="file">
+                      <label class="textoModal">{{nombreArchivo}}</label>             
+                  </div>
+                  <img *ngIf="previsualizacionImagen" class="imagenEdicion mb-1" [src]="previsualizacionImagen">                 
+                  
+                  <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
+                      <button 
+                          type="button" 
+                          class="btn btn-danger"                            
+                          data-bs-dismiss="modal"
+                          (click)="resetearInputs()"
+                          >
+                          Cerrar
+                      </button>
+                      <button 
+                          type="button" 
+                          class="btn btn-primary"                                                      
+                          data-bs-dismiss="modal"                                                                                   
+                          >
+                          Aceptar
+                      </button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>                                               
 </section>
+
