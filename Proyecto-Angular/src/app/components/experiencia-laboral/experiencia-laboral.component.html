@@ -27,14 +27,14 @@
                     [ngClass]="{'boton-exp-item-seleccionado': experiencia === experienciaSeleccionada}"      
                     class="boton-exp-item"
                     (click)="onSelect(experiencia); desaparecerPrimerExp()"
-                    [routerLink]="['experiencia',experiencia.id]">                   
+                    [routerLink]="['experiencia', experiencia.id]"
+                   >                   
                     {{experiencia.empresa}}
                     <fa-icon [icon]="faX" *ngIf="modoEdicion" class="icono-borrar ms-auto"></fa-icon>
                 </button>                                    
                 <div                        
                     class="lista-seleccion animacion-lista-seleccion"
-                    [ngClass]=posicion_Y
-                    
+                    [ngClass]=posicion_Y                    
                     >
                 </div> 
             </div>          

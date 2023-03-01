@@ -19,7 +19,7 @@ export class ExperienciaLaboralItemComponent {
     private ruta: ActivatedRoute) {
       this.ruta.params.subscribe(params=>{      
       this.experiencia = Experiencias [params['id']-1]
-    })
+    })   
     this.suscripcion = this.servicioEdicion.onAlternar().subscribe(
       value => this.modoEdicion = value)
   }
