@@ -21,7 +21,7 @@ export class ScrollProyectosDirective {
 
   @HostListener('window:scroll') onScroll (){
     
-    console.log(this.ultimoScrollY)
+    // console.log(this.ultimoScrollY)
    
     if (this.ultimoScrollY>2100) {
       this.ok = true       

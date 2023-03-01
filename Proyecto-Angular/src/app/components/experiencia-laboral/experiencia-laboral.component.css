@@ -2,8 +2,10 @@
     width: 70%;
     opacity: 0;
     transform: translateY(0px);
-    transition: all 0.5s ease;    
+    transition: all 0.5s ease;
+    height: 500px;    
 }
+
 
 h3{
     color: lightblue;
@@ -165,8 +167,10 @@ a:hover::after{
 
 @media screen and (max-width: 1050px) {
 
-    #container {
-        margin-top: 100px;
+   
+    section {
+        margin-top: 50px;
+        align-items: center !important;
     }
 
     #container-items-lista-exp{
