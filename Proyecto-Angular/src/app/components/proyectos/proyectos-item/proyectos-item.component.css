@@ -1,13 +1,10 @@
 
 
-.conocimientos-iconos > img, .conocimientos-iconos > div > img{
-    height: 35px;
-    margin-left: 10px;  
-}
-
 .icono-borrar {
     color:red;
     cursor: pointer;
+    font-size: 1.5em;
+    margin-left: auto;
 }
 
 .icono-borrar:hover{    

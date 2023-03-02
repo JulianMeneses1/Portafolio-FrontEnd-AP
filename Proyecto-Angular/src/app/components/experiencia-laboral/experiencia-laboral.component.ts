@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 import { Experiencia } from 'src/app/interfaces/experiencia-laboral';
 import { Experiencias } from 'src/app/interfaces/mosk-experiencia-laboral';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-experiencia-laboral',
@@ -35,14 +34,14 @@ export class ExperienciaLaboralComponent implements OnInit {
   @ViewChild('descripcion') descripcion!:ElementRef;  
 
   constructor(private servicioEdicion : ModoEdicionService,
-    private renderer: Renderer2, public _router: Router, public _location: Location) 
+    private renderer: Renderer2, private ruta: Router) 
   {    
     this.suscripcion = this.servicioEdicion.onAlternar().subscribe(
       value => this.modoEdicion = value)
   }
 
   ngOnInit () {
-
+    
   } 
 
   cambiarTitulo() {
@@ -75,7 +74,10 @@ export class ExperienciaLaboralComponent implements OnInit {
     this.fechaInicio.nativeElement.value=""
     this.url.nativeElement.value=""
 
-  } 
+  }
+  alternarExperiencias (): void {
+    this.ruta.navigate(['experiencia'], {queryParams: {id:this.experienciaSeleccionada.id}})
+  }
 }
 
 

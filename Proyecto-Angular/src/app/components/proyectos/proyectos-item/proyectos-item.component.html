@@ -1,16 +1,15 @@
-<div class="w-50">    
-            <img src="{{proyecto.imagen}}" style="max-height: 200px;">
-           
-      
-          
- 
- 
+<div style="width: 50%; margin-right: 20px;">    
+            <div>
+              <img style="width: 100%; height: 250px;" src="{{proyecto.imagen}}">
+            </div>
 </div>  
-<div class="w-50"> 
-    <h4>{{proyecto.nombre}}</h4>
+<div style="width: 45%"> 
+    <div class="d-flex align-items-baseline">
+      <h4>{{proyecto.nombre}}</h4>
+      <fa-icon [icon]="faX" *ngIf="modoEdicion" class="icono-borrar"></fa-icon>
+    </div>
     <p>{{proyecto.descripcion}}</p>
     <div *ngFor="let tecnologia of proyecto.tecnologias" class="mt-4"style="display:inline-block">
         <label class="me-3">{{tecnologia}}</label></div>
 </div>       
 
-  <!-- <fa-icon [icon]="faX" *ngIf="modoEdicion" class="icono-borrar"></fa-icon>   -->   
