@@ -1,0 +1,223 @@
+#container {
+    width: 70%;
+    opacity: 0;
+    transform: translateY(0px);
+    transition: all 0.5s ease;
+    height: 500px;    
+}
+
+h3{
+    color: lightblue;
+}
+
+.animacion-seccion{    
+    transform: translateY(50px) !important;
+    opacity: 1 !important;
+    transition: all 0.5s ease;           
+} 
+
+fa-icon{
+    font-size:2.5em; 
+    color:rgb(36, 95, 184); 
+    padding: 7px;
+    cursor: pointer; 
+}
+
+.icono-borrar:hover{    
+    transform: scale(1.2);
+    color:red !important
+}
+
+fa-icon:hover{
+    color:lightblue
+}
+
+.textoModal, .etiquetaModal, .inputModal {
+    color:black !important
+}
+
+.etiquetaModal {
+    width: 25%
+}
+
+.inputModal {
+    width: 75%
+}
+
+.inputEdicion{
+    width: 11em
+}
+
+.inputModal2 {
+    overflow: auto;
+    max-height: 60px;
+    width: 75%;
+}
+
+.container-lista-exp {
+   width: 30%;
+   margin-right: 10px;       
+}
+
+.icono-borrar {
+    color:red;
+    cursor: pointer;
+    font-size: 1.5em;    
+    
+}
+
+.container-items-exp {
+    width: 70%;
+}
+
+.container-primer-exp{
+    margin-top: 6px
+}
+
+#titulo-primer-exp {
+    font-weight:bold;
+    color:white !important
+}
+
+#duracion-primer-exp {
+    font-size:14px; 
+    margin-top:-10px
+}
+
+.container-primer-exp>div>p, a{
+    color: lightblue;
+}
+
+
+a:link, a:visited{
+    color: lightblue;
+    text-decoration: none;
+}
+
+a {
+    display: inline-block;
+    position: relative
+}
+
+a::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px ;
+    left: 0;
+    bottom: 40%;
+    background-color: lightblue;
+    transform-origin: bottom left;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-out
+}
+
+a:hover::after{
+    transform-origin: bottom left;
+    transform: scaleX(1)
+}
+
+.boton-exp-item {
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    height: 45px;
+    font-size: 15px;
+    padding: 0px 15px;    
+    width: 100%;        
+    text-align: left;
+    border-left: solid 2px #495670;       
+}
+
+.boton-exp-item-seleccionado {
+    color: rgb(188, 230, 248)      
+}
+
+.boton-exp-item:hover{
+    color:rgb(188, 230, 248);
+    background-color: #495670;    
+}
+
+.lista-seleccion {
+    width: 2px;
+    position: absolute;
+    z-index: 10;
+    border-radius: 4px;
+    top: 0px;
+    left: 0px;   
+    height: 45px;
+    background-color: aqua;    
+}
+
+.animacion-lista-seleccion{    
+    transform: translateY(var(--exp-bar-position-Y));    
+    transition: transform 0.25s ease;           
+} 
+
+.exp-bar-Y--45 {
+    --exp-bar-position-Y:45px
+}
+
+.exp-bar-Y--90 {
+    --exp-bar-position-Y:90px
+}
+
+
+@media screen and (max-width: 1050px) {
+
+   
+    section {
+        margin-top: 50px;
+        align-items: center !important;
+    }
+
+    #container-items-lista-exp{
+        display: block !important
+
+    }
+    .container-items-exp{
+        width: 100%;
+    }
+    .container-primer-exp{
+        display:block !important;
+        margin-top: 20px
+    }
+    a::after{
+        bottom: 7%
+    }
+    a {
+        margin-bottom: 30px
+    }
+    .container-lista-exp {
+        display: flex;
+        margin-right: 0px !important;
+        width: 100% !important;
+        overflow-x: auto ;
+        overflow-y: hidden      
+    }
+
+    .boton-exp-item{
+        border-left: none !important;
+        min-width: 150px;
+        height: auto;          
+        padding: 0px 20px !important;
+        text-align: center;          
+        }    
+    .boton-exp-item-seleccionado {
+        background-color: #495670;      
+    }
+
+    .lista-seleccion {
+        display:none             
+    }
+    .animacion-lista-seleccion{    
+        transform: translateX(var(--exp-bar-position-X)) !important;             
+    } 
+}
+
+@media screen and (max-width:1400px) {   
+  
+}
+
+   

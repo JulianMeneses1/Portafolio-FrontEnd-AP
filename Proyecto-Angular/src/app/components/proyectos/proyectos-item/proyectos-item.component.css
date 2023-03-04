@@ -22,10 +22,10 @@ img {
     width: 50%;
     margin-left:auto;
     height: 300px;
+    
 }
 
 .contenedor-tecnologias-iconos {     
-    margin-top: 80px;
     color: rgb(147, 214, 236);    
 }
 
@@ -43,9 +43,7 @@ img {
 }
 
 .iconos:hover{
-    filter: drop-shadow(0 0 7px lightblue);
-    color: lightblue !important;
-    
+    filter: drop-shadow(0 0 7px lightblue)    
 }
 
 .icono-borrar {
@@ -64,7 +62,8 @@ img {
     position: absolute;
     width: 100%;
     opacity: 0; 
-    padding: 5px 5px    
+    padding: 5px 5px;
+    transition: all 0.5s ease-in-out;     
    }
   
    #contenedor-imagen{
@@ -79,8 +78,11 @@ img {
     cursor: default;
     
    }
-   .contenedor-iconos {
-    margin-top: 4px !important
+   #icono-github {
+    bottom:10%;    
+   }
+   #icono-flecha{
+    top:5%
    }
    
 }

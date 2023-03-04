@@ -1,11 +1,196 @@
-<section id="formacion academica" class="d-flex justify-content-center align-items-center">
-    <div class="card my-3" style="width: 50%;">
-        <div class="card-body">
-          <h3 class="card-title"><strong>Formación Académica</strong></h3>
-          <p class="card-text">Estudiante de Desarrollo Web y Aplicaciones Digitales. Como 
-            desafío personal estoy buscando mi primera experiencia
-            laboral en el área de IT para poder aplicar mis conocimientos en un equipo de trabajo y
-            crecer profesionalmente.</p>                  
+<section class="d-flex justify-content-center align-items-end" id="experiencia laboral" >
+    <div class="card" id="container" appScrollExpLaboral>
+        <div class="my-2 d-flex justify-content-between align-items-baseline">
+            <h3><strong>{{titulo}}</strong></h3>
+            <div>
+                <fa-icon
+
+                    [icon]="faPlus" 
+                    *ngIf="modoEdicion" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#experiencia-modal">
+                </fa-icon> 
+                <fa-icon
+                    id="a"
+                    *ngIf="modoEdicion" 
+                    [icon]="faSquarePen"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#titulo-experiencia-modal">
+                </fa-icon>
+            </div>
+            
+        </div>
+        <div class="d-flex my-2 position-relative" id="container-items-lista-exp">
+            <div class="me-2 container-lista-exp">                 
+                <button  
+                    *ngFor="let experiencia of experiencias" 
+                    [ngClass]="{'boton-exp-item-seleccionado': experiencia === experienciaSeleccionada}"      
+                    class="boton-exp-item"
+                    (click)="onSelect(experiencia); desaparecerPrimerExp(); alternarExperiencias()"
+                    > 
+                    {{experiencia.empresa}}
+                    <fa-icon [icon]="faX" *ngIf="modoEdicion" class="icono-borrar ms-auto"></fa-icon>
+                </button>                                    
+                <div                        
+                    class="lista-seleccion animacion-lista-seleccion"
+                    [ngClass]=posicion_Y                    
+                    >
+                </div> 
+            </div>          
+            <div class="container-items-exp">
+                <div #contenedorPrimerExp>
+                    <div class="d-flex align-items-baseline gap-1 container-primer-exp"> 
+                        <p id="titulo-primer-exp">{{experiencias[0].puesto}}</p>                        
+                        <div class="d-flex gap-1">
+                            <p>@</p>
+                            <a href="{{experiencias[0].urlEmpresa}}" target="_blank">{{experiencias[0].empresa}}</a> 
+                        </div>                       
+                    </div>
+                    <div>
+                        <p id="duracion-primer-exp">{{experiencias[0].fechaInicio}} - {{experiencias[0].fechaFin}}</p>
+                        <p>{{experiencias[0].descripcion}}</p>
+                    </div>
+                </div>
+                <router-outlet *ngIf="!mostrarPrimerExp"></router-outlet>                
+            </div>  
+        </div>              
+    </div>
+
+
+    <!-- MODAL TITULO -->
+
+    <div 
+    class="modal fade modal-lg"      
+    id="titulo-experiencia-modal" tabindex="-1" 
+    aria-labelledby="textoModalLabel"
+    aria-hidden="true"
+    >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <h3 class="modal-title textoModal" id="textoModalLabel">Editar Título</h3>                        
+                </div>
+                <div class="modal-body">                                 
+                    <div class="d-flex">
+                        <label for="user" class="form-label etiquetaModal">Título actual</label>
+                        <p class="etiquetaModal" id="titulo"><b>{{titulo}}</b></p>                    
+                    </div>
+                    <div class="d-flex align-items-baseline mb-3">
+                        <label for="user" class="form-label etiquetaModal">Nuevo título</label>
+                        <input 
+                            #nuevoTitulo 
+                            type="text" 
+                            class="form-control inputModal" 
+                            placeholder="Ingrese nuevo título">
+                    </div>                 
+                    
+                    <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
+                        <button 
+                            type="button" 
+                            class="btn btn-danger"                            
+                            data-bs-dismiss="modal"
+                            (click)="resetearTitulo()" 
+                            >
+                            Cerrar
+                        </button>
+                        <button 
+                            type="button" 
+                            class="btn btn-primary"                                                      
+                            data-bs-dismiss="modal"
+                            (click)="cambiarTitulo()"                           
+                            >
+                            Aceptar
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- MODAL AÑADIR EXPERIENCIA -->
+
+    <div 
+    class="modal fade modal-lg"      
+    id="experiencia-modal" tabindex="-1" 
+    aria-labelledby="textoModalLabel"
+    aria-hidden="true"
+    >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <h3 class="modal-title textoModal" id="textoModalLabel">Añadir Experiencia</h3>                        
+                </div>
+                <div class="modal-body">                           
+                    
+                    <div class="d-flex align-items-baseline mb-3">
+                        <label for="user" class="form-label etiquetaModal">Empresa</label>
+                        <input 
+                            #empresa 
+                            type="text" 
+                            class="form-control inputModal" 
+                            placeholder="Ingrese el nombre de la empresa">
+                    </div>
+                    <div class="d-flex align-items-baseline mb-3">
+                        <label for="user" class="form-label etiquetaModal">Puesto</label>
+                        <input 
+                            #puesto
+                            type="text" 
+                            class="form-control inputModal" 
+                            placeholder="Ingrese su puesto en la empresa">
+                    </div>
+                    <div class="d-flex align-items-baseline mb-3">
+                        <label for="user" class="form-label etiquetaModal">URL</label>
+                        <input 
+                            #url
+                            type="text" 
+                            class="form-control inputModal" 
+                            placeholder="Ingrese la url de la página web de la empresa">
+                    </div>
+                    <div class="d-flex align-items-baseline mb-3">
+                        <label for="user" class="form-label etiquetaModal">Fecha Inicio</label>
+                        <input 
+                            #fechaInicio
+                            type="text" 
+                            class="form-control inputModal" 
+                            placeholder="Ingrese fecha de inicio (mes y año)">
+                    </div>
+                    <div class="d-flex align-items-baseline mb-3">
+                        <label for="user" class="form-label etiquetaModal">Fecha Fin</label>
+                        <input 
+                            #fechaFin
+                            type="text" 
+                            class="form-control inputModal" 
+                            placeholder="Ingrese fecha de finalización (mes y año)">
+                    </div>
+                    <div class="d-flex align-items-baseline mb-3">
+                        <label for="user" class="form-label etiquetaModal">Descripción</label>              
+                            <textarea
+                                #descripcion 
+                                maxlength="300"           
+                                class="form-control inputModal2" 
+                                placeholder="Ingrese descripción de su puesto en la empresa"></textarea>
+                    </div>
+                    
+                    <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
+                        <button 
+                            type="button" 
+                            class="btn btn-danger"                            
+                            data-bs-dismiss="modal"
+                            (click)="resetearInputs()"
+                            >
+                            Cerrar
+                        </button>
+                        <button 
+                            type="button" 
+                            class="btn btn-primary"                                                      
+                            data-bs-dismiss="modal"                                                       
+                            >
+                            Aceptar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>                                               
 </section>
+

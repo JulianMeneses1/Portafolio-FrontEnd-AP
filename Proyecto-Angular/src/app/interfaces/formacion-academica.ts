@@ -2,8 +2,10 @@ export interface Educacion {
     
     id?: number,
     nombre:string,
+    institucion: string,
     fechaInicio: string,
     fechaFin: string,
-    urlCertificado: string 
+    descripcion: string,
+    urlCertificado?: string 
 
 }
