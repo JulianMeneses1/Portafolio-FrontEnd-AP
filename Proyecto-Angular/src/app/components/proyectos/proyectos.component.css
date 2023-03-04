@@ -48,11 +48,10 @@ fa-icon:hover{
 }
 
 
-@media  screen and (max-width: 900px){
-    .proyectos-div{
-        width: 100% !important;
-    }
+@media  screen and (max-width: 950){
+    
     section {
         margin-top: 100px
-    }
+    } 
+    
 } 

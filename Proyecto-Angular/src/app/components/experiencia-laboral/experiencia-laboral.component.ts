@@ -76,7 +76,7 @@ export class ExperienciaLaboralComponent implements OnInit {
 
   }
   alternarExperiencias (): void {
-    this.ruta.navigate(['experiencia'], {queryParams: {id:this.experienciaSeleccionada.id}})
+    this.ruta.navigate(['/experiencia'], {queryParams: {id:this.experienciaSeleccionada.id}})
   }
 }
 

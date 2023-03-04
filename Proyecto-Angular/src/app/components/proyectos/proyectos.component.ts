@@ -19,6 +19,7 @@ export class ProyectosComponent {
   suscripcion?:Subscription;
   nombreArchivo:string="";
   previsualizacionImagen: string="";
+ 
 
   @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
   @ViewChild('Nombre') nuevoNombre!:ElementRef; 

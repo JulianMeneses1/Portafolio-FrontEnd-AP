@@ -3,7 +3,7 @@ import { faSquarePen} from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+
 
 
 @Component({
@@ -13,8 +13,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 })
 
 export class BannerComponent implements OnInit {
-  faSquarePen = faSquarePen 
-  faGitHub= faGithub  
+  faSquarePen = faSquarePen  
   modoEdicion:boolean=false;
   suscripcion?:Subscription;
   nombreArchivo:string="";

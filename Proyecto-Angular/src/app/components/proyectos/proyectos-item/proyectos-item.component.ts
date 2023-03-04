@@ -4,6 +4,8 @@ import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { Proyectos } from 'src/app/interfaces/mosk-proyecto';
 import { Proyecto } from 'src/app/interfaces/proyecto';
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-proyectos-item',
@@ -12,6 +14,7 @@ import { Proyecto } from 'src/app/interfaces/proyecto';
 })
 export class ProyectosItemComponent {
   faX = faX;
+  faArrow = faArrowUpRightFromSquare
   modoEdicion:boolean=false;
   suscripcion?:Subscription;
   @Input() proyecto: Proyecto = Proyectos[0];

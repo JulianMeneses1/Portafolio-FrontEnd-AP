@@ -1,15 +1,28 @@
-<div style="width: 50%; margin-right: 20px;">    
-            <div>
-              <img style="width: 100%; height: 250px;" src="{{proyecto.imagen}}">
-            </div>
+<div id="contenedor-imagen">  
+    <a href="{{proyecto.urlSitioWeb}}" target="_blank">
+      <img src="{{proyecto.imagen}}">
+    </a>  
 </div>  
-<div style="width: 45%"> 
-    <div class="d-flex align-items-baseline">
+<div id="contenedor-texto"> 
+    <div class="d-flex align-items-baseline mb-3">
       <h4>{{proyecto.nombre}}</h4>
       <fa-icon [icon]="faX" *ngIf="modoEdicion" class="icono-borrar"></fa-icon>
     </div>
-    <p>{{proyecto.descripcion}}</p>
-    <div *ngFor="let tecnologia of proyecto.tecnologias" class="mt-4"style="display:inline-block">
-        <label class="me-3">{{tecnologia}}</label></div>
+    <div style="height: 32%;" >
+      <p>{{proyecto.descripcion}}</p>
+    </div>
+    <div class="contenedor-tecnologias-iconos">
+        <div class="d-flex gap-3">
+          <label *ngFor="let tecnologia of proyecto.tecnologias" class="tecnologia">{{tecnologia}}</label>
+        </div>    
+        <div class="contenedor-iconos d-flex mt-2 gap-1">          
+          <a href="{{proyecto.urlGitHub}}" target="_blank" title="GitHub">         
+              <img class="iconos" id="icono-github" src="../assets/GitHub.png">                    
+          </a>
+          <a href="{{proyecto.urlSitioWeb}}" target="_blank" title="Link Externo"> 
+            <fa-icon class="iconos" id="icono-flecha" [icon]="faArrow"></fa-icon> 
+          </a>          
+        </div>
+    </div>
 </div>       
 
