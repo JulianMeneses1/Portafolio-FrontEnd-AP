@@ -1,7 +1,10 @@
 <div id="contenedor-imagen">  
-    <a href="{{proyecto.urlSitioWeb}}" target="_blank">
+    <a *ngIf="proyecto.urlSitioWeb" href="{{proyecto.urlSitioWeb}}" target="_blank">
       <img src="{{proyecto.imagen}}">
-    </a>  
+    </a>
+    <a *ngIf="!proyecto.urlSitioWeb" href="{{proyecto.urlGitHub}}" target="_blank">
+      <img src="{{proyecto.imagen}}">
+    </a>   
 </div>  
 <div id="contenedor-texto"> 
     <div class="d-flex align-items-baseline mb-3">
@@ -19,7 +22,7 @@
           <a href="{{proyecto.urlGitHub}}" target="_blank" title="GitHub">         
               <img class="iconos" id="icono-github" src="../assets/GitHub.png">                    
           </a>
-          <a href="{{proyecto.urlSitioWeb}}" target="_blank" title="Link Externo"> 
+          <a *ngIf="proyecto.urlSitioWeb" href="{{proyecto.urlSitioWeb}}" target="_blank" title="Link Externo"> 
             <fa-icon class="iconos" id="icono-flecha" [icon]="faArrow"></fa-icon> 
           </a>          
         </div>

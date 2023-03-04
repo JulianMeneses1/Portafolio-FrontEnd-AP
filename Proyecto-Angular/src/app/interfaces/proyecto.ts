@@ -6,6 +6,5 @@ export interface Proyecto {
     descripcion: string,
     urlGitHub: string,
     urlSitioWeb?: string,
-    tecnologias: string [] 
-
+    tecnologias: string [],
 }

@@ -12,12 +12,13 @@ import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './proyectos-item.component.html',
   styleUrls: ['./proyectos-item.component.css']
 })
-export class ProyectosItemComponent {
+export class ProyectosItemComponent  {
   faX = faX;
   faArrow = faArrowUpRightFromSquare
   modoEdicion:boolean=false;
   suscripcion?:Subscription;
   @Input() proyecto: Proyecto = Proyectos[0];
+
 
   constructor(private servicioEdicion : ModoEdicionService) 
   {
@@ -26,6 +27,8 @@ export class ProyectosItemComponent {
   }
 
 }
+
+
 
 
 

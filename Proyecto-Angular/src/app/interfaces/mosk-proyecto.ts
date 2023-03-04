@@ -8,8 +8,9 @@ export const Proyectos: Proyecto[] = [ // Hacemos que la variable Conocimientos 
         imagen: "../assets/Base de datos.png",
         descripcion: `Una base de datos relacional para una universidad ficticia que incluye diversos reportes. Ha sido construida en MySQL, utilizando Python y el ORM SQLAlchemy.`,
         urlGitHub: "https://github.com/JulianMeneses1/Proyecto-Base-de-Datos-PIL",
-        urlSitioWeb: "https://github.com/JulianMeneses1/Proyecto-Base-de-Datos-PIL",
-        tecnologias: ["Python", "SQLAlchemy", "MySQL"]   
+        urlSitioWeb: "",
+        tecnologias: ["Python", "SQLAlchemy", "MySQL"],
+  
     },
     {
         id:2,
@@ -20,6 +21,7 @@ export const Proyectos: Proyecto[] = [ // Hacemos que la variable Conocimientos 
                       los formularios de registro de usuarios y profesionales.`,
         urlGitHub: "https://github.com/oliverio97/Proyecto-integrador---ISPC",
         urlSitioWeb: "https://oliverio97.github.io/Proyecto-integrador---ISPC/Front%20End%20(Vista)/index.html",
-        tecnologias: ["HTML", "CSS", "Bootstrap", "JavaScript"]              
+        tecnologias: ["HTML", "CSS", "Bootstrap", "JavaScript"],
+            
     } 
 ]
