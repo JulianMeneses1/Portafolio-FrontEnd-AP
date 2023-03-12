@@ -47,6 +47,12 @@ fa-icon:hover{
     width: 11em
 }
 
+.inputModal2 {
+    overflow: auto;
+    max-height: 60px;
+    width: 70%;
+}
+
 
 @media  screen and (max-width: 950){
     

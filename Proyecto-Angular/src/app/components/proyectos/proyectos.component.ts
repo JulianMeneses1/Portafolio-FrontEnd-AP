@@ -23,7 +23,10 @@ export class ProyectosComponent {
 
   @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
   @ViewChild('Nombre') nuevoNombre!:ElementRef; 
-  @ViewChild('Nivel') nuevoNivel!:ElementRef;
+  @ViewChild('Descripcion') nuevaDescripcion!:ElementRef;
+  @ViewChild('URLWeb') nuevaURLWeb!:ElementRef;
+  @ViewChild('URLGitHub') nuevaURLGitHub!:ElementRef;
+  @ViewChild('Tecnologias') nuevasTecnologias!:ElementRef;
 
   proyectos: Proyecto[] = Proyectos
 
@@ -49,7 +52,10 @@ export class ProyectosComponent {
     this.previsualizacionImagen=""
     this.nombreArchivo=""
     this.nuevoNombre.nativeElement.value=""
-    this.nuevoNivel.nativeElement.value=""  
+    this.nuevasTecnologias.nativeElement.value=""
+    this.nuevaURLGitHub.nativeElement.value=""
+    this.nuevaURLWeb.nativeElement.value=""
+    this.nuevaDescripcion.nativeElement.value=""  
   }
 
   capturarImagen(event:any) {
