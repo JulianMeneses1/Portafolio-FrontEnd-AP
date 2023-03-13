@@ -70,7 +70,7 @@ fa-icon:hover{
     width: 70%;
 }
 
-.container-primer-exp{
+.container-titulo-primer-exp{
     margin-top: 6px
 }
 
@@ -84,7 +84,7 @@ fa-icon:hover{
     margin-top:-10px
 }
 
-.container-primer-exp>div>p, a{
+.container-titulo-primer-exp>div>p, a{
     color: lightblue;
 }
 
@@ -105,7 +105,7 @@ a::after{
     width: 100%;
     height: 2px ;
     left: 0;
-    bottom: 40%;
+    bottom: 0%;
     background-color: lightblue;
     transform-origin: bottom left;
     transform: scaleX(0);
@@ -179,7 +179,7 @@ a:hover::after{
     .container-items-exp{
         width: 100%;
     }
-    .container-primer-exp{
+    .container-titulo-primer-exp{
         display:block !important;
         margin-top: 20px
     }
@@ -210,10 +210,7 @@ a:hover::after{
 
     .lista-seleccion {
         display:none             
-    }
-    .animacion-lista-seleccion{    
-        transform: translateX(var(--exp-bar-position-X)) !important;             
-    } 
+    }  
 }
 
 @media screen and (max-width:1400px) {   

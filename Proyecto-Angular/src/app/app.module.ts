@@ -18,11 +18,12 @@ import { ScrollMenuDirective } from './directives/menu-scroll.directive';
 import { ScrollAcercaDeMiDirective } from './directives/acercademi-scroll.directive';
 import { ScrollConocimientosDirective } from './directives/conocimientos-scroll.directive.ts';
 import { ConocimientosItemComponent } from './components/conocimientos/conocimientos-item/conocimientos-item.component';
-import { ExplaboralScrollDirective } from './directives/explaboral-scroll.directive';
+import { ScrollExpLaboralDirective } from './directives/explaboral-scroll.directive';
 import { ExperienciaLaboralItemComponent } from './components/experiencia-laboral/experiencia-laboral-item/experiencia-laboral-item.component';
 import { ProyectosItemComponent } from './components/proyectos/proyectos-item/proyectos-item.component';
 import { ScrollProyectosDirective } from './directives/proyectos-scroll.directive';
 import { FormacionAcademicaItemComponent } from './components/formacion-academica/formacion-academica-item/formacion-academica-item.component';
+import { ScrollFormacionAcademicaDirective } from './directives/educacion-scroll.directive';
 
 
 @NgModule({
@@ -42,8 +43,9 @@ import { FormacionAcademicaItemComponent } from './components/formacion-academic
     ConocimientosItemComponent,
     ScrollAcercaDeMiDirective,
     ScrollConocimientosDirective,
-    ExplaboralScrollDirective,
+    ScrollExpLaboralDirective,
     ScrollProyectosDirective,
+    ScrollFormacionAcademicaDirective,
     ExperienciaLaboralItemComponent,
     ProyectosItemComponent,
     FormacionAcademicaItemComponent

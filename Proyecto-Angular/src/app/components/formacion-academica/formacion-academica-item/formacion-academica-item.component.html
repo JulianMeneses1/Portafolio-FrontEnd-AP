@@ -1,14 +1,26 @@
-<div class="d-flex align-items-baseline gap-1 container"> 
-    <p id="titulo">{{experiencia.puesto}}</p>                        
-    <div class="d-flex gap-1">
-            <p>@</p>
-            <a href="{{experiencia.urlEmpresa}}" target="_blank">{{experiencia.empresa}}</a>
-    </div>                        
+<div class="d-flex flex-wrap contenedor">    
+    <div class="w-25 d-flex flex-wrap justify-content-center align-items-center contenedor-imagen-fecha px-2" >
+        <div class="d-flex align-items-center justify-content-center text-center w-100 mb-2" style="height: 50px">
+            <p>{{educacion.fechaInicio}} - {{educacion.fechaFin}}</p>
+        </div>
+        <div style="position: relative; bottom: 5%; padding: 0px 5px;" >
+            
+                <a href="{{educacion.urlInstitucion}}" target="_blank">
+                    <img class="img-fluid.rounded"src="{{educacion.imagen}}">
+                </a>
+            
+        </div>
+        
+    </div>
+    <div class="w-75 contenedor-texto">
+        <div class="d-flex align-items-baseline">
+            <h5>{{educacion.nombre}}</h5>
+            <fa-icon [icon]="faX" *ngIf="modoEdicion" class="icono-borrar"></fa-icon>
+        </div>
+        <a href="{{educacion.urlInstitucion}}">@ {{educacion.institucion}}</a>
+        <p id="p-descripcion">{{educacion.descripcion}}</p>
+        <a href="{{educacion.urlCertificado}}" *ngIf="educacion.urlCertificado">@ Certificado</a>
+    </div>
 </div>
-<div>
-    <p id="duracion">{{experiencia.fechaInicio}} - {{experiencia.fechaFin}}</p>
-    <p>{{experiencia.descripcion}}</p>
-</div>
-
 
    

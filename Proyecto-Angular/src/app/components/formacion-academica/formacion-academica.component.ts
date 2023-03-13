@@ -1,11 +1,9 @@
-
 import { Component, ViewChild, ElementRef, OnInit, Renderer2} from '@angular/core';
 import { faSquarePen, faPlus, faX } from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
-import { Experiencia } from 'src/app/interfaces/experiencia-laboral';
-import { Experiencias } from 'src/app/interfaces/mosk-experiencia-laboral';
-import { Router } from '@angular/router';
+import { Educacion } from 'src/app/interfaces/formacion-academica';
+import { FormacionAcademica } from 'src/app/interfaces/mosk-formacion-academica';
 
 @Component({
   selector: 'app-formacion-academica',
@@ -14,34 +12,26 @@ import { Router } from '@angular/router';
 })
 export class FormacionAcademicaComponent implements OnInit {
 
-
-
-
-
-
-
-  titulo:string="Experiencia Laboral"
+  titulo:string="Formación Académica"
   faSquarePen = faSquarePen;
   faPlus = faPlus;
   faX = faX;   
   modoEdicion:boolean=false;
-  suscripcion?:Subscription;
-  posicion_Y:string="0px";
-  experienciaSeleccionada:Experiencia=Experiencias[0];
-  experiencias: Experiencia[] = Experiencias;
-  mostrarPrimerExp:boolean = true
+  suscripcion?:Subscription; 
+  formacionAcademica: Educacion[] = FormacionAcademica;
+  
 
   @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
-  @ViewChild('contenedorPrimerExp') contenedorPrimerExp!:ElementRef;
-  @ViewChild('empresa') empresa!:ElementRef;  
-  @ViewChild('puesto') puesto!:ElementRef;  
-  @ViewChild('url') url!:ElementRef;  
+  @ViewChild('contenedorPrimerEducacion') contenedorPrimerEducacion!:ElementRef;
+  @ViewChild('nombre') nombre!:ElementRef;  
+  @ViewChild('institucion') institucion!:ElementRef;  
+  @ViewChild('urlCertificado') urlCertificado!:ElementRef;  
+  @ViewChild('urlInstitucion') urlInstitucion!:ElementRef;  
   @ViewChild('fechaInicio') fechaInicio!:ElementRef;  
   @ViewChild('fechaFin') fechaFin!:ElementRef;  
   @ViewChild('descripcion') descripcion!:ElementRef;  
 
-  constructor(private servicioEdicion : ModoEdicionService,
-    private renderer: Renderer2, private ruta: Router) 
+  constructor(private servicioEdicion : ModoEdicionService) 
   {    
     this.suscripcion = this.servicioEdicion.onAlternar().subscribe(
       value => this.modoEdicion = value)
@@ -61,30 +51,18 @@ export class FormacionAcademicaComponent implements OnInit {
   resetearTitulo () {
     this.nuevoTitulo.nativeElement.value=""
   }
-
-  onSelect (experiencia: Experiencia): void {
-    this.experienciaSeleccionada = experiencia   
-    this.posicion_Y=experiencia.posicionY            
-  }
-  desaparecerPrimerExp(){
-    if (this.mostrarPrimerExp==true){
-    this.renderer.setStyle(this.contenedorPrimerExp.nativeElement,"display", "none");
-    this.mostrarPrimerExp=false
-    }
-  }
+  
   resetearInputs() {
 
-    this.empresa.nativeElement.value=""
-    this.puesto.nativeElement.value=""
+    this.nombre.nativeElement.value=""
+    this.institucion.nativeElement.value=""
     this.descripcion.nativeElement.value=""
     this.fechaFin.nativeElement.value=""
     this.fechaInicio.nativeElement.value=""
-    this.url.nativeElement.value=""
+    this.urlCertificado.nativeElement.value=""
+    this.urlInstitucion.nativeElement.value="" 
 
-  }
-  alternarExperiencias (): void {
-    this.ruta.navigate(['/experiencia'], {queryParams: {id:this.experienciaSeleccionada.id}})
-  }
+  }  
 }
 
 

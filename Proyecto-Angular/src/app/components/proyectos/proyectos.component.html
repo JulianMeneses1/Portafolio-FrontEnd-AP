@@ -16,14 +16,12 @@
                   data-bs-target="#titulo-proyecto-modal">
               </fa-icon>
           </div>
-          
       </div>
       <div class="d-flex flex-wrap">
           <app-proyectos-item            
               *ngFor="let proyecto of proyectos"
               [proyecto]="proyecto"
-              class="my-3 w-100 d-flex" 
-              id="app"                           
+              class="my-3 w-100 d-flex"                           
           >
           </app-proyectos-item>  
       </div>              

@@ -6,6 +6,8 @@ export interface Educacion {
     fechaInicio: string,
     fechaFin: string,
     descripcion: string,
-    urlCertificado?: string 
+    urlCertificado?: string,
+    urlInstitucion: string,
+    imagen: string
 
 }

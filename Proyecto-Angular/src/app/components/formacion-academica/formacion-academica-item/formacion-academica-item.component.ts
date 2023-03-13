@@ -1,36 +1,31 @@
-import { Component} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input} from '@angular/core';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
-import { Experiencia } from 'src/app/interfaces/experiencia-laboral';
-import { Experiencias } from 'src/app/interfaces/mosk-experiencia-laboral';
+import { Educacion } from 'src/app/interfaces/formacion-academica';
+import { FormacionAcademica } from 'src/app/interfaces/mosk-formacion-academica';
+import { faX } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-formacion-academica-item',
   templateUrl: './formacion-academica-item.component.html',
   styleUrls: ['./formacion-academica-item.component.css']
 })
-export class FormacionAcademicaItemComponent { 
-
-
-
-
-
-
-
+export class FormacionAcademicaItemComponent implements OnInit {
+   
+  @Input() educacion: Educacion = FormacionAcademica[0];
   modoEdicion:boolean=false;
   suscripcion?:Subscription;
-  experiencia:Experiencia = Experiencias[0]
+  faX = faX;
 
-  constructor(private servicioEdicion : ModoEdicionService,
-    private ruta: ActivatedRoute) {
-      this.ruta.queryParams.subscribe(params=>{      
-      this.experiencia = Experiencias [params['id']-1]
-    })   
+  constructor(private servicioEdicion : ModoEdicionService) {
+         
     this.suscripcion = this.servicioEdicion.onAlternar().subscribe(
       value => this.modoEdicion = value)
   }
 
+  ngOnInit () {
+   
+  }
 }
 
 

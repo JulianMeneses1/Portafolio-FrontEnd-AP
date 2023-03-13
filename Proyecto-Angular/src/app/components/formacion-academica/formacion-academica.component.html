@@ -1,6 +1,6 @@
-<section class="d-flex justify-content-center align-items-end" id="formacion academica" >
-    <div class="card" id="container" appScrollExpLaboral>
-        <div class="my-2 d-flex justify-content-between align-items-baseline">
+<section class="d-flex justify-content-center align-items-center" id="formacion academica" >
+    <div class="card" id="container" appScrollFormacionAcademica>
+        <div class="my-3 d-flex justify-content-between align-items-baseline">
             <h3><strong>{{titulo}}</strong></h3>
             <div>
                 <fa-icon
@@ -8,52 +8,24 @@
                     [icon]="faPlus" 
                     *ngIf="modoEdicion" 
                     data-bs-toggle="modal" 
-                    data-bs-target="#experiencia-modal">
+                    data-bs-target="#educacion-modal">
                 </fa-icon> 
                 <fa-icon
                     id="a"
                     *ngIf="modoEdicion" 
                     [icon]="faSquarePen"
                     data-bs-toggle="modal" 
-                    data-bs-target="#titulo-experiencia-modal">
+                    data-bs-target="#titulo-educacion-modal">
                 </fa-icon>
-            </div>
-            
-        </div>
-        <div class="d-flex my-2 position-relative" id="container-items-lista-exp">
-            <div class="me-2 container-lista-exp">                 
-                <button  
-                    *ngFor="let experiencia of experiencias" 
-                    [ngClass]="{'boton-exp-item-seleccionado': experiencia === experienciaSeleccionada}"      
-                    class="boton-exp-item"
-                    (click)="onSelect(experiencia); desaparecerPrimerExp(); alternarExperiencias()"
-                    > 
-                    {{experiencia.empresa}}
-                    <fa-icon [icon]="faX" *ngIf="modoEdicion" class="icono-borrar ms-auto"></fa-icon>
-                </button>                                    
-                <div                        
-                    class="lista-seleccion animacion-lista-seleccion"
-                    [ngClass]=posicion_Y                    
-                    >
-                </div> 
-            </div>          
-            <div class="container-items-exp">
-                <div #contenedorPrimerExp>
-                    <div class="d-flex align-items-baseline gap-1 container-primer-exp"> 
-                        <p id="titulo-primer-exp">{{experiencias[0].puesto}}</p>                        
-                        <div class="d-flex gap-1">
-                            <p>@</p>
-                            <a href="{{experiencias[0].urlEmpresa}}" target="_blank">{{experiencias[0].empresa}}</a> 
-                        </div>                       
-                    </div>
-                    <div>
-                        <p id="duracion-primer-exp">{{experiencias[0].fechaInicio}} - {{experiencias[0].fechaFin}}</p>
-                        <p>{{experiencias[0].descripcion}}</p>
-                    </div>
-                </div>
-                <router-outlet *ngIf="!mostrarPrimerExp"></router-outlet>                
             </div>  
-        </div>              
+        </div>
+        <app-formacion-academica-item            
+              *ngFor="let educacion of formacionAcademica"
+              [educacion]="educacion"
+              class="my-3 w-100"                                                  
+          >
+          </app-formacion-academica-item> 
+         
     </div>
 
 
@@ -61,7 +33,7 @@
 
     <div 
     class="modal fade modal-lg"      
-    id="titulo-experiencia-modal" tabindex="-1" 
+    id="titulo-educacion-modal" tabindex="-1" 
     aria-labelledby="textoModalLabel"
     aria-hidden="true"
     >
@@ -107,44 +79,52 @@
         </div>
     </div>
 
-    <!-- MODAL AÑADIR EXPERIENCIA -->
+    <!-- MODAL AÑADIR EDUCACIÓN -->
 
     <div 
     class="modal fade modal-lg"      
-    id="experiencia-modal" tabindex="-1" 
+    id="educacion-modal" tabindex="-1" 
     aria-labelledby="textoModalLabel"
     aria-hidden="true"
     >
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header justify-content-center">
-                    <h3 class="modal-title textoModal" id="textoModalLabel">Añadir Experiencia</h3>                        
+                    <h3 class="modal-title textoModal" id="textoModalLabel">Añadir Educación</h3>                        
                 </div>
                 <div class="modal-body">                           
                     
                     <div class="d-flex align-items-baseline mb-3">
-                        <label for="user" class="form-label etiquetaModal">Empresa</label>
+                        <label for="user" class="form-label etiquetaModal">Nombre</label>
                         <input 
-                            #empresa 
+                            #nombre 
                             type="text" 
                             class="form-control inputModal" 
-                            placeholder="Ingrese el nombre de la empresa">
+                            placeholder="Ingrese el nombre del curso/carrera">
                     </div>
                     <div class="d-flex align-items-baseline mb-3">
-                        <label for="user" class="form-label etiquetaModal">Puesto</label>
+                        <label for="user" class="form-label etiquetaModal">Institución</label>
                         <input 
-                            #puesto
+                            #institucion
                             type="text" 
                             class="form-control inputModal" 
-                            placeholder="Ingrese su puesto en la empresa">
+                            placeholder="Ingrese el nombre de la institución en donde realiza/realizó los estudios">
                     </div>
                     <div class="d-flex align-items-baseline mb-3">
-                        <label for="user" class="form-label etiquetaModal">URL</label>
+                        <label for="user" class="form-label etiquetaModal">URL Institución</label>
                         <input 
-                            #url
+                            #urlInstitucion
                             type="text" 
                             class="form-control inputModal" 
-                            placeholder="Ingrese la url de la página web de la empresa">
+                            placeholder="Ingrese la url del sitio web de la institución">
+                    </div>
+                    <div class="d-flex align-items-baseline mb-3">
+                        <label for="user" class="form-label etiquetaModal">URL Certificado</label>
+                        <input 
+                            #urlCertificado
+                            type="text" 
+                            class="form-control inputModal" 
+                            placeholder="Ingrese la url del certificado">
                     </div>
                     <div class="d-flex align-items-baseline mb-3">
                         <label for="user" class="form-label etiquetaModal">Fecha Inicio</label>
@@ -168,7 +148,7 @@
                                 #descripcion 
                                 maxlength="300"           
                                 class="form-control inputModal2" 
-                                placeholder="Ingrese descripción de su puesto en la empresa"></textarea>
+                                placeholder="Ingrese descripción del curso/carrera"></textarea>
                     </div>
                     
                     <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">

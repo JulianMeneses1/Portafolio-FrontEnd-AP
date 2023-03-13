@@ -1,9 +1,9 @@
 import { Directive, HostBinding, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[appScrollExpLaboral]'
+  selector: '[appScrollFormacionAcademica]'
 })
-export class ScrollExpLaboralDirective {
+export class ScrollFormacionAcademicaDirective {
 
   constructor() { }
 
@@ -21,25 +21,15 @@ export class ScrollExpLaboralDirective {
   // es decir al desplazarse el usuario hacia arriba o abajo en la pantalla
 
   @HostListener('window:scroll') onScroll (){
+    // console.log(window.scrollY)
     
-    if (window.innerWidth>900){
-   
-      if (this.ultimoScrollY>1550) {
+      if (this.ultimoScrollY>2900) {
         this.ok = true           
       } else {
         this.ok = false           
       } 
       this.ultimoScrollY = window.scrollY
-    } else {
-
-      if (this.ultimoScrollY>1850) {
-        this.ok = true                
-      } else {
-        this.ok = false           
-      } 
-      this.ultimoScrollY = window.scrollY
-    }
-  } 
+    } 
 }
 
 

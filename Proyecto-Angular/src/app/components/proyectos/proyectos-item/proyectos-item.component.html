@@ -11,12 +11,12 @@
       <h4>{{proyecto.nombre}}</h4>
       <fa-icon [icon]="faX" *ngIf="modoEdicion" class="icono-borrar"></fa-icon>
     </div>
-    <div style="height: 185px" >
+    <div id="contenedor-descripcion">
       <p>{{proyecto.descripcion}}</p>
     </div>
     <div class="contenedor-tecnologias-iconos">
         <div class="d-flex gap-3">
-          <label *ngFor="let tecnologia of proyecto.tecnologias" class="tecnologia">{{tecnologia}}</label>
+          <label *ngFor="let tecnologia of proyecto.tecnologias">{{tecnologia}}</label>
         </div>    
         <div class="contenedor-iconos d-flex gap-1">          
           <a href="{{proyecto.urlGitHub}}" target="_blank" title="GitHub">         

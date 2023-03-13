@@ -39,11 +39,10 @@
             </div>          
             <div class="container-items-exp">
                 <div #contenedorPrimerExp>
-                    <div class="d-flex align-items-baseline gap-1 container-primer-exp"> 
+                    <div class="d-flex align-items-baseline gap-1 container-titulo-primer-exp"> 
                         <p id="titulo-primer-exp">{{experiencias[0].puesto}}</p>                        
-                        <div class="d-flex gap-1">
-                            <p>@</p>
-                            <a href="{{experiencias[0].urlEmpresa}}" target="_blank">{{experiencias[0].empresa}}</a> 
+                        <div class="d-flex">                            
+                            <a href="{{experiencias[0].urlEmpresa}}" target="_blank">@ {{experiencias[0].empresa}}</a> 
                         </div>                       
                     </div>
                     <div>

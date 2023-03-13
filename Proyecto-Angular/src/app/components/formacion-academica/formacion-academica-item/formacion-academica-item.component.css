@@ -1,65 +1,114 @@
-.container{
-    margin-top: 6px;
-    padding: 0px !important;
+.contenedor-texto {    
+    padding: 15px 15px;   
 }
 
-#titulo {
-    font-weight:bold;
-    color:white !important
+.contenedor-imagen-fecha p {
+    margin-bottom: 0px;
 }
 
-#duracion {
-    font-size:14px; 
-    margin-top:-10px
-}
-
-.container>div>p, a{
-    color: lightblue;
+.contenedor-imagen-fecha a {
+    margin-left: 23px
 }
 
 
-a:link, a:visited{
-    color: lightblue;
-    text-decoration: none;
-}
-
-a {
-    display: inline-block;
-    position: relative
-}
-
-a::after{
+.contenedor-texto a::after{
     content: "";
     position: absolute;
     width: 100%;
     height: 2px ;
     left: 0;
-    bottom: 40%;
+    bottom: 7%;
     background-color: lightblue;
     transform-origin: bottom left;
     transform: scaleX(0);
     transition: transform 0.3s ease-out
 }
 
-a:hover::after{
+.contenedor-texto a:hover::after{
     transform-origin: bottom left;
     transform: scaleX(1)
 }
 
-@media screen and (max-width: 1050px) {
-
-   
-    .container-items-exp{
-        width: 100%;
-    } 
-    .container{
-        display:block !important;
-        margin-top: 20px
-    }    
-    a {
-        margin-bottom: 30px
-    }
-    a::after{
-        bottom: 7%
-    }  
+.contenedor-texto a:link, a:visited{
+    color: white;
+    text-decoration: none;
 }
+
+.contenedor-texto a{
+    display: inline-block;
+    position: relative;
+    color: lightblue;
+    margin-bottom: 15px;
+}
+
+.icono-borrar {
+    color:red;
+    cursor: pointer;
+    font-size: 1.5em;
+    margin-left: auto;
+}
+
+.icono-borrar:hover{    
+    transform: scale(1.3)
+}
+
+
+img {
+    height: 130px;
+    width: 180px;
+    transition: transform 0.3s ease;
+    position: relative;
+    right: 6%;
+}
+
+img:hover {
+    transform: scale(0.9);
+    transition: transform 0.3s ease
+}
+
+#p-institucion {
+    margin-bottom: 15px;
+    color: white;
+}
+
+.contenedor-imagen-fecha {
+    background-color: #1c2b46;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px
+}
+
+.contenedor {
+    min-height: 250px;
+    border-radius: 10px;
+    background-color: #0d1524;
+
+}
+
+
+@media screen and (max-width: 1200px) {  
+   
+    img {
+        height: 130px !important;
+        width: 130px !important;
+    }
+ }
+
+
+@media screen and (max-width: 850px) {  
+   
+   .contenedor-imagen-fecha, .contenedor-texto{
+    width: 100% !important;
+   }
+   img {
+    height: 130px !important;
+    width: 250px !important;
+    }
+}
+
+@media screen and (max-width: 500px) {     
+    
+    img {
+     height: 100px !important;
+     width: 150px !important;
+     }
+ }
