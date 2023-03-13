@@ -1,6 +1,6 @@
 #container {
     width: 70%;
-    opacity: 1;
+    opacity: 0;
     transform: translateY(0px);
     transition: all 0.5s ease;  
 }

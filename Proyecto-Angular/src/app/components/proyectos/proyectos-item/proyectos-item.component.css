@@ -23,15 +23,16 @@ img {
 }
 
 #contenedor-texto {
-    width: 50%;
-    margin-left:auto;
+    width: 50%;    
     height: 300px;
    
     
 }
 
 .contenedor-tecnologias-iconos {     
-    color: rgb(147, 214, 236);    
+    color: rgb(147, 214, 236); 
+    position: relative;
+    top: 2% 
 }
 
 #icono-github{
@@ -89,18 +90,19 @@ img {
    #icono-flecha{
     top:5%
    }
+}
 
-   #contenedor-descripcion{
-    overflow-y: auto;
-    height: 150px !important;
+@media screen and (max-width:450px) {    
+ 
+    .contenedor-tecnologias-iconos>div{
+         gap: 1 !important;        
+         overflow-x: auto;
+    }
     
+   #contenedor-descripcion{
+    overflow-x: auto;
+    height: 150px !important; 
   
    }
-
-   .contenedor-tecnologias-iconos>div{
-        gap: 1 !important;
-        margin-bottom: auto !important;
-        overflow-y: auto;
-   }
-   
-}
+    
+ }

@@ -23,7 +23,7 @@ export class ScrollFormacionAcademicaDirective {
   @HostListener('window:scroll') onScroll (){
     // console.log(window.scrollY)
     
-      if (this.ultimoScrollY>2900) {
+      if (this.ultimoScrollY>3200) {
         this.ok = true           
       } else {
         this.ok = false           
