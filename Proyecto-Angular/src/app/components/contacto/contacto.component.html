@@ -1,11 +1,194 @@
-<section id="contacto" class="d-flex justify-content-center align-items-center">
-    <div class="card my-3" style="width: 50%;">
-        <div class="card-body">
-          <h3 class="card-title"><strong>Contacto</strong></h3>
-          <p class="card-text">Estudiante de Desarrollo Web y Aplicaciones Digitales. Como 
-            desafío personal estoy buscando mi primera experiencia
-            laboral en el área de IT para poder aplicar mis conocimientos en un equipo de trabajo y
-            crecer profesionalmente.</p>                  
+<section id="contacto" class="d-flex justify-content-center">
+    <div id="container">        
+        <div class="mb-4 d-flex justify-content-center align-items-baseline">
+            <h3><strong>{{titulo}}</strong></h3>
+            <div class="ms-3" *ngIf="modoEdicion" >
+                <fa-icon
+                    class="icono-edicion"
+                    [icon]="faPlus" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#titulo-contacto-modal">
+                </fa-icon> 
+                <fa-icon
+                    class="icono-edicion"
+                    [icon]="faSquarePen"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#contacto-modal">
+                </fa-icon>
+            </div>            
+        </div>
+        <div class="mt-4 d-flex" id="container-form-info">
+            <div id="container-form">
+                <form id="formulario-contacto">
+                    <div class="row">
+                        <div class="col">
+                            <p>Formulario de contacto</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex align-items-center">
+                            <span>
+                                <fa-icon [icon]="faUser" class="icono-contacto"></fa-icon>
+                            </span>                             
+                            <input class="form-control my-3" placeholder="Nombre">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="d-flex align-items-center">
+                            <span>
+                                <fa-icon [icon]="faFileLines" class="icono-contacto"></fa-icon>
+                            </span>                          
+                            <input class="form-control my-3" placeholder="Asunto">
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col d-flex align-items-center"> 
+                            <span>
+                                <fa-icon [icon]="faEnvelop" class="icono-contacto"></fa-icon>
+                            </span>                           
+                            <input class="form-control my-3" placeholder="Correo">
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col">                       
+                            <textarea placeholder="Mensaje" class="form-control mt-4"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col">                       
+                            <button class="btn btn-primary">Enviar</button>
+                        </div>
+                    </div>
+                                         
+                </form>
+            </div>
+            <div id="container-info">
+                <div>
+                    <label>Ubicación</label>
+                    <p #ubicacion>{{ubicacionContacto}}</p>
+                </div>
+                <div class="my-4">
+                    <label>Teléfono</label>                    
+                    <p #telefono >{{telefonoContacto}}</p>                   
+                </div>
+                <div class="my-4">
+                    <label>Correo</label>
+                    <p #correo >{{correoContacto}}</p>
+                </div>
+            </div>
+
+        </div>                  
+    </div>
+
+    <!-- MODAL TITULO -->
+    
+    <div 
+    class="modal fade modal-lg"      
+    id="titulo-contacto-modal" tabindex="-1" 
+    aria-labelledby="textoModalLabel"
+    aria-hidden="true"
+    >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <h3 class="modal-title textoModal" id="textoModalLabel">Editar Título</h3>                        
+                </div>
+                <div class="modal-body">                                 
+                    <div class="d-flex">
+                        <label for="user" class="form-label etiquetaModal">Título actual</label>
+                        <p class="etiquetaModal" id="titulo"><b>{{titulo}}</b></p>                    
+                    </div>
+                    <div class="d-flex align-items-baseline mb-3">
+                        <label for="user" class="form-label etiquetaModal">Nuevo título</label>
+                        <input 
+                            #nuevoTitulo 
+                            type="text" 
+                            class="form-control inputModal" 
+                            placeholder="Ingrese nuevo título">
+                    </div>                 
+                    
+                    <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
+                        <button 
+                            type="button" 
+                            class="btn btn-danger"                            
+                            data-bs-dismiss="modal"
+                            (click)="resetearTitulo()" 
+                            >
+                            Cerrar
+                        </button>
+                        <button 
+                            type="button" 
+                            class="btn btn-primary"                                                      
+                            data-bs-dismiss="modal"
+                            (click)="cambiarTitulo()"                           
+                            >
+                            Aceptar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL EDITAR INFORMACION DE CONTACTO -->
+
+    <div 
+    class="modal fade modal-lg"      
+    id="contacto-modal" tabindex="-1" 
+    aria-labelledby="textoModalLabel"
+    aria-hidden="true"
+    >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <h3 class="modal-title textoModal" id="textoModalLabel">Editar Información de Contacto</h3>                        
+                </div>
+                <div class="modal-body">                           
+                    
+                    <div class="d-flex align-items-baseline mb-3">
+                        <label for="user" class="form-label etiquetaModal">Ubicación</label>
+                        <input 
+                            #ubicacion 
+                            type="text" 
+                            class="form-control inputModal" 
+                            placeholder="Ingresar ubicación (provincia, país)">
+                    </div>
+                    <div class="d-flex align-items-baseline mb-3">
+                        <label for="user" class="form-label etiquetaModal">Teléfono</label>
+                        <input 
+                            #telefono
+                            type="text" 
+                            class="form-control inputModal" 
+                            placeholder="Ingresar teléfono">
+                    </div>
+                    <div class="d-flex align-items-baseline mb-3">
+                        <label for="user" class="form-label etiquetaModal">Correo</label>
+                        <input 
+                            #correo
+                            type="text" 
+                            class="form-control inputModal" 
+                            placeholder="Ingresar correo">
+                    </div>                  
+                    
+                    <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
+                        <button 
+                            type="button" 
+                            class="btn btn-danger"                            
+                            data-bs-dismiss="modal"
+                            (click)="resetearInputs()"
+                            >
+                            Cerrar
+                        </button>
+                        <button 
+                            type="button" 
+                            class="btn btn-primary"                                                      
+                            data-bs-dismiss="modal"                                                       
+                            >
+                            Aceptar
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

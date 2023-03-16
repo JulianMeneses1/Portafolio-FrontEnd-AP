@@ -1,0 +1,104 @@
+#container {
+    width: 60%;
+    margin-top:70px;    
+}
+
+h3{
+    color: lightblue;
+}
+
+.icono-edicion{
+    font-size:2.5em; 
+    color:rgb(36, 95, 184); 
+    padding: 7px;
+    cursor: pointer; 
+}
+
+.icono-contacto {
+    font-size: 1.3em;
+    position: relative;
+    color:gray
+}
+
+
+.icono-edicion:hover{
+    color:lightblue
+}
+
+.textoModal, .etiquetaModal, .inputModal {
+    color:black !important
+}
+
+.etiquetaModal {
+    width: 25%
+}
+
+.inputModal {
+    width: 75%
+}
+
+.inputEdicion{
+    width: 11em
+}
+
+#container-form{
+    width: 50%;
+    padding: 10px 40px;
+}
+#container-info{
+    width: 50%;
+    padding: 10px 80px;
+}
+
+label, #formulario-contacto p{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+input {
+    background-color: black;
+    border-color: gray;
+    color: white !important;
+    padding-left: 50px;  
+}
+
+span {    
+    position: absolute;
+    margin-left: 10px;
+}
+
+input:focus, textarea:focus{
+    background-color: black;
+    border-color: green;
+    box-shadow: 0px 0px 7px green;
+    color: white;
+}
+
+textarea{
+    width: 100%;
+    background-color: black;
+    border-color: gray;
+    color: white;
+    height: 90px;
+    overflow: auto;
+}
+
+
+@media  screen and  (max-width:1000px){
+    #container-form-info{
+        display:inline-block !important;
+        width: 100%;
+    }
+
+    #container-form, #container-info{
+        width: 100%;
+        padding: 10px 40px;
+    }
+
+    #container-form{
+        margin-bottom:20px
+    }
+
+
+    
+}

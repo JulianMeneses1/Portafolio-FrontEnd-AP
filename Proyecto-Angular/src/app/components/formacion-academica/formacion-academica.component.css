@@ -26,11 +26,6 @@ fa-icon{
     cursor: pointer; 
 }
 
-.icono-borrar:hover{    
-    transform: scale(1.2);
-    color:red !important
-}
-
 fa-icon:hover{
     color:lightblue
 }
@@ -57,40 +52,6 @@ fa-icon:hover{
     width: 75%;
 }
 
-.container-lista-educacion {
-   width: 35%;
-   margin-right: 10px;       
-}
-
-.icono-borrar {
-    color:red;
-    cursor: pointer;
-    font-size: 1.5em;    
-    
-}
-
-.container-items-educacion {
-    width: 65%;
-}
-
-.container-titulo-primer-educacion{
-    margin-top: 2px
-}
-
-.container-titulo-primer-educacion > a {
-    font-weight:bold;
-    font-size: 17px;
-    color:white !important
-}
-
-#duracion-primer-educacion {
-    font-size:14px;
-    margin-top: 5px;
-}
-
-.container-titulo-primer-educacion>a:hover, a:hover{
-    color: lightblue !important;
-}
 
 a:link, a:visited{
     color: white;
@@ -120,44 +81,6 @@ a:hover::after{
     transform: scaleX(1)
 }
 
-.boton-educacion-item {
-    background-color: black;
-    color: white;
-    display: flex;
-    align-items: center;
-    height: 70px;
-    font-size: 15.5px;
-    padding: 0px 15px;    
-    width: 100%;        
-    text-align: left;
-    border-left: solid 2px #495670;       
-}
-
-.boton-educacion-item-seleccionado {
-    color: rgb(188, 230, 248)      
-}
-
-.boton-educacion-item:hover{
-    color:rgb(188, 230, 248);
-    background-color: #495670;    
-}
-
-.lista-seleccion {
-    width: 2px;
-    position: absolute;
-    z-index: 10;
-    border-radius: 4px;
-    top: 0px;
-    left: 0px;   
-    height: 70px;
-    background-color: aqua;    
-}
-
-.animacion-lista-seleccion{    
-    transform: translateY(var(--educacion-bar-position-Y));    
-    transition: transform 0.25s ease;           
-} 
-
 
 @media screen and (max-width: 1050px) {
 
@@ -165,45 +88,8 @@ a:hover::after{
     section {
         margin-top: 50px;
 
-    }
-
-    #container-items-lista-educacion{
-        display: block !important
-
-    }
-    .container-items-educacion{
-        width: 100%;
-    }
-    .container-titulo-primer-educacion{
-        display:block !important;
-        margin-top: 20px
-    }
-    a::after{
-        bottom: 7%
-    }
-    
-    .container-lista-educacion {
-        display: flex;
-        margin-right: 0px !important;
-        width: 100% !important;
-        overflow-x: auto ;
-        overflow-y: hidden      
-    }
-
-    .boton-educacion-item{
-        border-left: none !important;
-        min-width: 310px;
-        height: auto;          
-        padding: 0px 20px !important;
-        text-align: center;          
-        }    
-    .boton-educacion-item-seleccionado {
-        background-color: #495670;      
-    }
-
-    .lista-seleccion {
-        display:none             
-    }
+    }    
+   
 }
 
 @media screen and (max-width:1400px) {   
