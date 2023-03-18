@@ -1,25 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { Experiencia } from '../interfaces/experiencia-laboral';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModoEdicionService {
 
-  private Url = "http://localhost:4200"
   private modoEdicion:boolean=false;
-  private subject = new Subject<any>()
+  private habilitarBotonLogin:boolean = true;
+  private subjectAlternarEdicion = new Subject<any>();
+  private subjectBtnLoggin = new Subject<any>();
+
 
   constructor() { }
 
   alternarEdicion():void{
     this.modoEdicion=!this.modoEdicion;
-    this.subject.next(this.modoEdicion)
+    this.subjectAlternarEdicion.next(this.modoEdicion)
+  }
+
+  toggleBtnLoggin () {
+    this.habilitarBotonLogin=true;
+    this.subjectBtnLoggin.next(this.habilitarBotonLogin)
   }
 
   onAlternar():Observable<any>{
-    return this.subject.asObservable();
+    return this.subjectAlternarEdicion.asObservable();
+  }
+  onAlternarBtnLoggin():Observable<any>{
+    return this.subjectBtnLoggin.asObservable()
   }
 }
 

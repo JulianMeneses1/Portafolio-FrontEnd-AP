@@ -1,4 +1,19 @@
 a > img {
-    height: 40px;
-    margin-left: 10px;
+    height: 35px;    
+}
+
+a:hover{      
+    filter: drop-shadow(0 0 7px lightblue);
+    transform: scale(1.05);   
+}
+
+#imagenLinkedin {
+    height: 38px;
+}
+
+#imagenGitHub {
+    height: 54px;
+    position: relative;
+    right: 22%;
+    margin-bottom: 4px;
 }

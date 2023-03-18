@@ -24,10 +24,6 @@ export class ContactoComponent implements OnInit{
   suscripcion?:Subscription;
   formularioContacto!: FormGroup;
   formularioInvalido: boolean = false;
-  inputNombre:boolean=false;
-  inputAsunto:boolean=false; 
-  inputCorreo:boolean=false; 
-  inputMensaje:boolean=false;  
 
   @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
   @ViewChild('ubicacion') ubicacion!:ElementRef;
@@ -39,14 +35,14 @@ export class ContactoComponent implements OnInit{
   @ViewChild('asuntoForm') asuntoForm!:ElementRef; 
 
   constructor(private servicioEdicion : ModoEdicionService, 
-    private fb: FormBuilder, private httpClient: HttpClient) 
+    private formBuilder: FormBuilder, private httpClient: HttpClient) 
   {    
     this.suscripcion = this.servicioEdicion.onAlternar().subscribe(
       value => this.modoEdicion = value)
   }
 
   ngOnInit ():void {
-    this.formularioContacto = this.fb.group({
+    this.formularioContacto = this.formBuilder.group({
       nombre: ['',[Validators.required]],
       asunto: ['',[Validators.required]],
       correo: ['',[Validators.required, Validators.email]],

@@ -17,12 +17,13 @@ export class HeaderComponent {
   modoEdicion:boolean=false;
   suscripcion?:Subscription;
   scrollVisible:boolean=true
+
   
 
   constructor(private renderer: Renderer2,
     private servicioEdicion: ModoEdicionService) {
       this.suscripcion = this.servicioEdicion.onAlternar().subscribe(
-          value => this.modoEdicion = value)
+          value => this.modoEdicion = value);    
       }   
   
   contraerNav(){
@@ -43,6 +44,10 @@ export class HeaderComponent {
   
   alternarEdicion(){
     this.servicioEdicion.alternarEdicion()
+  }
+
+  alternarBtnLoggin () {
+    this.servicioEdicion.toggleBtnLoggin()
   }
 }
 
