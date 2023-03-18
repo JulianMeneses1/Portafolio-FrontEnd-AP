@@ -5,66 +5,126 @@
             <div class="ms-3" *ngIf="modoEdicion" >
                 <fa-icon
                     class="icono-edicion"
-                    [icon]="faPlus" 
+                    [icon]="faSquarePen" 
                     data-bs-toggle="modal" 
                     data-bs-target="#titulo-contacto-modal">
-                </fa-icon> 
-                <fa-icon
-                    class="icono-edicion"
-                    [icon]="faSquarePen"
-                    data-bs-toggle="modal" 
-                    data-bs-target="#contacto-modal">
-                </fa-icon>
+                </fa-icon>                
             </div>            
         </div>
         <div class="mt-4 d-flex" id="container-form-info">
-            <div id="container-form">
-                <form id="formulario-contacto">
-                    <div class="row">
-                        <div class="col">
-                            <p>Formulario de contacto</p>
-                        </div>
+            <div id="container-form">                
+                <div class="row">
+                    <div class="col">
+                        <p>Formulario de contacto</p>
                     </div>
+                </div>
+                <form (ngSubmit)="onSubmit()" [formGroup]="formularioContacto">
                     <div class="row">
                         <div class="col d-flex align-items-center">
                             <span>
                                 <fa-icon [icon]="faUser" class="icono-contacto"></fa-icon>
                             </span>                             
-                            <input class="form-control my-3" placeholder="Nombre">
+                            <input
+                                #nombreForm 
+                                type="text" 
+                                id="nombre" 
+                                name="nombre" 
+                                class="form-control inputForm my-2" 
+                                placeholder="Nombre" 
+                                formControlName="nombre"
+                                maxlength="30"                                
+                                (click)="ocultarMensajeError()">                            
                         </div>
+                        <div 
+                            class="mensajeErrorCampo alert alert-danger" 
+                            *ngIf="formularioInvalido && formularioContacto.get('nombre')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </div>                        
                     </div>
                     <div class="row">
-                        <div class="d-flex align-items-center">
+                        <div class="col d-flex align-items-center">
                             <span>
                                 <fa-icon [icon]="faFileLines" class="icono-contacto"></fa-icon>
                             </span>                          
-                            <input class="form-control my-3" placeholder="Asunto">
+                            <input
+                                #asuntoForm 
+                                type="texto" 
+                                id="asunto" 
+                                name="asunto" 
+                                class="form-control inputForm my-2" 
+                                placeholder="Asunto" 
+                                formControlName="asunto"
+                                maxlength="40"                                
+                                (click)="ocultarMensajeError()" >
                         </div>
+                        <div 
+                            class="mensajeErrorCampo alert alert-danger" 
+                            *ngIf="formularioInvalido && formularioContacto.get('asunto')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </div>                        
                     </div> 
                     <div class="row">
                         <div class="col d-flex align-items-center"> 
                             <span>
                                 <fa-icon [icon]="faEnvelop" class="icono-contacto"></fa-icon>
                             </span>                           
-                            <input class="form-control my-3" placeholder="Correo">
+                            <input
+                                #correoForm 
+                                type="email" 
+                                id="correo" 
+                                name="correo" 
+                                class="form-control inputForm my-2" 
+                                placeholder="Correo" 
+                                formControlName="correo"
+                                maxlength="30"                                
+                                (click)="ocultarMensajeError()"                                
+                                >
+                        </div>
+                        <div 
+                            class="mensajeErrorCampo alert alert-danger" 
+                            *ngIf="formularioInvalido && formularioContacto.get('correo')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </div>
+                        <div                             
+                            class="mensajeErrorCampo alert alert-danger" 
+                            *ngIf="formularioInvalido && formularioContacto.get('correo')?.errors?.['email']">
+                            El correo debe cumplir con el siguiente formato de ejemplo: mauricio@gmail.com
                         </div>
                     </div> 
                     <div class="row">
                         <div class="col">                       
-                            <textarea placeholder="Mensaje" class="form-control mt-4"></textarea>
+                            <textarea
+                                #mensajeForm 
+                                placeholder="Mensaje" 
+                                class="form-control inputForm mt-2" 
+                                maxlength="200" 
+                                formControlName="mensaje"                                
+                                (click)="ocultarMensajeError()" ></textarea>
+                        </div>
+                        <div 
+                            class="mensajeErrorCampo alert alert-danger mt-2" 
+                            *ngIf="formularioInvalido && formularioContacto.get('mensaje')?.errors?.['required']">
+                            Este campo es obligatorio
                         </div>
                     </div>
                     <div class="row mt-4">
                         <div class="col">                       
-                            <button class="btn btn-primary">Enviar</button>
-                        </div>
+                            <button type="submit" class="btn btn-primary" >Enviar</button>
+                        </div>                        
                     </div>
                                          
                 </form>
             </div>
             <div id="container-info">
-                <div>
-                    <label>Ubicación</label>
+                <fa-icon
+                    *ngIf="modoEdicion"                 
+                    class="icono-edicion"
+                    [icon]="faSquarePen"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#contacto-modal">
+                    </fa-icon>
+                <div>                    
+                    <label>Ubicación</label>                    
                     <p #ubicacion>{{ubicacionContacto}}</p>
                 </div>
                 <div class="my-4">

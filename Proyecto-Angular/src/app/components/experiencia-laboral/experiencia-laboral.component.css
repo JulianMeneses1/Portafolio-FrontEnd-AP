@@ -127,7 +127,8 @@ a:hover::after{
     padding: 0px 15px;    
     width: 100%;        
     text-align: left;
-    border-left: solid 2px #495670;       
+    border-left: solid 2px #495670;  
+    border-top: none     
 }
 
 .boton-exp-item-seleccionado {
@@ -194,7 +195,7 @@ a:hover::after{
         margin-right: 0px !important;
         width: 100% !important;
         overflow-x: auto ;
-        overflow-y: hidden      
+        overflow-y: hidden     
     }
 
     .boton-exp-item{

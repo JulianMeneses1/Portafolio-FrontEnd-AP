@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,7 +25,7 @@ import { ProyectosItemComponent } from './components/proyectos/proyectos-item/pr
 import { ScrollProyectosDirective } from './directives/proyectos-scroll.directive';
 import { FormacionAcademicaItemComponent } from './components/formacion-academica/formacion-academica-item/formacion-academica-item.component';
 import { ScrollFormacionAcademicaDirective } from './directives/educacion-scroll.directive';
-
+import { ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -53,7 +54,9 @@ import { ScrollFormacionAcademicaDirective } from './directives/educacion-scroll
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule, 
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    HttpClientModule  // Para mandar un mail en la sección contacto, pendiente de configurar
   ],
   providers: [ModoEdicionService],
   bootstrap: [AppComponent]
