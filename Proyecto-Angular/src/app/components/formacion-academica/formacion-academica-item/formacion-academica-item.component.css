@@ -94,7 +94,7 @@ img:hover {
  }
 
 
-@media screen and (max-width: 850px) {  
+@media screen and (max-width: 800px) {  
    
    .contenedor-imagen-fecha, .contenedor-texto{
     width: 100% !important;

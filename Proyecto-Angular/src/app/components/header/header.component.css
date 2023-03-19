@@ -80,7 +80,7 @@ fa-icon{
     #boton_cv{        
     margin-right: 0px;
     }
-    #boton_login{
+    #boton_login, #boton_logout{
         margin-bottom: 10px
     }
    

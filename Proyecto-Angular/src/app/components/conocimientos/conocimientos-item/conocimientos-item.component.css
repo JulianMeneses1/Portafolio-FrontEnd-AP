@@ -72,3 +72,9 @@
     }
 }
 
+@media  screen and (max-width: 800px){
+    .skills-bar {
+        width: 100%       
+    }
+} 
+

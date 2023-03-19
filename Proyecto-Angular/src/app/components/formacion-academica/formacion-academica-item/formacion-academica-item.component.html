@@ -6,7 +6,7 @@
         <div style="position: relative; bottom: 5%; padding: 0px 5px;" >
             
                 <a href="{{educacion.urlInstitucion}}" target="_blank">
-                    <img class="img-fluid.rounded"src="{{educacion.imagen}}">
+                    <img class="img-fluid.rounded" src="{{educacion.imagen}}">
                 </a>
             
         </div>
@@ -17,9 +17,9 @@
             <h5>{{educacion.nombre}}</h5>
             <fa-icon [icon]="faX" *ngIf="modoEdicion" class="icono-borrar"></fa-icon>
         </div>
-        <a href="{{educacion.urlInstitucion}}">@ {{educacion.institucion}}</a>
+        <a href="{{educacion.urlInstitucion}}" target="_blank">@ {{educacion.institucion}}</a>
         <p id="p-descripcion">{{educacion.descripcion}}</p>
-        <a href="{{educacion.urlCertificado}}" *ngIf="educacion.urlCertificado">@ Certificado</a>
+        <a href="{{educacion.urlCertificado}}" *ngIf="educacion.urlCertificado" target="_blank">@ Certificado</a>
     </div>
 </div>
 

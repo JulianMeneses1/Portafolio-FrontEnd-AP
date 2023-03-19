@@ -1,6 +1,8 @@
 <section id="contacto" class="d-flex justify-content-center">
-    <div id="container">        
-        <div class="mb-4 d-flex justify-content-center align-items-baseline">
+    <div id="container" data-aos="fade-down"
+   
+    data-aos-duration="500">        
+        <div class="mb-4 d-flex justify-content-center align-items-baseline flex-wrap">
             <h3><strong>{{titulo}}</strong></h3>
             <div class="ms-3" *ngIf="modoEdicion" >
                 <fa-icon
@@ -8,10 +10,10 @@
                     [icon]="faSquarePen" 
                     data-bs-toggle="modal" 
                     data-bs-target="#titulo-contacto-modal">
-                </fa-icon>                
+                </fa-icon>                               
             </div>            
         </div>
-        <div class="mt-4 d-flex" id="container-form-info">
+        <div class="mt-4 d-flex" id="container-form-info" >
             <div id="container-form">                
                 <div class="row">
                     <div class="col">
@@ -116,15 +118,9 @@
                 </form>
             </div>
             <div id="container-info">
-                <fa-icon
-                    *ngIf="modoEdicion"                 
-                    class="icono-edicion"
-                    [icon]="faSquarePen"
-                    data-bs-toggle="modal" 
-                    data-bs-target="#contacto-modal">
-                    </fa-icon>
+                
                 <div>                    
-                    <label>Ubicación</label>                    
+                    <label>Ubicación</label>                                       
                     <p #ubicacion>{{ubicacionContacto}}</p>
                 </div>
                 <div class="my-4">
@@ -151,7 +147,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header justify-content-center">
-                    <h3 class="modal-title textoModal" id="textoModalLabel">Editar Título</h3>                        
+                    <h3 class="modal-title textoModal" id="textoModalLabel">Editar Título e Información de Contacto</h3>                        
                 </div>
                 <div class="modal-body">                                 
                     <div class="d-flex">
@@ -165,6 +161,30 @@
                             type="text" 
                             class="form-control inputModal" 
                             placeholder="Ingrese nuevo título">
+                    </div>
+                    <div class="d-flex align-items-baseline mb-3">
+                        <label for="user" class="form-label etiquetaModal">Ubicación</label>
+                        <input 
+                            #ubicacion 
+                            type="text" 
+                            class="form-control inputModal" 
+                            placeholder="Ingresar ubicación (provincia, país)">
+                    </div>
+                    <div class="d-flex align-items-baseline mb-3">
+                        <label for="user" class="form-label etiquetaModal">Teléfono</label>
+                        <input 
+                            #telefono
+                            type="text" 
+                            class="form-control inputModal" 
+                            placeholder="Ingresar teléfono">
+                    </div>
+                    <div class="d-flex align-items-baseline mb-3">
+                        <label for="user" class="form-label etiquetaModal">Correo</label>
+                        <input 
+                            #correo
+                            type="text" 
+                            class="form-control inputModal" 
+                            placeholder="Ingresar correo">
                     </div>                 
                     
                     <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
@@ -205,30 +225,7 @@
                 </div>
                 <div class="modal-body">                           
                     
-                    <div class="d-flex align-items-baseline mb-3">
-                        <label for="user" class="form-label etiquetaModal">Ubicación</label>
-                        <input 
-                            #ubicacion 
-                            type="text" 
-                            class="form-control inputModal" 
-                            placeholder="Ingresar ubicación (provincia, país)">
-                    </div>
-                    <div class="d-flex align-items-baseline mb-3">
-                        <label for="user" class="form-label etiquetaModal">Teléfono</label>
-                        <input 
-                            #telefono
-                            type="text" 
-                            class="form-control inputModal" 
-                            placeholder="Ingresar teléfono">
-                    </div>
-                    <div class="d-flex align-items-baseline mb-3">
-                        <label for="user" class="form-label etiquetaModal">Correo</label>
-                        <input 
-                            #correo
-                            type="text" 
-                            class="form-control inputModal" 
-                            placeholder="Ingresar correo">
-                    </div>                  
+                                     
                     
                     <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
                         <button 

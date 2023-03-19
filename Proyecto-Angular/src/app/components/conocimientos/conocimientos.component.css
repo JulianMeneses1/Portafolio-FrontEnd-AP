@@ -47,7 +47,7 @@ fa-icon:hover{
 }
 
 
-@media  screen and (max-width: 900px){
+@media  screen and (max-width: 800px){
     .conocimientos-div{
         width: 100% !important;
     }    

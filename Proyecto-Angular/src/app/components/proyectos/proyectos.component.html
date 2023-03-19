@@ -1,6 +1,6 @@
 <section  class="d-flex justify-content-center align-items-center" id="proyectos" >
-  <div class="card" id="container" appScrollProyectos>
-      <div class="my-2 d-flex justify-content-between align-items-baseline">
+  <div class="card" id="container" >
+      <div class="my-2 d-flex justify-content-between align-items-baseline" data-aos="fade-right">
           <h3><strong>{{titulo}}</strong></h3>
           <div>
               <fa-icon 
@@ -21,7 +21,9 @@
           <app-proyectos-item            
               *ngFor="let proyecto of proyectos"
               [proyecto]="proyecto"
-              class="my-3 w-100 d-flex"                           
+              class="my-3 w-100 d-flex"
+              data-aos="fade-right"
+                                         
           >
           </app-proyectos-item>  
       </div>              

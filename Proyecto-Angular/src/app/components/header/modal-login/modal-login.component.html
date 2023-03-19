@@ -24,7 +24,7 @@
                             formControlName="usuario"
                             (click)="ocultarMensajeError()">
                         <div 
-                            class="mensajeErrorCampo alert alert-danger" 
+                            class="mensajeErrorCampo alert alert-danger mb-1" 
                             *ngIf="formularioInvalido && formularioLogin.get('usuario')?.errors?.['required']">
                             Este campo es obligatorio
                         </div>
@@ -40,7 +40,7 @@
                             formControlName="contraseña"
                             (click)="ocultarMensajeError()">
                         <div 
-                            class="mensajeErrorCampo alert alert-danger" 
+                            class="mensajeErrorCampo alert alert-danger mt-2" 
                             *ngIf="formularioInvalido && formularioLogin.get('contraseña')?.errors?.['required']">
                             Este campo es obligatorio
                         </div>    

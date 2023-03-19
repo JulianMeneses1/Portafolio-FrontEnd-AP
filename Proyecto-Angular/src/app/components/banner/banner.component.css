@@ -6,7 +6,7 @@
 #foto-perfil{
     border-radius: 50%; 
     height: 17em;
-    margin-bottom: 15px   
+    margin-bottom: 15px;    
 }
 
 #container{
@@ -131,5 +131,27 @@ h2, h5{
     #container{
         height: 86vh;
     } 
+} 
+
+@media screen and (max-width: 350px){ 
+    
+    #container{
+        height: 97vh;
+        width: 107%;
+    }
+    #foto-perfil{     
+        height: 13em !important;
+         
+    }  
+    h2{
+    font-size: 1.2em !important;   
+    }
+    h5{
+        font-size: 1em !important;
+    } 
+   
+
 }  
+
+
     

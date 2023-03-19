@@ -4,3 +4,9 @@ label,h3 {
 #user{
     margin-bottom: 7px
 }
+
+.mensajeErrorCampo{   
+    padding: 4px !important;   
+    margin-bottom: 0px;
+    
+}

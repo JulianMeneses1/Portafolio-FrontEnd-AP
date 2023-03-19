@@ -11,22 +11,21 @@ body {
     background-color: black !important;
     color: white;
     padding-top: 5em;
-    overflow-x: hidden;     
+    overflow-x: hidden !important;     
 }
 
 .scroll-hidden {
     overflow: hidden;    
 }
 
-section > div{    
-    background-color: black !important;
-}
-
 section {
     min-height: 100vh
 }
 
-
+section > #container {
+    width: 70%;
+    background-color: black !important;
+}
 
 footer {
     background: #000000;
@@ -59,10 +58,33 @@ footer {
     border-radius: 10px; 
     border: 3px solid black;}
 
+/* MEDIA QUERYS */
 
 @media screen and (min-width:1400px){
     section {
         min-height: 80vh !important;
     }
+    
+}
+
+@media screen and (max-width:1000px){
+    section > #container {
+        width: 80% !important
+    }
+    
+}
+
+@media screen and (max-width:600px){
+    section > #container {
+        width: 87% !important;       
+    }
+    
+}
+
+@media screen and (max-width:350px){
+    section > #container {
+        width: 107% !important;
+        margin-left: 6%        
+    }  
     
 }

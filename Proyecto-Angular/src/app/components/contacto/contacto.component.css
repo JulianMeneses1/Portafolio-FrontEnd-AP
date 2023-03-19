@@ -22,13 +22,6 @@ h3{
     color:gray
 }
 
-#container-info fa-icon {
-    position: absolute;
-    margin-left: 20%;
-    margin-top: -3%    
-}
-
-
 .icono-edicion:hover{
     color:lightblue
 }
@@ -49,9 +42,14 @@ h3{
     width: 11em
 }
 
-#container-form, #container-info{
+#container-info{
     width: 50%;
     padding: 10px 40px;
+}
+
+#container-form {
+    width: 50%;
+    padding: 10px 0px 10px 40px
 }
 
 label, #container-form p{
@@ -116,7 +114,8 @@ textarea{
     }
 
     #container-form{
-        margin-bottom:20px
+        margin-bottom:20px;
+       padding-right: 80px       
     }
 
     #container-info div {
@@ -125,4 +124,10 @@ textarea{
     }
 
         
+}
+
+@media  screen and  (max-width:500px){
+    #container-form{      
+       padding-right: 20px       
+    }
 }

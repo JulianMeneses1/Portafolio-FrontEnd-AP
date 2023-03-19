@@ -165,7 +165,13 @@ a:hover::after{
 }
 
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width:1400px) {   
+    section {
+        margin-top: 100px;       
+    }
+}
+
+@media screen and (max-width: 810px) {
 
    
     section {
@@ -201,7 +207,7 @@ a:hover::after{
     .boton-exp-item{
         border-left: none !important;
         min-width: 150px;
-        height: auto;          
+        height: 47px;          
         padding: 0px 20px !important;
         text-align: center;          
         }    
@@ -214,10 +220,5 @@ a:hover::after{
     }  
 }
 
-@media screen and (max-width:1400px) {   
-    section {
-        margin-top: 100px;       
-    }
-}
 
    
