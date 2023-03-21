@@ -1,6 +1,6 @@
 <section  class="d-flex justify-content-center align-items-center" id="proyectos" >
   <div class="card" id="container" >
-      <div class="my-2 d-flex justify-content-between align-items-baseline" data-aos="fade-right">
+      <div class="my-2 d-flex justify-content-between align-items-baseline" data-aos="fade-left" data-aos-duration="600" data-aos-easing="ease-in-out">
           <h3><strong>{{titulo}}</strong></h3>
           <div>
               <fa-icon 
@@ -22,7 +22,7 @@
               *ngFor="let proyecto of proyectos"
               [proyecto]="proyecto"
               class="my-3 w-100 d-flex"
-              data-aos="fade-right"
+              data-aos="fade-left" data-aos-duration="600" data-aos-easing="ease-in-out"
                                          
           >
           </app-proyectos-item>  
@@ -44,11 +44,11 @@
                   <h3 class="modal-title textoModal" id="textoModalLabel">Editar Título</h3>                        
               </div>
               <div class="modal-body">                                 
-                  <div class="d-flex">
+                  <div class="d-flex modal-body-div">
                       <label for="user" class="form-label etiquetaModal">Título actual</label>
-                      <p class="etiquetaModal" id="titulo"><b>{{titulo}}</b></p>                    
+                      <p class="inputModal" id="titulo">{{titulo}}</p>                    
                   </div>
-                  <div class="d-flex align-items-baseline mb-3">
+                  <div class="d-flex align-items-baseline mb-3 modal-body-div">
                       <label for="user" class="form-label etiquetaModal">Nuevo título</label>
                       <input 
                           #nuevoTitulo 
@@ -90,11 +90,11 @@
   >
       <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
-              <div class="modal-header justify-content-center">
-                  <h3 class="modal-title textoModal" id="textoModalLabel">Añadir Proyecto</h3>                        
+              <div class="modal-header justify-content-center modal-body-div">
+                  <h3 class="modal-title textoModal text-center" id="textoModalLabel">Añadir Proyecto</h3>                        
               </div>
               <div class="modal-body">
-                    <div class="d-flex align-items-baseline mb-3">
+                    <div class="d-flex align-items-baseline mb-3 modal-body-div">
                         <label for="user" class="form-label etiquetaModal">Nombre</label>
                         <input 
                             #Nombre 
@@ -102,7 +102,7 @@
                             class="form-control inputModal" 
                             placeholder="Ingrese nombre">
                     </div>
-                    <div class="d-flex align-items-baseline mb-3">
+                    <div class="d-flex align-items-baseline mb-3 modal-body-div">
                         <label for="user" class="form-label etiquetaModal">Descripción</label>              
                             <textarea
                                 #Descripcion 
@@ -110,7 +110,7 @@
                                 class="form-control inputModal2" 
                                 placeholder="Ingrese descripción del proyecto"></textarea>
                     </div>
-                    <div class="d-flex align-items-baseline mb-3">
+                    <div class="d-flex align-items-baseline mb-3 modal-body-div">
                         <label for="user" class="form-label etiquetaModal">URL Sitio Web</label>
                         <input 
                             #URLWeb
@@ -118,7 +118,7 @@
                             class="form-control inputModal" 
                             placeholder="Ingrese url del sitio web del proyecto (si posee)">
                     </div>
-                    <div class="d-flex align-items-baseline mb-3">
+                    <div class="d-flex align-items-baseline mb-3 modal-body-div">
                         <label for="user" class="form-label etiquetaModal">URL GitHub</label>
                         <input 
                             #URLGitHub
@@ -126,7 +126,7 @@
                             class="form-control inputModal" 
                             placeholder="Ingrese url del sitio del proyecto en GitHub">
                     </div>
-                    <div class="d-flex align-items-baseline mb-3">
+                    <div class="d-flex align-items-baseline mb-3 modal-body-div">
                         <label for="user" class="form-label etiquetaModal">Tecnologías</label>
                         <input 
                             #Tecnologias
@@ -134,7 +134,7 @@
                             class="form-control inputModal" 
                             placeholder="Ingrese las tecnologías utilizadas en el proyecto">
                     </div>                      
-                    <div class="mb-2">
+                    <div class="mb-2 modal-body-div" >
                         <label for="user" class="form-label etiquetaModal">Imagen</label>                                               
                         <input class="inputEdicion me-2" (change)="capturarImagen($event)" #nuevaImagen type="file">
                         <label class="textoModal">{{nombreArchivo}}</label>             

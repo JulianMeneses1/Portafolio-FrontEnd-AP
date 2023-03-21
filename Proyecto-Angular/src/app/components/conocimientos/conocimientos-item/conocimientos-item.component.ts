@@ -14,8 +14,7 @@ import { Conocimientos } from 'src/app/interfaces/mosk-conocimientos';
 export class ConocimientosItemComponent {  
   faX = faX;
   modoEdicion:boolean=false;
-  suscripcion?:Subscription;
-  
+  suscripcion?:Subscription;  
 
   @Input() conocimiento: Conocimiento = Conocimientos[0];
 

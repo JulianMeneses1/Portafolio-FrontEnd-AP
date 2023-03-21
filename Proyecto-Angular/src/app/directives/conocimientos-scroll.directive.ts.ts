@@ -14,24 +14,44 @@ export class ScrollConocimientosDirective {
   // Con HostBinding lo que hacemos es modificar al elemento vinculado la propiedad opacity, con el valor
   // que tiene la variable opacity, en un principio undefined 
  
-  @HostBinding('class.animacion-seccion') ok!:boolean
-  @HostBinding('class.skills-bar') ok2!:boolean
+
+  @HostBinding('class.skills-bar') ok!:boolean
 
 
   // HostListener lo que hace es ejecutar una función al producirse el evento onScroll, 
   // es decir al desplazarse el usuario hacia arriba o abajo en la pantalla
 
-  @HostListener('window:scroll') onScroll (){     
+  @HostListener('window:scroll') onScroll (){ 
+
+    if (window.innerWidth >= 1400){    
    
-    if (this.ultimoScrollY>900) {
-      this.ok = true 
-      this.ok2 = true       
-             
-    } else {
-      this.ok = false
-      this.ok2 = false        
-             
-    } 
-    this.ultimoScrollY = window.scrollY
+    if (this.ultimoScrollY>460) {
+        this.ok = true                  
+      } else {
+        this.ok = false           
+      } 
+      this.ultimoScrollY = window.scrollY
+    } else if (window.innerWidth >= 1000) {
+    if (this.ultimoScrollY>530) {
+      this.ok = true   
+      } else {
+        this.ok = false                  
+      } 
+      this.ultimoScrollY = window.scrollY
+    } else if (window.innerWidth >= 600) {
+      if (this.ultimoScrollY>580) {
+        this.ok = true 
+      } else {
+        this.ok = false     
+      } 
+      this.ultimoScrollY = window.scrollY
+    } else if (window.innerWidth < 600) {
+      if (this.ultimoScrollY>640) {
+        this.ok = true 
+      } else {
+        this.ok = false     
+      } 
+      this.ultimoScrollY = window.scrollY
+    }
   }
 }

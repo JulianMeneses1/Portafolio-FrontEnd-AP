@@ -1,23 +1,9 @@
-#container {
-    width: 70%;
-    opacity: 0;
-    transform: translateY(0px);
-    transition: all 0.5s ease;  
-}
 
-section {
-    padding: 200px 0px;
-}
 
 h3{
     color: lightblue;
 }
 
-.animacion-seccion{    
-    transform: translateY(50px) !important;
-    opacity: 1 !important;
-    transition: all 0.5s ease;           
-} 
 
 fa-icon{
     font-size:2.5em; 
@@ -81,15 +67,5 @@ a:hover::after{
     transform: scaleX(1)
 }
 
-
-@media screen and (max-width: 1050px) {
-
-   
-    section {
-        margin-top: 50px;
-
-    }    
-   
-}
 
    

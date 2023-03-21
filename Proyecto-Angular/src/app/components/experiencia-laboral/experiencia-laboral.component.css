@@ -1,20 +1,14 @@
-#container {
-    width: 70%;
-    opacity: 0;
-    transform: translateY(0px);
-    transition: all 0.5s ease;
-    height: 500px;    
+/* section {
+    margin-top: 50px;
+} */
+#container {   
+    height: 300px;    
 }
 
 h3{
     color: lightblue;
 }
 
-.animacion-seccion{    
-    transform: translateY(50px) !important;
-    opacity: 1 !important;
-    transition: all 0.5s ease;           
-} 
 
 fa-icon{
     font-size:2.5em; 
@@ -165,18 +159,13 @@ a:hover::after{
 }
 
 
-@media screen and (max-width:1400px) {   
-    section {
-        margin-top: 100px;       
-    }
-}
 
 @media screen and (max-width: 810px) {
 
    
-    section {
-        margin-top: 50px;
-        align-items: center !important;
+    
+    #container {
+        height: 500px;
     }
 
     #container-items-lista-exp{

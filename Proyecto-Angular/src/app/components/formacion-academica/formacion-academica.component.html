@@ -1,6 +1,6 @@
-<section class="d-flex justify-content-center align-items-center" id="formacion academica" >
-    <div class="card" id="container" appScrollFormacionAcademica>
-        <div class="my-3 d-flex justify-content-between align-items-baseline flex-wrap">
+<section class="d-flex justify-content-center align-items-center" id="formacion academica">
+    <div class="card" id="container"> 
+        <div class="my-3 d-flex justify-content-between align-items-baseline flex-wrap" data-aos="fade-right" data-aos-duration="600" data-aos-easing="ease-in-out">
             <h3><strong>{{titulo}}</strong></h3>
             <div>
                 <fa-icon
@@ -22,7 +22,8 @@
         <app-formacion-academica-item            
               *ngFor="let educacion of formacionAcademica"
               [educacion]="educacion"
-              class="my-3 w-100"                                                  
+              class="my-3 w-100"
+              data-aos="fade-right" data-aos-duration="600" data-aos-easing="ease-in-out"                                                  
           >
           </app-formacion-academica-item> 
          
@@ -43,11 +44,11 @@
                     <h3 class="modal-title textoModal" id="textoModalLabel">Editar Título</h3>                        
                 </div>
                 <div class="modal-body">                                 
-                    <div class="d-flex">
+                    <div class="d-flex modal-body-div">
                         <label for="user" class="form-label etiquetaModal">Título actual</label>
-                        <p class="etiquetaModal" id="titulo"><b>{{titulo}}</b></p>                    
+                        <p class="inputModal" id="titulo">{{titulo}}</p>                    
                     </div>
-                    <div class="d-flex align-items-baseline mb-3">
+                    <div class="d-flex align-items-baseline mb-3 modal-body-div">
                         <label for="user" class="form-label etiquetaModal">Nuevo título</label>
                         <input 
                             #nuevoTitulo 
@@ -94,7 +95,7 @@
                 </div>
                 <div class="modal-body">                           
                     
-                    <div class="d-flex align-items-baseline mb-3">
+                    <div class="d-flex align-items-baseline mb-3 modal-body-div">
                         <label for="user" class="form-label etiquetaModal">Nombre</label>
                         <input 
                             #nombre 
@@ -102,7 +103,7 @@
                             class="form-control inputModal" 
                             placeholder="Ingrese el nombre del curso/carrera">
                     </div>
-                    <div class="d-flex align-items-baseline mb-3">
+                    <div class="d-flex align-items-baseline mb-3 modal-body-div">
                         <label for="user" class="form-label etiquetaModal">Institución</label>
                         <input 
                             #institucion
@@ -110,7 +111,7 @@
                             class="form-control inputModal" 
                             placeholder="Ingrese el nombre de la institución en donde realiza/realizó los estudios">
                     </div>
-                    <div class="d-flex align-items-baseline mb-3">
+                    <div class="d-flex align-items-baseline mb-3 modal-body-div">
                         <label for="user" class="form-label etiquetaModal">URL Institución</label>
                         <input 
                             #urlInstitucion
@@ -118,7 +119,7 @@
                             class="form-control inputModal" 
                             placeholder="Ingrese la url del sitio web de la institución">
                     </div>
-                    <div class="d-flex align-items-baseline mb-3">
+                    <div class="d-flex align-items-baseline mb-3 modal-body-div">
                         <label for="user" class="form-label etiquetaModal">URL Certificado</label>
                         <input 
                             #urlCertificado
@@ -126,7 +127,7 @@
                             class="form-control inputModal" 
                             placeholder="Ingrese la url del certificado">
                     </div>
-                    <div class="d-flex align-items-baseline mb-3">
+                    <div class="d-flex align-items-baseline mb-3 modal-body-div">
                         <label for="user" class="form-label etiquetaModal">Fecha Inicio</label>
                         <input 
                             #fechaInicio
@@ -134,7 +135,7 @@
                             class="form-control inputModal" 
                             placeholder="Ingrese fecha de inicio (mes y año)">
                     </div>
-                    <div class="d-flex align-items-baseline mb-3">
+                    <div class="d-flex align-items-baseline mb-3 modal-body-div">
                         <label for="user" class="form-label etiquetaModal">Fecha Fin</label>
                         <input 
                             #fechaFin
@@ -142,7 +143,7 @@
                             class="form-control inputModal" 
                             placeholder="Ingrese fecha de finalización (mes y año)">
                     </div>
-                    <div class="d-flex align-items-baseline mb-3">
+                    <div class="d-flex align-items-baseline mb-3 modal-body-div">
                         <label for="user" class="form-label etiquetaModal">Descripción</label>              
                             <textarea
                                 #descripcion 

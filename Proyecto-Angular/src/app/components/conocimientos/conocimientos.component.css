@@ -1,19 +1,8 @@
-#container {
-    width: 70%;
-    opacity: 0;
-    transform: translateY(0px);
-    transition: all 0.5s ease
-}
 
 h3{
     color: lightblue;
 }
 
-.animacion-seccion{    
-    transform: translateY(50px) !important;
-    opacity: 1 !important;
-    transition: all 0.5s ease;           
-} 
 
 fa-icon{
     font-size:2.5em; 

@@ -1,6 +1,6 @@
-<section  class="d-flex justify-content-center align-items-center" id="conocimientos" >
-    <div class="card" id="container" appScrollConocimientos >
-        <div class="my-2 d-flex justify-content-between align-items-baseline flex-wrap">
+<section class="d-flex justify-content-center align-items-center" id="conocimientos"  >
+    <div class="card" id="container">
+        <div class="my-2 d-flex justify-content-between align-items-baseline flex-wrap"  data-aos="zoom-in" data-aos-duration="900" data-aos-easing="ease-in-out">
             <h3><strong>{{titulo}}</strong></h3>
             <div>
                 <fa-icon 
@@ -19,10 +19,13 @@
             
         </div>
         <div class="d-flex flex-wrap">
-            <app-conocimientos-item            
+            <app-conocimientos-item
+                          
                 *ngFor="let conocimiento of conocimientos"
                 [conocimiento]="conocimiento"
-                class="conocimientos-div my-3 w-50 d-flex align-items-center"               
+                class="conocimientos-div my-3 w-50 d-flex align-items-center"
+                data-aos="zoom-in" data-aos-duration="900" data-aos-easing="ease-in-out"
+            
             >
             </app-conocimientos-item>  
         </div>              
@@ -43,11 +46,11 @@
                     <h3 class="modal-title textoModal" id="textoModalLabel">Editar Título</h3>                        
                 </div>
                 <div class="modal-body">                                 
-                    <div class="d-flex">
+                    <div class="d-flex  modal-body-div">
                         <label for="user" class="form-label etiquetaModal">Título actual</label>
-                        <p class="etiquetaModal" id="titulo"><b>{{titulo}}</b></p>                    
+                        <p class="inputModal" id="titulo">{{titulo}}</p>                    
                     </div>
-                    <div class="d-flex align-items-baseline mb-3">
+                    <div class="d-flex align-items-baseline mb-3 modal-body-div">
                         <label for="user" class="form-label etiquetaModal">Nuevo título</label>
                         <input 
                             #nuevoTitulo 
@@ -94,16 +97,16 @@
                 </div>
                 <div class="modal-body">                           
                     
-                    <div class="d-flex align-items-baseline mb-3">
-                        <label for="user" class="form-label etiquetaModal">Nombre</label>
+                    <div class="d-flex align-items-baseline mb-3 modal-body-div">
+                        <label for="user" class="form-label etiquetaModal ">Nombre</label>
                         <input 
                             #Nombre 
                             type="text" 
                             class="form-control inputModal" 
                             placeholder="Ingrese nombre">
                     </div>
-                    <div class="d-flex align-items-baseline mb-3">
-                        <label for="user" class="form-label etiquetaModal">Nivel</label>
+                    <div class="d-flex align-items-baseline mb-3 modal-body-div">
+                        <label for="user" class="form-label etiquetaModal ">Nivel</label>
                         <input 
                             #Nivel 
                             type="text" 

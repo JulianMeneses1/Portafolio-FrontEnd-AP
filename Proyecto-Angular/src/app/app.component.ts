@@ -9,6 +9,6 @@ import * as AOS from 'aos'
 })
 export class AppComponent implements OnInit{  
  ngOnInit ():void {
-  AOS.init();
- }
+    AOS.init()
+  }
 }
