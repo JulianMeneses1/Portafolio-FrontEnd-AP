@@ -9,10 +9,7 @@ import * as AOS from 'aos'
 })
 export class AppComponent implements OnInit{  
  ngOnInit ():void {
-    AOS.init();
-
-    AOS.init({
-      useClassNames: true
-    })
+    AOS.init()              // AOS es una librería que permite introducir animaciones de forma sencilla, 
+                            // es la que usé para las animaciones de todas las secciones al scrollear hacia abajo. Se ponen con el atributo data-aos.    
   }
 }

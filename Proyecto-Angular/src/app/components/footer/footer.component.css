@@ -17,3 +17,9 @@ a:hover{
     right: 22%;
     margin-bottom: 4px;
 }
+
+@media screen and (max-width:350px){
+    #container-iconos {
+        margin-left: 12%
+    }
+}

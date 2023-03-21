@@ -56,7 +56,8 @@
                             #nuevoTitulo 
                             type="text" 
                             class="form-control inputModal" 
-                            placeholder="Ingrese nuevo título">
+                            placeholder="Ingrese nuevo título"
+                            maxlength="30">
                     </div>                 
                     
                     <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
@@ -97,47 +98,82 @@
                 </div>
                 <div class="modal-body">                           
                     
-                    <div class="d-flex align-items-baseline mb-3 modal-body-div">
-                        <label for="user" class="form-label etiquetaModal ">Nombre</label>
-                        <input 
-                            #Nombre 
-                            type="text" 
-                            class="form-control inputModal" 
-                            placeholder="Ingrese nombre">
-                    </div>
-                    <div class="d-flex align-items-baseline mb-3 modal-body-div">
-                        <label for="user" class="form-label etiquetaModal ">Nivel</label>
-                        <input 
-                            #Nivel 
-                            type="text" 
-                            class="form-control inputModal" 
-                            placeholder="Ingrese nivel de progreso (entre 10 y 90)">
-                    </div>
-
-                    <div class="mb-2">
-                        <label for="user" class="form-label etiquetaModal">Imagen</label>                                               
-                        <input class="inputEdicion me-2" (change)="capturarImagen($event)" #nuevaImagen type="file">
-                        <label class="textoModal">{{nombreArchivo}}</label>             
-                    </div>
-                    <img *ngIf="previsualizacionImagen" class="imagenEdicion mb-1" [src]="previsualizacionImagen">                 
-                    
-                    <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
-                        <button 
-                            type="button" 
-                            class="btn btn-danger"                            
-                            data-bs-dismiss="modal"
-                            (click)="resetearInputs()"
-                            >
-                            Cerrar
-                        </button>
-                        <button 
-                            type="button" 
-                            class="btn btn-primary"                                                      
-                            data-bs-dismiss="modal"                                                                                   
-                            >
-                            Aceptar
-                        </button>
-                    </div>
+                    <form (ngSubmit)="onSubmit()" [formGroup]="formularioConocimientos">
+                        <div class="d-flex align-items-baseline mb-3 modal-body-div">
+                            <label for="user" class="form-label etiquetaModal ">Nombre</label>
+                            <input 
+                                #Nombre 
+                                type="text" 
+                                class="form-control inputModal" 
+                                placeholder="Ingrese nombre"
+                                formControlName="nombre"
+                                (click)="ocultarMensajeError()"
+                                maxlength="20">
+                        </div>
+                        <div 
+                            class="mensajeErrorFormularios alert alert-danger" 
+                            *ngIf="formularioInvalido && formularioConocimientos.get('nombre')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </div>  
+                        <div class="d-flex align-items-baseline mb-3 modal-body-div">
+                            <label for="user" class="form-label etiquetaModal ">Nivel</label>
+                            <input 
+                                #Nivel 
+                                type="text" 
+                                class="form-control inputModal" 
+                                placeholder="Ingrese nivel de progreso (entre 10 y 90)"
+                                formControlName="nivel"
+                                (click)="ocultarMensajeError()"
+                                maxlength="2">
+                        </div>
+                        <div 
+                            class="mensajeErrorFormularios alert alert-danger" 
+                            *ngIf="formularioInvalido && formularioConocimientos.get('nivel')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </div> 
+                        <div                             
+                            class="mensajeErrorFormularios alert alert-danger" 
+                            *ngIf="formularioInvalido && formularioConocimientos.get('nivel')?.errors?.['pattern']">
+                            El nivel debe ser una decena, por ejemplo 30.
+                        </div>
+                        
+                        <div class="mb-2">
+                            <label for="user" class="form-label etiquetaModal">Imagen</label>                                               
+                            <input 
+                                class="inputEdicion me-2" 
+                                (change)="capturarImagen($event)" 
+                                #nuevaImagen 
+                                type="file"
+                                accept="image/*"
+                                formControlName="imagen"
+                                (click)="ocultarMensajeError()">
+                            <label class="textoModal">{{nombreArchivo}}</label>             
+                        </div>
+                        <div 
+                            class="mensajeErrorFormularios alert alert-danger" 
+                            *ngIf="formularioInvalido && formularioConocimientos.get('imagen')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </div> 
+                        <img *ngIf="previsualizacionImagen" class="imagenEdicion mb-1" [src]="previsualizacionImagen">                 
+                        
+                        <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
+                            <button 
+                                type="button" 
+                                class="btn btn-danger"                            
+                                data-bs-dismiss="modal"
+                                (click)="resetearInputs(); toggleBtnConocimientos()"
+                                >
+                                Cerrar
+                            </button>
+                            <button 
+                                type="submit" 
+                                class="btn btn-primary"                                                      
+                                [disabled]="!habilitarBotonConocimientos"                                                                                   
+                                >
+                                Aceptar
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

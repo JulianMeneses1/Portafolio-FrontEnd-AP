@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Experiencia } from 'src/app/interfaces/experiencia-laboral';
 import { Experiencias } from 'src/app/interfaces/mosk-experiencia-laboral';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-experiencia-laboral',
@@ -18,11 +19,18 @@ export class ExperienciaLaboralComponent implements OnInit {
   faPlus = faPlus;
   faX = faX;   
   modoEdicion:boolean=false;
-  suscripcion?:Subscription;
+  suscripcionAlternarEdicion?:Subscription;
   posicion_Y:string="0px";
   experienciaSeleccionada:Experiencia=Experiencias[0];
   experiencias: Experiencia[] = Experiencias;
-  mostrarPrimerExp:boolean = true
+  mostrarPrimerExp:boolean = true;
+  suscripcionBtnAceptar?:Subscription;
+  formularioExperiencia!: FormGroup;
+  formularioInvalido: boolean = false;
+  habilitarBotonExperiencia:boolean = true
+
+  urlPattern:string = "[-a-zA-Z0-9@:%_\\+.~#?&//=]{2,256}\\.[a-z]{2,4}\\b(\\/[-a-zA-Z0-9@:%_\\+.~#?&//=]*)?"
+  fechaPattern:string = "(Enero|Marzo|Febrero|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre|Abril)\\s\\d{4}"
 
   @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
   @ViewChild('contenedorPrimerExp') contenedorPrimerExp!:ElementRef;
@@ -34,16 +42,25 @@ export class ExperienciaLaboralComponent implements OnInit {
   @ViewChild('descripcion') descripcion!:ElementRef;  
 
   constructor(private servicioEdicion : ModoEdicionService,
-    private renderer: Renderer2, private ruta: Router) 
+    private renderer: Renderer2, private ruta: Router,
+    private formBuilder: FormBuilder) 
   {    
-    this.suscripcion = this.servicioEdicion.onAlternar().subscribe(
-      value => this.modoEdicion = value)
+    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternar().subscribe(
+      value => this.modoEdicion = value);
+      this.suscripcionBtnAceptar = this.servicioEdicion.onAlternarFormConocimientos().subscribe(
+        value => this.habilitarBotonExperiencia = value)
   }
 
-  ngOnInit () {
-    
-  } 
-
+  ngOnInit ():void {
+    this.formularioExperiencia = this.formBuilder.group({
+      empresa: ['',[Validators.required]],
+      puesto: ['',[Validators.required]],
+      url: ['',[Validators.pattern(this.urlPattern)]],
+      fechaInicio: ['',[Validators.required,Validators.pattern(this.fechaPattern)]],
+      fechaFin: ['',[Validators.required,Validators.pattern(this.fechaPattern)]],
+      descripcion: ['',[Validators.required]]
+    })
+  }
   cambiarTitulo() {
     if (this.nuevoTitulo.nativeElement.value!=="") {
       this.titulo=this.nuevoTitulo.nativeElement.value;
@@ -73,8 +90,29 @@ export class ExperienciaLaboralComponent implements OnInit {
     this.fechaFin.nativeElement.value=""
     this.fechaInicio.nativeElement.value=""
     this.url.nativeElement.value=""
+    this.formularioInvalido=false;  
 
   }
+
+  onSubmit ():void {
+    if(this.formularioExperiencia.invalid) {
+    this.habilitarBotonExperiencia=true
+    this.formularioInvalido=true     
+    } else {
+    this.formularioExperiencia.reset()    
+    this.habilitarBotonExperiencia=false
+    }
+  }
+
+  toggleBtnExperiencia () {
+    this.habilitarBotonExperiencia=true;
+    this.formularioExperiencia.reset()
+  }
+
+  ocultarMensajeError () {   
+    this.formularioInvalido=false
+  } 
+
   alternarExperiencias (): void {
     this.ruta.navigate(['/experiencia'], {queryParams: {idExp:this.experienciaSeleccionada.id}})
   }

@@ -24,7 +24,7 @@ export const Conocimientos: Conocimiento[] = [ // Hacemos que la variable Conoci
     },
     {
         id:4,
-        nombre:"JavasSript",        
+        nombre:"JavasScript",        
         imagen: "../assets/JS.png",
         porcentajeProgreso: "skills-bar--70"   
              

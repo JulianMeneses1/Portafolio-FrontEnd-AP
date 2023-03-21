@@ -12,7 +12,7 @@ export class ModalLoginComponent implements OnInit {
 
   modoEdicion:boolean=false;
   suscripcionAlternarEdicion?:Subscription;
-  suscripcionBtnLoggin?:Subscription;
+  suscripcionBtnIngresar?:Subscription;
   formularioLogin!: FormGroup;
   formularioInvalido: boolean = false;
   habilitarBotonLogin:boolean = true
@@ -24,7 +24,7 @@ export class ModalLoginComponent implements OnInit {
 
       this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternar().subscribe(
         value => this.modoEdicion = value);
-        this.suscripcionBtnLoggin = this.servicioEdicion.onAlternarBtnLoggin().subscribe(
+        this.suscripcionBtnIngresar = this.servicioEdicion.onAlternarFormLogin().subscribe(
           value => this.habilitarBotonLogin = value)
   } 
 
@@ -52,7 +52,7 @@ export class ModalLoginComponent implements OnInit {
     }
   }
   
-  toggleBtnLoggin () {
+  toggleBtnLogin () {
     this.habilitarBotonLogin=true;
     this.formularioLogin.reset()
   }

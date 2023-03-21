@@ -1,24 +1,31 @@
-import { Component, ViewChild, ElementRef} from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit} from '@angular/core';
 import { faSquarePen, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { Conocimiento } from 'src/app/interfaces/conocimiento';
 import { Conocimientos } from 'src/app/interfaces/mosk-conocimientos';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-conocimientos',
   templateUrl: './conocimientos.component.html',
   styleUrls: ['./conocimientos.component.css']
 })
-export class ConocimientosComponent {
+export class ConocimientosComponent implements OnInit{
   titulo:string="Conocimientos";
   faSquarePen = faSquarePen;
   faPlus = faPlus 
   modoEdicion:boolean=false;
-  suscripcion?:Subscription;
+  suscripcionAlternarEdicion?:Subscription;
   nombreArchivo:string="";
   previsualizacionImagen: string="";
+  suscripcionBtnAceptar?:Subscription;
+  formularioConocimientos!: FormGroup;
+  formularioInvalido: boolean = false;
+  habilitarBotonConocimientos:boolean = true
+
+  nivelPattern:string = "[1-9]0"
 
   @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
   @ViewChild('Nombre') nuevoNombre!:ElementRef; 
@@ -27,10 +34,21 @@ export class ConocimientosComponent {
   conocimientos: Conocimiento[] = Conocimientos
 
   constructor(private servicioEdicion : ModoEdicionService,
-    private sanitizer: DomSanitizer) 
+    private sanitizer: DomSanitizer,
+    private formBuilder: FormBuilder) 
   {
-    this.suscripcion = this.servicioEdicion.onAlternar().subscribe(
-      value => this.modoEdicion = value)
+    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternar().subscribe(
+      value => this.modoEdicion = value);
+      this.suscripcionBtnAceptar = this.servicioEdicion.onAlternarFormConocimientos().subscribe(
+        value => this.habilitarBotonConocimientos = value)
+  }
+
+  ngOnInit ():void {
+    this.formularioConocimientos = this.formBuilder.group({
+      nombre: ['',[Validators.required]],
+      nivel: ['',[Validators.required, Validators.pattern(this.nivelPattern)]],
+      imagen: ['',[Validators.required]]
+    })
   }
 
   cambiarTitulo(){
@@ -48,8 +66,28 @@ export class ConocimientosComponent {
     this.previsualizacionImagen=""
     this.nombreArchivo=""
     this.nuevoNombre.nativeElement.value=""
-    this.nuevoNivel.nativeElement.value=""  
+    this.nuevoNivel.nativeElement.value=""
+    this.formularioInvalido=false;   
   }
+
+  onSubmit ():void {
+    if(this.formularioConocimientos.invalid) {
+    this.habilitarBotonConocimientos=true
+    this.formularioInvalido=true     
+    } else {
+    this.formularioConocimientos.reset()    
+    this.habilitarBotonConocimientos=false
+    }
+  }
+
+  toggleBtnConocimientos () {
+    this.habilitarBotonConocimientos=true;
+    this.formularioConocimientos.reset()
+  }
+
+  ocultarMensajeError () {   
+    this.formularioInvalido=false
+  } 
 
   capturarImagen(event:any) {
     const archivoCapturado = event.target.files[0]

@@ -46,8 +46,13 @@ export class HeaderComponent {
     this.servicioEdicion.alternarEdicion()
   }
 
-  alternarBtnLoggin () {
-    this.servicioEdicion.toggleBtnLoggin()
+  alternarEdicionFormularios () {
+    this.servicioEdicion.toggleFormLogin()
+    this.servicioEdicion.toggleFormConocimientos()
+    this.servicioEdicion.toggleFormExperiencia()
+    this.servicioEdicion.toggleFormFormacion()
+    this.servicioEdicion.toggleFormContacto()
+    this.servicioEdicion.toggleFormProyectos()
   }
 }
 

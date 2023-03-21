@@ -7,7 +7,7 @@
                     class="icono-edicion"
                     [icon]="faSquarePen" 
                     data-bs-toggle="modal" 
-                    data-bs-target="#titulo-contacto-modal">
+                    data-bs-target="#contacto-modal">
                 </fa-icon>                               
             </div>            
         </div>
@@ -36,7 +36,7 @@
                                 (click)="ocultarMensajeError()">                            
                         </div>
                         <div 
-                            class="mensajeErrorCampo alert alert-danger" 
+                            class="mensajeErrorContacto alert alert-danger" 
                             *ngIf="formularioInvalido && formularioContacto.get('nombre')?.errors?.['required']">
                             Este campo es obligatorio
                         </div>                        
@@ -58,7 +58,7 @@
                                 (click)="ocultarMensajeError()" >
                         </div>
                         <div 
-                            class="mensajeErrorCampo alert alert-danger" 
+                            class="mensajeErrorContacto alert alert-danger" 
                             *ngIf="formularioInvalido && formularioContacto.get('asunto')?.errors?.['required']">
                             Este campo es obligatorio
                         </div>                        
@@ -81,12 +81,12 @@
                                 >
                         </div>
                         <div 
-                            class="mensajeErrorCampo alert alert-danger" 
+                            class="mensajeErrorContacto alert alert-danger" 
                             *ngIf="formularioInvalido && formularioContacto.get('correo')?.errors?.['required']">
                             Este campo es obligatorio
                         </div>
                         <div                             
-                            class="mensajeErrorCampo alert alert-danger" 
+                            class="mensajeErrorContacto alert alert-danger" 
                             *ngIf="formularioInvalido && formularioContacto.get('correo')?.errors?.['email']">
                             El correo debe cumplir con el siguiente formato de ejemplo: mauricio@gmail.com
                         </div>
@@ -102,7 +102,7 @@
                                 (click)="ocultarMensajeError()" ></textarea>
                         </div>
                         <div 
-                            class="mensajeErrorCampo alert alert-danger mt-2" 
+                            class="mensajeErrorContacto alert alert-danger mt-2" 
                             *ngIf="formularioInvalido && formularioContacto.get('mensaje')?.errors?.['required']">
                             Este campo es obligatorio
                         </div>
@@ -138,7 +138,7 @@
     
     <div 
     class="modal fade modal-lg"      
-    id="titulo-contacto-modal" tabindex="-1" 
+    id="contacto-modal" tabindex="-1" 
     aria-labelledby="textoModalLabel"
     aria-hidden="true"
     >
@@ -218,44 +218,5 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- MODAL EDITAR INFORMACION DE CONTACTO -->
-
-    <div 
-    class="modal fade modal-lg"      
-    id="contacto-modal" tabindex="-1" 
-    aria-labelledby="textoModalLabel"
-    aria-hidden="true"
-    >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header justify-content-center">
-                    <h3 class="modal-title textoModal" id="textoModalLabel">Editar Información de Contacto</h3>                        
-                </div>
-                <div class="modal-body">                           
-                    
-                                     
-                    
-                    <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
-                        <button 
-                            type="button" 
-                            class="btn btn-danger"                            
-                            data-bs-dismiss="modal"
-                            (click)="resetearInputs()"
-                            >
-                            Cerrar
-                        </button>
-                        <button 
-                            type="button" 
-                            class="btn btn-primary"                                                      
-                            data-bs-dismiss="modal"                                                       
-                            >
-                            Aceptar
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    </div>   
 </section>
