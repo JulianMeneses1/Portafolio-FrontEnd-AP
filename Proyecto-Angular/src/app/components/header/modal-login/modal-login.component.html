@@ -12,7 +12,7 @@
             <form (ngSubmit)="onSubmit()" [formGroup]="formularioLogin">
                 <div class="modal-body">
                     
-                        <label for="user" class="form-label">Usuario</label>         
+                        <label for="user" class="form-label modal-body-div"><b>Usuario</b></label>         
                         <input
                             #usuario
                             class="form-control" 
@@ -28,7 +28,7 @@
                             *ngIf="formularioInvalido && formularioLogin.get('usuario')?.errors?.['required']">
                             Este campo es obligatorio
                         </div>
-                        <label for="password" class="form-label">Contraseña</label>                          
+                        <label for="password" class="form-label"><b>Contraseña</b></label>                          
                         <input
                             #contraseña
                             class="form-control" 

@@ -14,7 +14,7 @@ export class ScrollConocimientosDirective {
   // Con HostBinding lo que hacemos es modificar al elemento vinculado la propiedad opacity, con el valor
   // que tiene la variable opacity, en un principio undefined 
  
-
+  
   @HostBinding('class.skills-bar') ok!:boolean
 
 
