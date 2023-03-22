@@ -21,9 +21,15 @@ export class ContactoComponent implements OnInit{
   faEnvelop = faEnvelope;
   faFileLines = faFileLines;
   modoEdicion:boolean=false;
-  suscripcion?:Subscription;
+  suscripcionAlternarEdicion?:Subscription;
+  formularioContactoEnviar!: FormGroup;
+  formularioInvalidoEnviar: boolean = false;
+  suscripcionBtnAceptar?:Subscription;
   formularioContacto!: FormGroup;
   formularioInvalido: boolean = false;
+  habilitarBotonContacto:boolean = true
+
+  telefonoPattern:string="([0-9]?\\d{3}-\\d{7})|([+]\\d{2}[ ]\\d{1}[ ][0-9]?\\d{3}-\\d{7})"
 
   @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
   @ViewChild('ubicacion') ubicacion!:ElementRef;
@@ -37,16 +43,22 @@ export class ContactoComponent implements OnInit{
   constructor(private servicioEdicion : ModoEdicionService, 
     private formBuilder: FormBuilder, private httpClient: HttpClient) 
   {    
-    this.suscripcion = this.servicioEdicion.onAlternar().subscribe(
+    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternar().subscribe(
       value => this.modoEdicion = value)
   }
 
   ngOnInit ():void {
-    this.formularioContacto = this.formBuilder.group({
+    this.formularioContactoEnviar = this.formBuilder.group({
       nombre: ['',[Validators.required]],
       asunto: ['',[Validators.required]],
       correo: ['',[Validators.required, Validators.email]],
       mensaje: ['',[Validators.required]]
+
+    });
+    this.formularioContacto = this.formBuilder.group({
+      ubicacion: ['',[Validators.required]],
+      telefono: ['',[Validators.required, Validators.pattern(this.telefonoPattern)]],
+      correo: ['',[Validators.required, Validators.email]]
 
     })
   }
@@ -66,26 +78,47 @@ export class ContactoComponent implements OnInit{
 
     this.ubicacion.nativeElement.value=""
     this.telefono.nativeElement.value=""
-    this.correo.nativeElement.value=""   
+    this.correo.nativeElement.value=""
+    this.formularioContacto.reset()   
 
   }
 
-  onSubmit ():void {
-    if(this.formularioContacto.invalid) {
-    this.formularioInvalido=true      
+  onSubmitEnviar ():void {
+    if(this.formularioContactoEnviar.invalid) {
+    this.formularioInvalidoEnviar=true      
     } else {  
     this.nombreForm.nativeElement.value=""
     this.mensajeForm.nativeElement.value=""
     this.correoForm.nativeElement.value=""
     this.asuntoForm.nativeElement.value=""
-    this.formularioContacto.reset()
+    this.formularioContactoEnviar.reset()
     }
-  } 
+  }  
+  
 
-  ocultarMensajeError () {
+  ocultarMensajeErrorEnviar () {
    
-      this.formularioInvalido=false
+      this.formularioInvalidoEnviar=false
     } 
+
+    onSubmit ():void {
+      if(this.formularioContacto.invalid) {
+      this.habilitarBotonContacto=true
+      this.formularioInvalido=true     
+      } else {
+      this.formularioContacto.reset()    
+      this.habilitarBotonContacto=false
+      }
+    }
+  
+    toggleBtnContacto () {
+      this.habilitarBotonContacto=true;
+      this.formularioInvalido=false
+    }
+  
+    ocultarMensajeError () {   
+      this.formularioInvalido=false
+    }   
   
   
 

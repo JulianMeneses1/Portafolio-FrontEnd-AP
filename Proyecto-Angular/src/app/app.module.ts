@@ -21,7 +21,12 @@ import { ConocimientosItemComponent } from './components/conocimientos/conocimie
 import { ExperienciaLaboralItemComponent } from './components/experiencia-laboral/experiencia-laboral-item/experiencia-laboral-item.component';
 import { ProyectosItemComponent } from './components/proyectos/proyectos-item/proyectos-item.component';
 import { FormacionAcademicaItemComponent } from './components/formacion-academica/formacion-academica-item/formacion-academica-item.component';
-import { ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
+import { ConocimientosModalComponent } from './components/conocimientos/conocimientos-modal/conocimientos-modal.component';
+import { ContactoModalComponent } from './components/contacto/contacto-modal/contacto-modal.component';
+import { ExperienciaLaboralModalComponent } from './components/experiencia-laboral/experiencia-laboral-modal/experiencia-laboral-modal.component';
+import { FormacionAcademicaModalComponent } from './components/formacion-academica/formacion-academica-modal/formacion-academica-modal.component';
+import { ProyectosModalComponent } from './components/proyectos/proyectos-modal/proyectos-modal.component'
 
 @NgModule({
   declarations: [
@@ -41,7 +46,12 @@ import { ReactiveFormsModule } from '@angular/forms'
     ScrollConocimientosDirective,
     ExperienciaLaboralItemComponent,
     ProyectosItemComponent,
-    FormacionAcademicaItemComponent
+    FormacionAcademicaItemComponent,
+    ConocimientosModalComponent,
+    ContactoModalComponent,
+    ExperienciaLaboralModalComponent,
+    FormacionAcademicaModalComponent,
+    ProyectosModalComponent
   ],
   imports: [
     BrowserModule,

@@ -15,7 +15,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class BannerComponent implements OnInit {
   faSquarePen = faSquarePen  
   modoEdicion:boolean=false;
-  suscripcion?:Subscription;
+  suscripcionAlternarEdicion?:Subscription;
   nombreArchivo:string="";
   previsualizacionImagen: string="";
   titulo:string="Julián Meneses";
@@ -29,7 +29,7 @@ export class BannerComponent implements OnInit {
   constructor(private servicioEdicion : ModoEdicionService,
     private sanitizer: DomSanitizer,
     private renderer: Renderer2) {
-    this.suscripcion = this.servicioEdicion.onAlternar().subscribe(
+    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternar().subscribe(
       value => this.modoEdicion = value)
   }
 

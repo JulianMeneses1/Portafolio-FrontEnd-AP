@@ -77,6 +77,8 @@ export class ConocimientosComponent implements OnInit{
     } else {
     this.formularioConocimientos.reset()    
     this.habilitarBotonConocimientos=false
+    this.previsualizacionImagen="";
+    this.nombreArchivo=""
     }
   }
 

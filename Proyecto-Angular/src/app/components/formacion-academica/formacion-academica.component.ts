@@ -4,6 +4,7 @@ import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { Educacion } from 'src/app/interfaces/formacion-academica';
 import { FormacionAcademica } from 'src/app/interfaces/mosk-formacion-academica';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-formacion-academica',
@@ -17,9 +18,16 @@ export class FormacionAcademicaComponent implements OnInit {
   faPlus = faPlus;
   faX = faX;   
   modoEdicion:boolean=false;
-  suscripcion?:Subscription; 
+  suscripcionAlternarEdicion?:Subscription; 
   formacionAcademica: Educacion[] = FormacionAcademica;
+  suscripcionBtnAceptar?:Subscription;
+  formularioFormacion!: FormGroup;
+  formularioInvalido: boolean = false;
+  habilitarBotonFormacion:boolean = true
   
+  urlPattern:string = "[-a-zA-Z0-9@:%_\\+.~#?&//=]{2,256}\\.[a-z]{2,4}\\b(\\/[-a-zA-Z0-9@:%_\\+.~#?&//=]*)?"
+  fechaPattern:string = "(Enero|Marzo|Febrero|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre|Abril)\\s\\d{4}"
+
 
   @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
   @ViewChild('contenedorPrimerEducacion') contenedorPrimerEducacion!:ElementRef;
@@ -31,15 +39,26 @@ export class FormacionAcademicaComponent implements OnInit {
   @ViewChild('fechaFin') fechaFin!:ElementRef;  
   @ViewChild('descripcion') descripcion!:ElementRef;  
 
-  constructor(private servicioEdicion : ModoEdicionService) 
+  constructor(private servicioEdicion : ModoEdicionService,
+    private formBuilder: FormBuilder) 
   {    
-    this.suscripcion = this.servicioEdicion.onAlternar().subscribe(
+    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternar().subscribe(
       value => this.modoEdicion = value)
+      this.suscripcionBtnAceptar = this.servicioEdicion.onAlternarFormConocimientos().subscribe(
+        value => this.habilitarBotonFormacion = value)
   }
 
-  ngOnInit () {
-    
-  } 
+  ngOnInit ():void {
+    this.formularioFormacion = this.formBuilder.group({
+      nombre: ['',[Validators.required]],
+      institucion: ['',[Validators.required]],
+      urlInstitucion: ['',[Validators.required,Validators.pattern(this.urlPattern)]],
+      urlCertificado: ['',[Validators.pattern(this.urlPattern)]],
+      fechaInicio: ['',[Validators.required,Validators.pattern(this.fechaPattern)]],
+      fechaFin: ['',[Validators.required,Validators.pattern(this.fechaPattern)]],
+      descripcion: ['',[Validators.required]]
+    })
+  }
 
   cambiarTitulo() {
     if (this.nuevoTitulo.nativeElement.value!=="") {
@@ -61,8 +80,28 @@ export class FormacionAcademicaComponent implements OnInit {
     this.fechaInicio.nativeElement.value=""
     this.urlCertificado.nativeElement.value=""
     this.urlInstitucion.nativeElement.value="" 
+    this.nuevoTitulo.nativeElement.value=""
 
-  }  
+  }
+
+  onSubmit ():void {
+    if(this.formularioFormacion.invalid) {
+    this.habilitarBotonFormacion=true
+    this.formularioInvalido=true     
+    } else {
+    this.formularioFormacion.reset()    
+    this.habilitarBotonFormacion=false
+    }
+  }
+
+  toggleBtnFormacion () {
+    this.habilitarBotonFormacion=true;
+    this.formularioInvalido=false
+  }
+
+  ocultarMensajeError () {   
+    this.formularioInvalido=false
+  }   
 }
 
 

@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 export class AcercademiComponent implements OnInit{
   faSquarePen = faSquarePen 
   modoEdicion:boolean=false;
-  suscripcion?:Subscription;
+  suscripcionAlternarEdicion?:Subscription;
   titulo:string="Sobre mí";
   texto:string="Hola! Soy Julián, full-stack web developer. Empecé a incursionar en el mundo de la programación de forma autodidácta a partir de videos en YouTube, por allá a finales de 2021, \
                 y actualmente estoy estudiando la carrera de Desarrollo Web y Aplicaciones Digitales. Me apasiona el diseño y desarrollo de sitios y aplicaciones web dinámicos y creativos. \
@@ -22,7 +22,7 @@ export class AcercademiComponent implements OnInit{
 
   constructor(private servicioEdicion : ModoEdicionService) 
   {
-    this.suscripcion = this.servicioEdicion.onAlternar().subscribe(
+    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternar().subscribe(
       value => this.modoEdicion = value)
   }
 
