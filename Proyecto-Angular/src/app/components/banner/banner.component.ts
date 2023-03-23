@@ -1,9 +1,7 @@
-import { Component, ElementRef, Renderer2, ViewChild, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faSquarePen} from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
-import { DomSanitizer } from '@angular/platform-browser';
-
 
 
 @Component({
@@ -15,20 +13,14 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class BannerComponent implements OnInit {
   faSquarePen = faSquarePen  
   modoEdicion:boolean=false;
-  suscripcionAlternarEdicion?:Subscription;
-  nombreArchivo:string="";
-  previsualizacionImagen: string="";
-  titulo:string="Julián Meneses";
-  subtitulo:string="Desarrollador Web Full Stack"
-  
-  @ViewChild('banner') banner!:ElementRef; 
-  @ViewChild('fotoPerfil') fotoPerfil!:ElementRef; 
-  @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef; 
-  @ViewChild('nuevoSubtitulo') nuevoSubtitulo!:ElementRef;   
+  suscripcionAlternarEdicion?:Subscription;  
+  titulo:string = "Julián Meneses";
+  subtitulo:string = "Desarrollador Web Full Stack";
+  srcBanner:string = "../assets/Banner.jpg";
+  srcFotoPerfil:string = "../assets/Foto Perfil.jpg"
+  ok:boolean = true
 
-  constructor(private servicioEdicion : ModoEdicionService,
-    private sanitizer: DomSanitizer,
-    private renderer: Renderer2) {
+  constructor(private servicioEdicion : ModoEdicionService) {
     this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternar().subscribe(
       value => this.modoEdicion = value)
   }
@@ -37,67 +29,28 @@ export class BannerComponent implements OnInit {
     
   }
 
-  capturarImagen(event:any) {
-    const archivoCapturado = event.target.files[0]
-    this.nombreArchivo=event.target.files[0].name
-    this.extraerURL(archivoCapturado).then((imagen:any) => {
-      this.previsualizacionImagen=imagen.base
-    })    
+  ocultarModal(event:boolean){
+    this.ok=event
   }
+  cambiarTitulo(event:string){
+    this.titulo=event
+   
+   }
+   cambiarSubtitulo(event:string){
+    this.subtitulo=event
+   
+   }
+   cambiarBanner(event:string){
+    this.srcBanner=event
+   
+   }
 
-  eliminarImagen(){
-    this.previsualizacionImagen="";
-    this.nombreArchivo=""
-  }
+   cambiarFotoPerfil(event:string){
+    this.srcFotoPerfil=event
+   
+   }
+  
 
-  cambiarBanner(){
-    this.renderer.setAttribute(this.banner.nativeElement,"src", this.previsualizacionImagen);
-    this.previsualizacionImagen="";
-    this.nombreArchivo=""
-  }
-
-  cambiarFotoPerfil(){
-    this.renderer.setAttribute(this.fotoPerfil.nativeElement,"src", this.previsualizacionImagen);
-    this.previsualizacionImagen="";
-    this.nombreArchivo=""
-  } 
-  cambiarTexto(){
-    if (this.nuevoTitulo.nativeElement.value!=="") {
-      this.titulo=this.nuevoTitulo.nativeElement.value;
-      this.nuevoTitulo.nativeElement.value=""
-    }
-    if (this.nuevoSubtitulo.nativeElement.value!=="") {
-      this.subtitulo=this.nuevoSubtitulo.nativeElement.value;
-      this.nuevoSubtitulo.nativeElement.value=""      
-      } 
-  }
-
-  resetearInputs () {
-    this.nuevoTitulo.nativeElement.value=""
-    this.nuevoSubtitulo.nativeElement.value=""    
-  }
-
-  // FUNCIÓN PARA EXTRAER LA URL DE LA IMAGEN
-
-  extraerURL = async ($event:any) => new Promise ((resolve, reject) => {
-    try {
-      const unsafeImg = window.URL.createObjectURL($event);
-      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
-      const reader = new FileReader();
-      reader.readAsDataURL($event);
-      reader.onload = () => {
-        resolve({
-        base:reader.result
-        });
-      };
-      reader.onerror = error => {
-        resolve ({
-        base:null
-        });
-      };
-      } catch (e) {        
-      }
-    })
 }
   
 

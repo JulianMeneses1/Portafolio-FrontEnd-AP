@@ -98,25 +98,6 @@ h2, h5{
     position:absolute
 }
 
-.textoModal, .etiquetaModal, .inputModal {
-    color:black !important
-}
-
-.etiquetaModal {
-    width: 30%
-}
-
-.inputModal {
-    width: 70%
-}
-
-.imagenEdicion{
-    height: 8em;
-}
-
-.inputEdicion{
-    width: 11em
-}
 
 @media screen and (min-width: 1400px){ 
     h2{

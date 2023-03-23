@@ -1,0 +1,109 @@
+<!-- MODAL IMAGEN BANNER -->
+
+<form (ngSubmit)="onSubmit()" [formGroup]="formularioBanner">
+    <div 
+        class="modal fade modal-lg"     
+        id="bannerModal" tabindex="-1" 
+        aria-labelledby="bannerModalLabel"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <h3 class="modal-title textoModal" id="bannerModalLabel">Editar Banner</h3>                        
+                </div>
+                <div class="modal-body">                                 
+                    <div class="mb-3">
+                        <label for="user"  class="form-label me-5 textoModal">Imagen actual</label>
+                        <img class="imagenEdicion" src="../assets/Banner.jpg">
+                    </div>                        
+                    <div class="mb-2">
+                        <label for="user" class="form-label textoModal me-4">Nueva Imagen</label>                                               
+                        <input 
+                            class="inputEdicion me-2" 
+                            (change)="capturarImagen($event)" 
+                            type="file" 
+                            accept="image/*"
+                            formControlName="banner"
+                            (click)="ocultarMensajeError()">
+                        <label class="textoModal">{{nombreArchivo}}</label>             
+                    </div>
+                    <div 
+                        class="mensajeErrorFormularios alert alert-danger" 
+                        *ngIf="formularioInvalido && formularioBanner.get('banner')?.errors?.['required']">
+                        Este campo es obligatorio
+                    </div> 
+                    <img *ngIf="previsualizacionImagen" class="imagenEdicion mb-1" [src]="previsualizacionImagen">
+                    <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
+                        <button 
+                            type="button" 
+                            class="btn btn-danger"                        
+                            data-bs-dismiss="modal"
+                            (click)="eliminarImagen(); toggleBtnBanner()">
+                            Cerrar
+                        </button>
+                        <button 
+                            type="submit" 
+                            class="btn btn-primary"                                         
+                            [disabled]="!habilitarBotonBanner">
+                            Aceptar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+</form>
+<!-- MODAL TÍTULO y SUBTÍTULO -->
+
+<div 
+    class="modal fade modal-lg"     
+    id="textoModal" tabindex="-1" 
+    aria-labelledby="textoModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center">
+                <h3 class="modal-title textoModal" id="textoModalLabel">Editar Título y Subtítulo</h3>                        
+            </div>
+            <div class="modal-body">                                 
+                <div class="d-flex modal-body-div">
+                    <label for="user" class="form-label etiquetaModal">Título actual</label>
+                    <p class="inputModal">{{titulo}}</p>                    
+                </div>
+                <div class="d-flex align-items-baseline mb-3 modal-body-div">
+                    <label for="user" class="form-label etiquetaModal">Nuevo título</label>
+                    <input type="text" #nuevoTitulo class="form-control inputModal" maxlength="20" placeholder="Ingrese nuevo título">
+                </div> 
+                <div class="d-flex align-items-baseline modal-body-div">
+                    <label for="user" class="form-label etiquetaModal">Subtítulo actual</label>
+                    <p class="textoModal inputModal">{{subtitulo}}</p>                                       
+                </div>
+                <div class="d-flex align-items-baseline mb-1 modal-body-div">
+                    <label for="user" class="form-label etiquetaModal">Nuevo subtítulo</label>
+                    <input type="text" #nuevoSubtitulo class="form-control inputModal" placeholder="Ingrese nuevo subtítulo"  maxlength="35">
+                </div>                
+                
+                <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
+                    <button 
+                        type="button" 
+                        class="btn btn-danger"                        
+                        data-bs-dismiss="modal"
+                        (click)="resetearInputs()"
+                        >
+                        Cerrar
+                    </button>
+                    <button 
+                        type="button" 
+                        class="btn btn-primary"                                                   
+                        data-bs-dismiss="modal"
+                        (click)="cambiarTexto()"
+                        >
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

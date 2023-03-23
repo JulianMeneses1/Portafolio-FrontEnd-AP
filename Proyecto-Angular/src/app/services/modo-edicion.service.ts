@@ -12,6 +12,12 @@ export class ModoEdicionService {
   private subjectAlternarEdicion = new Subject<any>();
 
   // Alternar botón aceptar de los distintos formularios de edición
+  
+  private habilitarBotonBanner:boolean = true;  
+  private subjectFormBanner = new Subject<any>();
+
+  private habilitarBotonPerfil:boolean = true;  
+  private subjectFormPerfil = new Subject<any>();
 
   private habilitarBotonLogin:boolean = true;  
   private subjectFormLogin = new Subject<any>();
@@ -37,6 +43,16 @@ export class ModoEdicionService {
   alternarEdicion():void{
     this.modoEdicion=!this.modoEdicion;
     this.subjectAlternarEdicion.next(this.modoEdicion)
+  }
+
+  toggleFormBanner () {
+    this.habilitarBotonBanner=true;
+    this.subjectFormBanner.next(this.habilitarBotonBanner)
+  }
+
+  toggleFormPerfil () {
+    this.habilitarBotonPerfil=true;
+    this.subjectFormPerfil.next(this.habilitarBotonPerfil)
   }
 
   toggleFormLogin () {
@@ -70,6 +86,12 @@ export class ModoEdicionService {
   }
   onAlternarFormLogin():Observable<any>{
     return this.subjectFormLogin.asObservable()
+  }
+  onAlternarFormBanner():Observable<any>{
+    return this.subjectFormBanner.asObservable()
+  }
+  onAlternarFormPerfil():Observable<any>{
+    return this.subjectFormPerfil.asObservable()
   }
   onAlternarFormConocimientos():Observable<any>{
     return this.subjectFormConocimientos.asObservable()

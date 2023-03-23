@@ -13,7 +13,7 @@
     <img 
         id="banner"
         #banner 
-        src="../assets/Banner.jpg"
+        src="{{srcBanner}}"
     >  
     <div id="sub-container">
         <div class="d-flex justify-content-end align-items-start" *ngIf="modoEdicion">
@@ -26,7 +26,7 @@
         </div>
         <img 
             id="foto-perfil" 
-            src="../assets/Foto Perfil.jpg"
+            src="{{srcFotoPerfil}}"
             #fotoPerfil>
         <div class="d-flex justify-content-end align-items-start ps-2 pb-2" *ngIf="modoEdicion">
             <fa-icon
@@ -60,149 +60,14 @@
         </button>      
     </div>
 </div>
-
-<!-- MODAL IMAGEN BANNER -->
-
-<div 
-    class="modal fade modal-lg"     
-    id="bannerModal" tabindex="-1" 
-    aria-labelledby="bannerModalLabel"
-    aria-hidden="true"
->
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header justify-content-center">
-                <h3 class="modal-title textoModal" id="bannerModalLabel">Editar Banner</h3>                        
-            </div>
-            <div class="modal-body">                                 
-                <div class="mb-3">
-                    <label for="user"  class="form-label me-5 textoModal">Imagen actual</label>
-                    <img class="imagenEdicion" src="../assets/Banner.jpg">
-                </div>                        
-                <div class="mb-2">
-                    <label for="user" class="form-label textoModal me-4">Nueva Imagen</label>                                               
-                    <input class="inputEdicion me-2" (change)="capturarImagen($event)" type="file" accept="image/*">
-                    <label class="textoModal">{{nombreArchivo}}</label>             
-                </div>
-                <img *ngIf="previsualizacionImagen" class="imagenEdicion mb-1" [src]="previsualizacionImagen">
-                <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
-                    <button 
-                        type="button" 
-                        class="btn btn-danger"                        
-                        data-bs-dismiss="modal"
-                        (click)="eliminarImagen()">
-                        Cerrar
-                    </button>
-                    <button 
-                        type="button" 
-                        class="btn btn-primary"                                                   
-                        data-bs-dismiss="modal"
-                        (click)="cambiarBanner()">
-                        Aceptar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- MODAL IMAGEN PERFIL -->
-
-<div 
-    class="modal fade modal-lg"     
-    id="perfilModal" tabindex="-1" 
-    aria-labelledby="perfilModalLabel"
-    aria-hidden="true"
->
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header justify-content-center">
-                <h3 class="modal-title textoModal" id="perfilModalLabel">Editar Foto de Perfil</h3>                        
-            </div>
-            <div class="modal-body">                                 
-                <div class="mb-3">
-                    <label for="user" class="form-label me-5 textoModal">Imagen actual</label>
-                    <img class="imagenEdicion" src="../assets/Foto Perfil.jpg">
-                </div>                        
-                <div class="mb-2">
-                    <label for="user" class="form-label textoModal me-4">Nueva Imagen</label>
-                    <input class="inputEdicion me-2" (change)="capturarImagen($event)" type="file" accept="image/*">
-                    <label class="textoModal">{{nombreArchivo}}</label> 
-                </div>                          
-                <img *ngIf="previsualizacionImagen" class="imagenEdicion mb-1" [src]="previsualizacionImagen">
-                <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
-                    <button 
-                        type="button" 
-                        class="btn btn-danger" 
-                        data-bs-dismiss="modal"
-                        (click)="eliminarImagen()">
-                        Cerrar
-                    </button>
-                    <button 
-                        type="button" 
-                        class="btn btn-primary"                          
-                        data-bs-dismiss="modal"
-                        (click)="cambiarFotoPerfil()">
-                        Aceptar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- MODAL TÍTULO y SUBTÍTULO -->
-
-<div 
-    class="modal fade modal-lg"     
-    id="textoModal" tabindex="-1" 
-    aria-labelledby="textoModalLabel"
-    aria-hidden="true"
->
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header justify-content-center">
-                <h3 class="modal-title textoModal" id="textoModalLabel">Editar Título y Subtítulo</h3>                        
-            </div>
-            <div class="modal-body">                                 
-                <div class="d-flex modal-body-div">
-                    <label for="user" class="form-label etiquetaModal">Título actual</label>
-                    <p class="inputModal">{{titulo}}</p>                    
-                </div>
-                <div class="d-flex align-items-baseline mb-3 modal-body-div">
-                    <label for="user" class="form-label etiquetaModal">Nuevo título</label>
-                    <input type="text" #nuevoTitulo class="form-control inputModal" maxlength="20" placeholder="Ingrese nuevo título">
-                </div> 
-                <div class="d-flex align-items-baseline modal-body-div">
-                    <label for="user" class="form-label etiquetaModal">Subtítulo actual</label>
-                    <p class="textoModal inputModal">{{subtitulo}}</p>                                       
-                </div>
-                <div class="d-flex align-items-baseline mb-1 modal-body-div">
-                    <label for="user" class="form-label etiquetaModal">Nuevo subtítulo</label>
-                    <input type="text" #nuevoSubtitulo class="form-control inputModal" placeholder="Ingrese nuevo subtítulo"  maxlength="35">
-                </div>                
-                
-                <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
-                    <button 
-                        type="button" 
-                        class="btn btn-danger"                        
-                        data-bs-dismiss="modal"
-                        (click)="resetearInputs()"
-                        >
-                        Cerrar
-                    </button>
-                    <button 
-                        type="button" 
-                        class="btn btn-primary"                                                   
-                        data-bs-dismiss="modal"
-                        (click)="cambiarTexto()"
-                        >
-                        Aceptar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<app-banner-modal 
     
+    (modificarTitulo)="cambiarTitulo($event)"
+    (modificarSubtitulo)="cambiarSubtitulo($event)"
+    (modificarBanner)="cambiarBanner($event)">
+</app-banner-modal>
+<app-banner-modal-imagen-perfil
+    (modificarFotoPerfil)="cambiarFotoPerfil($event)"
+    >
+</app-banner-modal-imagen-perfil>
 

@@ -26,7 +26,11 @@ import { ConocimientosModalComponent } from './components/conocimientos/conocimi
 import { ContactoModalComponent } from './components/contacto/contacto-modal/contacto-modal.component';
 import { ExperienciaLaboralModalComponent } from './components/experiencia-laboral/experiencia-laboral-modal/experiencia-laboral-modal.component';
 import { FormacionAcademicaModalComponent } from './components/formacion-academica/formacion-academica-modal/formacion-academica-modal.component';
-import { ProyectosModalComponent } from './components/proyectos/proyectos-modal/proyectos-modal.component'
+import { ProyectosModalComponent } from './components/proyectos/proyectos-modal/proyectos-modal.component';
+import { AcercaDeMiModalComponent } from './components/acercademi/acerca-de-mi-modal/acerca-de-mi-modal.component';
+import { BannerModalComponent } from './components/banner/banner-modal/banner-modal.component';
+import { BannerModalImagenPerfilComponent } from './components/banner/banner-modal-imagen-perfil/banner-modal-imagen-perfil.component';
+
 
 @NgModule({
   declarations: [
@@ -51,7 +55,10 @@ import { ProyectosModalComponent } from './components/proyectos/proyectos-modal/
     ContactoModalComponent,
     ExperienciaLaboralModalComponent,
     FormacionAcademicaModalComponent,
-    ProyectosModalComponent
+    ProyectosModalComponent,
+    AcercaDeMiModalComponent,
+    BannerModalComponent,
+    BannerModalImagenPerfilComponent
   ],
   imports: [
     BrowserModule,
