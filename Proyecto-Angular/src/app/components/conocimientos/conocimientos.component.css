@@ -15,27 +15,6 @@ fa-icon:hover{
     color:lightblue
 }
 
-.textoModal, .etiquetaModal, .inputModal {
-    color:black !important
-}
-
-.etiquetaModal {
-    width: 30%
-}
-
-.inputModal {
-    width: 70%
-}
-
-.imagenEdicion{
-    height: 8em;
-}
-
-.inputEdicion{
-    width: 11em
-}
-
-
 @media  screen and (max-width: 800px){
     .conocimientos-div{
         width: 100% !important;

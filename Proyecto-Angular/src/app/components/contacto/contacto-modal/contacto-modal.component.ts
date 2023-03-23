@@ -1,9 +1,9 @@
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, Output, EventEmitter} from '@angular/core';
 import { faSquarePen, faUser, faEnvelope, faFileLines } from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http'; 
+declare var $: any;
 
 @Component({
   selector: 'app-contacto-modal',
@@ -23,14 +23,13 @@ export class ContactoModalComponent implements OnInit{
   faFileLines = faFileLines;
   modoEdicion:boolean=false;
   suscripcionAlternarEdicion?:Subscription;
-  formularioContactoEnviar!: FormGroup;
-  formularioInvalidoEnviar: boolean = false;
-  suscripcionBtnAceptar?:Subscription;
   formularioContacto!: FormGroup;
   formularioInvalido: boolean = false;
-  habilitarBotonContacto:boolean = true
+
 
   telefonoPattern:string="([0-9]?\\d{3}-\\d{7})|([+]\\d{2}[ ]\\d{1}[ ][0-9]?\\d{3}-\\d{7})"
+
+  @Output() modificarTitulo: EventEmitter <string> = new EventEmitter ();
 
   @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
   @ViewChild('ubicacion') ubicacion!:ElementRef;
@@ -42,9 +41,9 @@ export class ContactoModalComponent implements OnInit{
   @ViewChild('asuntoForm') asuntoForm!:ElementRef; 
 
   constructor(private servicioEdicion : ModoEdicionService, 
-    private formBuilder: FormBuilder, private httpClient: HttpClient) 
+    private formBuilder: FormBuilder) 
   {    
-    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternar().subscribe(
+    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
       value => this.modoEdicion = value)
   }
 
@@ -61,6 +60,7 @@ export class ContactoModalComponent implements OnInit{
   cambiarTitulo() {
     if (this.nuevoTitulo.nativeElement.value!=="") {
       this.titulo=this.nuevoTitulo.nativeElement.value;
+      this.modificarTitulo.emit(this.titulo);
       this.nuevoTitulo.nativeElement.value=""
     }   
   }
@@ -77,37 +77,18 @@ export class ContactoModalComponent implements OnInit{
     this.formularioContacto.reset()   
 
   }
-
-  onSubmitEnviar ():void {
-    if(this.formularioContactoEnviar.invalid) {
-    this.formularioInvalidoEnviar=true      
-    } else {  
-    this.nombreForm.nativeElement.value=""
-    this.mensajeForm.nativeElement.value=""
-    this.correoForm.nativeElement.value=""
-    this.asuntoForm.nativeElement.value=""
-    this.formularioContactoEnviar.reset()
+  onSubmit ():void {
+    if(this.formularioContacto.invalid) {
+    this.formularioInvalido=true     
+    } else {
+    this.formularioContacto.reset()    
+    this.formularioInvalido=false
+    $("#contacto-modal").modal('hide');  
     }
-  }  
-  
-
-  ocultarMensajeErrorEnviar () {
-   
-      this.formularioInvalidoEnviar=false
-    } 
-
-    onSubmit ():void {
-      if(this.formularioContacto.invalid) {
-      this.habilitarBotonContacto=true
-      this.formularioInvalido=true     
-      } else {
-      this.formularioContacto.reset()    
-      this.habilitarBotonContacto=false
-      }
-    }
+  }
   
     toggleBtnContacto () {
-      this.habilitarBotonContacto=true;
+      this.formularioInvalido=false
       this.formularioInvalido=false
     }
   

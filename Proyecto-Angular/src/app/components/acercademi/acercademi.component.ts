@@ -21,12 +21,20 @@ export class AcercademiComponent implements OnInit{
 
   constructor(private servicioEdicion : ModoEdicionService) 
   {
-    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternar().subscribe(
+    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
       value => this.modoEdicion = value)
   }
 
   ngOnInit(): void {    
    
-  } 
+  }
+  
+  cambiarTitulo (event:string) {
+    this.titulo=event
+  }
+
+  cambiarTexto (event:string) {
+    this.texto=event
+  }
   
 }

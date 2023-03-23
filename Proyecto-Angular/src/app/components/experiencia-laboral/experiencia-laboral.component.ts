@@ -31,7 +31,7 @@ export class ExperienciaLaboralComponent implements OnInit {
   constructor(private servicioEdicion : ModoEdicionService,
     private renderer: Renderer2, private ruta: Router) 
   {    
-    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternar().subscribe(
+    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
       value => this.modoEdicion = value)
   }
 
@@ -52,6 +52,10 @@ export class ExperienciaLaboralComponent implements OnInit {
   
   alternarExperiencias (): void {
     this.ruta.navigate(['/experiencia'], {queryParams: {idExp:this.experienciaSeleccionada.id}})
+  }
+
+  cambiarTitulo (event:string) {
+    this.titulo=event
   }
 }
 

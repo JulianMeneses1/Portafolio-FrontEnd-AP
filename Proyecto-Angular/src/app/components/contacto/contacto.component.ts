@@ -3,7 +3,6 @@ import { faSquarePen, faUser, faUserPen, faEnvelope, faFileLines } from '@fortaw
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http'; 
 
 
 @Component({
@@ -37,9 +36,9 @@ export class ContactoComponent implements OnInit{
   @ViewChild('asuntoForm') asuntoForm!:ElementRef; 
 
   constructor(private servicioEdicion : ModoEdicionService, 
-    private formBuilder: FormBuilder, private httpClient: HttpClient) 
+    private formBuilder: FormBuilder) 
   {    
-    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternar().subscribe(
+    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
       value => this.modoEdicion = value)
   }
 
@@ -52,8 +51,6 @@ export class ContactoComponent implements OnInit{
 
     })  
   }
-
-
 
   onSubmit ():void {
     if(this.formularioContacto.invalid) {
@@ -77,6 +74,10 @@ export class ContactoComponent implements OnInit{
     toggleBtnContacto () {
       this.habilitarBotonContacto=true;
       this.formularioInvalido=false
+    }
+
+    cambiarTitulo (event:string) {
+      this.titulo=event
     }
   
 

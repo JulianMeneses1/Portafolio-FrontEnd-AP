@@ -1,9 +1,9 @@
-import { Component, ViewChild, ElementRef, OnInit} from '@angular/core';
-import { faSquarePen, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Component, ViewChild, ElementRef, OnInit, Output, EventEmitter} from '@angular/core';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+declare var $: any;    
 
 @Component({
   selector: 'app-proyectos-modal',
@@ -16,14 +16,14 @@ export class ProyectosModalComponent implements OnInit {
   suscripcionAlternarEdicion?:Subscription;
   nombreArchivo:string="";
   previsualizacionImagen: string="";
-  suscripcionBtnAceptar?:Subscription;
   formularioProyecto!: FormGroup;
   formularioInvalido: boolean = false;
-  habilitarBotonProyecto:boolean = true
 
   urlWebPattern:string = "[-a-zA-Z0-9@:%_\\+.~#?&//=]{2,256}\\.[a-z]{2,4}\\b(\\/[-a-zA-Z0-9@:%_\\+.~#?&//=]*)?"
   urlGitHubPattern:string = "(https?://)?(github\\.com)(/[\\w\\.@\\:/\\-~]+)+"
-  tecnologiasPattern:string = "((\\w)+\\s)+"  
+  tecnologiasPattern:string = "((\\w)+\\s)+"
+  
+  @Output() modificarTitulo: EventEmitter <string> = new EventEmitter ();
 
   @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
   @ViewChild('Nombre') nuevoNombre!:ElementRef; 
@@ -36,10 +36,8 @@ export class ProyectosModalComponent implements OnInit {
   constructor(private servicioEdicion : ModoEdicionService,
     private sanitizer: DomSanitizer, private formBuilder: FormBuilder) 
   {
-    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternar().subscribe(
-      value => this.modoEdicion = value);
-      this.suscripcionBtnAceptar = this.servicioEdicion.onAlternarFormProyectos().subscribe(
-        value => this.habilitarBotonProyecto = value)
+    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
+      value => this.modoEdicion = value)     
   }
 
   ngOnInit ():void {
@@ -56,6 +54,7 @@ export class ProyectosModalComponent implements OnInit {
   cambiarTitulo(){
     if (this.nuevoTitulo.nativeElement.value!=="") {
       this.titulo=this.nuevoTitulo.nativeElement.value;
+      this.modificarTitulo.emit(this.titulo);
       this.nuevoTitulo.nativeElement.value=""
     }   
   }
@@ -77,19 +76,19 @@ export class ProyectosModalComponent implements OnInit {
 
   onSubmit ():void {
     if(this.formularioProyecto.invalid) {
-    this.habilitarBotonProyecto=true
     this.formularioInvalido=true     
     } else {
     this.formularioProyecto.reset()    
-    this.habilitarBotonProyecto=false
+    this.formularioInvalido=false
     this.previsualizacionImagen="";
-    this.nombreArchivo=""
+    this.nombreArchivo="";
+    $("#proyecto-modal").modal('hide');  
     }
   }
 
   toggleBtnProyecto () {
-    this.habilitarBotonProyecto=true;
     this.formularioProyecto.reset()
+    this.formularioInvalido=false
   }
 
   ocultarMensajeError () {   

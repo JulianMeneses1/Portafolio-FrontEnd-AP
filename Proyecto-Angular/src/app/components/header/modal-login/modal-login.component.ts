@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+declare var $: any;    
 
 @Component({
   selector: 'app-modal-login',
@@ -12,20 +13,16 @@ export class ModalLoginComponent implements OnInit {
 
   modoEdicion:boolean=false;
   suscripcionAlternarEdicion?:Subscription;
-  suscripcionBtnIngresar?:Subscription;
   formularioLogin!: FormGroup;
   formularioInvalido: boolean = false;
-  habilitarBotonLogin:boolean = true
   @ViewChild('usuario') usuario!:ElementRef; 
   @ViewChild('contraseña') contraseña!:ElementRef;  
 
   constructor(private servicioEdicion: ModoEdicionService,
     private formBuilder: FormBuilder) {
 
-      this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternar().subscribe(
-        value => this.modoEdicion = value);
-        this.suscripcionBtnIngresar = this.servicioEdicion.onAlternarFormLogin().subscribe(
-          value => this.habilitarBotonLogin = value)
+      this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
+        value => this.modoEdicion = value)       
   } 
 
   ngOnInit ():void {
@@ -43,17 +40,17 @@ export class ModalLoginComponent implements OnInit {
 
   onSubmit ():void {
     if(this.formularioLogin.invalid) {
-    this.habilitarBotonLogin=true
     this.formularioInvalido=true     
     } else {
-    this.formularioLogin.reset()    
-    this.servicioEdicion.alternarEdicion()
-    this.habilitarBotonLogin=false
+    this.formularioLogin.reset();    
+    this.servicioEdicion.alternarEdicion();
+    this.formularioInvalido=false;
+    $("#loginModal").modal('hide');  
+
     }
   }
   
   toggleBtnLogin () {
-    this.habilitarBotonLogin=true;
     this.formularioLogin.reset()
   }
 

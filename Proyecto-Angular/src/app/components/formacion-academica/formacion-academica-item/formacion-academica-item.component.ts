@@ -19,7 +19,7 @@ export class FormacionAcademicaItemComponent implements OnInit {
 
   constructor(private servicioEdicion : ModoEdicionService) {
          
-    this.suscripcion = this.servicioEdicion.onAlternar().subscribe(
+    this.suscripcion = this.servicioEdicion.onAlternarEdicion().subscribe(
       value => this.modoEdicion = value)
   }
 

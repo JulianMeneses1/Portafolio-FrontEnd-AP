@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
+declare var $: any;    
 
 @Component({
   selector: 'app-banner-modal',
@@ -12,10 +13,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class BannerModalComponent implements OnInit {
   modoEdicion:boolean=false;
   suscripcionAlternarEdicion?:Subscription;
-  suscripcionBtnAceptar?:Subscription;
   formularioBanner!: FormGroup;
   formularioInvalido: boolean = false;
-  habilitarBotonBanner:boolean = true
   nombreArchivo:string="";
   previsualizacionImagen: string="";
   titulo:string="Julián Meneses";
@@ -35,10 +34,8 @@ export class BannerModalComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private formBuilder: FormBuilder) 
     {
-    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternar().subscribe(
-      value => this.modoEdicion = value);
-      this.suscripcionBtnAceptar = this.servicioEdicion.onAlternarFormBanner().subscribe(
-        value => this.habilitarBotonBanner = value)
+    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
+      value => this.modoEdicion = value)
   }
 
   ngOnInit(): void {   
@@ -90,17 +87,16 @@ export class BannerModalComponent implements OnInit {
 
   onSubmit ():void {
     if(this.formularioBanner.invalid) {
-    this.habilitarBotonBanner=true
-    this.formularioInvalido=true   
-    } else {       
-    this.habilitarBotonBanner=false 
+      this.formularioInvalido=true   
+    } else {    
     this.formularioBanner.reset()
-    this.cambiarBanner() 
+    this.cambiarBanner()
+    $("#bannerModal").modal('hide');  
     }
   }
 
   toggleBtnBanner () {
-    this.habilitarBotonBanner=true;
+    this.formularioBanner.reset()
     this.formularioInvalido=false
   }
 

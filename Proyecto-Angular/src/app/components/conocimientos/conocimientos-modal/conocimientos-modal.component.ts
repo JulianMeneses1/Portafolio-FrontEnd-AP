@@ -3,6 +3,7 @@ import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+declare var $: any;    
 
 @Component({
   selector: 'app-conocimientos-modal',
@@ -15,14 +16,12 @@ export class ConocimientosModalComponent implements OnInit {
   suscripcionAlternarEdicion?:Subscription;
   nombreArchivo:string="";
   previsualizacionImagen: string="";
-  suscripcionBtnAceptar?:Subscription;
   formularioConocimientos!: FormGroup;
-  formularioInvalido: boolean = false;
-  habilitarBotonConocimientos:boolean = true
+  formularioInvalido: boolean = false; 
 
   nivelPattern:string = "[1-9]0"
 
-  @Output() modificarTitulo: EventEmitter <string> = new EventEmitter ();
+  @Output() modificarTitulo: EventEmitter <string> = new EventEmitter (); 
 
   @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
   @ViewChild('Nombre') nuevoNombre!:ElementRef; 
@@ -33,10 +32,8 @@ export class ConocimientosModalComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private formBuilder: FormBuilder) 
   {
-    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternar().subscribe(
-      value => this.modoEdicion = value);
-      this.suscripcionBtnAceptar = this.servicioEdicion.onAlternarFormConocimientos().subscribe(
-        value => this.habilitarBotonConocimientos = value)
+    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
+      value => this.modoEdicion = value)     
   }
 
   ngOnInit ():void {
@@ -68,19 +65,18 @@ export class ConocimientosModalComponent implements OnInit {
   }
 
   onSubmit ():void {
-    if(this.formularioConocimientos.invalid) {
-    this.habilitarBotonConocimientos=true
+    if(this.formularioConocimientos.invalid) {    
     this.formularioInvalido=true     
     } else {
-    this.formularioConocimientos.reset()    
-    this.habilitarBotonConocimientos=false
+    this.formularioConocimientos.reset();    
+    this.formularioInvalido=false; 
     this.previsualizacionImagen="";
-    this.nombreArchivo=""
+    this.nombreArchivo="";
+    $("#conocimiento-modal").modal('hide');
     }
   }
 
   toggleBtnConocimientos () {
-    this.habilitarBotonConocimientos=true;
     this.formularioConocimientos.reset()
   }
 

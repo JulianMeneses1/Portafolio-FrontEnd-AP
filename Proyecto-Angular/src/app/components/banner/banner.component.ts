@@ -21,7 +21,7 @@ export class BannerComponent implements OnInit {
   ok:boolean = true
 
   constructor(private servicioEdicion : ModoEdicionService) {
-    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternar().subscribe(
+    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
       value => this.modoEdicion = value)
   }
 

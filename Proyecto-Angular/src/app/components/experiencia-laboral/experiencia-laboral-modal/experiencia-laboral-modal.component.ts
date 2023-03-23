@@ -1,8 +1,8 @@
-import { Component, ViewChild, ElementRef, OnInit, Renderer2} from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+declare var $: any;  
 
 @Component({
   selector: 'app-experiencia-laboral-modal',
@@ -14,13 +14,13 @@ export class ExperienciaLaboralModalComponent implements OnInit {
   titulo:string="Experiencia Laboral"  
   modoEdicion:boolean=false;
   suscripcionAlternarEdicion?:Subscription;
-  suscripcionBtnAceptar?:Subscription;
   formularioExperiencia!: FormGroup;
-  formularioInvalido: boolean = false;
-  habilitarBotonExperiencia:boolean = true
+  formularioInvalido: boolean = false;  
 
   urlPattern:string = "[-a-zA-Z0-9@:%_\\+.~#?&//=]{2,256}\\.[a-z]{2,4}\\b(\\/[-a-zA-Z0-9@:%_\\+.~#?&//=]*)?"
   fechaPattern:string = "(Enero|Marzo|Febrero|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre|Abril)\\s\\d{4}"
+
+  @Output() modificarTitulo: EventEmitter <string> = new EventEmitter (); 
 
   @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
   @ViewChild('contenedorPrimerExp') contenedorPrimerExp!:ElementRef;
@@ -32,13 +32,10 @@ export class ExperienciaLaboralModalComponent implements OnInit {
   @ViewChild('descripcion') descripcion!:ElementRef;  
 
   constructor(private servicioEdicion : ModoEdicionService,
-    private renderer: Renderer2, private ruta: Router,
     private formBuilder: FormBuilder) 
   {    
-    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternar().subscribe(
-      value => this.modoEdicion = value);
-      this.suscripcionBtnAceptar = this.servicioEdicion.onAlternarFormConocimientos().subscribe(
-        value => this.habilitarBotonExperiencia = value)
+    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
+      value => this.modoEdicion = value)  
   }
 
   ngOnInit ():void {
@@ -54,6 +51,7 @@ export class ExperienciaLaboralModalComponent implements OnInit {
   cambiarTitulo() {
     if (this.nuevoTitulo.nativeElement.value!=="") {
       this.titulo=this.nuevoTitulo.nativeElement.value;
+      this.modificarTitulo.emit(this.titulo)
       this.nuevoTitulo.nativeElement.value=""
     }   
   }
@@ -76,16 +74,16 @@ export class ExperienciaLaboralModalComponent implements OnInit {
 
   onSubmit ():void {
     if(this.formularioExperiencia.invalid) {
-    this.habilitarBotonExperiencia=true
     this.formularioInvalido=true     
     } else {
-    this.formularioExperiencia.reset()    
-    this.habilitarBotonExperiencia=false
+    this.formularioExperiencia.reset();
+    this.formularioInvalido=false;
+    $("#experiencia-modal").modal('hide');      
+    
     }
   }
 
   toggleBtnExperiencia () {
-    this.habilitarBotonExperiencia=true;
     this.formularioExperiencia.reset()
   }
 

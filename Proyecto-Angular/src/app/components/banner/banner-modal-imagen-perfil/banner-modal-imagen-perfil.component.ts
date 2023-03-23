@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
-declare var $: any;
+declare var $: any;                                                    // Usamos jQuery para poder acceder al modal y su método hide, que lo cierra manualmente
 
 @Component({
   selector: 'app-banner-modal-imagen-perfil',
@@ -12,15 +12,12 @@ declare var $: any;
 })
 export class BannerModalImagenPerfilComponent implements OnInit{
   modoEdicion:boolean=false;
-  suscripcionAlternarEdicion?:Subscription;
-  suscripcionBtnAceptar?:Subscription;
+  suscripcionAlternarEdicion?:Subscription;  
   formularioPerfil!: FormGroup;
-  formularioInvalido: boolean = false;
-  habilitarBotonPerfil:boolean = true
+  formularioInvalido: boolean = false; 
   nombreArchivo:string="";
   previsualizacionImagen: string="";
   srcFotoPerfil:string="../assets/Foto Perfil.jpg"
-
 
   @Output() modificarFotoPerfil: EventEmitter <string> = new EventEmitter ();
 
@@ -30,10 +27,8 @@ export class BannerModalImagenPerfilComponent implements OnInit{
     private sanitizer: DomSanitizer,
     private formBuilder: FormBuilder) 
     {
-    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternar().subscribe(
-      value => this.modoEdicion = value);
-      this.suscripcionBtnAceptar = this.servicioEdicion.onAlternarFormPerfil().subscribe(
-        value => this.habilitarBotonPerfil = value)
+    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
+      value => this.modoEdicion = value);   
   }
 
   ngOnInit(): void {   
@@ -53,8 +48,7 @@ export class BannerModalImagenPerfilComponent implements OnInit{
   eliminarImagen(){
     this.previsualizacionImagen="";
     this.nombreArchivo=""
-  }
-  
+  }  
   
   cambiarFotoPerfil(){
       this.srcFotoPerfil = this.previsualizacionImagen;
@@ -68,20 +62,18 @@ export class BannerModalImagenPerfilComponent implements OnInit{
   }
 
   onSubmit ():void {
-    if(this.formularioPerfil.invalid) {
-    this.habilitarBotonPerfil=true;
+    if(this.formularioPerfil.invalid) {    
     this.formularioInvalido=true;
-    } else {        
-    this.habilitarBotonPerfil=false;
+    } else {   
     this.formularioPerfil.reset();
     this.cambiarFotoPerfil()
-    $("#perfilModal").modal('hide');       
+    $("#perfilModal").modal('hide');                            // Usando jQuery
     }
   }
 
   toggleBtnPerfil () {
-    this.habilitarBotonPerfil=true;
-    this.formularioInvalido=false
+    this.formularioInvalido=false;
+    this.formularioPerfil.reset();
   }
 
   ocultarMensajeError () {   

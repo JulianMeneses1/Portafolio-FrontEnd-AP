@@ -22,7 +22,7 @@ export class ExperienciaLaboralItemComponent {
   constructor(private servicioEdicion : ModoEdicionService,
     private ruta: ActivatedRoute) {
         
-    this.suscripcion = this.servicioEdicion.onAlternar().subscribe(
+    this.suscripcion = this.servicioEdicion.onAlternarEdicion().subscribe(
       value => this.modoEdicion = value)
   } 
 

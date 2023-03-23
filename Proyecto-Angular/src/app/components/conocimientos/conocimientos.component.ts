@@ -22,7 +22,7 @@ export class ConocimientosComponent implements OnInit{
 
   constructor(private servicioEdicion : ModoEdicionService) 
   {
-    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternar().subscribe(
+    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
       value => this.modoEdicion = value)
   }
 

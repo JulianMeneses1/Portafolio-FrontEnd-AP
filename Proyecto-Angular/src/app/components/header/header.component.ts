@@ -22,7 +22,7 @@ export class HeaderComponent {
 
   constructor(private renderer: Renderer2,
     private servicioEdicion: ModoEdicionService) {
-      this.suscripcion = this.servicioEdicion.onAlternar().subscribe(
+      this.suscripcion = this.servicioEdicion.onAlternarEdicion().subscribe(
           value => this.modoEdicion = value);    
       }   
   
@@ -44,15 +44,6 @@ export class HeaderComponent {
   
   alternarEdicion(){
     this.servicioEdicion.alternarEdicion()
-  }
-
-  alternarEdicionFormularios () {
-    this.servicioEdicion.toggleFormLogin()
-    this.servicioEdicion.toggleFormConocimientos()
-    this.servicioEdicion.toggleFormExperiencia()
-    this.servicioEdicion.toggleFormFormacion()
-    this.servicioEdicion.toggleFormContacto()
-    this.servicioEdicion.toggleFormProyectos()
-  }
+  } 
 }
 

@@ -1,7 +1,8 @@
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms'
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+declare var $: any;  
 
 @Component({
   selector: 'app-formacion-academica-modal',
@@ -12,15 +13,14 @@ export class FormacionAcademicaModalComponent implements OnInit {
 
   titulo:string="Formación Académica"
   modoEdicion:boolean=false;
-  suscripcionAlternarEdicion?:Subscription; 
-  suscripcionBtnAceptar?:Subscription;
+  suscripcionAlternarEdicion?:Subscription;
   formularioFormacion!: FormGroup;
   formularioInvalido: boolean = false;
-  habilitarBotonFormacion:boolean = true
   
   urlPattern:string = "[-a-zA-Z0-9@:%_\\+.~#?&//=]{2,256}\\.[a-z]{2,4}\\b(\\/[-a-zA-Z0-9@:%_\\+.~#?&//=]*)?"
   fechaPattern:string = "(Enero|Marzo|Febrero|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre|Abril)\\s\\d{4}"
 
+  @Output() modificarTitulo: EventEmitter <string> = new EventEmitter ();
 
   @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
   @ViewChild('contenedorPrimerEducacion') contenedorPrimerEducacion!:ElementRef;
@@ -35,10 +35,8 @@ export class FormacionAcademicaModalComponent implements OnInit {
   constructor(private servicioEdicion : ModoEdicionService,
     private formBuilder: FormBuilder) 
   {    
-    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternar().subscribe(
-      value => this.modoEdicion = value)
-      this.suscripcionBtnAceptar = this.servicioEdicion.onAlternarFormConocimientos().subscribe(
-        value => this.habilitarBotonFormacion = value)
+    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
+      value => this.modoEdicion = value)     
   }
 
   ngOnInit ():void {
@@ -56,6 +54,7 @@ export class FormacionAcademicaModalComponent implements OnInit {
   cambiarTitulo() {
     if (this.nuevoTitulo.nativeElement.value!=="") {
       this.titulo=this.nuevoTitulo.nativeElement.value;
+      this.modificarTitulo.emit(this.titulo);
       this.nuevoTitulo.nativeElement.value=""
     }   
   }
@@ -79,16 +78,15 @@ export class FormacionAcademicaModalComponent implements OnInit {
 
   onSubmit ():void {
     if(this.formularioFormacion.invalid) {
-    this.habilitarBotonFormacion=true
     this.formularioInvalido=true     
     } else {
     this.formularioFormacion.reset()    
-    this.habilitarBotonFormacion=false
+    this.formularioInvalido=false
     }
   }
 
   toggleBtnFormacion () {
-    this.habilitarBotonFormacion=true;
+    this.formularioFormacion.reset()  
     this.formularioInvalido=false
   }
 

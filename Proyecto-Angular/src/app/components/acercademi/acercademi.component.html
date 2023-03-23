@@ -14,4 +14,7 @@
         </div>                                                                     
     </div>
 </section> 
-<app-acerca-de-mi-modal></app-acerca-de-mi-modal>   
+<app-acerca-de-mi-modal
+    (modificarTitulo)="cambiarTitulo($event)"
+    (modificarTexto)="cambiarTexto($event)">
+</app-acerca-de-mi-modal>   
