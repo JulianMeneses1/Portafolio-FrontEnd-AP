@@ -44,11 +44,7 @@ export class BannerModalImagenPerfilComponent implements OnInit{
       this.previsualizacionImagen=imagen.base
     })    
   }
-
-  eliminarImagen(){
-    this.previsualizacionImagen="";
-    this.nombreArchivo=""
-  }  
+ 
   
   cambiarFotoPerfil(){
       this.srcFotoPerfil = this.previsualizacionImagen;
@@ -56,24 +52,26 @@ export class BannerModalImagenPerfilComponent implements OnInit{
       this.previsualizacionImagen="";
       this.nombreArchivo=""   
   } 
-
-  resetearInputs () {   
-    this.formularioInvalido=false;      
+  
+  
+  resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
+                                                                              // o se apreta la tecla escape o se hace click en el botón cerrar
+    $("#perfilModal").on('hidden.bs.modal',  () => {
+      this.formularioPerfil.reset();
+      this.formularioInvalido = false;
+      this.previsualizacionImagen="";
+      this.nombreArchivo=""        
+      }
+    ) 
   }
 
   onSubmit ():void {
     if(this.formularioPerfil.invalid) {    
     this.formularioInvalido=true;
-    } else {   
-    this.formularioPerfil.reset();
+    } else {
     this.cambiarFotoPerfil()
     $("#perfilModal").modal('hide');                            // Usando jQuery
     }
-  }
-
-  toggleBtnPerfil () {
-    this.formularioInvalido=false;
-    this.formularioPerfil.reset();
   }
 
   ocultarMensajeError () {   

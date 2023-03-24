@@ -52,16 +52,22 @@ export class ConocimientosModalComponent implements OnInit {
     }   
   }
 
-  resetearTitulo(){
-    this.nuevoTitulo.nativeElement.value=""
+  resetearTitulo () {                                                           
+    $("#titulo-conocimiento-modal").on('hidden.bs.modal',  () => {
+      this.nuevoTitulo.nativeElement.value=""
+      }
+    ) 
   }
-
-  resetearInputs() {
-    this.previsualizacionImagen=""
-    this.nombreArchivo=""
-    this.nuevoNombre.nativeElement.value=""
-    this.nuevoNivel.nativeElement.value=""
-    this.formularioInvalido=false;   
+  
+  resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
+                                                                              // o se apreta la tecla escape o se hace click en el botón cerrar
+    $("#conocimiento-modal").on('hidden.bs.modal',  () => {
+      this.formularioConocimientos.reset();
+      this.formularioInvalido = false
+      this.previsualizacionImagen="";
+      this.nombreArchivo="";        
+      }
+    ) 
   }
 
   onSubmit ():void {
@@ -74,10 +80,6 @@ export class ConocimientosModalComponent implements OnInit {
     this.nombreArchivo="";
     $("#conocimiento-modal").modal('hide');
     }
-  }
-
-  toggleBtnConocimientos () {
-    this.formularioConocimientos.reset()
   }
 
   ocultarMensajeError () {   

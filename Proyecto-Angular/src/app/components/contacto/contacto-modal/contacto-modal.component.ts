@@ -10,6 +10,8 @@ declare var $: any;
   templateUrl: './contacto-modal.component.html',
   styleUrls: ['./contacto-modal.component.css']
 })
+
+
 export class ContactoModalComponent implements OnInit{
 
 
@@ -35,10 +37,7 @@ export class ContactoModalComponent implements OnInit{
   @ViewChild('ubicacion') ubicacion!:ElementRef;
   @ViewChild('telefono') telefono!:ElementRef;  
   @ViewChild('correo') correo!:ElementRef;  
-  @ViewChild('nombreForm') nombreForm!:ElementRef; 
-  @ViewChild('correoForm') correoForm!:ElementRef; 
-  @ViewChild('mensajeForm') mensajeForm!:ElementRef; 
-  @ViewChild('asuntoForm') asuntoForm!:ElementRef; 
+
 
   constructor(private servicioEdicion : ModoEdicionService, 
     private formBuilder: FormBuilder) 
@@ -63,38 +62,37 @@ export class ContactoModalComponent implements OnInit{
       this.modificarTitulo.emit(this.titulo);
       this.nuevoTitulo.nativeElement.value=""
     }   
-  }
-  
-  resetearTitulo () {
-    this.nuevoTitulo.nativeElement.value=""
-  }
+  }  
 
-  resetearInputs() {
-
-    this.ubicacion.nativeElement.value=""
-    this.telefono.nativeElement.value=""
-    this.correo.nativeElement.value=""
-    this.formularioContacto.reset()   
-
-  }
   onSubmit ():void {
     if(this.formularioContacto.invalid) {
     this.formularioInvalido=true     
     } else {
-    this.formularioContacto.reset()    
-    this.formularioInvalido=false
-    $("#contacto-modal").modal('hide');  
+     $("#contacto-modal").modal('hide')     
     }
   }
   
-    toggleBtnContacto () {
-      this.formularioInvalido=false
-      this.formularioInvalido=false
-    }
   
     ocultarMensajeError () {   
       this.formularioInvalido=false
-    }   
+    } 
+    
+    
+    resetearTitulo () {                                                           
+      $("#titulo-contacto-modal").on('hidden.bs.modal',  () => {
+        this.nuevoTitulo.nativeElement.value=""
+        }
+      ) 
+    }
+    
+    resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
+                                                                                // o se apreta la tecla escape o se hace click en el botón cerrar
+      $("#contacto-modal").on('hidden.bs.modal',  () => {
+        this.formularioContacto.reset();
+        this.formularioInvalido = false        
+        }
+      ) 
+    }
   
   
 

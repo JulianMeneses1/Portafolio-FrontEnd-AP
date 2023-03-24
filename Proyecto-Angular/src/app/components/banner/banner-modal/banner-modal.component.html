@@ -7,7 +7,7 @@
         aria-labelledby="bannerModalLabel"
         aria-hidden="true"
     >
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document" (click)="resetearForm()">
             <div class="modal-content">
                 <div class="modal-header justify-content-center">
                     <h3 class="modal-title textoModal" id="bannerModalLabel">Editar Banner</h3>                        
@@ -38,8 +38,7 @@
                         <button 
                             type="button" 
                             class="btn btn-danger"                        
-                            data-bs-dismiss="modal"
-                            (click)="eliminarImagen(); toggleBtnBanner()">
+                            data-bs-dismiss="modal">
                             Cerrar
                         </button>
                         <button 
@@ -61,7 +60,7 @@
     aria-labelledby="textoModalLabel"
     aria-hidden="true"
 >
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document" (click)="resetearTexto()">
         <div class="modal-content">
             <div class="modal-header justify-content-center">
                 <h3 class="modal-title textoModal" id="textoModalLabel">Editar Título y Subtítulo</h3>                        
@@ -89,7 +88,6 @@
                         type="button" 
                         class="btn btn-danger"                        
                         data-bs-dismiss="modal"
-                        (click)="resetearInputs()"
                         >
                         Cerrar
                     </button>

@@ -12,9 +12,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class ContactoComponent implements OnInit{
   titulo:string = "¡Espero tu mensaje!";
-  telefono:string = "+ 54 9 351-6565702";
-  ubicacion:string = "Córdoba, Argentina";
-  correo:string= "julian.meneses11@gmail.com";
+  telefonoContacto:string = "+ 54 9 351-6565702";
+  ubicacionContacto:string = "Córdoba, Argentina";
+  correoContacto:string= "julian.meneses11@gmail.com";
   faSquarePen = faSquarePen;
   faUserPen = faUserPen;
   faUser = faUser;
@@ -22,10 +22,8 @@ export class ContactoComponent implements OnInit{
   faFileLines = faFileLines;
   modoEdicion:boolean=false;
   suscripcionAlternarEdicion?:Subscription;
-  suscripcionBtnAceptar?:Subscription;
   formularioContacto!: FormGroup;
   formularioInvalido: boolean = false;
-  habilitarBotonContacto:boolean = true
 
   telefonoPattern:string="([0-9]?\\d{3}-\\d{7})|([+]\\d{2}[ ]\\d{1}[ ][0-9]?\\d{3}-\\d{7})"
 
@@ -68,13 +66,7 @@ export class ContactoComponent implements OnInit{
   ocultarMensajeError () {
    
       this.formularioInvalido=false
-    } 
-  
-  
-    toggleBtnContacto () {
-      this.habilitarBotonContacto=true;
-      this.formularioInvalido=false
-    }
+    }   
 
     cambiarTitulo (event:string) {
       this.titulo=event

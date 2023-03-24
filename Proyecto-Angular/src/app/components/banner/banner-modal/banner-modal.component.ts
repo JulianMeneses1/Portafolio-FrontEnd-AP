@@ -52,11 +52,6 @@ export class BannerModalComponent implements OnInit {
     })    
   }
 
-  eliminarImagen(){
-    this.previsualizacionImagen="";
-    this.nombreArchivo=""
-  }
-
   cambiarBanner(){
     
     this.srcBanner = this.previsualizacionImagen;
@@ -79,26 +74,33 @@ export class BannerModalComponent implements OnInit {
       } 
   }
 
-  resetearInputs () {
-    this.nuevoTitulo.nativeElement.value=""
-    this.nuevoSubtitulo.nativeElement.value=""
-    this.formularioInvalido=false;      
+  resetearTexto () {                                                           
+    $("#textoModal").on('hidden.bs.modal',  () => {
+      this.nuevoTitulo.nativeElement.value=""
+      this.nuevoSubtitulo.nativeElement.value=""  
+      }
+    ) 
+  }
+  
+  resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
+                                                                              // o se apreta la tecla escape o se hace click en el botón cerrar
+    $("#bannerModal").on('hidden.bs.modal',  () => {
+      this.formularioBanner.reset();
+      this.formularioInvalido = false;
+      this.previsualizacionImagen="";
+      this.nombreArchivo=""        
+      }
+    ) 
   }
 
   onSubmit ():void {
     if(this.formularioBanner.invalid) {
       this.formularioInvalido=true   
-    } else {    
-    this.formularioBanner.reset()
+    } else { 
     this.cambiarBanner()
     $("#bannerModal").modal('hide');  
     }
-  }
-
-  toggleBtnBanner () {
-    this.formularioBanner.reset()
-    this.formularioInvalido=false
-  }
+  } 
 
   ocultarMensajeError () {   
     this.formularioInvalido=false

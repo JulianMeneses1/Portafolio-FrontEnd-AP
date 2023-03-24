@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
+declare var $: any;    
 
 @Component({
   selector: 'app-acerca-de-mi-modal',
@@ -44,8 +45,14 @@ export class AcercaDeMiModalComponent implements OnInit {
       } 
   }
 
-  resetearInputs(){
+ 
+  resetearTexto () {                                                           
+    $("#acercademi-modal").on('hidden.bs.modal',  () => {
     this.nuevoTitulo.nativeElement.value=""
     this.nuevoTexto.nativeElement.value=""  
+      }
+    ) 
   }
+  
+  
 }

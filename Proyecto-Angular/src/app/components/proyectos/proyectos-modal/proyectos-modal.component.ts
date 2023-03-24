@@ -59,36 +59,30 @@ export class ProyectosModalComponent implements OnInit {
     }   
   }
 
-  resetearTitulo(){
-    this.nuevoTitulo.nativeElement.value=""
+  resetearTitulo () {                                                           
+    $("#titulo-proyecto-modal").on('hidden.bs.modal',  () => {
+      this.nuevoTitulo.nativeElement.value=""
+      }
+    ) 
   }
-
-  resetearInputs() {
-    this.previsualizacionImagen=""
-    this.nombreArchivo=""
-    this.nuevoNombre.nativeElement.value=""
-    this.nuevasTecnologias.nativeElement.value=""
-    this.nuevaURLGitHub.nativeElement.value=""
-    this.nuevaURLWeb.nativeElement.value=""
-    this.nuevaDescripcion.nativeElement.value="" 
-    this.formularioInvalido=false;   
+  
+  resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
+                                                                              // o se apreta la tecla escape o se hace click en el botón cerrar
+    $("#proyecto-modal").on('hidden.bs.modal',  () => {
+      this.formularioProyecto.reset();
+      this.formularioInvalido = false;
+      this.previsualizacionImagen="";
+      this.nombreArchivo="";       
+      }
+    ) 
   }
 
   onSubmit ():void {
     if(this.formularioProyecto.invalid) {
     this.formularioInvalido=true     
     } else {
-    this.formularioProyecto.reset()    
-    this.formularioInvalido=false
-    this.previsualizacionImagen="";
-    this.nombreArchivo="";
     $("#proyecto-modal").modal('hide');  
     }
-  }
-
-  toggleBtnProyecto () {
-    this.formularioProyecto.reset()
-    this.formularioInvalido=false
   }
 
   ocultarMensajeError () {   

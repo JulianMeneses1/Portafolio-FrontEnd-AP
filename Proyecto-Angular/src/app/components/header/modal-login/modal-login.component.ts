@@ -32,30 +32,25 @@ export class ModalLoginComponent implements OnInit {
     })
   }
 
-  resetearInputs(){
-    this.usuario.nativeElement.value=""
-    this.contraseña.nativeElement.value=""
-    this.formularioInvalido=false;       
+  resetearForm () {                                                          
+      $("#loginModal").on('hidden.bs.modal',  () => {
+      this.formularioLogin.reset();
+      this.formularioInvalido = false;      
+      }
+    ) 
   }
 
   onSubmit ():void {
     if(this.formularioLogin.invalid) {
     this.formularioInvalido=true     
     } else {
-    this.formularioLogin.reset();    
     this.servicioEdicion.alternarEdicion();
-    this.formularioInvalido=false;
     $("#loginModal").modal('hide');  
 
     }
-  }
-  
-  toggleBtnLogin () {
-    this.formularioLogin.reset()
-  }
+  }  
 
-  ocultarMensajeError () {
-   
+  ocultarMensajeError () {   
       this.formularioInvalido=false
     } 
 

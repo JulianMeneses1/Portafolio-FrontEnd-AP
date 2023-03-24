@@ -6,7 +6,7 @@
  aria-labelledby="textoModalLabel"
  aria-hidden="true"
  >
-     <div class="modal-dialog modal-dialog-centered" role="document">
+     <div class="modal-dialog modal-dialog-centered" role="document" (click)="resetearTitulo()">
          <div class="modal-content">
              <div class="modal-header justify-content-center">
                  <h3 class="modal-title textoModal" id="textoModalLabel">Editar Título</h3>                        
@@ -31,7 +31,6 @@
                          type="button" 
                          class="btn btn-danger"                            
                          data-bs-dismiss="modal"
-                         (click)="resetearTitulo()" 
                          >
                          Cerrar
                      </button>
@@ -57,7 +56,7 @@
  aria-labelledby="textoModalLabel"
  aria-hidden="true"
  >
-     <div class="modal-dialog modal-dialog-centered" role="document">
+     <div class="modal-dialog modal-dialog-centered" role="document" (click)="resetearForm()">
          <div class="modal-content">
              <div class="modal-header justify-content-center">
                  <h3 class="modal-title textoModal" id="textoModalLabel">Añadir Experiencia</h3>                        
@@ -182,7 +181,6 @@
                              type="button" 
                              class="btn btn-danger"                            
                              data-bs-dismiss="modal"
-                             (click)="resetearInputs(); toggleBtnExperiencia()"
                              >
                              Cerrar
                          </button>

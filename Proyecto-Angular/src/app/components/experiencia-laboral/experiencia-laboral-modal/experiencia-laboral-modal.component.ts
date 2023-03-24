@@ -55,36 +55,31 @@ export class ExperienciaLaboralModalComponent implements OnInit {
       this.nuevoTitulo.nativeElement.value=""
     }   
   }
-  
-  resetearTitulo () {
-    this.nuevoTitulo.nativeElement.value=""
-  }
- 
-  resetearInputs() {
 
-    this.empresa.nativeElement.value=""
-    this.puesto.nativeElement.value=""
-    this.descripcion.nativeElement.value=""
-    this.fechaFin.nativeElement.value=""
-    this.fechaInicio.nativeElement.value=""
-    this.url.nativeElement.value=""
-    this.formularioInvalido=false;  
-
-  }
 
   onSubmit ():void {
     if(this.formularioExperiencia.invalid) {
     this.formularioInvalido=true     
     } else {
-    this.formularioExperiencia.reset();
-    this.formularioInvalido=false;
     $("#experiencia-modal").modal('hide');      
     
     }
   }
 
-  toggleBtnExperiencia () {
-    this.formularioExperiencia.reset()
+  resetearTitulo () {                                                           
+    $("#titulo-experiencia-modal").on('hidden.bs.modal',  () => {
+      this.nuevoTitulo.nativeElement.value=""
+      }
+    ) 
+  }
+  
+  resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
+                                                                              // o se apreta la tecla escape o se hace click en el botón cerrar
+    $("#experiencia-modal").on('hidden.bs.modal',  () => {
+      this.formularioExperiencia.reset();
+      this.formularioInvalido = false             
+      }
+    ) 
   }
 
   ocultarMensajeError () {   

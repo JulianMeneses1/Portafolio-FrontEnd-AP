@@ -4,12 +4,12 @@
     aria-labelledby="loginModalLabel"
     aria-hidden="true"
     >
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document" (click)="resetearForm ()">
         <div class="modal-content">
             <div class="modal-header justify-content-center">
                 <h3 class="modal-title" id="loginModalLabel">Iniciar Sesión</h3>                        
             </div>
-            <form (ngSubmit)="onSubmit()" [formGroup]="formularioLogin">
+            <form (ngSubmit)="onSubmit()" [formGroup]="formularioLogin" >
                 <div class="modal-body">
                     
                         <label for="user" class="form-label modal-body-div"><b>Usuario</b></label>         
@@ -50,15 +50,13 @@
                     <button 
                         type="button" 
                         class="btn btn-danger"                     
-                        data-bs-dismiss="modal"
-                        (click)="resetearInputs(); toggleBtnLogin()">
+                        data-bs-dismiss="modal">
                         Cerrar
                     </button>
                     <button
                         #botonLogin 
                         type="submit" 
-                        class="btn btn-primary"                    
-                        (click)="resetearInputs()">
+                        class="btn btn-primary">
                         Ingresar
                     </button>
                     

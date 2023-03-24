@@ -6,7 +6,7 @@ id="titulo-educacion-modal" tabindex="-1"
 aria-labelledby="textoModalLabel"
 aria-hidden="true"
 >
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document" (click)="resetearTitulo()">
         <div class="modal-content">
             <div class="modal-header justify-content-center">
                 <h3 class="modal-title textoModal" id="textoModalLabel">Editar Título</h3>                        
@@ -23,14 +23,13 @@ aria-hidden="true"
                         type="text" 
                         class="form-control inputModal" 
                         placeholder="Ingrese nuevo título">
-                </div>                 
+                </div>                                 
                 
                 <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
                     <button 
                         type="button" 
                         class="btn btn-danger"                            
                         data-bs-dismiss="modal"
-                        (click)="resetearTitulo()" 
                         >
                         Cerrar
                     </button>
@@ -56,7 +55,7 @@ id="educacion-modal" tabindex="-1"
 aria-labelledby="textoModalLabel"
 aria-hidden="true"
 >
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document" (click)="resetearForm()">
         <div class="modal-content">
             <div class="modal-header justify-content-center">
                 <h3 class="modal-title textoModal" id="textoModalLabel">Añadir Educación</h3>                        
@@ -190,13 +189,30 @@ aria-hidden="true"
                         *ngIf="formularioInvalido && formularioFormacion.get('descripcion')?.errors?.['required']">
                         Este campo es obligatorio
                     </div>
+                    <div class="mb-2 modal-body-div" >
+                        <label for="user" class="form-label etiquetaModal">Imagen</label>                                               
+                        <input 
+                            class="inputEdicion me-2" 
+                            (change)="capturarImagen($event)" 
+                            #nuevaImagen
+                            (click)="ocultarMensajeError()" 
+                            type="file"
+                            accept="image/*"
+                            formControlName="imagen">
+                        <label class="textoModal">{{nombreArchivo}}</label>             
+                    </div>
+                    <div 
+                        class="mensajeErrorFormularios alert alert-danger" 
+                        *ngIf="formularioInvalido && formularioFormacion.get('imagen')?.errors?.['required']">
+                        Este campo es obligatorio
+                    </div>
+                    <img *ngIf="previsualizacionImagen" class="imagenEdicion mb-1" [src]="previsualizacionImagen">
                     
                     <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
                         <button 
                             type="button" 
                             class="btn btn-danger"                            
                             data-bs-dismiss="modal"
-                            (click)="resetearInputs(); toggleBtnFormacion()"
                             >
                             Cerrar
                         </button>

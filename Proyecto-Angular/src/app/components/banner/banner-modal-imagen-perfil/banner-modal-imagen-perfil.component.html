@@ -6,7 +6,7 @@ id="perfilModal" tabindex="-1"
 aria-labelledby="perfilModalLabel"
 aria-hidden="true"
 >
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document" (click)="resetearForm()">
         <div class="modal-content">
             <div class="modal-header justify-content-center">
                 <h3 class="modal-title textoModal" id="perfilModalLabel">Editar Foto de Perfil</h3>                        
@@ -38,8 +38,7 @@ aria-hidden="true"
                         <button 
                             type="button" 
                             class="btn btn-danger" 
-                            data-bs-dismiss="modal"
-                            (click)="eliminarImagen(); toggleBtnPerfil()">
+                            data-bs-dismiss="modal">
                             Cerrar
                         </button>
                         <button 
