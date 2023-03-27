@@ -32,6 +32,7 @@ import { BannerModalComponent } from './components/banner/banner-modal/banner-mo
 import { BannerModalImagenPerfilComponent } from './components/banner/banner-modal-imagen-perfil/banner-modal-imagen-perfil.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -59,12 +59,6 @@ input:focus, textarea:focus{
     color: white;
 }
 
-/*  Para anular el efecto del color negro y el fondo blanco del autollenado de los inputs (en realidad no lo anula sino que pospone su efecto 600000s, o sea 10000 minutos) */
-
-input:-webkit-autofill, input:-webkit-autofill:focus {  
-    transition: background-color 600000s 0s, color 600000s 0s;
-  }
-
 textarea{
     width: 100%;
     padding: 0.375rem 0.75rem !important;

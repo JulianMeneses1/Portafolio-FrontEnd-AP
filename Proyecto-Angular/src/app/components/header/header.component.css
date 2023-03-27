@@ -1,7 +1,6 @@
 #boton_cv:hover, #boton_login:hover, #boton_logout:hover{
     background-color: rgb(62, 63, 65) !important;
-    transform: scale(1.10) !important;
-       
+    transform: scale(1.10) !important;       
 }
 
 #boton_cv{
@@ -48,11 +47,16 @@
 }
 
 #logo {
-   height:3em;   
+   height:3em;
 }
 #logo:hover{
     filter:drop-shadow(0px 0px 10px lightblue);
     transform: scale(1.10)   
+}
+
+.navbar-toggler:hover {
+    transform: scale(1.15);
+    
 }
 
 .link {
@@ -68,21 +72,85 @@
 
 fa-icon{
     font-size:30px; 
-    color: rgb(131, 198, 221)
+    color: rgb(131, 198, 221);
+    cursor: pointer;
+}
+
+/* MODAL MENU COLAPSADO */
+
+.modal-dialog {
+    margin: 0px 0px auto auto;
+    width: min(75vw, 400px);
+}
+
+.modal-header fa-icon:hover{
+    transform: scale(1.15);
+}
+
+.modal-content {    
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #161d2b;
+    border-radius: 0;
+    
+}
+
+#logo2 {
+    height:3em;
+    position: absolute;
+    margin-left: 0px
+ }
+
+ #logo2:hover{
+     filter:drop-shadow(0px 0px 10px lightblue);
+     transform: scale(1.10)   
+ }
+
+.modal-body, .modal-header {
+    background-color: #161d2b;
+    border: none;
+    border-radius: 0
+}
+ 
+.modal-header {
+    padding: 1rem 1rem 0rem 1rem
+}
+
+#nav-colapsado li {    
+    text-align: center;
+    margin: 20px 0px;   
+    width: 100%;  
+}
+
+#nav-colapsado li a {
+    font-size: 1.1em;
+}
+
+#nav-colapsado li:hover, #contenedor-login-logout-colapsado:hover {
+    border-bottom: 1px solid lightblue;
+}
+
+    
+.modal-dialog button {
+    font-size: 19px;
+    margin-right: 0px !important;
+}
+
+.modal-dialog #boton_login, .modal-dialog #boton_logout {
+    margin-top: 20px; 
+    
+}
+
+#nav-colapsado li:last-child{
+    padding-bottom: 5px;
+}
+
+#contenedor-login-logout-colapsado{
+    
+    padding-bottom: 13px;
 }
 
 
-@media screen and (max-width: 1200px){ 
-    #nav-colapsado{
-    align-items: end !important;
-    } 
-    
-    #boton_cv{        
-    margin-right: 0px;
-    }
-    #boton_login, #boton_logout{
-        margin-bottom: 10px
-    }
-   
-}  
-    
+
+

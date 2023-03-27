@@ -14,6 +14,10 @@ body {
     overflow-x: hidden !important;     
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 .scroll-hidden {
     overflow: hidden;    
 }
@@ -60,6 +64,12 @@ footer {
 .mensajeErrorFormularios{   
     padding: 4px !important   
 }
+
+/*  Para anular el efecto del color negro y el fondo blanco del autollenado de los inputs (en realidad no lo anula sino que pospone su efecto 600000s, o sea 10000 minutos) */
+
+input:-webkit-autofill, input:-webkit-autofill:focus {  
+    transition: background-color 600000s 0s, color 600000s 0s;
+  }
 
 /* Modificando la barra de desplazamiento (scrollbar) */
 

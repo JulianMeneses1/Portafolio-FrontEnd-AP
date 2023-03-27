@@ -1,7 +1,8 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, } from '@angular/core';
 import { faBars, faX } from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
+declare var $: any;  
 
 
 @Component({
@@ -11,7 +12,6 @@ import { Subscription } from 'rxjs';
 })
 
 export class HeaderComponent {  
-  @ViewChild('navBar') navBar!:ElementRef;   
   faBars = faBars;
   faX = faX  
   modoEdicion:boolean=false;
@@ -20,26 +20,20 @@ export class HeaderComponent {
 
   
 
-  constructor(private renderer: Renderer2,
-    private servicioEdicion: ModoEdicionService) {
+  constructor(private servicioEdicion: ModoEdicionService) {
       this.suscripcion = this.servicioEdicion.onAlternarEdicion().subscribe(
           value => this.modoEdicion = value);    
-      }   
-  
-  contraerNav(){
-    this.renderer.removeClass(this.navBar.nativeElement,"show");
-    this.scrollVisible=true;
-    this.renderer.removeClass(document.body, 'scroll-hidden')      
-  } 
-  
-  alternarScrolling(){
-    this.scrollVisible=!this.scrollVisible;
-    if (!this.scrollVisible) {
-      this.renderer.addClass(document.body, 'scroll-hidden')
-    } else{
-      this.renderer.removeClass(document.body, 'scroll-hidden')
-    }
+      } 
+      
+  cerrarMenuRetardo () {
+    if(window.innerHeight>=600) {
+      setTimeout(this.cerrarMenu,400)
+      } else { setTimeout(this.cerrarMenu, 800)
+    } 
+  }
 
+  cerrarMenu () {
+    $("#menuColapsado").modal('hide')
   }
   
   alternarEdicion(){
