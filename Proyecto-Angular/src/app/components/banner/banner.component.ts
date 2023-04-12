@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faSquarePen} from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
+import { BannerService } from 'src/app/services/banner.service';
 
 
 @Component({
@@ -19,14 +20,19 @@ export class BannerComponent implements OnInit {
   srcBanner:string = "../assets/Banner.jpg";
   srcFotoPerfil:string = "../assets/Foto Perfil.jpg"
   ok:boolean = true
+  miBanner:any;
 
-  constructor(private servicioEdicion : ModoEdicionService) {
+  constructor(private servicioEdicion : ModoEdicionService,
+    private servicioBanner: BannerService) {
     this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
       value => this.modoEdicion = value)
   }
 
   ngOnInit(): void {   
-    
+    // this.servicioBanner.obtenerDatos().subscribe(data=> {
+    //   console.log("Datos" + JSON.stringify(data));
+    //   this.miBanner=data[0];
+    // })
   }
 
   ocultarModal(event:boolean){

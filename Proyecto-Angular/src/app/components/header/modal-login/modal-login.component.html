@@ -9,7 +9,7 @@
             <div class="modal-header justify-content-center">
                 <h3 class="modal-title" id="loginModalLabel">Iniciar Sesión</h3>                        
             </div>
-            <form (ngSubmit)="onSubmit()" [formGroup]="formularioLogin" >
+            <form (ngSubmit)="onSubmit($event)" [formGroup]="formularioLogin" >
                 <div class="modal-body">
                     
                         <label for="user" class="form-label modal-body-div"><b>Usuario</b></label>         
@@ -22,12 +22,14 @@
                             placeholder="Ingrese su usuario" 
                             maxlength="15"
                             formControlName="usuario"
-                            (click)="ocultarMensajeError()">
-                        <div 
-                            class="mensajeErrorFormularios alert alert-danger mb-1" 
+                            (click)="ocultarMensajeError()"
+                            [ngClass]="{'is-invalid':formularioInvalido && formularioLogin.get('usuario')?.errors?.['required']}">
+                        <p 
+                            class="text-danger"
+                            style="margin-top: -7px"  
                             *ngIf="formularioInvalido && formularioLogin.get('usuario')?.errors?.['required']">
                             Este campo es obligatorio
-                        </div>
+                        </p>
                         <label for="password" class="form-label"><b>Contraseña</b></label>                          
                         <input
                             #contraseña
@@ -38,12 +40,13 @@
                             maxlength="15" 
                             placeholder="Ingrese su contraseña"
                             formControlName="contraseña"
-                            (click)="ocultarMensajeError()">
-                        <div 
-                            class="mensajeErrorFormularios alert alert-danger mt-2" 
+                            (click)="ocultarMensajeError()"
+                            [ngClass]="{'is-invalid':formularioInvalido && formularioLogin.get('usuario')?.errors?.['required']}">
+                        <p 
+                            class="text-danger" 
                             *ngIf="formularioInvalido && formularioLogin.get('contraseña')?.errors?.['required']">
                             Este campo es obligatorio
-                        </div>    
+                        </p>    
                     
                 </div>
                 <div class="modal-footer d-flex justify-content-between">
