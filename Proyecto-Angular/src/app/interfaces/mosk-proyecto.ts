@@ -22,5 +22,15 @@ export const Proyectos: Proyecto[] = [ // Hacemos que la variable Conocimientos 
         urlSitioWeb: "https://oliverio97.github.io/Proyecto-integrador---ISPC/Front%20End%20(Vista)/index.html",
         tecnologias: ["HTML", "CSS", "Bootstrap", "JavaScript"],
             
-    } 
+    },
+    {
+        id:3,
+        nombre:"Back End Portafolio",        
+        imagen: "../assets/BackEnd Portfolio2.png",
+        descripcion: `Back End completo de este portafolio web, con sistema de login, contraseña encriptada y CRUD para los items de las diferentes secciones. Hecho en JAVA/Spring
+                      Boot, Hibernate, JPA y MySQL`,
+        urlGitHub: "https://github.com/JulianMeneses1/Portfolio-BackEnd",
+        tecnologias: ["Java", "Spring Boot", "MySQL", "Hibernate", "JPA"],
+            
+    }  
 ]

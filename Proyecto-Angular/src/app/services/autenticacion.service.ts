@@ -8,22 +8,15 @@ import { map } from 'rxjs/operators';
 })
 export class AutenticacionService {
 
-  url="http://localhost:8080/auth/login";
+  url="http://localhost:8080/usuario/verificar";
   currentUserSubject!: BehaviorSubject<any>;
 
 
   constructor( private http:HttpClient) {
-    console.log("El servicio de autenticación está corriendo");
-    this.currentUserSubject= new BehaviorSubject<any>(JSON.parse(sessionStorage.getItem('currentUser') || '{}'))
    }
 
-IniciarSesion(credenciales:any):Observable<any> {
-  return this.http.post(this.url,credenciales).pipe(map(data=>{
-    sessionStorage.setItem('currentUser', JSON.stringify(data));
-    this.currentUserSubject.next(data);
-
-    return data;
-  }))
+IniciarSesion(credenciales:any){
+  
 }
 
 get UsuarioAutenticado () {

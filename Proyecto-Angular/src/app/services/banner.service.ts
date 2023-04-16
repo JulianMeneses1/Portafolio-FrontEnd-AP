@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class BannerService {
 
-  url:string = "http://localhost:8080/banner"
+  url:string = "http://localhost:8080/banner/traer"
   constructor( private http:HttpClient) { }
 
   obtenerDatos (): Observable<any> {

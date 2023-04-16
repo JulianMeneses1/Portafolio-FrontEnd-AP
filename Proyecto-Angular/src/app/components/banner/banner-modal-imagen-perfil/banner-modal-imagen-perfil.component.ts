@@ -42,7 +42,7 @@ export class BannerModalImagenPerfilComponent implements OnInit{
     this.nombreArchivo=event.target.files[0].name
     this.extraerURL(archivoCapturado).then((imagen:any) => {
       this.previsualizacionImagen=imagen.base
-    })    
+    })  
   }
  
   

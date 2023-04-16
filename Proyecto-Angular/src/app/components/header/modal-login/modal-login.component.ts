@@ -51,10 +51,10 @@ export class ModalLoginComponent implements OnInit {
     if(this.formularioLogin.invalid) {
     this.formularioInvalido=true     
     } else {
-      event.preventDefault; // esto cancela el curso normal del evento onsubmit del form
-      this.servicioAutenticacion.IniciarSesion(this.formularioLogin.value).subscribe(data=>{
-        console.log("DATA:" + JSON.stringify(data));
-      })
+      // event.preventDefault; // esto cancela el curso normal del evento onsubmit del form
+      // this.servicioAutenticacion.IniciarSesion(this.formularioLogin.value).subscribe(data=>{
+      //   console.log("DATA:" + JSON.stringify(data));
+      // })
     this.servicioEdicion.alternarEdicion();
     $("#loginModal").modal('hide');  
 
