@@ -28,9 +28,9 @@ import { ExperienciaLaboralModalComponent } from './components/experiencia-labor
 import { FormacionAcademicaModalComponent } from './components/formacion-academica/formacion-academica-modal/formacion-academica-modal.component';
 import { ProyectosModalComponent } from './components/proyectos/proyectos-modal/proyectos-modal.component';
 import { AcercaDeMiModalComponent } from './components/acercademi/acerca-de-mi-modal/acerca-de-mi-modal.component';
-import { BannerModalComponent } from './components/banner/banner-modal/banner-modal.component';
 import { BannerModalImagenPerfilComponent } from './components/banner/banner-modal-imagen-perfil/banner-modal-imagen-perfil.component';
 import { BannerModalTituloSubtituloComponent } from './components/banner/banner-modal-titulo-subtitulo/banner-modal-titulo-subtitulo.component';
+import { BannerModalImagenBannerComponent } from './components/banner/banner-modal-imagen-banner/banner-modal-imagen-banner.component';
 
 
 
@@ -60,9 +60,9 @@ import { BannerModalTituloSubtituloComponent } from './components/banner/banner-
     FormacionAcademicaModalComponent,
     ProyectosModalComponent,
     AcercaDeMiModalComponent,
-    BannerModalComponent,
     BannerModalImagenPerfilComponent,
-    BannerModalTituloSubtituloComponent
+    BannerModalTituloSubtituloComponent,
+    BannerModalImagenBannerComponent
   ],
   imports: [
     BrowserModule,

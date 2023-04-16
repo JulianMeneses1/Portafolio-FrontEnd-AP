@@ -6,11 +6,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 declare var $: any;    
 
 @Component({
-  selector: 'app-banner-modal',
-  templateUrl: './banner-modal.component.html',
-  styleUrls: ['./banner-modal.component.css']
+  selector: 'app-banner-modal-imagen-banner',
+  templateUrl: './banner-modal-imagen-banner.component.html',
+  styleUrls: ['./banner-modal-imagen-banner.component.css']
 })
-export class BannerModalComponent implements OnInit {
+export class BannerModalImagenBannerComponent implements OnInit {
   modoEdicion:boolean=false;
   suscripcionAlternarEdicion?:Subscription;
   formularioBanner!: FormGroup;
@@ -99,7 +99,4 @@ export class BannerModalComponent implements OnInit {
       } catch (e) {        
       }
     })
-}
-  
-
-
+  }
