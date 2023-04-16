@@ -30,6 +30,7 @@ import { ProyectosModalComponent } from './components/proyectos/proyectos-modal/
 import { AcercaDeMiModalComponent } from './components/acercademi/acerca-de-mi-modal/acerca-de-mi-modal.component';
 import { BannerModalComponent } from './components/banner/banner-modal/banner-modal.component';
 import { BannerModalImagenPerfilComponent } from './components/banner/banner-modal-imagen-perfil/banner-modal-imagen-perfil.component';
+import { BannerModalTituloSubtituloComponent } from './components/banner/banner-modal-titulo-subtitulo/banner-modal-titulo-subtitulo.component';
 
 
 
@@ -60,7 +61,8 @@ import { BannerModalImagenPerfilComponent } from './components/banner/banner-mod
     ProyectosModalComponent,
     AcercaDeMiModalComponent,
     BannerModalComponent,
-    BannerModalImagenPerfilComponent
+    BannerModalImagenPerfilComponent,
+    BannerModalTituloSubtituloComponent
   ],
   imports: [
     BrowserModule,

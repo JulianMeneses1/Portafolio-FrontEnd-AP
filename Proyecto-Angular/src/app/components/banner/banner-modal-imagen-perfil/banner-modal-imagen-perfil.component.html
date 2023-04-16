@@ -28,11 +28,11 @@ aria-hidden="true"
                             (click)="ocultarMensajeError()">
                         <label class="textoModal">{{nombreArchivo}}</label> 
                     </div>
-                    <div 
-                        class="mensajeErrorFormularios alert alert-danger" 
+                    <p 
+                        class="text-danger" 
                         *ngIf="formularioInvalido && formularioPerfil.get('fotoPerfil')?.errors?.['required']">
                         Este campo es obligatorio
-                    </div>                           
+                    </p>                           
                     <img *ngIf="previsualizacionImagen" class="imagenEdicion mb-1" [src]="previsualizacionImagen">
                     <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
                         <button 

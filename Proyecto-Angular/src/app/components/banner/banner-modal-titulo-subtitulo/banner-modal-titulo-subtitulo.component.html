@@ -1,0 +1,75 @@
+<!-- MODAL TÍTULO y SUBTÍTULO -->
+
+<form (ngSubmit)="onSubmit()" [formGroup]="formularioTitSub">
+    <div 
+        class="modal fade modal-lg"     
+        id="textoModal" tabindex="-1" 
+        aria-labelledby="textoModalLabel"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog modal-dialog-centered" role="document" (click)="resetearForm()">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <h3 class="modal-title textoModal" id="textoModalLabel">Editar Título y Subtítulo</h3>                        
+                </div>
+                <div class="modal-body">                                 
+                    <div class="mb-3">
+                        <div class="d-flex modal-body-div align-items-baseline">
+                            <label for="user" class="form-label etiquetaModal">Título</label>
+                            <input 
+                                type="text" 
+                                #nuevoTitulo 
+                                [value]="titulo"
+                                class="form-control inputModal"
+                                formControlName="titulo" 
+                                maxlength="20"
+                                placeholder="Ingrese nuevo título"
+                                [ngClass]="{'is-invalid':formularioInvalido && formularioTitSub.get('titulo')?.errors?.['required']}"
+                                (click)="ocultarMensajeError()">                                     
+                        </div>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioTitSub.get('titulo')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p> 
+                    </div>                
+                    <div class="mb-3">
+                        <div class="d-flex align-items-baseline modal-body-div">
+                            <label for="user" class="form-label etiquetaModal">Subtítulo</label>                        
+                            <input 
+                                type="text" 
+                                #nuevoSubtitulo 
+                                [value]="subtitulo"
+                                class="form-control inputModal" 
+                                placeholder="Ingrese nuevo subtítulo"  
+                                maxlength="35"                                
+                                [ngClass]="{'is-invalid':formularioInvalido && formularioTitSub.get('subtitulo')?.errors?.['required']}"
+                                (click)="ocultarMensajeError()"
+                                formControlName="subtitulo">
+                        </div>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioTitSub.get('subtitulo')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p> 
+                    </div>         
+                    <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
+                        <button 
+                            type="button" 
+                            class="btn btn-danger"                        
+                            data-bs-dismiss="modal"
+                            >
+                            Cerrar
+                        </button>
+                        <button 
+                            type="submit" 
+                            class="btn btn-primary"                                                  
+                            >
+                            Aceptar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

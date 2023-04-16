@@ -16,19 +16,13 @@ export class BannerModalComponent implements OnInit {
   formularioBanner!: FormGroup;
   formularioInvalido: boolean = false;
   nombreArchivo:string="";
-  previsualizacionImagen: string="";
-  titulo:string="Julián Meneses";
-  subtitulo:string="Desarrollador Web Full Stack";
-  srcBanner:string="../assets/Banner.jpg";
-  srcFotoPerfil:string="../assets/Foto Perfil.jpg"
+  srcBanner: string="../assets/Banner.jpg";
+  previsualizacionImagen: string=""
 
-  @Output() modificarTitulo: EventEmitter <string> = new EventEmitter ();
-  @Output() modificarSubtitulo: EventEmitter <string> = new EventEmitter ();
   @Output() modificarBanner: EventEmitter <string> = new EventEmitter ();
   
   @ViewChild('banner') banner!:ElementRef; 
-  @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef; 
-  @ViewChild('nuevoSubtitulo') nuevoSubtitulo!:ElementRef;   
+
 
   constructor(private servicioEdicion : ModoEdicionService,
     private sanitizer: DomSanitizer,
@@ -58,30 +52,8 @@ export class BannerModalComponent implements OnInit {
     this.modificarBanner.emit(this.srcBanner);
     this.previsualizacionImagen="";
     this.nombreArchivo=""
-  }  
+  }   
 
- 
-  cambiarTexto(){
-    if (this.nuevoTitulo.nativeElement.value!=="") {
-      this.titulo=this.nuevoTitulo.nativeElement.value;
-      this.modificarTitulo.emit(this.titulo);
-      this.nuevoTitulo.nativeElement.value=""
-    }
-    if (this.nuevoSubtitulo.nativeElement.value!=="") {
-      this.subtitulo=this.nuevoSubtitulo.nativeElement.value;
-      this.modificarSubtitulo.emit(this.subtitulo);
-      this.nuevoSubtitulo.nativeElement.value=""      
-      } 
-  }
-
-  resetearTexto () {                                                           
-    $("#textoModal").on('hidden.bs.modal',  () => {
-      this.nuevoTitulo.nativeElement.value=""
-      this.nuevoSubtitulo.nativeElement.value=""  
-      }
-    ) 
-  }
-  
   resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
                                                                               // o se apreta la tecla escape o se hace click en el botón cerrar
     $("#bannerModal").on('hidden.bs.modal',  () => {
@@ -96,8 +68,8 @@ export class BannerModalComponent implements OnInit {
   onSubmit ():void {
     if(this.formularioBanner.invalid) {
       this.formularioInvalido=true   
-    } else { 
-    this.cambiarBanner()
+    } else {
+    this.cambiarBanner();
     $("#bannerModal").modal('hide');  
     }
   } 

@@ -60,14 +60,14 @@
         </button>      
     </div>
 </div>
-<app-banner-modal 
-    
-    (modificarTitulo)="cambiarTitulo($event)"
-    (modificarSubtitulo)="cambiarSubtitulo($event)"
+<app-banner-modal    
     (modificarBanner)="cambiarBanner($event)">
 </app-banner-modal>
 <app-banner-modal-imagen-perfil
-    (modificarFotoPerfil)="cambiarFotoPerfil($event)"
-    >
+    (modificarFotoPerfil)="cambiarFotoPerfil($event)">
 </app-banner-modal-imagen-perfil>
+<app-banner-modal-titulo-subtitulo
+    (modificarTitulo)="cambiarTitulo($event)"
+    (modificarSubtitulo)="cambiarSubtitulo($event)">
+</app-banner-modal-titulo-subtitulo>
 
