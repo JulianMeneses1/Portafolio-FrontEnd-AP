@@ -31,6 +31,15 @@ import { AcercaDeMiModalComponent } from './components/acercademi/acerca-de-mi-m
 import { BannerModalImagenPerfilComponent } from './components/banner/banner-modal-imagen-perfil/banner-modal-imagen-perfil.component';
 import { BannerModalTituloSubtituloComponent } from './components/banner/banner-modal-titulo-subtitulo/banner-modal-titulo-subtitulo.component';
 import { BannerModalImagenBannerComponent } from './components/banner/banner-modal-imagen-banner/banner-modal-imagen-banner.component';
+import { ConocimientosModalEditarComponent } from './components/conocimientos/conocimientos-modal-editar/conocimientos-modal-editar.component';
+import { ProyectosModalEditarComponent } from './components/proyectos/proyectos-modal-editar/proyectos-modal-editar.component';
+import { ExperienciaLaboralModalEditarComponent } from './components/experiencia-laboral/experiencia-laboral-modal-editar/experiencia-laboral-modal-editar.component';
+import { FormacionAcademicaModalEditarComponent } from './components/formacion-academica/formacion-academica-modal-editar/formacion-academica-modal-editar.component';
+import { ConocimientosModalCrearComponent } from './components/conocimientos/conocimientos-modal-crear/conocimientos-modal-crear.component';
+import { ProyectosModalCrearComponent } from './components/proyectos/proyectos-modal-crear/proyectos-modal-crear.component';
+import { FormacionAcademicaModalCrearComponent } from './components/formacion-academica/formacion-academica-modal-crear/formacion-academica-modal-crear.component';
+import { ExperienciaLaboralModalCrearComponent } from './components/experiencia-laboral/experiencia-laboral-modal-crear/experiencia-laboral-modal-crear.component';
+import { ContactoModalInfoComponent } from './components/contacto/contacto-modal-info/contacto-modal-info.component';
 
 
 
@@ -62,7 +71,16 @@ import { BannerModalImagenBannerComponent } from './components/banner/banner-mod
     AcercaDeMiModalComponent,
     BannerModalImagenPerfilComponent,
     BannerModalTituloSubtituloComponent,
-    BannerModalImagenBannerComponent
+    BannerModalImagenBannerComponent,
+    ConocimientosModalEditarComponent,
+    ProyectosModalEditarComponent,
+    ExperienciaLaboralModalEditarComponent,
+    FormacionAcademicaModalEditarComponent,
+    ConocimientosModalCrearComponent,
+    ProyectosModalCrearComponent,
+    FormacionAcademicaModalCrearComponent,
+    ExperienciaLaboralModalCrearComponent,
+    ContactoModalInfoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,101 @@
+<!-- MODAL EDITAR CONOCIMIENTO -->
+
+<div 
+class="modal fade modal-lg"      
+id="conocimiento-modal-editar-{{conocimiento.id}}" tabindex="-1" 
+aria-labelledby="textoModalLabel"
+aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered" role="document" (click)="resetearForm()">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center">
+                <h3 class="modal-title textoModal" id="textoModalLabel">Editar Conocimiento</h3>                        
+            </div>
+            <div class="modal-body">                           
+                
+                <form (ngSubmit)="onSubmit()" [formGroup]="formularioConocimientos">
+                    <div class="mb-3">
+                        <div class="d-flex align-items-baseline modal-body-div">
+                            <label for="user" class="form-label etiquetaModal ">Nombre</label>
+                            <input 
+                                #Nombre 
+                                type="text"
+                                class="form-control inputModal" 
+                                placeholder="Ingrese nombre"
+                                formControlName="nombre"
+                                [ngClass]="{'is-invalid':formularioInvalido && formularioConocimientos.get('nombre')?.errors?.['required']}"
+                                (click)="ocultarMensajeError()"
+                                maxlength="20">
+                        </div>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioConocimientos.get('nombre')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p> 
+                    </div> 
+                    <div class="mb-3">
+                        <div class="d-flex align-items-baseline modal-body-div">
+                            <label for="user" class="form-label etiquetaModal ">Nivel</label>
+                            <input 
+                                #Nivel 
+                                type="text" 
+                                class="form-control inputModal" 
+                                placeholder="Ingrese nivel de progreso (entre 10 y 90)"
+                                formControlName="nivel"
+                                [ngClass]="{'is-invalid':formularioInvalido && (formularioConocimientos.get('nivel')?.errors?.['required'] || 
+                                formularioConocimientos.get('nivel')?.errors?.['pattern'])}"
+                                (click)="ocultarMensajeError()"
+                                maxlength="2">
+                        </div>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioConocimientos.get('nivel')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p>
+                        <p                             
+                            class="text-danger"
+                            *ngIf="formularioInvalido && formularioConocimientos.get('nivel')?.errors?.['pattern']">
+                            El nivel debe ser una decena, por ejemplo 30.
+                        </p>       
+                    </div>                                  
+                    <div class="mb-3">
+                        <label for="user" class="form-label me-5 textoModal">Imagen actual</label>
+                        <img class="imagenEdicion" [src]="conocimiento.imagen">
+                    </div>                        
+                    <div class="mb-2">
+                        <label for="user" class="form-label textoModal me-4">Nueva Imagen</label>
+                        <input 
+                            class="inputEdicion me-2" 
+                            (change)="capturarImagen($event)" 
+                            type="file" 
+                            accept="image/*"
+                            (click)="ocultarMensajeError()">
+                        <label class="textoModal">{{nombreArchivo}}</label> 
+                    </div>
+                    <p 
+                        class="text-danger" 
+                        *ngIf="formularioInvalido && formularioConocimientos.get('imagen')?.errors?.['required']">
+                        Este campo es obligatorio
+                    </p>                           
+                    <img *ngIf="previsualizacionImagen" class="imagenEdicion mb-1" [src]="previsualizacionImagen">                
+                    
+                    <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
+                        <button 
+                            type="button" 
+                            class="btn btn-danger"                            
+                            data-bs-dismiss="modal"
+                            >
+                            Cerrar
+                        </button>
+                        <button 
+                            type="submit" 
+                            class="btn btn-primary">
+                            Aceptar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>                  
+

@@ -39,16 +39,12 @@ export class BannerModalTituloSubtituloComponent implements OnInit {
   }
  
   cambiarTexto(){
-    if (this.nuevoTitulo.nativeElement.value!=="") {
+    
       this.titulo=this.nuevoTitulo.nativeElement.value;
       this.modificarTitulo.emit(this.titulo);
 
-    }
-    if (this.nuevoSubtitulo.nativeElement.value!=="") {
       this.subtitulo=this.nuevoSubtitulo.nativeElement.value;
       this.modificarSubtitulo.emit(this.subtitulo);
-  
-      } 
   }
   
   resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 

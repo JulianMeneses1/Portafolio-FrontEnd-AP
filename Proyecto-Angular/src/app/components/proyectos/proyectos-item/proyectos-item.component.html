@@ -9,7 +9,20 @@
 <div id="contenedor-texto"> 
     <div class="d-flex align-items-baseline mb-3">
       <h4>{{proyecto.nombre}}</h4>
-      <fa-icon [icon]="faX" *ngIf="modoEdicion" class="icono-borrar"></fa-icon>
+      <div class="ms-auto">
+        <button>
+          <fa-icon [icon]="faX" *ngIf="modoEdicion" class="icono-borrar"></fa-icon>    
+        </button>       
+        <button>
+            <fa-icon 
+                    id="icono-editar"
+                    [icon]="faSquarePen" 
+                    *ngIf="modoEdicion" 
+                    data-bs-toggle="modal" 
+                    [attr.data-bs-target]="'#proyecto-modal-editar-' + proyecto.id">
+            </fa-icon> 
+        </button> 
+      </div>  
     </div>
     <div id="contenedor-descripcion">
       <p>{{proyecto.descripcion}}</p>

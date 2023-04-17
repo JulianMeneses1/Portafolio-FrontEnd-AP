@@ -8,14 +8,14 @@
                     [icon]="faPlus" 
                     *ngIf="modoEdicion" 
                     data-bs-toggle="modal" 
-                    data-bs-target="#educacion-modal">
+                    data-bs-target="#educacion-modal-crear">
                 </fa-icon> 
                 <fa-icon
                     id="a"
                     *ngIf="modoEdicion" 
                     [icon]="faSquarePen"
                     data-bs-toggle="modal" 
-                    data-bs-target="#titulo-educacion-modal">
+                    data-bs-target="#educacion-modal-titulo">
                 </fa-icon>
             </div>  
         </div>
@@ -32,4 +32,9 @@
 <app-formacion-academica-modal
     (modificarTitulo)="cambiarTitulo($event)">
 </app-formacion-academica-modal>
+<app-formacion-academica-modal-crear></app-formacion-academica-modal-crear>
+<app-formacion-academica-modal-editar
+    *ngFor="let educacion of formacionAcademica"
+    [educacion]="educacion">
+</app-formacion-academica-modal-editar>
 

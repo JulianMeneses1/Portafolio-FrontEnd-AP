@@ -8,7 +8,7 @@
                         class="icono-edicion" 
                         [icon]="faSquarePen"
                         data-bs-toggle="modal" 
-                        data-bs-target="#titulo-contacto-modal">
+                        data-bs-target="#contacto-modal-titulo">
                 </fa-icon>
                 
                 <fa-icon
@@ -17,7 +17,7 @@
                     class="icono-edicion"
                     [icon]="faUserPen" 
                     data-bs-toggle="modal" 
-                    data-bs-target="#contacto-modal">
+                    data-bs-target="#contacto-modal-info">
                 </fa-icon>  
             </div>                             
                      
@@ -30,93 +30,106 @@
                     </div>
                 </div>
                 <form (ngSubmit)="onSubmit()" [formGroup]="formularioContacto">
-                    <div class="row">
-                        <div class="col d-flex align-items-center">
-                            <span>
-                                <fa-icon [icon]="faUser" class="icono-contacto"></fa-icon>
-                            </span>                             
-                            <input
-                                #nombreForm 
-                                type="text" 
-                                id="nombre" 
-                                name="nombre" 
-                                class="form-control my-2" 
-                                placeholder="Nombre" 
-                                formControlName="nombre"
-                                maxlength="30"                                
-                                (click)="ocultarMensajeError()">                            
-                        </div>
-                        <div 
-                            class="mensajeErrorContacto alert alert-danger" 
-                            *ngIf="formularioInvalido && formularioContacto.get('nombre')?.errors?.['required']">
-                            Este campo es obligatorio
-                        </div>                        
+                    <div class="row my-2">
+                        
+                            <div class="col d-flex align-items-center">
+                                <span>
+                                    <fa-icon [icon]="faUser" class="icono-contacto"></fa-icon>
+                                </span>                             
+                                <input
+                                    #nombreForm 
+                                    type="text" 
+                                    id="nombre" 
+                                    name="nombre"
+                                    [ngClass]="{'is-invalid':formularioInvalido && formularioContacto.get('nombre')?.errors?.['required']}" 
+                                    class="form-control my-1" 
+                                    placeholder="Nombre" 
+                                    formControlName="nombre"
+                                    maxlength="30"                                
+                                    (click)="ocultarMensajeError()">                            
+                            </div>
+                            <p 
+                                class="text-danger" 
+                                *ngIf="formularioInvalido && formularioContacto.get('nombre')?.errors?.['required']">
+                                Este campo es obligatorio
+                            </p> 
+                                            
                     </div>
-                    <div class="row">
-                        <div class="col d-flex align-items-center">
-                            <span>
-                                <fa-icon [icon]="faFileLines" class="icono-contacto"></fa-icon>
-                            </span>                          
-                            <input
-                                #asuntoForm 
-                                type="texto" 
-                                id="asunto" 
-                                name="asunto" 
-                                class="form-control my-2" 
-                                placeholder="Asunto" 
-                                formControlName="asunto"
-                                maxlength="40"                                
-                                (click)="ocultarMensajeError()" >
-                        </div>
-                        <div 
-                            class="mensajeErrorContacto alert alert-danger" 
-                            *ngIf="formularioInvalido && formularioContacto.get('asunto')?.errors?.['required']">
-                            Este campo es obligatorio
-                        </div>                        
+                    <div class="row my-2">
+                       
+                            <div class="col d-flex align-items-center">
+                                <span>
+                                    <fa-icon [icon]="faFileLines" class="icono-contacto"></fa-icon>
+                                </span>                          
+                                <input
+                                    #asuntoForm 
+                                    type="texto" 
+                                    id="asunto" 
+                                    name="asunto" 
+                                    class="form-control my-1" 
+                                    placeholder="Asunto" 
+                                    formControlName="asunto"
+                                    [ngClass]="{'is-invalid':formularioInvalido && formularioContacto.get('asunto')?.errors?.['required']}"
+                                    maxlength="40"                                
+                                    (click)="ocultarMensajeError()" >
+                            </div>
+                            <p 
+                                class="text-danger" 
+                                *ngIf="formularioInvalido && formularioContacto.get('asunto')?.errors?.['required']">
+                                Este campo es obligatorio
+                            </p> 
+                                             
                     </div> 
-                    <div class="row">
-                        <div class="col d-flex align-items-center"> 
-                            <span>
-                                <fa-icon [icon]="faEnvelop" class="icono-contacto"></fa-icon>
-                            </span>                           
-                            <input
-                                #correoForm 
-                                type="email" 
-                                id="correo" 
-                                name="correo" 
-                                class="form-control my-2" 
-                                placeholder="Correo" 
-                                formControlName="correo"
-                                maxlength="30"                                
-                                (click)="ocultarMensajeError()"                                
-                                >
-                        </div>
-                        <div 
-                            class="mensajeErrorContacto alert alert-danger" 
-                            *ngIf="formularioInvalido && formularioContacto.get('correo')?.errors?.['required']">
-                            Este campo es obligatorio
-                        </div>
-                        <div                             
-                            class="mensajeErrorContacto alert alert-danger" 
-                            *ngIf="formularioInvalido && formularioContacto.get('correo')?.errors?.['email']">
-                            El correo debe cumplir con el siguiente formato de ejemplo: mauricio@gmail.com
-                        </div>
+                    <div class="row my-2">
+                        
+                            <div class="col d-flex align-items-center"> 
+                                <span>
+                                    <fa-icon [icon]="faEnvelop" class="icono-contacto"></fa-icon>
+                                </span>                           
+                                <input
+                                    #correoForm 
+                                    type="email" 
+                                    id="correo" 
+                                    name="correo" 
+                                    class="form-control my-1" 
+                                    placeholder="Correo" 
+                                    formControlName="correo"
+                                    [ngClass]="{'is-invalid':formularioInvalido && (formularioContacto.get('correo')?.errors?.['required'] || 
+                                    formularioInvalido && formularioContacto.get('correo')?.errors?.['email'])}"
+                                    maxlength="30"                                
+                                    (click)="ocultarMensajeError()"                                
+                                    >
+                            </div>
+                            <p 
+                                class="text-danger" 
+                                *ngIf="formularioInvalido && formularioContacto.get('correo')?.errors?.['required']">
+                                Este campo es obligatorio
+                            </p>
+                            <p                             
+                                class="text-danger" 
+                                *ngIf="formularioInvalido && formularioContacto.get('correo')?.errors?.['email']">
+                                El correo debe cumplir con el siguiente formato de ejemplo: mauricio@gmail.com
+                            </p>
+                     
                     </div> 
-                    <div class="row">
-                        <div class="col">                       
-                            <textarea
-                                #mensajeForm 
-                                placeholder="Mensaje" 
-                                class="form-control mt-2" 
-                                maxlength="200" 
-                                formControlName="mensaje"                                
-                                (click)="ocultarMensajeError()" ></textarea>
-                        </div>
-                        <div 
-                            class="mensajeErrorContacto alert alert-danger mt-2" 
-                            *ngIf="formularioInvalido && formularioContacto.get('mensaje')?.errors?.['required']">
-                            Este campo es obligatorio
-                        </div>
+                    <div class="row mt-2">
+                   
+                            <div class="col">                       
+                                <textarea
+                                    #mensajeForm 
+                                    placeholder="Mensaje" 
+                                    class="form-control my-1"  
+                                    maxlength="200" 
+                                    formControlName="mensaje"
+                                    [ngClass]="{'is-invalid':formularioInvalido && formularioContacto.get('mensaje')?.errors?.['required']}"                                
+                                    (click)="ocultarMensajeError()" ></textarea>
+                            </div>
+                            <p 
+                                class="text-danger" 
+                                *ngIf="formularioInvalido && formularioContacto.get('mensaje')?.errors?.['required']">
+                                Este campo es obligatorio
+                            </p>
+                   
                     </div>
                     <div class="row mt-4">
                         <div class="col">                       
@@ -149,4 +162,5 @@
 
 <app-contacto-modal
     (modificarTitulo)="cambiarTitulo($event)">
-</app-contacto-modal>  
+</app-contacto-modal> 
+<app-contacto-modal-info></app-contacto-modal-info> 

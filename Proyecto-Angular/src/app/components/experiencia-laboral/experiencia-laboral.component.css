@@ -15,10 +15,24 @@ fa-icon{
     cursor: pointer; 
 }
 
-.icono-borrar:hover{    
+#icono-borrar:hover{    
     transform: scale(1.2);
-    color:red !important
 }
+#icono-borrar{
+    color:red;
+    font-size: 1.4em;
+    margin-left: auto
+}
+
+#icono-editar:hover{
+    transform: scale(1.2);
+    color:rgb(36, 95, 184) !important
+}
+
+#icono-editar{
+    font-size:1.6em
+}
+
 
 fa-icon:hover{
     color:lightblue
@@ -193,7 +207,7 @@ a:hover::after{
 
     .boton-exp-item{
         border-left: none !important;
-        min-width: 150px;
+        min-width: 200px;
         height: 47px;          
         padding: 0px 20px !important;
         text-align: center;          

@@ -15,29 +15,15 @@ declare var $: any;
 export class ContactoModalComponent implements OnInit{
 
 
-  titulo:string = "¡Espero tu mensaje!";
-  telefonoContacto:string = "+ 54 9 351-6565702";
-  ubicacionContacto:string = "Córdoba, Argentina";
-  correoContacto:string= "julian.meneses11@gmail.com";
-  faSquarePen = faSquarePen;
-  faUser = faUser;
-  faEnvelop = faEnvelope;
-  faFileLines = faFileLines;
+  titulo:string = "¡Espero tu mensaje!"; 
   modoEdicion:boolean=false;
   suscripcionAlternarEdicion?:Subscription;
   formularioContacto!: FormGroup;
   formularioInvalido: boolean = false;
 
-
-  telefonoPattern:string="([0-9]?\\d{3}-\\d{7})|([+]\\d{2}[ ]\\d{1}[ ][0-9]?\\d{3}-\\d{7})"
-
   @Output() modificarTitulo: EventEmitter <string> = new EventEmitter ();
 
   @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
-  @ViewChild('ubicacion') ubicacion!:ElementRef;
-  @ViewChild('telefono') telefono!:ElementRef;  
-  @ViewChild('correo') correo!:ElementRef;  
-
 
   constructor(private servicioEdicion : ModoEdicionService, 
     private formBuilder: FormBuilder) 
@@ -49,51 +35,36 @@ export class ContactoModalComponent implements OnInit{
   ngOnInit ():void {
     
     this.formularioContacto = this.formBuilder.group({
-      ubicacion: ['',[Validators.required]],
-      telefono: ['',[Validators.required, Validators.pattern(this.telefonoPattern)]],
-      correo: ['',[Validators.required, Validators.email]]
-
+      titulo: [this.titulo,[Validators.required]]
     })
   }
 
-  cambiarTitulo() {
-    if (this.nuevoTitulo.nativeElement.value!=="") {
-      this.titulo=this.nuevoTitulo.nativeElement.value;
-      this.modificarTitulo.emit(this.titulo);
-      this.nuevoTitulo.nativeElement.value=""
-    }   
-  }  
+  cambiarTitulo(){
+    this.titulo=this.nuevoTitulo.nativeElement.value;
+    this.modificarTitulo.emit(this.titulo)     
+  }
+
+  resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
+                                                                              // o se apreta la tecla escape o se hace click en el botón cerrar
+    $("#contacto-modal-titulo").on('hidden.bs.modal',  () => {
+      this.formularioContacto.reset();
+      this.formularioContacto.get('titulo')?.setValue(this.titulo);
+      this.formularioInvalido = false  
+      }
+    ) 
+  }
 
   onSubmit ():void {
-    if(this.formularioContacto.invalid) {
+    if(this.formularioContacto.invalid) {    
     this.formularioInvalido=true     
     } else {
-     $("#contacto-modal").modal('hide')     
+    this.cambiarTitulo();
+    $("#contacto-modal-titulo").modal('hide');
+    this.formularioContacto.get('titulo')?.setValue(this.titulo);      
     }
   }
-  
-  
-    ocultarMensajeError () {   
-      this.formularioInvalido=false
-    } 
-    
-    
-    resetearTitulo () {                                                           
-      $("#titulo-contacto-modal").on('hidden.bs.modal',  () => {
-        this.nuevoTitulo.nativeElement.value=""
-        }
-      ) 
-    }
-    
-    resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
-                                                                                // o se apreta la tecla escape o se hace click en el botón cerrar
-      $("#contacto-modal").on('hidden.bs.modal',  () => {
-        this.formularioContacto.reset();
-        this.formularioInvalido = false        
-        }
-      ) 
-    }
-  
-  
 
-}
+  ocultarMensajeError () {   
+    this.formularioInvalido=false
+  } 
+  }

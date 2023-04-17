@@ -1,139 +1,37 @@
 <!-- MODAL TITULO -->
 
-<div 
-class="modal fade modal-lg"      
-id="titulo-contacto-modal" tabindex="-1" 
-aria-labelledby="textoModalLabel"
-aria-hidden="true"
->
-    <div class="modal-dialog modal-dialog-centered" role="document" (click)="resetearTitulo()">
-        <div class="modal-content">
-            <div class="modal-header justify-content-center">
-                <h3 class="modal-title textoModal" id="textoModalLabel">Editar Título</h3>                        
-            </div>
-            <div class="modal-body">                                 
-                <div class="d-flex modal-body-div">
-                    <label for="user" class="form-label etiquetaModal">Título actual</label>
-                    <p class="inputModal" id="titulo">{{titulo}}</p>                    
+<form (ngSubmit)="onSubmit()" [formGroup]="formularioContacto">
+    <div 
+    class="modal fade modal-lg"      
+    id="contacto-modal-titulo" tabindex="-1" 
+    aria-labelledby="textoModalLabel"
+    aria-hidden="true"
+    >
+        <div class="modal-dialog modal-dialog-centered" role="document" (click)="resetearForm()">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <h3 class="modal-title textoModal" id="textoModalLabel">Editar Título</h3>                        
                 </div>
-                <div class="d-flex align-items-baseline modal-body-div mb-3">
-                    <label for="user" class="form-label etiquetaModal">Nuevo título</label>
-                    <input 
-                        #nuevoTitulo 
-                        type="text" 
-                        class="form-control inputModal"
-                        (click)="ocultarMensajeError()" 
-                        placeholder="Ingrese nuevo título"
-                        maxlength="30">
-                </div>         
-                
-                <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
-                    <button 
-                        type="button" 
-                        class="btn btn-danger"                            
-                        data-bs-dismiss="modal"
-                        >
-                        Cerrar
-                    </button>
-                    <button 
-                        type="button" 
-                        class="btn btn-primary"                                                      
-                        data-bs-dismiss="modal"
-                        (click)="cambiarTitulo()"                           
-                        >
-                        Aceptar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- MODAL EDITAR INFORMACIÓN -->
-
-<div 
-class="modal fade modal-lg"      
-id="contacto-modal" tabindex="-1" 
-aria-labelledby="textoModalLabel"
-aria-hidden="true"
->
-    <div class="modal-dialog modal-dialog-centered" role="document" (click)="resetearForm()">
-        <div class="modal-content">
-            <div class="modal-header justify-content-center">
-                <h3 class="modal-title textoModal" id="textoModalLabel">Editar Información de Contacto</h3>                        
-            </div>
-            <div class="modal-body">                                 
-                <form (ngSubmit)="onSubmit()" [formGroup]="formularioContacto">                        
-                    <div class="d-flex modal-body-div">
-                        <label for="user" class="form-label etiquetaModal">Ubicación actual</label>
-                        <p class="inputModal" id="titulo">{{ubicacionContacto}}</p>                    
-                    </div>
-                    <div class="d-flex align-items-baseline modal-body-div mb-3">
-                        <label for="user" class="form-label etiquetaModal">Nueva ubicación</label>
-                        <input 
-                            #ubicacion 
-                            type="text"
-                            formControlName="ubicacion" 
-                            class="form-control inputModal"
-                            (click)="ocultarMensajeError()" 
-                            placeholder="Ingrese ubicación (provincia, país)"
-                            maxlength="25">
-                    </div>
-                    <div 
-                        class="mensajeErrorFormularios alert alert-danger" 
-                        *ngIf="formularioInvalido && formularioContacto.get('ubicacion')?.errors?.['required']">
-                        Este campo es obligatorio
-                    </div>  
-                    <div class="d-flex modal-body-div">
-                        <label for="user" class="form-label etiquetaModal">Teléfono actual</label>
-                        <p class="inputModal" id="titulo">{{telefonoContacto}}</p>                    
-                    </div>                  
-                    <div class="d-flex flex-wrap align-items-baseline modal-body-div mb-3">
-                        <label for="user" class="form-label etiquetaModal">Nuevo teléfono</label>
-                        <input 
-                            #telefono
-                            type="text" 
-                            class="form-control inputModal"
-                            (click)="ocultarMensajeError()" 
-                            placeholder="Ingresar teléfono"
-                            maxlength="18"
-                            formControlName="telefono">
-                    </div>
-                    <div 
-                        class="mensajeErrorFormularios alert alert-danger" 
-                        *ngIf="formularioInvalido && formularioContacto.get('telefono')?.errors?.['required']">
-                        Este campo es obligatorio
-                    </div>
-                    <div 
-                        class="mensajeErrorFormularios alert alert-danger" 
-                        *ngIf="formularioInvalido && formularioContacto.get('telefono')?.errors?.['pattern']">
-                        El teléfono debe incluir el código de área y el número separado por un -
-                    </div> 
-                    <div class="d-flex modal-body-div">
-                        <label for="user" class="form-label etiquetaModal">Correo actual</label>
-                        <p class="inputModal" id="titulo">{{correoContacto}}</p>                    
-                    </div>
-                    <div class="d-flex align-items-baseline modal-body-div mb-3">
-                        <label for="user" class="form-label etiquetaModal">Nuevo correo</label>
-                        <input 
-                            #correo
-                            type="text" 
-                            class="form-control inputModal"
-                            (click)="ocultarMensajeError()" 
-                            placeholder="Ingresar correo"
-                            maxlength="40"
-                            formControlName="correo">
-                    </div>
-                    <div 
-                        class="mensajeErrorFormularios alert alert-danger" 
-                        *ngIf="formularioInvalido && formularioContacto.get('correo')?.errors?.['required']">
-                        Este campo es obligatorio
-                    </div>
-                    <div 
-                        class="mensajeErrorFormularios alert alert-danger" 
-                        *ngIf="formularioInvalido && formularioContacto.get('correo')?.errors?.['email']">
-                        El mail ingresado no es válido
-                    </div>                   
+                <div class="modal-body">                                 
+                    <div class="mb-3">
+                        <div class="d-flex modal-body-div align-items-baseline">
+                            <label for="user" class="form-label etiquetaModal">Título</label>
+                            <input 
+                                #nuevoTitulo 
+                                type="text" 
+                                class="form-control inputModal" 
+                                placeholder="Ingrese nuevo título"
+                                maxlength="30"
+                                formControlName="titulo"
+                                [ngClass]="{'is-invalid':formularioInvalido && formularioContacto.get('titulo')?.errors?.['required']}"
+                                (click)="ocultarMensajeError()">                    
+                        </div>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioContacto.get('titulo')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p> 
+                    </div>             
                     
                     <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
                         <button 
@@ -145,13 +43,13 @@ aria-hidden="true"
                         </button>
                         <button 
                             type="submit" 
-                            class="btn btn-primary"                                                          
+                            class="btn btn-primary"                                                                     
                             >
                             Aceptar
                         </button>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</div>   
+</form>

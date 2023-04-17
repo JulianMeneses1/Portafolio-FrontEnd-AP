@@ -14,22 +14,14 @@ export class ConocimientosModalComponent implements OnInit {
   titulo:string="Conocimientos";
   modoEdicion:boolean=false;
   suscripcionAlternarEdicion?:Subscription;
-  nombreArchivo:string="";
-  previsualizacionImagen: string="";
   formularioConocimientos!: FormGroup;
   formularioInvalido: boolean = false; 
-
-  nivelPattern:string = "[1-9]0"
 
   @Output() modificarTitulo: EventEmitter <string> = new EventEmitter (); 
 
   @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
-  @ViewChild('Nombre') nuevoNombre!:ElementRef; 
-  @ViewChild('Nivel') nuevoNivel!:ElementRef;
-
 
   constructor(private servicioEdicion : ModoEdicionService,
-    private sanitizer: DomSanitizer,
     private formBuilder: FormBuilder) 
   {
     this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
@@ -38,34 +30,21 @@ export class ConocimientosModalComponent implements OnInit {
 
   ngOnInit ():void {
     this.formularioConocimientos = this.formBuilder.group({
-      nombre: ['',[Validators.required]],
-      nivel: ['',[Validators.required, Validators.pattern(this.nivelPattern)]],
-      imagen: ['',[Validators.required]]
+      titulo: [this.titulo,[Validators.required]]
     })
   }
 
   cambiarTitulo(){
-    if (this.nuevoTitulo.nativeElement.value!=="") {
       this.titulo=this.nuevoTitulo.nativeElement.value;
-      this.modificarTitulo.emit(this.titulo)
-      this.nuevoTitulo.nativeElement.value=""
-    }   
-  }
-
-  resetearTitulo () {                                                           
-    $("#titulo-conocimiento-modal").on('hidden.bs.modal',  () => {
-      this.nuevoTitulo.nativeElement.value=""
-      }
-    ) 
+      this.modificarTitulo.emit(this.titulo)     
   }
   
   resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
                                                                               // o se apreta la tecla escape o se hace click en el botón cerrar
-    $("#conocimiento-modal").on('hidden.bs.modal',  () => {
+    $("#conocimiento-modal-titulo").on('hidden.bs.modal',  () => {
       this.formularioConocimientos.reset();
-      this.formularioInvalido = false
-      this.previsualizacionImagen="";
-      this.nombreArchivo="";        
+      this.formularioConocimientos.get('titulo')?.setValue(this.titulo);
+      this.formularioInvalido = false  
       }
     ) 
   }
@@ -74,47 +53,20 @@ export class ConocimientosModalComponent implements OnInit {
     if(this.formularioConocimientos.invalid) {    
     this.formularioInvalido=true     
     } else {
-    this.formularioConocimientos.reset();    
-    this.formularioInvalido=false; 
-    this.previsualizacionImagen="";
-    this.nombreArchivo="";
-    $("#conocimiento-modal").modal('hide');
+    this.cambiarTitulo();
+    $("#conocimiento-modal-titulo").modal('hide');
+    this.formularioConocimientos.get('titulo')?.setValue(this.titulo);      
     }
   }
 
   ocultarMensajeError () {   
     this.formularioInvalido=false
-  } 
-
-  capturarImagen(event:any) {
-    const archivoCapturado = event.target.files[0]
-    this.nombreArchivo=event.target.files[0].name
-    this.extraerURL(archivoCapturado).then((imagen:any) => {
-      this.previsualizacionImagen=imagen.base
-    })    
-  }
-
-    // FUNCIÓN PARA EXTRAER LA URL DE LA IMAGEN
-
-    extraerURL = async ($event:any) => new Promise ((resolve, reject) => {
-      try {
-        const unsafeImg = window.URL.createObjectURL($event);
-        const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
-        const reader = new FileReader();
-        reader.readAsDataURL($event);
-        reader.onload = () => {
-          resolve({
-          base:reader.result
-          });
-        };
-        reader.onerror = error => {
-          resolve ({
-          base:null
-          });
-        };
-        } catch (e) {        
-        }
-      }
-    )  
+  }    
 
 }
+
+
+
+
+
+

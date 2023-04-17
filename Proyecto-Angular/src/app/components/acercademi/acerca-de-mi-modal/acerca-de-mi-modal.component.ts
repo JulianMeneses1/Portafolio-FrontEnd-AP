@@ -39,14 +39,13 @@ export class AcercaDeMiModalComponent implements OnInit {
     })
   }
   cambiarTexto(){
-    if (this.nuevoTitulo.nativeElement.value!=="") {
+    
       this.titulo=this.nuevoTitulo.nativeElement.value;
       this.modificarTitulo.emit(this.titulo);
-    }
-    if (this.nuevoTexto.nativeElement.value!=="") {
+         
       this.texto=this.nuevoTexto.nativeElement.value;
       this.modificarTexto.emit(this.texto);   
-      } 
+ 
   }
 
   resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
@@ -63,7 +62,6 @@ export class AcercaDeMiModalComponent implements OnInit {
   onSubmit ():void {
     if(this.formularioAcercaDeMi.invalid) {
       this.formularioInvalido=true 
-      console.log("hola")  
     } else {
     this.cambiarTexto();
     $("#acerca-de-mi-modal").modal('hide');

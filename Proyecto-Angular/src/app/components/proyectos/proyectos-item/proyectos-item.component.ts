@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { faX } from '@fortawesome/free-solid-svg-icons';
+import { faX, faSquarePen } from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { Proyectos } from 'src/app/interfaces/mosk-proyecto';
@@ -14,6 +14,7 @@ import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 })
 export class ProyectosItemComponent  {
   faX = faX;
+  faSquarePen = faSquarePen;
   faArrow = faArrowUpRightFromSquare
   modoEdicion:boolean=false;
   suscripcion?:Subscription;

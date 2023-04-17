@@ -7,13 +7,13 @@
                   [icon]="faPlus" 
                   *ngIf="modoEdicion" 
                   data-bs-toggle="modal" 
-                  data-bs-target="#proyecto-modal">
+                  data-bs-target="#proyecto-modal-crear">
               </fa-icon> 
               <fa-icon
                   *ngIf="modoEdicion" 
                   [icon]="faSquarePen"
                   data-bs-toggle="modal" 
-                  data-bs-target="#titulo-proyecto-modal">
+                  data-bs-target="#proyecto-modal-titulo">
               </fa-icon>
           </div>
       </div>
@@ -31,4 +31,9 @@
 <app-proyectos-modal
     (modificarTitulo)="cambiarTitulo($event)">
 </app-proyectos-modal>
+<app-proyectos-modal-crear></app-proyectos-modal-crear>
+<app-proyectos-modal-editar
+    *ngFor="let proyecto of proyectos"
+    [proyecto]="proyecto">
+</app-proyectos-modal-editar>
 

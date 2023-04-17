@@ -4,8 +4,22 @@
             <label>{{conocimiento.nombre}}</label>
             <img [src]="conocimiento.imagen">
         </div>
-        <fa-icon [icon]="faX" *ngIf="modoEdicion" class="icono-borrar"></fa-icon>         
+        <div>            
+            <button>
+                <fa-icon [icon]="faX" *ngIf="modoEdicion" class="icono-borrar"></fa-icon>    
+            </button>       
+            <button>
+                <fa-icon 
+                        id="icono-editar"
+                        [icon]="faSquarePen" 
+                        *ngIf="modoEdicion" 
+                        data-bs-toggle="modal" 
+                        [attr.data-bs-target]="'#conocimiento-modal-editar-' + conocimiento.id">
+                </fa-icon> 
+            </button>          
+        </div>         
     </div>
     <div [ngClass]=conocimiento.porcentajeProgreso appScrollConocimientos></div>  
-</div>         
+</div>
+
 
