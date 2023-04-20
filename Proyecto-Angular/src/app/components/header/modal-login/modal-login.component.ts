@@ -3,6 +3,7 @@ import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
+import { Credenciales } from 'src/app/interfaces/credenciales-login';
 declare var $: any;    
 
 @Component({
@@ -12,6 +13,10 @@ declare var $: any;
 })
 export class ModalLoginComponent implements OnInit {
 
+  credenciales: Credenciales = {
+    usuario: "",
+    contraseña: ""
+  };
   modoEdicion:boolean=false;
   suscripcionAlternarEdicion?:Subscription;
   formularioLogin!: FormGroup;
@@ -30,12 +35,7 @@ export class ModalLoginComponent implements OnInit {
   ngOnInit ():void {
     this.formularioLogin = this.formBuilder.group({
       usuario: ['',[Validators.required]],
-      contraseña: ['',[Validators.required]],
-      deviceInfo:this.formBuilder.group({
-        deviceId: ["17858567567"],
-        deviceType: ["DEVICE_TYPE_ANDROID"],
-        notificationToken: ["656466eeecece43"]
-      })
+      contraseña: ['',[Validators.required]]
     })
   }
 
@@ -51,13 +51,10 @@ export class ModalLoginComponent implements OnInit {
     if(this.formularioLogin.invalid) {
     this.formularioInvalido=true     
     } else {
-      // event.preventDefault; // esto cancela el curso normal del evento onsubmit del form
-      // this.servicioAutenticacion.IniciarSesion(this.formularioLogin.value).subscribe(data=>{
-      //   console.log("DATA:" + JSON.stringify(data));
-      // })
-    this.servicioEdicion.alternarEdicion();
-    $("#loginModal").modal('hide');  
-
+      this.servicioAutenticacion.IniciarSesion(this.formularioLogin.value).subscribe(response=>{
+        this.servicioEdicion.alternarEdicion();
+        $("#loginModal").modal('hide')
+        })
     }
   }  
 

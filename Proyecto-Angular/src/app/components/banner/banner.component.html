@@ -13,7 +13,7 @@
     <img 
         id="banner"
         #banner 
-        src="{{srcBanner}}"
+        src="{{miBanner.imagen_banner}}"
     >  
     <div id="sub-container">
         <div class="d-flex justify-content-end align-items-start" *ngIf="modoEdicion">
@@ -26,7 +26,7 @@
         </div>
         <img 
             id="foto-perfil" 
-            src="{{srcFotoPerfil}}"
+            src="{{miBanner.imagen_perfil}}"
             #fotoPerfil>
         <div class="d-flex justify-content-end align-items-start ps-2 pb-2" *ngIf="modoEdicion">
             <fa-icon
@@ -37,8 +37,8 @@
                 data-bs-target="#textoModal">
             </fa-icon>
         </div>
-        <h2>{{titulo}}</h2>
-        <h5> {{subtitulo}}</h5>
+        <h2>{{miBanner.titulo}}</h2>
+        <h5> {{miBanner.subtitulo}}</h5>
     </div>    
 </div>
 <div id="contenedor-iconos-redes">

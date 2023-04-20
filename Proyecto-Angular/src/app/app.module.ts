@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
@@ -40,6 +40,7 @@ import { ProyectosModalCrearComponent } from './components/proyectos/proyectos-m
 import { FormacionAcademicaModalCrearComponent } from './components/formacion-academica/formacion-academica-modal-crear/formacion-academica-modal-crear.component';
 import { ExperienciaLaboralModalCrearComponent } from './components/experiencia-laboral/experiencia-laboral-modal-crear/experiencia-laboral-modal-crear.component';
 import { ContactoModalInfoComponent } from './components/contacto/contacto-modal-info/contacto-modal-info.component';
+import { InterceptorService } from './services/interceptor.service';
 
 
 
@@ -89,7 +90,10 @@ import { ContactoModalInfoComponent } from './components/contacto/contacto-modal
     ReactiveFormsModule,
     HttpClientModule  // Para mandar un mail en la sección contacto, pendiente de configurar
   ],
-  providers: [ModoEdicionService],
+  providers: [ModoEdicionService,
+  {
+    provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

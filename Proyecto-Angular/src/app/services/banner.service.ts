@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,10 +7,25 @@ import { Observable } from 'rxjs';
 })
 export class BannerService {
 
-  url:string = "http://localhost:8080/banner/traer"
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':'application/json'
+    })
+  }
+
+  url:string = "http://localhost:8080/obtener/banners"
+  
   constructor( private http:HttpClient) { }
 
   obtenerDatos (): Observable<any> {
     return this.http.get<any>(this.url)
   }
+
+  editarDatos (banner:any): Observable<any> {
+    const url:string=`${"http://localhost:8080/editar/banner"}/${banner.id}`; 
+    console.log(JSON.stringify(banner))
+    return this.http.put<any>(url,banner,this.httpOptions)
+  }
 }
+
+

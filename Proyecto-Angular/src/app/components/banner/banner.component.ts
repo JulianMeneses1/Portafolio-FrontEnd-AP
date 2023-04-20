@@ -29,10 +29,10 @@ export class BannerComponent implements OnInit {
   }
 
   ngOnInit(): void {   
-    // this.servicioBanner.obtenerDatos().subscribe(data=> {
-    //   console.log("Datos" + JSON.stringify(data));
-    //   this.miBanner=data[0];
-    // })
+    this.servicioBanner.obtenerDatos().subscribe(data=> {
+      console.log("Datos" + JSON.stringify(data));
+      this.miBanner=data[0];
+    })
   }
 
   ocultarModal(event:boolean){

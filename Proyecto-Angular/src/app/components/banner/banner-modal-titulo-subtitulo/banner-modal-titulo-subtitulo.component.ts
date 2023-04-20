@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild, OnInit, Output, EventEmitter } from '
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
+import { BannerService } from 'src/app/services/banner.service';
 declare var $: any;    
 
 @Component({
@@ -25,6 +26,7 @@ export class BannerModalTituloSubtituloComponent implements OnInit {
   @ViewChild('nuevoSubtitulo') nuevoSubtitulo!:ElementRef;   
 
   constructor(private servicioEdicion : ModoEdicionService,
+    private servicioBanner: BannerService,
     private formBuilder: FormBuilder) 
     {
     this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
@@ -33,6 +35,7 @@ export class BannerModalTituloSubtituloComponent implements OnInit {
 
   ngOnInit(): void {   
     this.formularioTitSub = this.formBuilder.group({
+      id: [1],
       titulo: [this.titulo,[Validators.required]],
       subtitulo: [this.subtitulo,[Validators.required]]
     })
@@ -62,7 +65,8 @@ export class BannerModalTituloSubtituloComponent implements OnInit {
     if(this.formularioTitSub.invalid) {
       this.formularioInvalido=true   
     } else {
-    this.cambiarTexto();
+    // this.cambiarTexto();
+    this.servicioBanner.editarDatos(this.formularioTitSub.value).subscribe();
     $("#textoModal").modal('hide');
     this.formularioTitSub.get('titulo')?.setValue(this.titulo);
     this.formularioTitSub.get('subtitulo')?.setValue(this.subtitulo);
