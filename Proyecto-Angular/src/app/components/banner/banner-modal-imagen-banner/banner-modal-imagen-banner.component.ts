@@ -1,8 +1,9 @@
-import { Component, ElementRef, ViewChild, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Banner } from 'src/app/interfaces/banner';
 declare var $: any;    
 
 @Component({
@@ -19,9 +20,11 @@ export class BannerModalImagenBannerComponent implements OnInit {
   srcBanner: string="../assets/Banner.jpg";
   previsualizacionImagen: string=""
 
-  @Output() modificarBanner: EventEmitter <string> = new EventEmitter ();
+
+
+  @Input() miBanner!: Banner;
   
-  @ViewChild('banner') banner!:ElementRef; 
+
 
 
   constructor(private servicioEdicion : ModoEdicionService,
@@ -46,13 +49,7 @@ export class BannerModalImagenBannerComponent implements OnInit {
     })    
   }
 
-  cambiarBanner(){
-    
-    this.srcBanner = this.previsualizacionImagen;
-    this.modificarBanner.emit(this.srcBanner);
-    this.previsualizacionImagen="";
-    this.nombreArchivo=""
-  }   
+
 
   resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
                                                                               // o se apreta la tecla escape o se hace click en el botón cerrar
@@ -69,7 +66,7 @@ export class BannerModalImagenBannerComponent implements OnInit {
     if(this.formularioBanner.invalid) {
       this.formularioInvalido=true   
     } else {
-    this.cambiarBanner();
+
     $("#bannerModal").modal('hide');  
     }
   } 

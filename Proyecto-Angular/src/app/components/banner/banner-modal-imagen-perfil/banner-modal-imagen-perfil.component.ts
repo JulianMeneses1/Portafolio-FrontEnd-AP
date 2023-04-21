@@ -1,8 +1,9 @@
-import { Component, ElementRef, ViewChild, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Banner } from 'src/app/interfaces/banner';
 declare var $: any;                                                    // Usamos jQuery para poder acceder al modal y su método hide, que lo cierra manualmente
 
 @Component({
@@ -19,7 +20,7 @@ export class BannerModalImagenPerfilComponent implements OnInit{
   previsualizacionImagen: string="";
   srcFotoPerfil:string="../assets/Foto Perfil.jpg"
 
-  @Output() modificarFotoPerfil: EventEmitter <string> = new EventEmitter ();
+  @Input() miBanner!: Banner;
 
   @ViewChild('fotoPerfil') fotoPerfil!:ElementRef; 
 
@@ -46,12 +47,7 @@ export class BannerModalImagenPerfilComponent implements OnInit{
   }
  
   
-  cambiarFotoPerfil(){
-      this.srcFotoPerfil = this.previsualizacionImagen;
-      this.modificarFotoPerfil.emit(this.srcFotoPerfil);
-      this.previsualizacionImagen="";
-      this.nombreArchivo=""   
-  } 
+
   
   
   resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
@@ -69,7 +65,7 @@ export class BannerModalImagenPerfilComponent implements OnInit{
     if(this.formularioPerfil.invalid) {    
     this.formularioInvalido=true;
     } else {
-    this.cambiarFotoPerfil()
+
     $("#perfilModal").modal('hide');                            // Usando jQuery
     }
   }

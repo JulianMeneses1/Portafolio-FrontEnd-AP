@@ -11,6 +11,7 @@
         </fa-icon>
     </div>
     <img 
+        *ngIf="miBanner"  
         id="banner"
         #banner 
         src="{{miBanner.imagen_banner}}"
@@ -25,6 +26,7 @@
             </fa-icon>
         </div>
         <img 
+            *ngIf="miBanner"
             id="foto-perfil" 
             src="{{miBanner.imagen_perfil}}"
             #fotoPerfil>
@@ -37,8 +39,8 @@
                 data-bs-target="#textoModal">
             </fa-icon>
         </div>
-        <h2>{{miBanner.titulo}}</h2>
-        <h5> {{miBanner.subtitulo}}</h5>
+        <h2 *ngIf="miBanner">{{miBanner.titulo}}</h2>
+        <h5 *ngIf="miBanner"> {{miBanner.subtitulo}}</h5>
     </div>    
 </div>
 <div id="contenedor-iconos-redes">
@@ -61,13 +63,13 @@
     </div>
 </div>
 <app-banner-modal-imagen-banner    
-    (modificarBanner)="cambiarBanner($event)">
+    [miBanner]="miBanner">
 </app-banner-modal-imagen-banner>
 <app-banner-modal-imagen-perfil
-    (modificarFotoPerfil)="cambiarFotoPerfil($event)">
+    [miBanner]="miBanner">
 </app-banner-modal-imagen-perfil>
 <app-banner-modal-titulo-subtitulo
-    (modificarTitulo)="cambiarTitulo($event)"
-    (modificarSubtitulo)="cambiarSubtitulo($event)">
+    [miBanner]="miBanner"
+    (actualizarDatos)="actualizarBanner($event)">
 </app-banner-modal-titulo-subtitulo>
 

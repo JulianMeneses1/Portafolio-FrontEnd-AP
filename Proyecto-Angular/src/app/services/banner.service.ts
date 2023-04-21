@@ -23,7 +23,6 @@ export class BannerService {
 
   editarDatos (banner:any): Observable<any> {
     const url:string=`${"http://localhost:8080/editar/banner"}/${banner.id}`; 
-    console.log(JSON.stringify(banner))
     return this.http.put<any>(url,banner,this.httpOptions)
   }
 }

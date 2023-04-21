@@ -1,8 +1,9 @@
-import { Component, ElementRef, ViewChild, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { BannerService } from 'src/app/services/banner.service';
+import { Banner } from 'src/app/interfaces/banner';
 declare var $: any;    
 
 @Component({
@@ -16,14 +17,10 @@ export class BannerModalTituloSubtituloComponent implements OnInit {
   suscripcionAlternarEdicion?:Subscription;
   formularioInvalido: boolean = false; 
   formularioTitSub!: FormGroup;
-  titulo:string="Julián Meneses";
-  subtitulo:string="Desarrollador Web Full Stack";  
 
-  @Output() modificarTitulo: EventEmitter <string> = new EventEmitter ();
-  @Output() modificarSubtitulo: EventEmitter <string> = new EventEmitter ();
-  
-  @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef; 
-  @ViewChild('nuevoSubtitulo') nuevoSubtitulo!:ElementRef;   
+  @Input() miBanner!: Banner;
+
+  @Output() actualizarDatos: EventEmitter <Banner> = new EventEmitter ()
 
   constructor(private servicioEdicion : ModoEdicionService,
     private servicioBanner: BannerService,
@@ -35,27 +32,19 @@ export class BannerModalTituloSubtituloComponent implements OnInit {
 
   ngOnInit(): void {   
     this.formularioTitSub = this.formBuilder.group({
-      id: [1],
-      titulo: [this.titulo,[Validators.required]],
-      subtitulo: [this.subtitulo,[Validators.required]]
+      id: [this.miBanner.id],
+      titulo: [this.miBanner.titulo,[Validators.required]],
+      subtitulo: [this.miBanner.subtitulo,[Validators.required]],
+      imagen_perfil: [this.miBanner.imagen_perfil],
+      imagen_banner: [this.miBanner.imagen_banner]    
     })
   }
- 
-  cambiarTexto(){
-    
-      this.titulo=this.nuevoTitulo.nativeElement.value;
-      this.modificarTitulo.emit(this.titulo);
 
-      this.subtitulo=this.nuevoSubtitulo.nativeElement.value;
-      this.modificarSubtitulo.emit(this.subtitulo);
-  }
   
   resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
                                                                               // o se apreta la tecla escape o se hace click en el botón cerrar
     $("#textoModal").on('hidden.bs.modal',  () => {
-      this.formularioTitSub.reset();
-      this.formularioTitSub.get('titulo')?.setValue(this.titulo);
-      this.formularioTitSub.get('subtitulo')?.setValue(this.subtitulo);
+      this.formularioTitSub.patchValue(this.miBanner);
       this.formularioInvalido = false;    
       }
     ) 
@@ -65,11 +54,10 @@ export class BannerModalTituloSubtituloComponent implements OnInit {
     if(this.formularioTitSub.invalid) {
       this.formularioInvalido=true   
     } else {
-    // this.cambiarTexto();
-    this.servicioBanner.editarDatos(this.formularioTitSub.value).subscribe();
-    $("#textoModal").modal('hide');
-    this.formularioTitSub.get('titulo')?.setValue(this.titulo);
-    this.formularioTitSub.get('subtitulo')?.setValue(this.subtitulo);
+      this.miBanner = this.formularioTitSub.value;
+      this.servicioBanner.editarDatos(this.formularioTitSub.value).subscribe();
+      this.actualizarDatos.emit(this.miBanner)       
+      $("#textoModal").modal('hide');
     }
   } 
 
