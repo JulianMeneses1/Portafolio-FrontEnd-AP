@@ -62,14 +62,13 @@
         </button>      
     </div>
 </div>
-<app-banner-modal-imagen-banner    
-    [miBanner]="miBanner">
+<app-banner-modal-imagen-banner   
+    (actualizarDatos)="actualizarBanner($event)">
 </app-banner-modal-imagen-banner>
 <app-banner-modal-imagen-perfil
-    [miBanner]="miBanner">
+    (actualizarDatos)="actualizarBanner($event)">
 </app-banner-modal-imagen-perfil>
 <app-banner-modal-titulo-subtitulo
-    [miBanner]="miBanner"
-    (actualizarDatos)="actualizarBanner($event)">
+   (actualizarDatos)="actualizarBanner($event)">
 </app-banner-modal-titulo-subtitulo>
 

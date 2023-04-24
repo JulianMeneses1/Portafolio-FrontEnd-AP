@@ -12,13 +12,11 @@ export class BannerService {
       'Content-Type':'application/json'
     })
   }
-
-  url:string = "http://localhost:8080/obtener/banners"
   
   constructor( private http:HttpClient) { }
 
   obtenerDatos (): Observable<any> {
-    return this.http.get<any>(this.url)
+    return this.http.get<any>("http://localhost:8080/obtener/banners")
   }
 
   editarDatos (banner:any): Observable<any> {

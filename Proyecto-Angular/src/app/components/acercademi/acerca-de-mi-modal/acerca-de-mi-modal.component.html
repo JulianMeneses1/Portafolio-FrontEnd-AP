@@ -18,8 +18,7 @@
                             <div class="d-flex modal-body-div align-items-baseline">
                                 <label for="user" class="form-label etiquetaModal ">Título</label>
                                 <input 
-                                    #nuevoTitulo
-                                    [value]="titulo" 
+                                    [value]="miAcercaDeMi.titulo" 
                                     type="text" 
                                     class="form-control inputModal" 
                                     placeholder="Ingrese nuevo título"
@@ -37,18 +36,17 @@
                         <div class="mb-3">
                             <div class="d-flex align-items-baseline modal-body-div">
                                 <label for="user" class="form-label etiquetaModal">Texto</label>
-                                <textarea
-                                    #nuevoTexto                                     
-                                    maxlength="300"
-                                    formControlName="texto"           
+                                <textarea                              
+                                    maxlength="600"
+                                    formControlName="descripcion"           
                                     class="form-control inputModal2" 
                                     placeholder="Ingrese nuevo texto"
-                                    [ngClass]="{'is-invalid':formularioInvalido && formularioAcercaDeMi.get('texto')?.errors?.['required']}"
-                                    (click)="ocultarMensajeError()">{{texto}}</textarea>                                       
+                                    [ngClass]="{'is-invalid':formularioInvalido && formularioAcercaDeMi.get('descripcion')?.errors?.['required']}"
+                                    (click)="ocultarMensajeError()"></textarea>                                       
                             </div>
                             <p 
                                 class="text-danger" 
-                                *ngIf="formularioInvalido && formularioAcercaDeMi.get('texto')?.errors?.['required']">
+                                *ngIf="formularioInvalido && formularioAcercaDeMi.get('descripcion')?.errors?.['required']">
                                 Este campo es obligatorio
                             </p>
                         </div>                                    

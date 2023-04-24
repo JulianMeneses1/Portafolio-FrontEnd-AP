@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AcercaDeMiService } from 'src/app/services/acerca-de-mi.service';
+import { AcercaDeMi } from 'src/app/interfaces/acerca-de-mi copy';
 declare var $: any;    
 
 @Component({
@@ -14,46 +16,37 @@ export class AcercaDeMiModalComponent implements OnInit {
   suscripcionAlternarEdicion?:Subscription;
   formularioInvalido: boolean = false; 
   formularioAcercaDeMi!: FormGroup;
-  titulo:string="Sobre mí";
-  texto:string="Hola! Soy Julián, full-stack web developer. Empecé a incursionar en el mundo de la programación de forma autodidácta a partir de videos en YouTube, por allá a finales de 2021,\
-                y actualmente estoy estudiando la carrera de Desarrollo Web y Aplicaciones Digitales. Me apasiona el diseño y desarrollo de sitios y aplicaciones web dinámicos y creativos.\
-                Estoy en búsqueda de nuevos desafíos laborales que pongan a prueba mis conocimientos, y me permitan tanto seguir aprendiendo como seguir creciendo profesionalmente."
-   
-  @Output() modificarTitulo: EventEmitter <string> = new EventEmitter ();
-  @Output() modificarTexto: EventEmitter <string> = new EventEmitter (); 
-                
-  @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef; 
-  @ViewChild('nuevoTexto') nuevoTexto!:ElementRef;   
+  miAcercaDeMi!: AcercaDeMi; 
+  
+  
+  @Output() actualizarDatos: EventEmitter <AcercaDeMi> = new EventEmitter ()
+
 
   constructor(private servicioEdicion : ModoEdicionService,
-          private formBuilder: FormBuilder) 
+          private formBuilder: FormBuilder,
+          private servicioAcercaDeMi : AcercaDeMiService) 
   {
     this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
       value => this.modoEdicion = value)
   }
 
-  ngOnInit(): void {   
-    this.formularioAcercaDeMi = this.formBuilder.group({
-      titulo: [this.titulo,[Validators.required]],
-      texto: [this.texto,[Validators.required]]
+  ngOnInit(): void {
+    this.servicioAcercaDeMi.obtenerDatos().subscribe(data=> {
+        this.miAcercaDeMi=data[0];   
+        this.formularioAcercaDeMi = this.formBuilder.group({
+        id: [''],
+        titulo: ['',[Validators.required]],
+        descripcion: [this.miAcercaDeMi.descripcion,[Validators.required]]
+      })
+    this.formularioAcercaDeMi.patchValue(this.miAcercaDeMi);
+    console.log("valor " + this.formularioAcercaDeMi.get('descripcion')?.value)
     })
-  }
-  cambiarTexto(){
-    
-      this.titulo=this.nuevoTitulo.nativeElement.value;
-      this.modificarTitulo.emit(this.titulo);
-         
-      this.texto=this.nuevoTexto.nativeElement.value;
-      this.modificarTexto.emit(this.texto);   
- 
   }
 
   resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
                                                                               // o se apreta la tecla escape o se hace click en el botón cerrar
     $("#acerca-de-mi-modal").on('hidden.bs.modal',  () => {
-      this.formularioAcercaDeMi.reset();
-      this.formularioAcercaDeMi.get('titulo')?.setValue(this.titulo);
-      this.formularioAcercaDeMi.get('texto')?.setValue(this.texto);
+      this.formularioAcercaDeMi.patchValue(this.miAcercaDeMi);
       this.formularioInvalido = false;    
       }
     ) 
@@ -63,10 +56,10 @@ export class AcercaDeMiModalComponent implements OnInit {
     if(this.formularioAcercaDeMi.invalid) {
       this.formularioInvalido=true 
     } else {
-    this.cambiarTexto();
-    $("#acerca-de-mi-modal").modal('hide');
-    this.formularioAcercaDeMi.get('titulo')?.setValue(this.titulo);
-    this.formularioAcercaDeMi.get('texto')?.setValue(this.texto);
+      this.miAcercaDeMi = this.formularioAcercaDeMi.value;
+      this.servicioAcercaDeMi.editarDatos(this.formularioAcercaDeMi.value).subscribe();
+      this.actualizarDatos.emit(this.miAcercaDeMi) 
+      $("#acerca-de-mi-modal").modal('hide');
     }
   } 
 

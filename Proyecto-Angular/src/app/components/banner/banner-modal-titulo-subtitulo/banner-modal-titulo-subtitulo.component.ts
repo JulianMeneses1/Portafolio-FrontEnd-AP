@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
@@ -17,8 +17,7 @@ export class BannerModalTituloSubtituloComponent implements OnInit {
   suscripcionAlternarEdicion?:Subscription;
   formularioInvalido: boolean = false; 
   formularioTitSub!: FormGroup;
-
-  @Input() miBanner!: Banner;
+  miBanner!: Banner;
 
   @Output() actualizarDatos: EventEmitter <Banner> = new EventEmitter ()
 
@@ -27,16 +26,21 @@ export class BannerModalTituloSubtituloComponent implements OnInit {
     private formBuilder: FormBuilder) 
     {
     this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
-      value => this.modoEdicion = value)
+      value => this.modoEdicion = value);     
+      
   }
 
-  ngOnInit(): void {   
-    this.formularioTitSub = this.formBuilder.group({
-      id: [this.miBanner.id],
-      titulo: [this.miBanner.titulo,[Validators.required]],
-      subtitulo: [this.miBanner.subtitulo,[Validators.required]],
-      imagen_perfil: [this.miBanner.imagen_perfil],
-      imagen_banner: [this.miBanner.imagen_banner]    
+  ngOnInit(): void { 
+    this.servicioBanner.obtenerDatos().subscribe(data=> {
+      this.miBanner=data[0];
+      this.formularioTitSub = this.formBuilder.group({
+        id: [''],
+        titulo: ['',[Validators.required]],
+        subtitulo: ['',[Validators.required]],
+        imagen_perfil: [''],
+        imagen_banner: ['']    
+      })
+      this.formularioTitSub.patchValue(this.miBanner)
     })
   }
 

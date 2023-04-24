@@ -14,8 +14,9 @@ aria-hidden="true"
             <div class="modal-body">                                 
                 <form (ngSubmit)="onSubmit()" [formGroup]="formularioPerfil">
                     <div class="mb-3">
-                        <label for="user" class="form-label me-5 textoModal">Imagen actual</label>
-                        <img class="imagenEdicion" src="../assets/Foto Perfil.jpg">
+                        <label for="user" class="form-label me-5 textoModal">Imagen</label>                        
+                        <img *ngIf="!previsualizacionImagen" class="imagenEdicion" [src]="miBanner.imagen_perfil">
+                        <img *ngIf="previsualizacionImagen" class="imagenEdicion mb-1" [src]="previsualizacionImagen">                         
                     </div>                        
                     <div class="mb-2">
                         <label for="user" class="form-label textoModal me-4">Nueva Imagen</label>
@@ -24,16 +25,16 @@ aria-hidden="true"
                             (change)="capturarImagen($event)" 
                             type="file" 
                             accept="image/*"
-                            formControlName="fotoPerfil"
-                            (click)="ocultarMensajeError()">
-                        <label class="textoModal">{{nombreArchivo}}</label> 
+                            formControlName="imagen_perfil"
+                            (click)="ocultarMensajeError()">                        
                     </div>
                     <p 
                         class="text-danger" 
-                        *ngIf="formularioInvalido && formularioPerfil.get('fotoPerfil')?.errors?.['required']">
+                        *ngIf="formularioInvalido">
                         Este campo es obligatorio
-                    </p>                           
-                    <img *ngIf="previsualizacionImagen" class="imagenEdicion mb-1" [src]="previsualizacionImagen">
+                    </p> 
+                    <label *ngIf="previsualizacionImagen" class="textoModal mb-1">{{nombreArchivo}}</label>                          
+                    
                     <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
                         <button 
                             type="button" 

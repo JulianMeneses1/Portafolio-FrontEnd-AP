@@ -1,9 +1,11 @@
-import { Component, ElementRef, ViewChild, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Banner } from 'src/app/interfaces/banner';
+import { BannerService } from 'src/app/services/banner.service';
+import { ArchivoService } from 'src/app/services/archivo.service';
 declare var $: any;                                                    // Usamos jQuery para poder acceder al modal y su método hide, que lo cierra manualmente
 
 @Component({
@@ -18,57 +20,83 @@ export class BannerModalImagenPerfilComponent implements OnInit{
   formularioInvalido: boolean = false; 
   nombreArchivo:string="";
   previsualizacionImagen: string="";
-  srcFotoPerfil:string="../assets/Foto Perfil.jpg"
+  miBanner!: Banner;
+  archivoCapturado: any;
+  archivoSubidoUrl: string = ""
 
-  @Input() miBanner!: Banner;
-
-  @ViewChild('fotoPerfil') fotoPerfil!:ElementRef; 
+  @Output() actualizarDatos: EventEmitter <Banner> = new EventEmitter ()
 
   constructor(private servicioEdicion : ModoEdicionService,
+    private servicioBanner : BannerService,
     private sanitizer: DomSanitizer,
+    private servicioArchivo : ArchivoService,
     private formBuilder: FormBuilder) 
     {
     this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
       value => this.modoEdicion = value);   
   }
 
-  ngOnInit(): void {   
-    this.formularioPerfil = this.formBuilder.group({
-      fotoPerfil: ['',[Validators.required]]
-    })
+  ngOnInit(): void { 
+
+    this.servicioBanner.obtenerDatos().subscribe(data=> {
+      this.miBanner=data[0];
+      this.formularioPerfil = this.formBuilder.group({
+        id: [''],
+        titulo: [''],
+        subtitulo: [''],
+        imagen_perfil: [''],
+        imagen_banner: ['']    
+      })
+      this.formularioPerfil.patchValue(this.miBanner)
+    })  
+
   } 
   
   capturarImagen(event:any) {
-    const archivoCapturado = event.target.files[0]
+    this.archivoCapturado = event.target.files[0]
     this.nombreArchivo=event.target.files[0].name
-    this.extraerURL(archivoCapturado).then((imagen:any) => {
-      this.previsualizacionImagen=imagen.base
-    })  
-  }
- 
+    this.extraerURL(this.archivoCapturado).then((imagen:any) => {
+      this.previsualizacionImagen=imagen.base;      
+    })
+    this.subirArchivo();
+     
+  } 
   
+  subirArchivo() {
 
-  
+      const formularioDeDatos = new FormData();
+      formularioDeDatos.append('file',this.archivoCapturado)
+      this.servicioArchivo.subirArchivo(formularioDeDatos)
+        .subscribe(response => {
+          this.archivoSubidoUrl = response.url      
+        }) 
+  }
   
   resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
                                                                               // o se apreta la tecla escape o se hace click en el botón cerrar
     $("#perfilModal").on('hidden.bs.modal',  () => {
-      this.formularioPerfil.reset();
-      this.formularioInvalido = false;
+      this.formularioPerfil.patchValue(this.miBanner);
+      this.formularioInvalido = false;    
       this.previsualizacionImagen="";
-      this.nombreArchivo=""        
+      this.nombreArchivo="";
+      this.archivoSubidoUrl= "";
+      
       }
     ) 
   }
 
   onSubmit ():void {
-    if(this.formularioPerfil.invalid) {    
+    if(this.archivoSubidoUrl=="") {    
     this.formularioInvalido=true;
-    } else {
-
-    $("#perfilModal").modal('hide');                            // Usando jQuery
+    } else {  
+      this.formularioPerfil.get('imagen_perfil')?.setValue(this.archivoSubidoUrl);
+      this.miBanner = this.formularioPerfil.value;
+      this.servicioBanner.editarDatos(this.formularioPerfil.value).subscribe();
+      this.actualizarDatos.emit(this.miBanner)
+      $("#perfilModal").modal('hide');   // Usando jQuery                   
     }
   }
+
 
   ocultarMensajeError () {   
     this.formularioInvalido=false

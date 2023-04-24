@@ -14,8 +14,9 @@
                 </div>
                 <div class="modal-body">                                 
                     <div class="mb-3">
-                        <label for="user"  class="form-label me-5 textoModal">Imagen actual</label>
-                        <img class="imagenEdicion" src="../assets/Banner.jpg">
+                        <label for="user"  class="form-label me-5 textoModal">Imagen</label>
+                        <img *ngIf="!previsualizacionImagen" class="imagenEdicion" [src]="miBanner.imagen_banner">
+                        <img *ngIf="previsualizacionImagen" class="imagenEdicion mb-1" [src]="previsualizacionImagen">
                     </div>                        
                     <div class="mb-2">
                         <label for="user" class="form-label textoModal me-4">Nueva Imagen</label>                                               
@@ -24,16 +25,15 @@
                             (change)="capturarImagen($event)" 
                             type="file" 
                             accept="image/*"
-                            formControlName="banner"
-                            (click)="ocultarMensajeError()">
-                        <label class="textoModal">{{nombreArchivo}}</label>             
+                            formControlName="imagen_banner"
+                            (click)="ocultarMensajeError()">        
                     </div>                   
                     <p 
                         class="text-danger" 
-                        *ngIf="formularioInvalido && formularioBanner.get('banner')?.errors?.['required']">
+                        *ngIf="formularioInvalido">
                         Este campo es obligatorio
                     </p> 
-                    <img *ngIf="previsualizacionImagen" class="imagenEdicion mb-1" [src]="previsualizacionImagen">
+                    <label class="textoModal">{{nombreArchivo}}</label>     
                     <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
                         <button 
                             type="button" 

@@ -17,8 +17,8 @@
                         <div class="d-flex modal-body-div align-items-baseline">
                             <label for="user" class="form-label etiquetaModal">Título</label>
                             <input 
-                                type="text" 
-                                #nuevoTitulo                                 
+                                type="text"
+                                [value]="miBanner.titulo"                           
                                 class="form-control inputModal"
                                 formControlName="titulo" 
                                 maxlength="20"
@@ -37,7 +37,6 @@
                             <label for="user" class="form-label etiquetaModal">Subtítulo</label>                        
                             <input 
                                 type="text" 
-                                #nuevoSubtitulo 
                                 class="form-control inputModal" 
                                 placeholder="Ingrese nuevo subtítulo"  
                                 maxlength="35"                                

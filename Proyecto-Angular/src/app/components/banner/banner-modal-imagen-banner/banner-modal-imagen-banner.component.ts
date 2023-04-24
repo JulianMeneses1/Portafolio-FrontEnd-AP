@@ -1,9 +1,11 @@
-import { Component, ElementRef, ViewChild, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Banner } from 'src/app/interfaces/banner';
+import { BannerService } from 'src/app/services/banner.service';
+import { ArchivoService } from 'src/app/services/archivo.service';
 declare var $: any;    
 
 @Component({
@@ -17,56 +19,81 @@ export class BannerModalImagenBannerComponent implements OnInit {
   formularioBanner!: FormGroup;
   formularioInvalido: boolean = false;
   nombreArchivo:string="";
-  srcBanner: string="../assets/Banner.jpg";
   previsualizacionImagen: string=""
-
-
-
-  @Input() miBanner!: Banner;
+  miBanner!: Banner;
+  archivoCapturado: any;
+  archivoSubidoUrl: string = ""
   
-
+  @Output() actualizarDatos: EventEmitter <Banner> = new EventEmitter ()
 
 
   constructor(private servicioEdicion : ModoEdicionService,
     private sanitizer: DomSanitizer,
-    private formBuilder: FormBuilder) 
+    private formBuilder: FormBuilder,
+    private servicioArchivo : ArchivoService,
+    private servicioBanner : BannerService) 
     {
     this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
       value => this.modoEdicion = value)
   }
 
-  ngOnInit(): void {   
-    this.formularioBanner = this.formBuilder.group({
-      banner: ['',[Validators.required]]
+  ngOnInit(): void { 
+    
+    this.servicioBanner.obtenerDatos().subscribe(data=> {
+      this.miBanner=data[0];
+      this.formularioBanner = this.formBuilder.group({
+        id: [''],
+        titulo: [''],
+        subtitulo: [''],
+        imagen_perfil: [''],
+        imagen_banner: ['']    
+      })
+      this.formularioBanner.patchValue(this.miBanner)
     })
   }
 
   capturarImagen(event:any) {
-    const archivoCapturado = event.target.files[0]
+    this.archivoCapturado = event.target.files[0]
     this.nombreArchivo=event.target.files[0].name
-    this.extraerURL(archivoCapturado).then((imagen:any) => {
+    this.extraerURL(this.archivoCapturado).then((imagen:any) => {
       this.previsualizacionImagen=imagen.base
-    })    
+    })
+    this.subirArchivo();    
   }
 
+  subirArchivo() {
+
+      const formularioDeDatos = new FormData();
+      formularioDeDatos.append('file',this.archivoCapturado)
+      this.servicioArchivo.subirArchivo(formularioDeDatos)
+        .subscribe(response => {
+          this.archivoSubidoUrl = response.url
+          console.log(this.archivoSubidoUrl)
+      
+        }) 
+  }
 
 
   resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
                                                                               // o se apreta la tecla escape o se hace click en el botón cerrar
     $("#bannerModal").on('hidden.bs.modal',  () => {
-      this.formularioBanner.reset();
-      this.formularioInvalido = false;
+      this.formularioBanner.patchValue(this.miBanner);
+      this.formularioInvalido = false; 
       this.previsualizacionImagen="";
-      this.nombreArchivo=""        
+      this.nombreArchivo="";
+      this.archivoSubidoUrl= "";        
       }
     ) 
   }
 
   onSubmit ():void {
-    if(this.formularioBanner.invalid) {
+    if(this.archivoSubidoUrl=="") {
       this.formularioInvalido=true   
     } else {
-
+    this.formularioBanner.get('imagen_banner')?.setValue(this.archivoSubidoUrl); 
+    this.miBanner = this.formularioBanner.value;
+    this.servicioBanner.editarDatos(this.formularioBanner.value).subscribe();
+    this.actualizarDatos.emit(this.miBanner)
     $("#bannerModal").modal('hide');  
     }
   } 

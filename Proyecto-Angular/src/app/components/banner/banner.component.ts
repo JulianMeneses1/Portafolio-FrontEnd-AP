@@ -14,7 +14,7 @@ import { Banner } from 'src/app/interfaces/banner';
 
 export class BannerComponent implements OnInit {
   faSquarePen = faSquarePen  
-  modoEdicion:boolean=false;
+  modoEdicion:boolean=true;
   suscripcionAlternarEdicion?:Subscription;  
   miBanner!:Banner;
 
@@ -24,12 +24,17 @@ export class BannerComponent implements OnInit {
       value => this.modoEdicion = value)
   }
 
-  ngOnInit(): void {   
+  ngOnInit(): void {
+    
+    // GET //
+
     this.servicioBanner.obtenerDatos().subscribe(data=> {
-      console.log("Datos" + JSON.stringify(data));
       this.miBanner=data[0];
     })
-  }  
+  } 
+  
+  
+  // PUT //
 
   actualizarBanner (event:Banner) {
     this.miBanner=event;

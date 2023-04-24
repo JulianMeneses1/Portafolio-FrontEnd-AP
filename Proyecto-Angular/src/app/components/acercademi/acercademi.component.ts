@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { faSquarePen } from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
+import { AcercaDeMi } from 'src/app/interfaces/acerca-de-mi copy';
+import { AcercaDeMiService } from 'src/app/services/acerca-de-mi.service';
 
 @Component({
   selector: 'app-acercademi',
@@ -9,32 +11,32 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./acercademi.component.css']
 })
 export class AcercademiComponent implements OnInit{
-  modoEdicion:boolean=false;
+  modoEdicion:boolean=true;
   faSquarePen=faSquarePen;
   suscripcionAlternarEdicion?:Subscription;
-  titulo:string="Sobre mí";
-  texto:string="Hola! Soy Julián, full-stack web developer. Empecé a incursionar en el mundo de la programación de forma autodidácta a partir de videos en YouTube, por allá a finales de 2021, \
-                y actualmente estoy estudiando la carrera de Desarrollo Web y Aplicaciones Digitales. Me apasiona el diseño y desarrollo de sitios y aplicaciones web dinámicos y creativos. \
-                Estoy en búsqueda de nuevos desafíos laborales que pongan a prueba mis conocimientos, y me permitan tanto seguir aprendiendo como seguir creciendo profesionalmente."
-                
+  miAcercaDeMi!: AcercaDeMi;
 
-
-  constructor(private servicioEdicion : ModoEdicionService) 
+              
+  constructor(private servicioEdicion : ModoEdicionService,
+    private servicioAcercaDeMi : AcercaDeMiService) 
   {
     this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
       value => this.modoEdicion = value)
   }
 
-  ngOnInit(): void {    
-   
-  }
-  
-  cambiarTitulo (event:string) {
-    this.titulo=event
-  }
+  ngOnInit(): void {
+    
+    // GET //
 
-  cambiarTexto (event:string) {
-    this.texto=event
-  }
+    this.servicioAcercaDeMi.obtenerDatos().subscribe(data=> {
+      this.miAcercaDeMi=data[0];
+    })
+  } 
   
+  
+  // PUT //
+
+  actualizarAcercaDeMi (event:AcercaDeMi) {
+    this.miAcercaDeMi=event;
+  }
 }
