@@ -22,7 +22,7 @@ aria-hidden="true"
                                 class="form-control inputModal" 
                                 placeholder="Ingrese nombre"
                                 formControlName="nombre"
-                                [ngClass]="{'is-invalid':formularioInvalido && formularioConocimientos.get('nivel')?.errors?.['required']}"
+                                [ngClass]="{'is-invalid':formularioInvalido && formularioConocimientos.get('nombre')?.errors?.['required']}"
                                 (click)="ocultarMensajeError()"
                                 maxlength="20">
                         </div>
@@ -39,7 +39,7 @@ aria-hidden="true"
                                 type="text" 
                                 class="form-control inputModal" 
                                 placeholder="Ingrese nivel de progreso (entre 10 y 90)"
-                                formControlName="porcentaje_progreso"
+                                formControlName="nivel"
                                 [ngClass]="{'is-invalid':formularioInvalido && (formularioConocimientos.get('nivel')?.errors?.['required'] || 
                                 formularioConocimientos.get('nivel')?.errors?.['pattern'])}"
                                 (click)="ocultarMensajeError()"
