@@ -32,10 +32,7 @@ export class BannerModalImagenBannerComponent implements OnInit {
     private formBuilder: FormBuilder,
     private servicioArchivo : ArchivoService,
     private servicioBanner : BannerService) 
-    {
-    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
-      value => this.modoEdicion = value)
-  }
+    {}
 
   ngOnInit(): void { 
     

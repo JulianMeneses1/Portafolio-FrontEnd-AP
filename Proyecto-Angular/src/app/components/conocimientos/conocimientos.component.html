@@ -1,7 +1,7 @@
 <section class="d-flex justify-content-center align-items-center" id="conocimientos"  >
     <div class="card" id="container" >
         <div class="my-2 d-flex justify-content-between align-items-baseline flex-wrap"  data-aos="zoom-in" data-aos-duration="900" data-aos-easing="ease-in-out">
-            <h3><strong>{{titulo}}</strong></h3>
+            <h3><strong>{{miTitulo.titulo}}</strong></h3>
             <div>
                 <fa-icon 
                     [icon]="faPlus" 
@@ -30,16 +30,23 @@
     </div>                                 
 </section>
 <app-conocimientos-modal 
-(actualizarTitulo)="modificarTitulo($event)"
+    (actualizarTitulo)="modificarTitulo($event)"
 >
 </app-conocimientos-modal>
 <app-conocimientos-modal-crear 
-(enAgregarConocimiento)="agregarConocimiento($event)"
+    (enAgregarConocimiento)="agregarConocimiento($event)"
 >    
 </app-conocimientos-modal-crear>
 <app-conocimientos-modal-editar
     *ngFor="let conocimiento of conocimientos"
     [conocimiento]="conocimiento"
+    (enModificarConocimiento)="modificarConocimiento($event)"
 >
 </app-conocimientos-modal-editar>
+<app-conocimientos-modal-eliminar
+    *ngFor="let conocimiento of conocimientos"
+    [conocimiento]="conocimiento"
+    (enEliminarConocimiento)="eliminarConocimiento($event)"
+>    
+</app-conocimientos-modal-eliminar>
 

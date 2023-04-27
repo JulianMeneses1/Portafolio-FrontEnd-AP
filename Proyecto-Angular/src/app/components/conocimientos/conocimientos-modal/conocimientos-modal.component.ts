@@ -33,9 +33,11 @@ export class ConocimientosModalComponent implements OnInit {
     this.servicioTituloSeccion.obtenerTitulos().subscribe(data => {
       this.miTitulo=data[0];
       this.formularioConocimientos = this.formBuilder.group({
+        id: [''],
         titulo: ['',[Validators.required]]
       })
       this.formularioConocimientos.patchValue(this.miTitulo)
+
     })
     
   }
@@ -54,7 +56,6 @@ export class ConocimientosModalComponent implements OnInit {
     this.formularioInvalido=true     
     } else {
       this.miTitulo = this.formularioConocimientos.value;
-      console.log(JSON.stringify(this.formularioConocimientos.value))
       this.servicioTituloSeccion.editarTitulo(this.formularioConocimientos.value).subscribe();
       
       this.actualizarTitulo.emit(this.miTitulo)

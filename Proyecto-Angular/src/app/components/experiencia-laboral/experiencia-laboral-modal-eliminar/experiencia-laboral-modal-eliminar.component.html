@@ -1,1 +1,37 @@
-<p>experiencia-laboral-modal-eliminar works!</p>
+<!-- MODAL ELIMINAR EXPERIENCIA -->
+
+<div 
+class="modal fade modal"      
+id="experiencia-modal-eliminar-{{experiencia.id}}" tabindex="-1" 
+aria-labelledby="textoModalLabel"
+aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="d-flex align-items-center justify-content-center m-3">
+                <p class="m-0">¿Está seguro de querer eliminar la experiencia <b>{{experiencia.puesto}}</b>?</p>
+            </div>          
+                    
+            <div class="modal-footer d-flex justify-content-between p-2">
+                <button 
+                    type="button" 
+                    class="btn btn-danger"                            
+                    data-bs-dismiss="modal"
+                    >
+                    Cerrar
+                </button>
+                <button 
+                    type="button" 
+                    class="btn btn-primary"
+                    (click)="eliminarExperiencia()"
+                    data-bs-dismiss="modal"
+                    >
+                    Confirmar
+                </button>
+            </div>        
+        </div>  
+    </div>
+</div>
+                
+
+

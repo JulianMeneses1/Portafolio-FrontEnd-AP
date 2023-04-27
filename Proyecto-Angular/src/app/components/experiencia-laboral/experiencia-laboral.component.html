@@ -5,12 +5,12 @@
             <div>
                 <fa-icon
                     [icon]="faPlus" 
-                    *ngIf="modoEdicion" 
+                  
                     data-bs-toggle="modal" 
                     data-bs-target="#experiencia-modal">
                 </fa-icon> 
                 <fa-icon
-                    *ngIf="modoEdicion" 
+                    
                     [icon]="faSquarePen"
                     data-bs-toggle="modal" 
                     data-bs-target="#experiencia-modal-titulo">
@@ -27,11 +27,16 @@
                     (click)="onSelect(experiencia); desaparecerPrimerExp(); alternarExperiencias()"
                     > 
                     {{experiencia.empresa}}                   
-                    <fa-icon [icon]="faX"  *ngIf="modoEdicion" id="icono-borrar"></fa-icon> 
+                    <fa-icon 
+                            [icon]="faX"   
+                            id="icono-borrar"
+                            data-bs-toggle="modal" 
+                            [attr.data-bs-target]="'#experiencia-modal-eliminar-' + experiencia.id">
+                    </fa-icon> 
                     <fa-icon 
                             id="icono-editar"
                             [icon]="faSquarePen" 
-                            *ngIf="modoEdicion"
+                          
                             data-bs-toggle="modal" 
                             [attr.data-bs-target]="'#experiencia-modal-editar-' + experiencia.id">
                     </fa-icon>                   
@@ -63,9 +68,15 @@
 <app-experiencia-laboral-modal
     (modificarTitulo)="cambiarTitulo($event)">
 </app-experiencia-laboral-modal>
-<app-experiencia-laboral-modal-crear></app-experiencia-laboral-modal-crear>
+<app-experiencia-laboral-modal-crear>
+
+</app-experiencia-laboral-modal-crear>
 <app-experiencia-laboral-modal-editar
     *ngFor="let experiencia of experiencias"
     [experiencia]="experiencia">
 </app-experiencia-laboral-modal-editar>
+<app-experiencia-laboral-modal-eliminar
+    *ngFor="let experiencia of experiencias"
+    [experiencia]="experiencia">
+</app-experiencia-laboral-modal-eliminar>
 

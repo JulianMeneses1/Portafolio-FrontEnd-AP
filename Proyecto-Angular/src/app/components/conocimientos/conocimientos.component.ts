@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { faSquarePen, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
@@ -22,6 +22,8 @@ export class ConocimientosComponent implements OnInit{
   miTitulo!: TituloSeccion
   conocimientos!: Conocimiento[]
 
+  @Output() enModificarConocimientoHijo: EventEmitter <Conocimiento> = new EventEmitter ()
+
   constructor(private servicioEdicion : ModoEdicionService,
     private servicioTituloSeccion: TituloSeccionesService,
     private servicioConocimiento: ConocimientoService) 
@@ -41,14 +43,33 @@ export class ConocimientosComponent implements OnInit{
 
   }   
   
-  modificarTitulo(event:TituloSeccion){
-    this.miTitulo=event
+  modificarTitulo(titulo:TituloSeccion){
+    this.miTitulo=titulo
    
    }
 
    agregarConocimiento(conocimiento: Conocimiento) {
     this.servicioConocimiento.crearConocimiento(conocimiento).subscribe(() => {
-      this.conocimientos.push(conocimiento)
+      //this.conocimientos.push(conocimiento)    
+      this.servicioConocimiento.obtenerConocimientos().subscribe(data => {
+      this.conocimientos=data
+      })
     })
    }
+
+   eliminarConocimiento (id: number) {
+    this.servicioConocimiento.eliminarConocimiento(id).subscribe(() => {
+    this.conocimientos = this.conocimientos.filter( conoc => conoc.id !== id)
+    })
+  }
+  modificarConocimiento (conocimiento: any) {
+    
+    this.servicioConocimiento.editarConocimiento(conocimiento).subscribe(() => {
+      this.servicioConocimiento.obtenerConocimientos().subscribe(data => {
+        this.conocimientos=data
+        })
+    })   
+
+  }
+ 
 }

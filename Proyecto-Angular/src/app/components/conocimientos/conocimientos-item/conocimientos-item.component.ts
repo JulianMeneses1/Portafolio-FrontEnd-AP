@@ -3,7 +3,7 @@ import { faX, faSquarePen } from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { Conocimiento } from 'src/app/interfaces/conocimiento';
-import { Conocimientos } from 'src/app/interfaces/mosk-conocimientos';
+
 
 
 @Component({
