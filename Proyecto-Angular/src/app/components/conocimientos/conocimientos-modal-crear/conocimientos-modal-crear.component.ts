@@ -3,6 +3,8 @@ import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Conocimiento } from 'src/app/interfaces/conocimiento';
+import { ArchivoService } from 'src/app/services/archivo.service';
 declare var $: any;    
 
 @Component({
@@ -16,17 +18,19 @@ export class ConocimientosModalCrearComponent implements OnInit {
   nombreArchivo:string="";
   previsualizacionImagen: string="";
   formularioConocimientos!: FormGroup;
-  formularioInvalido: boolean = false; 
+  formularioInvalido: boolean = false;
+  archivoCapturado: any;
+  archivoSubidoUrl: string = "" 
 
   nivelPattern:string = "[1-9]0"
 
 
-  @ViewChild('Nombre') nuevoNombre!:ElementRef; 
-  @ViewChild('Nivel') nuevoNivel!:ElementRef;
+  @Output() enAgregarConocimiento: EventEmitter <Conocimiento> = new EventEmitter ()
 
 
   constructor(private servicioEdicion : ModoEdicionService,
     private sanitizer: DomSanitizer,
+    private servicioArchivo : ArchivoService,
     private formBuilder: FormBuilder) 
   {
     this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
@@ -37,8 +41,11 @@ export class ConocimientosModalCrearComponent implements OnInit {
     this.formularioConocimientos = this.formBuilder.group({
       nombre: ['',[Validators.required]],
       nivel: ['',[Validators.required, Validators.pattern(this.nivelPattern)]],
-      imagen: ['',[Validators.required]]
+      imagen: ['',[Validators.required]],
+      persona: [{"id":1}],
+      titulo_seccion: [{"id":1}]
     })
+
   }
   
   resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
@@ -47,7 +54,8 @@ export class ConocimientosModalCrearComponent implements OnInit {
       this.formularioConocimientos.reset();
       this.formularioInvalido = false
       this.previsualizacionImagen="";
-      this.nombreArchivo="";        
+      this.nombreArchivo=""; 
+      this.archivoSubidoUrl= "";       
       }
     ) 
   }
@@ -55,11 +63,12 @@ export class ConocimientosModalCrearComponent implements OnInit {
   onSubmit ():void {
     if(this.formularioConocimientos.invalid) {    
     this.formularioInvalido=true     
-    } else {
-    this.formularioConocimientos.reset();    
-    this.formularioInvalido=false; 
-    this.previsualizacionImagen="";
-    this.nombreArchivo="";
+    } else {    
+    this.formularioConocimientos.get('nivel')?.setValue("skills-bar--" + 
+      this.formularioConocimientos.get('nivel')?.value);
+    const conocimiento = this.formularioConocimientos.value   
+    this.enAgregarConocimiento.emit(conocimiento)
+    
     $("#conocimiento-modal-crear").modal('hide');
     }
   }
@@ -68,12 +77,24 @@ export class ConocimientosModalCrearComponent implements OnInit {
     this.formularioInvalido=false
   } 
 
+  subirArchivo() {
+
+    const formularioDeDatos = new FormData();
+    formularioDeDatos.append('file',this.archivoCapturado)
+    this.servicioArchivo.subirArchivo(formularioDeDatos)
+      .subscribe(response => {
+        this.archivoSubidoUrl = response.url;
+        this.formularioConocimientos.get('imagen')?.setValue(this.archivoSubidoUrl);
+      }) 
+}
+
   capturarImagen(event:any) {
-    const archivoCapturado = event.target.files[0]
+    this.archivoCapturado = event.target.files[0]
     this.nombreArchivo=event.target.files[0].name
-    this.extraerURL(archivoCapturado).then((imagen:any) => {
+    this.extraerURL(this.archivoCapturado).then((imagen:any) => {
       this.previsualizacionImagen=imagen.base
-    })    
+    })
+    this.subirArchivo();    
   }
 
     // FUNCIÓN PARA EXTRAER LA URL DE LA IMAGEN

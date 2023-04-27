@@ -16,7 +16,7 @@ export class AutenticacionService {
     // this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(sessionStorage.getItem('token') || '{}'));
    }
 
-  IniciarSesion(credenciales:Credenciales):Observable<any>{
+  iniciarSesion(credenciales:Credenciales):Observable<any>{
     return this.http.post(this.url, credenciales, {
       observe: 'response'
     }).pipe(map((response: HttpResponse <any>)=>{

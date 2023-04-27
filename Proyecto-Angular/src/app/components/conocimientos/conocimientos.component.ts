@@ -3,7 +3,9 @@ import { faSquarePen, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { Conocimiento } from 'src/app/interfaces/conocimiento';
-import { Conocimientos } from 'src/app/interfaces/mosk-conocimientos';
+import { TituloSeccion } from 'src/app/interfaces/titulo-seccion';
+import { TituloSeccionesService } from 'src/app/services/titulo-secciones.service';
+import { ConocimientoService } from 'src/app/services/conocimiento.service';
 
 
 @Component({
@@ -17,21 +19,36 @@ export class ConocimientosComponent implements OnInit{
   faPlus = faPlus 
   modoEdicion:boolean=false;
   suscripcionAlternarEdicion?:Subscription
+  miTitulo!: TituloSeccion
+  conocimientos!: Conocimiento[]
 
-  conocimientos: Conocimiento[] = Conocimientos
-
-  constructor(private servicioEdicion : ModoEdicionService) 
+  constructor(private servicioEdicion : ModoEdicionService,
+    private servicioTituloSeccion: TituloSeccionesService,
+    private servicioConocimiento: ConocimientoService) 
   {
     this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
       value => this.modoEdicion = value)
   }
 
-  cambiarTitulo(event:string){
-   this.titulo=event
+   ngOnInit ():void {
+
+    this.servicioTituloSeccion.obtenerTitulos().subscribe(data => {
+      this.miTitulo=data[0];
+    })
+    this.servicioConocimiento.obtenerConocimientos().subscribe(data => {
+      this.conocimientos=data
+    })
+
+  }   
   
-  }
+  modificarTitulo(event:TituloSeccion){
+    this.miTitulo=event
+   
+   }
 
-  ngOnInit ():void {
-
-  }  
+   agregarConocimiento(conocimiento: Conocimiento) {
+    this.servicioConocimiento.crearConocimiento(conocimiento).subscribe(() => {
+      this.conocimientos.push(conocimiento)
+    })
+   }
 }

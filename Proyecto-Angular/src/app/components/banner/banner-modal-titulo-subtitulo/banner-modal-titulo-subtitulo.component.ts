@@ -31,7 +31,7 @@ export class BannerModalTituloSubtituloComponent implements OnInit {
   }
 
   ngOnInit(): void { 
-    this.servicioBanner.obtenerDatos().subscribe(data=> {
+    this.servicioBanner.obtenerBanners().subscribe(data=> {
       this.miBanner=data[0];
       this.formularioTitSub = this.formBuilder.group({
         id: [''],
@@ -59,7 +59,7 @@ export class BannerModalTituloSubtituloComponent implements OnInit {
       this.formularioInvalido=true   
     } else {
       this.miBanner = this.formularioTitSub.value;
-      this.servicioBanner.editarDatos(this.formularioTitSub.value).subscribe();
+      this.servicioBanner.editarBanner(this.formularioTitSub.value).subscribe();
       this.actualizarDatos.emit(this.miBanner)       
       $("#textoModal").modal('hide');
     }

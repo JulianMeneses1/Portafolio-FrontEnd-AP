@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AcercaDeMi } from '../interfaces/acerca-de-mi';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +16,12 @@ export class AcercaDeMiService {
   
   constructor( private http: HttpClient) { }
 
-  obtenerDatos (): Observable<any> {
-    return this.http.get<any>("http://localhost:8080/obtener/acercademi")
+  obtenerAcercaDeMi (): Observable<AcercaDeMi[]> {
+    return this.http.get<AcercaDeMi[]>("http://localhost:8080/obtener/acercademi")
   }
 
-  editarDatos (acercademi:any): Observable<any> {
+  editarAcercaDeMi (acercademi:AcercaDeMi): Observable<AcercaDeMi> {
     const url:string=`${"http://localhost:8080/editar/acercademi"}/${acercademi.id}`; 
-    return this.http.put<any>(url,acercademi,this.httpOptions)
+    return this.http.put<AcercaDeMi>(url,acercademi,this.httpOptions)
   }
 }

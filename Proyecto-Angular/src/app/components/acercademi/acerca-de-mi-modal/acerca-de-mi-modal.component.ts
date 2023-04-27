@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AcercaDeMiService } from 'src/app/services/acerca-de-mi.service';
-import { AcercaDeMi } from 'src/app/interfaces/acerca-de-mi copy';
+import { AcercaDeMi } from 'src/app/interfaces/acerca-de-mi';
 declare var $: any;    
 
 @Component({
@@ -31,7 +31,7 @@ export class AcercaDeMiModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.servicioAcercaDeMi.obtenerDatos().subscribe(data=> {
+    this.servicioAcercaDeMi.obtenerAcercaDeMi().subscribe(data=> {
         this.miAcercaDeMi=data[0];   
         this.formularioAcercaDeMi = this.formBuilder.group({
         id: [''],
@@ -39,7 +39,6 @@ export class AcercaDeMiModalComponent implements OnInit {
         descripcion: [this.miAcercaDeMi.descripcion,[Validators.required]]
       })
     this.formularioAcercaDeMi.patchValue(this.miAcercaDeMi);
-    console.log("valor " + this.formularioAcercaDeMi.get('descripcion')?.value)
     })
   }
 
@@ -57,7 +56,7 @@ export class AcercaDeMiModalComponent implements OnInit {
       this.formularioInvalido=true 
     } else {
       this.miAcercaDeMi = this.formularioAcercaDeMi.value;
-      this.servicioAcercaDeMi.editarDatos(this.formularioAcercaDeMi.value).subscribe();
+      this.servicioAcercaDeMi.editarAcercaDeMi(this.formularioAcercaDeMi.value).subscribe();
       this.actualizarDatos.emit(this.miAcercaDeMi) 
       $("#acerca-de-mi-modal").modal('hide');
     }

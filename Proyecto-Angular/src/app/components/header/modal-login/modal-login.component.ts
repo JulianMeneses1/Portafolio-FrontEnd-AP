@@ -51,7 +51,7 @@ export class ModalLoginComponent implements OnInit {
     if(this.formularioLogin.invalid) {
     this.formularioInvalido=true     
     } else {
-      this.servicioAutenticacion.IniciarSesion(this.formularioLogin.value).subscribe(response=>{
+      this.servicioAutenticacion.iniciarSesion(this.formularioLogin.value).subscribe(response=>{
         this.servicioEdicion.alternarEdicion();
         $("#loginModal").modal('hide')
         })

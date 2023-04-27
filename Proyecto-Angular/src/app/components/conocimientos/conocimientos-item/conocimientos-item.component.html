@@ -6,20 +6,20 @@
         </div>
         <div>            
             <button>
-                <fa-icon [icon]="faX" *ngIf="modoEdicion" class="icono-borrar"></fa-icon>    
+                <fa-icon [icon]="faX"  class="icono-borrar"></fa-icon>    
             </button>       
             <button>
                 <fa-icon 
                         id="icono-editar"
                         [icon]="faSquarePen" 
-                        *ngIf="modoEdicion" 
+                         
                         data-bs-toggle="modal" 
                         [attr.data-bs-target]="'#conocimiento-modal-editar-' + conocimiento.id">
                 </fa-icon> 
             </button>          
         </div>         
     </div>
-    <div [ngClass]=conocimiento.porcentajeProgreso appScrollConocimientos></div>  
+    <div [ngClass]=conocimiento.nivel appScrollConocimientos></div>  
 </div>
 
 

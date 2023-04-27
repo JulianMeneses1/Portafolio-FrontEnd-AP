@@ -39,7 +39,7 @@ export class BannerModalImagenBannerComponent implements OnInit {
 
   ngOnInit(): void { 
     
-    this.servicioBanner.obtenerDatos().subscribe(data=> {
+    this.servicioBanner.obtenerBanners().subscribe(data=> {
       this.miBanner=data[0];
       this.formularioBanner = this.formBuilder.group({
         id: [''],
@@ -67,9 +67,7 @@ export class BannerModalImagenBannerComponent implements OnInit {
       formularioDeDatos.append('file',this.archivoCapturado)
       this.servicioArchivo.subirArchivo(formularioDeDatos)
         .subscribe(response => {
-          this.archivoSubidoUrl = response.url
-          console.log(this.archivoSubidoUrl)
-      
+          this.archivoSubidoUrl = response.url      
         }) 
   }
 
@@ -92,7 +90,7 @@ export class BannerModalImagenBannerComponent implements OnInit {
     } else {
     this.formularioBanner.get('imagen_banner')?.setValue(this.archivoSubidoUrl); 
     this.miBanner = this.formularioBanner.value;
-    this.servicioBanner.editarDatos(this.formularioBanner.value).subscribe();
+    this.servicioBanner.editarBanner(this.formularioBanner.value).subscribe();
     this.actualizarDatos.emit(this.miBanner)
     $("#bannerModal").modal('hide');  
     }

@@ -39,7 +39,7 @@ export class ConocimientosModalEditarComponent implements OnInit {
   ngOnInit ():void {
     this.formularioConocimientos = this.formBuilder.group({
       nombre: [this.conocimiento.nombre,[Validators.required]],
-      nivel: [this.conocimiento.porcentajeProgreso.replace("skills-bar--",""),[Validators.required, Validators.pattern(this.nivelPattern)]]
+      nivel: [this.conocimiento.porcentaje_progreso.replace("skills-bar--",""),[Validators.required, Validators.pattern(this.nivelPattern)]]
     })
   }
   
@@ -49,7 +49,7 @@ export class ConocimientosModalEditarComponent implements OnInit {
       this.formularioConocimientos.reset();
       this.formularioInvalido = false
       this.formularioConocimientos.get('nombre')?.setValue(this.conocimiento.nombre);
-      this.formularioConocimientos.get('nivel')?.setValue(this.conocimiento.porcentajeProgreso.replace("skills-bar--",""));
+      this.formularioConocimientos.get('nivel')?.setValue(this.conocimiento.porcentaje_progreso.replace("skills-bar--",""));
       this.previsualizacionImagen="";
       this.nombreArchivo="";   
       }
@@ -63,7 +63,7 @@ export class ConocimientosModalEditarComponent implements OnInit {
     this.formularioConocimientos.reset();    
     this.formularioInvalido=false;
     this.formularioConocimientos.get('nombre')?.setValue(this.conocimiento.nombre);
-      this.formularioConocimientos.get('nivel')?.setValue(this.conocimiento.porcentajeProgreso.replace("skills-bar--","")); 
+      this.formularioConocimientos.get('nivel')?.setValue(this.conocimiento.porcentaje_progreso.replace("skills-bar--","")); 
     $("#conocimiento-modal-editar-"+ this.conocimiento.id).modal('hide');
     }
   }

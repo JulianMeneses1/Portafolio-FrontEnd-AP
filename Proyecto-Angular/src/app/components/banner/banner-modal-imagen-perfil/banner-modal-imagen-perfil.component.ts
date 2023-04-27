@@ -38,7 +38,7 @@ export class BannerModalImagenPerfilComponent implements OnInit{
 
   ngOnInit(): void { 
 
-    this.servicioBanner.obtenerDatos().subscribe(data=> {
+    this.servicioBanner.obtenerBanners().subscribe(data=> {
       this.miBanner=data[0];
       this.formularioPerfil = this.formBuilder.group({
         id: [''],
@@ -91,7 +91,7 @@ export class BannerModalImagenPerfilComponent implements OnInit{
     } else {  
       this.formularioPerfil.get('imagen_perfil')?.setValue(this.archivoSubidoUrl);
       this.miBanner = this.formularioPerfil.value;
-      this.servicioBanner.editarDatos(this.formularioPerfil.value).subscribe();
+      this.servicioBanner.editarBanner(this.formularioPerfil.value).subscribe();
       this.actualizarDatos.emit(this.miBanner)
       $("#perfilModal").modal('hide');   // Usando jQuery                   
     }

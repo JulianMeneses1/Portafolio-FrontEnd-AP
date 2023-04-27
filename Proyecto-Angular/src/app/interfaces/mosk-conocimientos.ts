@@ -1,6 +1,6 @@
 import {Conocimiento} from "./conocimiento"
 
-export const Conocimientos: Conocimiento[] = [ // Hacemos que la variable Conocimientos sea un array de interfaces Task, es decir que cada objeto tiene que cumplir con la estructura definida en la interfaz
+export const Conocimientos: any = [ // Hacemos que la variable Conocimientos sea un array de interfaces Task, es decir que cada objeto tiene que cumplir con la estructura definida en la interfaz
 
     {
         id:1,

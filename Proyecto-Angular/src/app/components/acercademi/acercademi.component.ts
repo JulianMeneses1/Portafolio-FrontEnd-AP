@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faSquarePen } from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
-import { AcercaDeMi } from 'src/app/interfaces/acerca-de-mi copy';
+import { AcercaDeMi } from 'src/app/interfaces/acerca-de-mi';
 import { AcercaDeMiService } from 'src/app/services/acerca-de-mi.service';
 
 @Component({
@@ -28,7 +28,7 @@ export class AcercademiComponent implements OnInit{
     
     // GET //
 
-    this.servicioAcercaDeMi.obtenerDatos().subscribe(data=> {
+    this.servicioAcercaDeMi.obtenerAcercaDeMi().subscribe(data=> {
       this.miAcercaDeMi=data[0];
     })
   } 

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Banner } from '../interfaces/banner';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +16,13 @@ export class BannerService {
   
   constructor( private http:HttpClient) { }
 
-  obtenerDatos (): Observable<any> {
-    return this.http.get<any>("http://localhost:8080/obtener/banners")
+  obtenerBanners (): Observable<Banner[]> {
+    return this.http.get<Banner[]>("http://localhost:8080/obtener/banners")
   }
 
-  editarDatos (banner:any): Observable<any> {
+  editarBanner (banner:Banner): Observable<Banner> {
     const url:string=`${"http://localhost:8080/editar/banner"}/${banner.id}`; 
-    return this.http.put<any>(url,banner,this.httpOptions)
+    return this.http.put<Banner>(url,banner,this.httpOptions)
   }
 }
 

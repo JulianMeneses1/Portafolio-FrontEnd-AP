@@ -17,7 +17,7 @@ export class ConocimientosItemComponent {
   modoEdicion:boolean=false;
   suscripcion?:Subscription;  
 
-  @Input() conocimiento: Conocimiento = Conocimientos[0];
+  @Input() conocimiento!: Conocimiento;
 
   constructor(private servicioEdicion : ModoEdicionService) 
   {

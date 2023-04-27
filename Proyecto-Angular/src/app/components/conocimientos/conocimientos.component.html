@@ -5,12 +5,12 @@
             <div>
                 <fa-icon 
                     [icon]="faPlus" 
-                    *ngIf="modoEdicion" 
+                    
                     data-bs-toggle="modal" 
                     data-bs-target="#conocimiento-modal-crear">
                 </fa-icon> 
                 <fa-icon
-                    *ngIf="modoEdicion" 
+                    
                     [icon]="faSquarePen"
                     data-bs-toggle="modal" 
                     data-bs-target="#conocimiento-modal-titulo">
@@ -29,10 +29,17 @@
         </div>              
     </div>                                 
 </section>
-<app-conocimientos-modal (modificarTitulo)="cambiarTitulo($event)"></app-conocimientos-modal>
-<app-conocimientos-modal-crear></app-conocimientos-modal-crear>
+<app-conocimientos-modal 
+(actualizarTitulo)="modificarTitulo($event)"
+>
+</app-conocimientos-modal>
+<app-conocimientos-modal-crear 
+(enAgregarConocimiento)="agregarConocimiento($event)"
+>    
+</app-conocimientos-modal-crear>
 <app-conocimientos-modal-editar
     *ngFor="let conocimiento of conocimientos"
-    [conocimiento]="conocimiento">
+    [conocimiento]="conocimiento"
+>
 </app-conocimientos-modal-editar>
 

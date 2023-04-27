@@ -28,7 +28,7 @@ export class BannerComponent implements OnInit {
     
     // GET //
 
-    this.servicioBanner.obtenerDatos().subscribe(data=> {
+    this.servicioBanner.obtenerBanners().subscribe(data=> {
       this.miBanner=data[0];
     })
   } 
