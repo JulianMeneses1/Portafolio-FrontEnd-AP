@@ -54,9 +54,11 @@ export class ConocimientosModalComponent implements OnInit {
     this.formularioInvalido=true     
     } else {
       this.miTitulo = this.formularioConocimientos.value;
+      console.log(JSON.stringify(this.formularioConocimientos.value))
       this.servicioTituloSeccion.editarTitulo(this.formularioConocimientos.value).subscribe();
+      
       this.actualizarTitulo.emit(this.miTitulo)
-    $("#conocimiento-modal-titulo").modal('hide');     
+    $("#conocimiento-modal-titulo").modal('hide');   
     }
   }
 

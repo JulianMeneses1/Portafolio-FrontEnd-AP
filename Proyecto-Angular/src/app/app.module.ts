@@ -41,6 +41,10 @@ import { FormacionAcademicaModalCrearComponent } from './components/formacion-ac
 import { ExperienciaLaboralModalCrearComponent } from './components/experiencia-laboral/experiencia-laboral-modal-crear/experiencia-laboral-modal-crear.component';
 import { ContactoModalInfoComponent } from './components/contacto/contacto-modal-info/contacto-modal-info.component';
 import { InterceptorService } from './services/interceptor.service';
+import { ConocimientosModalEliminarComponent } from './components/conocimientos/conocimientos-modal-eliminar/conocimientos-modal-eliminar.component';
+import { ExperienciaLaboralModalEliminarComponent } from './components/experiencia-laboral/experiencia-laboral-modal-eliminar/experiencia-laboral-modal-eliminar.component';
+import { FormacionAcademicaModalEliminarComponent } from './componentes/formacion-academica/formacion-academica-modal-eliminar/formacion-academica-modal-eliminar.component';
+import { ProyectosModalEliminarComponent } from './components/proyectos/proyectos-modal-eliminar/proyectos-modal-eliminar.component';
 
 
 
@@ -81,7 +85,11 @@ import { InterceptorService } from './services/interceptor.service';
     ProyectosModalCrearComponent,
     FormacionAcademicaModalCrearComponent,
     ExperienciaLaboralModalCrearComponent,
-    ContactoModalInfoComponent
+    ContactoModalInfoComponent,
+    ConocimientosModalEliminarComponent,
+    ExperienciaLaboralModalEliminarComponent,
+    FormacionAcademicaModalEliminarComponent,
+    ProyectosModalEliminarComponent
   ],
   imports: [
     BrowserModule,
