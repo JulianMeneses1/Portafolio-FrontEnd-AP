@@ -65,7 +65,7 @@ export class ConocimientosModalCrearComponent implements OnInit {
     this.formularioInvalido=true     
     } else {    
     this.formularioConocimientos.get('nivel')?.setValue("skills-bar--" + 
-      this.formularioConocimientos.get('nivel')?.value);
+    this.formularioConocimientos.get('nivel')?.value);
     const conocimiento = this.formularioConocimientos.value   
     this.enAgregarConocimiento.emit(conocimiento)
     

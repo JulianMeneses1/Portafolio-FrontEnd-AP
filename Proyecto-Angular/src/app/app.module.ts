@@ -28,9 +28,6 @@ import { ExperienciaLaboralModalComponent } from './components/experiencia-labor
 import { FormacionAcademicaModalComponent } from './components/formacion-academica/formacion-academica-modal/formacion-academica-modal.component';
 import { ProyectosModalComponent } from './components/proyectos/proyectos-modal/proyectos-modal.component';
 import { AcercaDeMiModalComponent } from './components/acercademi/acerca-de-mi-modal/acerca-de-mi-modal.component';
-import { BannerModalImagenPerfilComponent } from './components/banner/banner-modal-imagen-perfil/banner-modal-imagen-perfil.component';
-import { BannerModalTituloSubtituloComponent } from './components/banner/banner-modal-titulo-subtitulo/banner-modal-titulo-subtitulo.component';
-import { BannerModalImagenBannerComponent } from './components/banner/banner-modal-imagen-banner/banner-modal-imagen-banner.component';
 import { ConocimientosModalEditarComponent } from './components/conocimientos/conocimientos-modal-editar/conocimientos-modal-editar.component';
 import { ProyectosModalEditarComponent } from './components/proyectos/proyectos-modal-editar/proyectos-modal-editar.component';
 import { ExperienciaLaboralModalEditarComponent } from './components/experiencia-laboral/experiencia-laboral-modal-editar/experiencia-laboral-modal-editar.component';
@@ -45,6 +42,7 @@ import { ConocimientosModalEliminarComponent } from './components/conocimientos/
 import { ExperienciaLaboralModalEliminarComponent } from './components/experiencia-laboral/experiencia-laboral-modal-eliminar/experiencia-laboral-modal-eliminar.component';
 import { FormacionAcademicaModalEliminarComponent } from './componentes/formacion-academica/formacion-academica-modal-eliminar/formacion-academica-modal-eliminar.component';
 import { ProyectosModalEliminarComponent } from './components/proyectos/proyectos-modal-eliminar/proyectos-modal-eliminar.component';
+import { BannerModalComponent } from './components/banner/banner-modal/banner-modal.component';
 
 
 
@@ -74,9 +72,6 @@ import { ProyectosModalEliminarComponent } from './components/proyectos/proyecto
     FormacionAcademicaModalComponent,
     ProyectosModalComponent,
     AcercaDeMiModalComponent,
-    BannerModalImagenPerfilComponent,
-    BannerModalTituloSubtituloComponent,
-    BannerModalImagenBannerComponent,
     ConocimientosModalEditarComponent,
     ProyectosModalEditarComponent,
     ExperienciaLaboralModalEditarComponent,
@@ -89,7 +84,8 @@ import { ProyectosModalEliminarComponent } from './components/proyectos/proyecto
     ConocimientosModalEliminarComponent,
     ExperienciaLaboralModalEliminarComponent,
     FormacionAcademicaModalEliminarComponent,
-    ProyectosModalEliminarComponent
+    ProyectosModalEliminarComponent,
+    BannerModalComponent
   ],
   imports: [
     BrowserModule,

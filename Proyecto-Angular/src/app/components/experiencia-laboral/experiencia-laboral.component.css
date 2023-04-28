@@ -138,12 +138,12 @@ a:hover::after{
 }
 
 .boton-exp-item-seleccionado {
-    color: rgb(188, 230, 248)      
+    color: rgb(188, 230, 248) ;
+    background-color: #495670;    
 }
 
 .boton-exp-item:hover{
-    color:rgb(188, 230, 248);
-    background-color: #495670;    
+    color:rgb(188, 230, 248)
 }
 
 .lista-seleccion {

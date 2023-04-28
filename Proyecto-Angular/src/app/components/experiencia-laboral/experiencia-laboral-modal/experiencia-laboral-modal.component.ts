@@ -34,7 +34,7 @@ export class ExperienciaLaboralModalComponent implements OnInit {
     })
   }
 
-  cambiarTitulo(){
+  actualizarTitulo(){
       this.titulo=this.nuevoTitulo.nativeElement.value;
       this.modificarTitulo.emit(this.titulo)     
   }
@@ -53,7 +53,7 @@ export class ExperienciaLaboralModalComponent implements OnInit {
     if(this.formularioExperiencia.invalid) {    
     this.formularioInvalido=true     
     } else {
-    this.cambiarTitulo();
+
     $("#experiencia-modal-titulo").modal('hide');
     this.formularioExperiencia.get('titulo')?.setValue(this.titulo);      
     }

@@ -18,13 +18,13 @@ export class ExperienciaLaboralModalEditarComponent implements OnInit {
   formularioExperiencia!: FormGroup;
   formularioInvalido: boolean = false;
 
-  @Input() experiencia: Experiencia = Experiencias [0]; 
+  @Input() experiencia!: Experiencia ; 
 
-  @ViewChild('empresa') empresa!:ElementRef;  
+  @ViewChild('nombre_empresa') nombre_empresa!:ElementRef;  
   @ViewChild('puesto') puesto!:ElementRef;  
   @ViewChild('url') url!:ElementRef;  
-  @ViewChild('fechaInicio') fechaInicio!:ElementRef;  
-  @ViewChild('fechaFin') fechaFin!:ElementRef;  
+  @ViewChild('fecha_inicio') fecha_inicio!:ElementRef;  
+  @ViewChild('fecha_fin') fecha_fin!:ElementRef;  
   @ViewChild('descripcion') descripcion!:ElementRef;  
 
   urlPattern:string = "[-a-zA-Z0-9@:%_\\+.~#?&//=]{2,256}\\.[a-z]{2,4}\\b(\\/[-a-zA-Z0-9@:%_\\+.~#?&//=]*)?"
@@ -40,11 +40,11 @@ export class ExperienciaLaboralModalEditarComponent implements OnInit {
 
   ngOnInit ():void {
     this.formularioExperiencia = this.formBuilder.group({
-      empresa: [this.experiencia.empresa,[Validators.required]],
+      nombre_empresa: [this.experiencia.nombre_empresa,[Validators.required]],
       puesto: [this.experiencia.puesto,[Validators.required]],
-      url: [this.experiencia.urlEmpresa,[Validators.pattern(this.urlPattern)]],
-      fechaInicio: [this.experiencia.fechaInicio,[Validators.required,Validators.pattern(this.fechaPattern)]],
-      fechaFin: [this.experiencia.fechaFin,[Validators.required,Validators.pattern(this.fechaPattern)]],
+      url: [this.experiencia.url,[Validators.pattern(this.urlPattern)]],
+      fecha_inicio: [this.experiencia.fecha_inicio,[Validators.required,Validators.pattern(this.fechaPattern)]],
+      fecha_fin: [this.experiencia.fecha_fin,[Validators.required,Validators.pattern(this.fechaPattern)]],
       descripcion: [this.experiencia.descripcion,[Validators.required]]
     })
   }
@@ -54,11 +54,11 @@ export class ExperienciaLaboralModalEditarComponent implements OnInit {
     $("#experiencia-modal-editar-"+ this.experiencia.id).on('hidden.bs.modal',  () => {
       this.formularioExperiencia.reset();
       this.formularioInvalido = false
-      this.formularioExperiencia.get('empresa')?.setValue(this.experiencia.empresa);
+      this.formularioExperiencia.get('nombre_empresa')?.setValue(this.experiencia.nombre_empresa);
       this.formularioExperiencia.get('puesto')?.setValue(this.experiencia.puesto);
-      this.formularioExperiencia.get('url')?.setValue(this.experiencia.urlEmpresa);
-      this.formularioExperiencia.get('fechaInicio')?.setValue(this.experiencia.fechaInicio);
-      this.formularioExperiencia.get('fechaFin')?.setValue(this.experiencia.fechaFin);
+      this.formularioExperiencia.get('url')?.setValue(this.experiencia.url);
+      this.formularioExperiencia.get('fecha_inicio')?.setValue(this.experiencia.fecha_inicio);
+      this.formularioExperiencia.get('fecha_fin')?.setValue(this.experiencia.fecha_fin);
       this.formularioExperiencia.get('descripcion')?.setValue(this.experiencia.descripcion);
       }
     ) 
@@ -70,11 +70,11 @@ export class ExperienciaLaboralModalEditarComponent implements OnInit {
     } else {
     this.formularioExperiencia.reset();    
     this.formularioInvalido=false;
-    this.formularioExperiencia.get('empresa')?.setValue(this.experiencia.empresa);
+    this.formularioExperiencia.get('nombre_empresa')?.setValue(this.experiencia.nombre_empresa);
       this.formularioExperiencia.get('puesto')?.setValue(this.experiencia.puesto);
-      this.formularioExperiencia.get('url')?.setValue(this.experiencia.urlEmpresa);
-      this.formularioExperiencia.get('fechaInicio')?.setValue(this.experiencia.fechaInicio);
-      this.formularioExperiencia.get('fechaFin')?.setValue(this.experiencia.fechaFin);
+      this.formularioExperiencia.get('url')?.setValue(this.experiencia.url);
+      this.formularioExperiencia.get('fecha_inicio')?.setValue(this.experiencia.fecha_inicio);
+      this.formularioExperiencia.get('fecha_fin')?.setValue(this.experiencia.fecha_fin);
       this.formularioExperiencia.get('descripcion')?.setValue(this.experiencia.descripcion); 
     $("#experiencia-modal-editar-"+ this.experiencia.id).modal('hide');
     }

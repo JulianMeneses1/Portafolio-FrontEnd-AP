@@ -2,11 +2,11 @@ export interface Experiencia {
     
     id?: number,
     puesto:string,
-    empresa: string,
-    urlEmpresa?: string,
-    fechaInicio: string,
-    fechaFin: string,
+    nombre_empresa: string,
+    url?: string,
+    fecha_inicio: string,
+    fecha_fin: string,
     descripcion: string,
-    posicionY: string
+    posicion_Y: string
 
 }

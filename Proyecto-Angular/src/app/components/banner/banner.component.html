@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center align-items-center" id="container">    
     <div 
         id="div-editar-banner"
-        class="d-flex align-items-start justify-content-end px-4"
+        class="d-flex align-items-start justify-content-end px-5"
         *ngIf="modoEdicion">
         <fa-icon
             class="iconos-edicion" 
@@ -13,32 +13,15 @@
     <img 
         *ngIf="miBanner"  
         id="banner"
-        #banner 
-        src="{{miBanner.imagen_banner}}"
+        [src]="miBanner.imagen_banner"
     >  
-    <div id="sub-container">
-        <div class="d-flex justify-content-end align-items-start" *ngIf="modoEdicion">
-            <fa-icon
-                class="iconos-edicion" 
-                [icon]="faSquarePen"
-                data-bs-toggle="modal" 
-                data-bs-target="#perfilModal">
-            </fa-icon>
-        </div>
+    <div id="sub-container">     
+       
         <img 
             *ngIf="miBanner"
             id="foto-perfil" 
-            src="{{miBanner.imagen_perfil}}"
-            #fotoPerfil>
-        <div class="d-flex justify-content-end align-items-start ps-2 pb-2" *ngIf="modoEdicion">
-            <fa-icon
-                class="iconos-edicion" 
-                [icon]="faSquarePen" 
-                id="editar-texto"
-                data-bs-toggle="modal" 
-                data-bs-target="#textoModal">
-            </fa-icon>
-        </div>
+            [src]="miBanner.imagen_perfil"
+            >       
         <h2 *ngIf="miBanner">{{miBanner.titulo}}</h2>
         <h5 *ngIf="miBanner"> {{miBanner.subtitulo}}</h5>
     </div>    
@@ -62,13 +45,7 @@
         </button>      
     </div>
 </div>
-<app-banner-modal-imagen-banner   
-    (actualizarDatos)="actualizarBanner($event)">
-</app-banner-modal-imagen-banner>
-<app-banner-modal-imagen-perfil
-    (actualizarDatos)="actualizarBanner($event)">
-</app-banner-modal-imagen-perfil>
-<app-banner-modal-titulo-subtitulo
-   (actualizarDatos)="actualizarBanner($event)">
-</app-banner-modal-titulo-subtitulo>
-
+<app-banner-modal   
+    (enActualizarBanner)="actualizarBanner($event)"    
+>
+</app-banner-modal>

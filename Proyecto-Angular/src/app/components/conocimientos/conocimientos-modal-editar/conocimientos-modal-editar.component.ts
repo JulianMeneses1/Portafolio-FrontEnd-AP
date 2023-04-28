@@ -2,10 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
 import { Conocimiento } from 'src/app/interfaces/conocimiento';
 import { ArchivoService } from 'src/app/services/archivo.service';
-import { ConocimientoService } from 'src/app/services/conocimiento.service';
+
 declare var $: any;    
 
 
@@ -21,11 +20,11 @@ export class ConocimientosModalEditarComponent implements OnInit {
   previsualizacionImagen: string="";
   formularioConocimientos!: FormGroup;
   formularioInvalido: boolean = false;
-  archivoCapturado: any;
-  archivoSubidoUrl: string = ""
+  archivoCapturado: any; 
   nivelPattern:string = "[1-9]0"
+  archivoSubidoUrl: string = ""
 
-  @Input() conocimiento!: Conocimiento;
+  @Input() conocimiento!: Conocimiento;  
 
   @Output() enModificarConocimiento: EventEmitter <Conocimiento> = new EventEmitter ()
 
@@ -38,15 +37,17 @@ export class ConocimientosModalEditarComponent implements OnInit {
     {}
 
   ngOnInit ():void {
+    
 
     this.formularioConocimientos = this.formBuilder.group({
       id: [this.conocimiento.id],
       nombre: [this.conocimiento.nombre,[Validators.required]],
       nivel: [this.conocimiento.nivel.replace("skills-bar--",""),[Validators.required, Validators.pattern(this.nivelPattern)]],
-      imagen: [this.conocimiento.imagen],
+      imagen: [''],
       persona: [{"id":1}],
       titulo_seccion: [{"id":1}]
     })
+    this.archivoSubidoUrl=this.conocimiento.imagen
     
   }
   
@@ -69,7 +70,7 @@ export class ConocimientosModalEditarComponent implements OnInit {
     } else {
       this.formularioConocimientos.get('imagen')?.setValue(this.archivoSubidoUrl); 
       this.formularioConocimientos.get('nivel')?.setValue("skills-bar--" + 
-      this.formularioConocimientos.get('nivel')?.value);
+        this.formularioConocimientos.get('nivel')?.value);
       this.conocimiento=this.formularioConocimientos.value;    
       this.enModificarConocimiento.emit(this.conocimiento);                
       $("#conocimiento-modal-editar-"+ this.conocimiento.id).modal('hide');

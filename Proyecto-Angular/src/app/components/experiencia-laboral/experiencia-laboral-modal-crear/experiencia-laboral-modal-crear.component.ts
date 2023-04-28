@@ -20,11 +20,11 @@ export class ExperienciaLaboralModalCrearComponent implements OnInit {
   urlPattern:string = "[-a-zA-Z0-9@:%_\\+.~#?&//=]{2,256}\\.[a-z]{2,4}\\b(\\/[-a-zA-Z0-9@:%_\\+.~#?&//=]*)?"
   fechaPattern:string = "((Enero|Marzo|Febrero|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre|Abril)\\s\\d{4})|Actualidad"
 
-  @ViewChild('empresa') empresa!:ElementRef;  
+  @ViewChild('nombre_empresa') nombre_empresa!:ElementRef;  
   @ViewChild('puesto') puesto!:ElementRef;  
   @ViewChild('url') url!:ElementRef;  
-  @ViewChild('fechaInicio') fechaInicio!:ElementRef;  
-  @ViewChild('fechaFin') fechaFin!:ElementRef;  
+  @ViewChild('fecha_inicio') fecha_inicio!:ElementRef;  
+  @ViewChild('fecha_fin') fecha_fin!:ElementRef;  
   @ViewChild('descripcion') descripcion!:ElementRef;  
 
   constructor(private servicioEdicion : ModoEdicionService,
@@ -36,11 +36,11 @@ export class ExperienciaLaboralModalCrearComponent implements OnInit {
 
   ngOnInit ():void {
     this.formularioExperiencia = this.formBuilder.group({
-      empresa: ['',[Validators.required]],
+      nombre_empresa: ['',[Validators.required]],
       puesto: ['',[Validators.required]],
       url: ['',[Validators.pattern(this.urlPattern)]],
-      fechaInicio: ['',[Validators.required,Validators.pattern(this.fechaPattern)]],
-      fechaFin: ['',[Validators.required,Validators.pattern(this.fechaPattern)]],
+      fecha_inicio: ['',[Validators.required,Validators.pattern(this.fechaPattern)]],
+      fecha_fin: ['',[Validators.required,Validators.pattern(this.fechaPattern)]],
       descripcion: ['',[Validators.required]]
     })
   }

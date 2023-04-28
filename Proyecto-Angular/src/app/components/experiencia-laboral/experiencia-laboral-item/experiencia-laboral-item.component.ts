@@ -3,9 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { Experiencia } from 'src/app/interfaces/experiencia-laboral';
-import { Experiencias } from 'src/app/interfaces/mosk-experiencia-laboral';
-import { FormacionAcademica } from 'src/app/interfaces/mosk-formacion-academica';
-import { Educacion } from 'src/app/interfaces/formacion-academica';
+import { ExpLaboralService } from 'src/app/services/exp-laboral.service';
 
 @Component({
   selector: 'app-experiencia-laboral-item',
@@ -15,29 +13,33 @@ import { Educacion } from 'src/app/interfaces/formacion-academica';
 export class ExperienciaLaboralItemComponent { 
   modoEdicion:boolean=false;
   suscripcion?:Subscription;
-  experiencia:Experiencia = Experiencias[0];
-  educacion: Educacion = FormacionAcademica[0];
+  experiencia!:Experiencia;
+  experiencias !: Experiencia[];
+ 
 
 
   constructor(private servicioEdicion : ModoEdicionService,
-    private ruta: ActivatedRoute) {
+    private ruta: ActivatedRoute,
+    private servicioExperiencia : ExpLaboralService) {
         
     this.suscripcion = this.servicioEdicion.onAlternarEdicion().subscribe(
       value => this.modoEdicion = value)
   } 
 
   ngOnInit () {
-    
-    this.ruta.queryParams.subscribe(params=>{      
-      this.experiencia = Experiencias [params['idExp']-1]
-    })
 
-
-
+    this.servicioExperiencia.obtenerExperiencias().subscribe(data => {
+      this.experiencias=data;
+      this.ruta.queryParams.subscribe(params=>{        
+        this.experiencia = this.experiencias [params['idExp']-1]
+      })
+    })  
   }
-
-
+  
 }
+
+
+
 
 
 

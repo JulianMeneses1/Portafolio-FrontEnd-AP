@@ -22,8 +22,6 @@ export class ConocimientosComponent implements OnInit{
   miTitulo!: TituloSeccion
   conocimientos!: Conocimiento[]
 
-  @Output() enModificarConocimientoHijo: EventEmitter <Conocimiento> = new EventEmitter ()
-
   constructor(private servicioEdicion : ModoEdicionService,
     private servicioTituloSeccion: TituloSeccionesService,
     private servicioConocimiento: ConocimientoService) 
