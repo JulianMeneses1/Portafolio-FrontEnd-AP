@@ -1,5 +1,6 @@
 import { Component} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Experiencia } from 'src/app/interfaces/experiencia-laboral';
 import { ExpLaboralService } from 'src/app/services/exp-laboral.service';
 
@@ -11,11 +12,16 @@ import { ExpLaboralService } from 'src/app/services/exp-laboral.service';
 export class ExperienciaLaboralItemComponent { 
   experiencia!:Experiencia;
   experiencias !: Experiencia[];
+  
+  suscripcionActualizarExp?:Subscription;
  
 
 
   constructor(private ruta: ActivatedRoute,
     private servicioExperiencia : ExpLaboralService) {
+
+      this.suscripcionActualizarExp = this.servicioExperiencia.onActualizarExpItem().subscribe(
+        value => this.experiencia = value)
   } 
 
   ngOnInit () { 

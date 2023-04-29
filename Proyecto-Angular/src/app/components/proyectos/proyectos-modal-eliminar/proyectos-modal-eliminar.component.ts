@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Proyecto } from 'src/app/interfaces/proyecto';
+
+
 
 @Component({
   selector: 'app-proyectos-modal-eliminar',
@@ -7,4 +10,14 @@ import { Component } from '@angular/core';
 })
 export class ProyectosModalEliminarComponent {
 
+  @Input() proyecto!: Proyecto;
+  @Output() enEliminarProyecto: EventEmitter <number> = new EventEmitter()
+
+  eliminarProyecto () {
+    this.enEliminarProyecto.emit(this.proyecto.id)
+  }
+
 }
+
+
+

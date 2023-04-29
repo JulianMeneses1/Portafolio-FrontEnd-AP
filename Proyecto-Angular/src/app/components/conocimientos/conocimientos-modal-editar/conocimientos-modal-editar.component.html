@@ -68,14 +68,9 @@ aria-hidden="true"
                             (change)="capturarImagen($event)" 
                             type="file" 
                             accept="image/*"
-                            (click)="ocultarMensajeError()">
-                        
+                            (click)="ocultarMensajeError()">                        
                     </div>
-                    <p 
-                        class="text-danger" 
-                        *ngIf="formularioInvalido">
-                        Este campo es obligatorio
-                    </p>
+
                     <label class="textoModal">{{nombreArchivo}}</label>                                           
                     
                     <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">

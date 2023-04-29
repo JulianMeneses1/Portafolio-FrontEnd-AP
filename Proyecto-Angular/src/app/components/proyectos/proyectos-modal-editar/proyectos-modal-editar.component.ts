@@ -1,11 +1,11 @@
-import { Component, ViewChild, ElementRef, OnInit, Input} from '@angular/core';
-import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Proyecto } from 'src/app/interfaces/proyecto';
-import { Proyectos } from 'src/app/interfaces/mosk-proyecto';
+import { ArchivoService } from 'src/app/services/archivo.service';
+
 declare var $: any;    
 
 @Component({
@@ -14,55 +14,49 @@ declare var $: any;
   styleUrls: ['./proyectos-modal-editar.component.css']
 })
 export class ProyectosModalEditarComponent implements OnInit {
-  modoEdicion:boolean=false;
-  suscripcionAlternarEdicion?:Subscription;
   nombreArchivo:string="";
   previsualizacionImagen: string="";
   formularioProyecto!: FormGroup;
   formularioInvalido: boolean = false;
+  archivoSubidoUrl: string = "";
+  archivoCapturado: any;   
 
-  @Input() proyecto: Proyecto = Proyectos [0]; 
+  @Input() proyecto!: Proyecto; 
+
+  @Output() enModificarProyecto: EventEmitter <Proyecto> = new EventEmitter ()
 
   urlWebPattern:string = "[-a-zA-Z0-9@:%_\\+.~#?&//=]{2,256}\\.[a-z]{2,4}\\b(\\/[-a-zA-Z0-9@:%_\\+.~#?&//=]*)?"
-  urlGitHubPattern:string = "(https?://)?(github\\.com)(/[\\w\\.@\\:/\\-~]+)+"
-  tecnologiasPattern:string = "((\\w)+\\s)+"
-  
-  @ViewChild('Nombre') nuevoNombre!:ElementRef; 
-  @ViewChild('Descripcion') nuevaDescripcion!:ElementRef;
-  @ViewChild('URLWeb') nuevaURLWeb!:ElementRef;
-  @ViewChild('URLGitHub') nuevaURLGitHub!:ElementRef;
-  @ViewChild('Tecnologias') nuevasTecnologias!:ElementRef;
+  urlGitHubPattern:string = "(https?://)?(github\\.com)(/[\\w\\.@\\:/\\-~]+)+" 
+  tecnologiasPattern:RegExp = /(\w)((\,\w)+)?/
 
-
-  constructor(private servicioEdicion : ModoEdicionService,
-    private sanitizer: DomSanitizer, private formBuilder: FormBuilder) 
-  {
-    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
-      value => this.modoEdicion = value)     
-  }
+  constructor(private sanitizer: DomSanitizer, 
+    private formBuilder: FormBuilder,
+    private servicioArchivo: ArchivoService) 
+  {  }
 
   ngOnInit ():void {
     this.formularioProyecto = this.formBuilder.group({
+      id: [this.proyecto.id],
       nombre: [this.proyecto.nombre,[Validators.required]],
+      imagen: [''],
       descripcion: [this.proyecto.descripcion,[Validators.required]],
-      urlWeb: [this.proyecto.urlSitioWeb,[Validators.pattern(this.urlWebPattern)]],
-      urlGitHub: [this.proyecto.urlGitHub,[Validators.required,Validators.pattern(this.urlGitHubPattern)]],
-      tecnologias: [this.proyecto.tecnologias,[Validators.required,Validators.pattern(this.tecnologiasPattern)]]
+      url_sitio_web: [this.proyecto.url_sitio_web,[Validators.pattern(this.urlWebPattern)]],
+      url_github: [this.proyecto.url_github,[Validators.required,Validators.pattern(this.urlGitHubPattern)]],
+      tecnologias: [this.proyecto.tecnologias,[Validators.required,Validators.pattern(this.tecnologiasPattern)]],
+      persona: [{"id":1}],
+      titulo_seccion: [{"id":3}]
     })
+    this.archivoSubidoUrl=this.proyecto.imagen
   }
 
   resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
                                                                               // o se apreta la tecla escape o se hace click en el botón cerrar
-    $("#proyecto-modal-crear").on('hidden.bs.modal',  () => {
-      this.formularioProyecto.reset();
+    $("#proyecto-modal-editar").on('hidden.bs.modal',  () => {
+      this.formularioProyecto.patchValue(this.proyecto);      
       this.formularioInvalido = false;
-      this.formularioProyecto.get('nombre')?.setValue(this.proyecto.nombre);
-      this.formularioProyecto.get('descripcion')?.setValue(this.proyecto.descripcion);
-      this.formularioProyecto.get('urlSitioWeb')?.setValue(this.proyecto.urlSitioWeb);
-      this.formularioProyecto.get('urlGitHub')?.setValue(this.proyecto.urlGitHub);
-      this.formularioProyecto.get('tecnologias')?.setValue(this.proyecto.tecnologias);
       this.previsualizacionImagen="";
-      this.nombreArchivo="";       
+      this.nombreArchivo="";   
+      this.archivoSubidoUrl= "";  
       }
     ) 
   }
@@ -71,14 +65,10 @@ export class ProyectosModalEditarComponent implements OnInit {
     if(this.formularioProyecto.invalid) {
     this.formularioInvalido=true     
     } else {
-    this.formularioProyecto.reset();    
-    this.formularioInvalido=false;
-    this.formularioProyecto.get('nombre')?.setValue(this.proyecto.nombre);
-    this.formularioProyecto.get('descripcion')?.setValue(this.proyecto.descripcion);
-    this.formularioProyecto.get('urlSitioWeb')?.setValue(this.proyecto.urlSitioWeb);
-    this.formularioProyecto.get('urlGitHub')?.setValue(this.proyecto.urlGitHub);
-      this.formularioProyecto.get('tecnologias')?.setValue(this.proyecto.tecnologias);
-    $("#proyecto-modal-editar-" + this.proyecto.id).modal('hide');  
+      this.formularioProyecto.get('imagen')?.setValue(this.archivoSubidoUrl);    
+      this.proyecto=this.formularioProyecto.value;    
+      this.enModificarProyecto.emit(this.proyecto);
+      $("#proyecto-modal-editar-" + this.proyecto.id).modal('hide');  
     }
   }
 
@@ -86,12 +76,23 @@ export class ProyectosModalEditarComponent implements OnInit {
     this.formularioInvalido=false
   } 
 
+  subirArchivo() {
+
+    const formularioDeDatos = new FormData();
+    formularioDeDatos.append('file',this.archivoCapturado)
+    this.servicioArchivo.subirArchivo(formularioDeDatos)
+      .subscribe(response => {
+        this.archivoSubidoUrl = response.url      
+      }) 
+}
+
   capturarImagen(event:any) {
-    const archivoCapturado = event.target.files[0]
+    this.archivoCapturado = event.target.files[0]
     this.nombreArchivo=event.target.files[0].name
-    this.extraerURL(archivoCapturado).then((imagen:any) => {
+    this.extraerURL(this.archivoCapturado).then((imagen:any) => {
       this.previsualizacionImagen=imagen.base
-    })    
+    })  
+    this.subirArchivo();  
   }
 
     // FUNCIÓN PARA EXTRAER LA URL DE LA IMAGEN

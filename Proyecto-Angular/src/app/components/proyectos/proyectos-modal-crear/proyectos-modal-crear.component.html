@@ -17,8 +17,7 @@
                         <div class="mb-3">
                             <div class="d-flex align-items-baseline modal-body-div">
                                 <label for="user" class="form-label etiquetaModal">Nombre</label>
-                                <input 
-                                    #Nombre 
+                                <input    
                                     type="text" 
                                     class="form-control inputModal" 
                                     placeholder="Ingrese nombre"
@@ -55,18 +54,17 @@
                             <div class="d-flex align-items-baseline modal-body-div">
                                 <label for="user" class="form-label etiquetaModal">URL Sitio Web</label>
                                 <input 
-                                    #URLWeb
                                     type="text" 
-                                    [ngClass]="{'is-invalid':formularioInvalido && formularioProyecto.get('urlSitioWeb')?.errors?.['pattern']}"
+                                    [ngClass]="{'is-invalid':formularioInvalido && formularioProyecto.get('url_sitio_web')?.errors?.['pattern']}"
                                     class="form-control inputModal" 
                                     placeholder="Ingrese url del sitio web del proyecto (si posee)"
                                     maxlength="200"
-                                    formControlName="urlWeb"
+                                    formControlName="url_sitio_web"
                                     (click)="ocultarMensajeError()">
                             </div>                        
                             <p 
                                 class="text-danger" 
-                                *ngIf="formularioInvalido && formularioProyecto.get('urlSitioWeb')?.errors?.['pattern']">
+                                *ngIf="formularioInvalido && formularioProyecto.get('url_sitio_web')?.errors?.['pattern']">
                                 Debe ingresar una url válida
                             </p>  
                         </div>
@@ -74,24 +72,24 @@
                             <div class="d-flex align-items-baseline modal-body-div">
                                 <label for="user" class="form-label etiquetaModal">URL GitHub</label>
                                 <input 
-                                    #URLGitHub
+
                                     type="text"
-                                    [ngClass]="{'is-invalid':formularioInvalido && (formularioProyecto.get('urlGitHub')?.errors?.['required'] || 
-                                    formularioInvalido && formularioProyecto.get('urlGitHub')?.errors?.['pattern'])}" 
+                                    [ngClass]="{'is-invalid':formularioInvalido && (formularioProyecto.get('url_github')?.errors?.['required'] || 
+                                    formularioInvalido && formularioProyecto.get('url_github')?.errors?.['pattern'])}" 
                                     class="form-control inputModal" 
                                     placeholder="Ingrese url del sitio del proyecto en GitHub"
                                     maxlength="200"
-                                    formControlName="urlGitHub"
+                                    formControlName="url_github"
                                     (click)="ocultarMensajeError()">
                             </div>
                             <p 
                                 class="text-danger" 
-                                *ngIf="formularioInvalido && formularioProyecto.get('urlGitHub')?.errors?.['required']">
+                                *ngIf="formularioInvalido && formularioProyecto.get('url_github')?.errors?.['required']">
                                 Este campo es obligatorio
                             </p> 
                             <p 
                                 class="text-danger" 
-                                *ngIf="formularioInvalido && formularioProyecto.get('urlGitHub')?.errors?.['pattern']">
+                                *ngIf="formularioInvalido && formularioProyecto.get('url_github')?.errors?.['pattern']">
                                 Debe ingresar una url válida
                             </p> 
                         </div>
@@ -117,7 +115,7 @@
                             <p 
                                 class="text-danger" 
                                 *ngIf="formularioInvalido && formularioProyecto.get('tecnologias')?.errors?.['pattern']">
-                                Separar las tecnologias con un espacio y agregar un espacio al final
+                                Las tecnologías deben ir en minúscula y separadas por una coma 
                             </p> 
                         </div>                      
                         <div class="mb-3">
@@ -126,11 +124,9 @@
                                 <input 
                                     class="inputEdicion me-2" 
                                     (change)="capturarImagen($event)" 
-                                    #nuevaImagen
                                     (click)="ocultarMensajeError()" 
                                     type="file"
-                                    accept="image/*"
-                                    formControlName="imagen">
+                                    accept="image/*">
                                 <label class="textoModal">{{nombreArchivo}}</label>             
                             </div>
                             <p 

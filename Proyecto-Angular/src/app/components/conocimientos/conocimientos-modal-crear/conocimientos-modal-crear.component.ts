@@ -1,6 +1,4 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
-import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
-import { Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Conocimiento } from 'src/app/interfaces/conocimiento';
@@ -13,8 +11,6 @@ declare var $: any;
   styleUrls: ['./conocimientos-modal-crear.component.css']
 })
 export class ConocimientosModalCrearComponent implements OnInit {
-  modoEdicion:boolean=false;
-  suscripcionAlternarEdicion?:Subscription;
   nombreArchivo:string="";
   previsualizacionImagen: string="";
   formularioConocimientos!: FormGroup;
@@ -28,14 +24,10 @@ export class ConocimientosModalCrearComponent implements OnInit {
   @Output() enAgregarConocimiento: EventEmitter <Conocimiento> = new EventEmitter ()
 
 
-  constructor(private servicioEdicion : ModoEdicionService,
-    private sanitizer: DomSanitizer,
+  constructor(private sanitizer: DomSanitizer,
     private servicioArchivo : ArchivoService,
     private formBuilder: FormBuilder) 
-  {
-    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
-      value => this.modoEdicion = value)     
-  }
+  { }
 
   ngOnInit ():void {
     this.formularioConocimientos = this.formBuilder.group({

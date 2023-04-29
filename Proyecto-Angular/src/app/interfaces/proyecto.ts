@@ -4,7 +4,7 @@ export interface Proyecto {
     nombre:string,
     imagen: string,
     descripcion: string,
-    urlGitHub: string,
-    urlSitioWeb?: string,
-    tecnologias: string [],
+    url_github: string,
+    url_sitio_web?: string,
+    tecnologias: any,
 }

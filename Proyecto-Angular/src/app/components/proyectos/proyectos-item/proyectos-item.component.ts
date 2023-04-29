@@ -1,8 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { faX, faSquarePen } from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
-import { Proyectos } from 'src/app/interfaces/mosk-proyecto';
 import { Proyecto } from 'src/app/interfaces/proyecto';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 
@@ -12,19 +11,25 @@ import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './proyectos-item.component.html',
   styleUrls: ['./proyectos-item.component.css']
 })
-export class ProyectosItemComponent  {
+export class ProyectosItemComponent  implements OnInit{
   faX = faX;
   faSquarePen = faSquarePen;
   faArrow = faArrowUpRightFromSquare
-  modoEdicion:boolean=false;
+  modoEdicion:boolean=true;
   suscripcion?:Subscription;
-  @Input() proyecto: Proyecto = Proyectos[0];
+  tecnologias !: string[];
 
+  @Input() proyecto!: Proyecto;
 
   constructor(private servicioEdicion : ModoEdicionService) 
   {
     this.suscripcion = this.servicioEdicion.onAlternarEdicion().subscribe(
       value => this.modoEdicion = value)
+  }
+
+  ngOnInit () {
+    this.tecnologias = this.proyecto.tecnologias.split(",")
+
   }
 
 }

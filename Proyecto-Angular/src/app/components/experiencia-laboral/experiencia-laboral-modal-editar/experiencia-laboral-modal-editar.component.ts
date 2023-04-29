@@ -1,9 +1,8 @@
-import { Component, ViewChild, ElementRef, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';;
 import { Subscription } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Experiencias  } from 'src/app/interfaces/mosk-experiencia-laboral';
 import { Experiencia } from 'src/app/interfaces/experiencia-laboral';
+import { ExpLaboralService } from 'src/app/services/exp-laboral.service';
 declare var $: any;    
 
 
@@ -27,7 +26,8 @@ export class ExperienciaLaboralModalEditarComponent implements OnInit {
   fechaInicioPattern:string = "(Enero|Marzo|Febrero|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre|Abril)\\s\\d{4}"
 
 
-  constructor(private formBuilder: FormBuilder) 
+  constructor(private formBuilder: FormBuilder,
+    private servicioExperiencia: ExpLaboralService) 
   {  }
 
   ngOnInit ():void {
@@ -59,9 +59,9 @@ export class ExperienciaLaboralModalEditarComponent implements OnInit {
     if(this.formularioExperiencia.invalid) {    
     this.formularioInvalido=true     
     } else {
-      this.experiencia=this.formularioExperiencia.value;    
+      this.experiencia=this.formularioExperiencia.value;
+      this.servicioExperiencia.actualizarExpItem(this.experiencia)    
       this.enModificarExperiencia.emit(this.experiencia);
-
       $("#experiencia-modal-editar-"+ this.experiencia.id).modal('hide');
     }
   }

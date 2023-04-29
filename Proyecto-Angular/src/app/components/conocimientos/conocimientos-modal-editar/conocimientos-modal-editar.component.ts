@@ -13,23 +13,20 @@ declare var $: any;
   templateUrl: './conocimientos-modal-editar.component.html',
   styleUrls: ['./conocimientos-modal-editar.component.css']
 })
-export class ConocimientosModalEditarComponent implements OnInit {
- 
-  suscripcionAlternarEdicion?:Subscription;
+export class ConocimientosModalEditarComponent implements OnInit { 
+
   nombreArchivo:string="";
   previsualizacionImagen: string="";
   formularioConocimientos!: FormGroup;
   formularioInvalido: boolean = false;
-  archivoCapturado: any; 
-  nivelPattern:string = "[1-9]0"
+  archivoCapturado: any;   
   archivoSubidoUrl: string = ""
+
+  nivelPattern:string = "[1-9]0"
 
   @Input() conocimiento!: Conocimiento;  
 
   @Output() enModificarConocimiento: EventEmitter <Conocimiento> = new EventEmitter ()
-
-
-
 
   constructor(private sanitizer: DomSanitizer,
               private formBuilder: FormBuilder,
@@ -89,7 +86,7 @@ export class ConocimientosModalEditarComponent implements OnInit {
       .subscribe(response => {
         this.archivoSubidoUrl = response.url      
       }) 
-}
+  }
 
   capturarImagen(event:any) {
     this.archivoCapturado = event.target.files[0]

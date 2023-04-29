@@ -3,6 +3,8 @@ import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ArchivoService } from 'src/app/services/archivo.service';
+import { Proyecto } from 'src/app/interfaces/proyecto';
 declare var $: any;    
 
 @Component({
@@ -11,39 +13,35 @@ declare var $: any;
   styleUrls: ['./proyectos-modal-crear.component.css']
 })
 export class ProyectosModalCrearComponent implements OnInit {
-  modoEdicion:boolean=false;
-  suscripcionAlternarEdicion?:Subscription;
   nombreArchivo:string="";
   previsualizacionImagen: string="";
   formularioProyecto!: FormGroup;
   formularioInvalido: boolean = false;
+  archivoCapturado: any;
+  archivoSubidoUrl: string = "" 
+
+  @Output() enAgregarProyecto: EventEmitter <Proyecto> = new EventEmitter ()
 
   urlWebPattern:string = "[-a-zA-Z0-9@:%_\\+.~#?&//=]{2,256}\\.[a-z]{2,4}\\b(\\/[-a-zA-Z0-9@:%_\\+.~#?&//=]*)?"
   urlGitHubPattern:string = "(https?://)?(github\\.com)(/[\\w\\.@\\:/\\-~]+)+"
-  tecnologiasPattern:string = "((\\w)+\\s)+"
-  
-  @ViewChild('Nombre') nuevoNombre!:ElementRef; 
-  @ViewChild('Descripcion') nuevaDescripcion!:ElementRef;
-  @ViewChild('URLWeb') nuevaURLWeb!:ElementRef;
-  @ViewChild('URLGitHub') nuevaURLGitHub!:ElementRef;
-  @ViewChild('Tecnologias') nuevasTecnologias!:ElementRef;
+  tecnologiasPattern:RegExp = /(\w)((\,\w)+)?/
 
-
-  constructor(private servicioEdicion : ModoEdicionService,
-    private sanitizer: DomSanitizer, private formBuilder: FormBuilder) 
-  {
-    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
-      value => this.modoEdicion = value)     
-  }
+  constructor(
+          private servicioArchivo : ArchivoService,
+          private sanitizer: DomSanitizer, 
+          private formBuilder: FormBuilder) 
+  { }
 
   ngOnInit ():void {
     this.formularioProyecto = this.formBuilder.group({
       nombre: ['',[Validators.required]],
       descripcion: ['',[Validators.required]],
-      urlWeb: ['',[Validators.pattern(this.urlWebPattern)]],
-      urlGitHub: ['',[Validators.required,Validators.pattern(this.urlGitHubPattern)]],
+      url_sitio_web: ['',[Validators.pattern(this.urlWebPattern)]],
+      url_github: ['',[Validators.required,Validators.pattern(this.urlGitHubPattern)]],
       tecnologias: ['',[Validators.required,Validators.pattern(this.tecnologiasPattern)]],
-      imagen: ['',[Validators.required]]
+      imagen: ['',[Validators.required]],
+      persona: [{"id":1}],
+      titulo_seccion: [{"id":3}]
     })
   }
 
@@ -51,18 +49,23 @@ export class ProyectosModalCrearComponent implements OnInit {
                                                                               // o se apreta la tecla escape o se hace click en el botón cerrar
     $("#proyecto-modal-crear").on('hidden.bs.modal',  () => {
       this.formularioProyecto.reset();
-      this.formularioInvalido = false;
+      this.formularioProyecto.get('persona')?.setValue({"id":1});
+      this.formularioProyecto.get('titulo_seccion')?.setValue({"id":1});
+      this.formularioInvalido = false
       this.previsualizacionImagen="";
-      this.nombreArchivo="";       
+      this.nombreArchivo=""; 
+      this.archivoSubidoUrl= "";   
       }
     ) 
   }
 
   onSubmit ():void {
-    if(this.formularioProyecto.invalid) {
-    this.formularioInvalido=true     
-    } else {
-    $("#proyecto-modal-crear").modal('hide');  
+    if(this.formularioProyecto.invalid) {    
+      this.formularioInvalido=true     
+      } else {
+      const proyecto = this.formularioProyecto.value   
+      this.enAgregarProyecto.emit(proyecto)
+      $("#proyecto-modal-crear").modal('hide');  
     }
   }
 
@@ -70,12 +73,24 @@ export class ProyectosModalCrearComponent implements OnInit {
     this.formularioInvalido=false
   } 
 
+  subirArchivo() {
+
+    const formularioDeDatos = new FormData();
+    formularioDeDatos.append('file',this.archivoCapturado)
+    this.servicioArchivo.subirArchivo(formularioDeDatos)
+      .subscribe(response => {
+        this.archivoSubidoUrl = response.url;
+        this.formularioProyecto.get('imagen')?.setValue(this.archivoSubidoUrl);
+      }) 
+}
+
   capturarImagen(event:any) {
-    const archivoCapturado = event.target.files[0]
+    this.archivoCapturado = event.target.files[0]
     this.nombreArchivo=event.target.files[0].name
-    this.extraerURL(archivoCapturado).then((imagen:any) => {
+    this.extraerURL(this.archivoCapturado).then((imagen:any) => {
       this.previsualizacionImagen=imagen.base
-    })    
+    }) 
+    this.subirArchivo();     
   }
 
     // FUNCIÓN PARA EXTRAER LA URL DE LA IMAGEN

@@ -1,6 +1,6 @@
 import { Proyecto } from "./proyecto"
 
-export const Proyectos: Proyecto[] = [ // Hacemos que la variable Conocimientos sea un array de interfaces Task, es decir que cada objeto tiene que cumplir con la estructura definida en la interfaz
+export const Proyectos = [ // Hacemos que la variable Conocimientos sea un array de interfaces Task, es decir que cada objeto tiene que cumplir con la estructura definida en la interfaz
 
     {
         id:1,
