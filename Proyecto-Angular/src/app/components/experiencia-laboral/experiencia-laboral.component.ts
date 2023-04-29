@@ -58,44 +58,46 @@ export class ExperienciaLaboralComponent implements OnInit {
    
    }
 
-  desaparecerPrimerExp(){
-    if (this.mostrarPrimerExp==true){
-    this.renderer.setStyle(this.contenedorPrimerExp.nativeElement,"display", "none");
-    this.mostrarPrimerExp=false
-    }
-  } 
+  desaparecerPrimerExp(){    
+    this.mostrarPrimerExp=false  
+  }  
   
-  onSelect (experiencia: Experiencia): void {
+  alternarExperiencias (experiencia: Experiencia): void {
     this.experienciaSeleccionada = experiencia; 
-    this.posicion_Y=experiencia.posicion_Y;      
-  }
- 
-  
-  alternarExperiencias (): void {
-    this.ruta.navigate(['/experiencia'], {queryParams: {idExp:this.experienciaSeleccionada.id}})
+    this.posicion_Y=experiencia.posicion_Y; 
+    this.ruta.navigate(['/experiencia'], {queryParams: 
+      {posicionExp:this.experiencias.indexOf(experiencia)}})
+
   }
 
   agregarExperiencia(experiencia: Experiencia) {
     this.servicioExperiencia.crearExperiencia(experiencia).subscribe(() => {
-      //this.experiencias.push(experiencia)    
+            
       this.servicioExperiencia.obtenerExperiencias().subscribe(data => {
-      this.experiencias=data
-      })
-    })
+      this.experiencias=data;            
+          })
+      this.mostrarPrimerExp=false;  
+        
+    }) 
    }
 
    eliminarExperiencia (id: number) {
     this.servicioExperiencia.eliminarExperiencia(id).subscribe(() => {
-    this.experiencias = this.experiencias.filter( conoc => conoc.id !== id)
+    this.experiencias = this.experiencias.filter( conoc => conoc.id !== id);
+    if (this.experiencias.length > 0) {
+      this.alternarExperiencias(this.experiencias[0])}
     })
   }
-  modificarExperiencia (experiencia: any) {
+  modificarExperiencia (experiencia: Experiencia) {
     
     this.servicioExperiencia.editarExperiencia(experiencia).subscribe(() => {
-      this.servicioExperiencia.obtenerExperiencias().subscribe(data => {
-        this.experiencias=data
+        this.servicioExperiencia.obtenerExperiencias().subscribe(data => {
+          this.experiencias=data;
+          this.alternarExperiencias(experiencia)
+         
         })
     })  
+    
  
   }
 }

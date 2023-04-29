@@ -1,7 +1,7 @@
 <section class="d-flex justify-content-center align-items-center" id="experiencia laboral">
     <div class="card" id="container">
         <div class="my-2 d-flex justify-content-between align-items-baseline flex-wrap" data-aos="fade-right" data-aos-duration="800" data-aos-easing="ease-in-out">
-            <h3><strong>{{titulo}}</strong></h3>
+            <h3><strong>{{miTitulo.titulo}}</strong></h3>
             <div>
                 <fa-icon
                     [icon]="faPlus" 
@@ -22,9 +22,9 @@
             <div class="me-2 container-lista-exp">                 
                 <button  
                     *ngFor="let experiencia of experiencias" 
-                    [ngClass]="{'boton-exp-item-seleccionado': experiencia === experienciaSeleccionada}"      
+                    [ngClass]="{'boton-exp-item-seleccionado': experiencia == experienciaSeleccionada}"      
                     class="boton-exp-item"
-                    (click)="onSelect(experiencia); desaparecerPrimerExp(); alternarExperiencias()"
+                    (click)="desaparecerPrimerExp(); alternarExperiencias(experiencia)"
                     > 
                     {{experiencia.nombre_empresa}}                   
                     <fa-icon 
@@ -41,14 +41,15 @@
                             [attr.data-bs-target]="'#experiencia-modal-editar-' + experiencia.id">
                     </fa-icon>                   
                 </button>                                    
-                <div                        
+                <div
+                    *ngIf="experiencias.length > 0"                        
                     class="lista-seleccion animacion-lista-seleccion"
                     [ngClass]=posicion_Y                    
                     >
                 </div> 
             </div>          
-            <div class="container-items-exp">
-                <div #contenedorPrimerExp>
+            <div class="container-items-exp" *ngIf="experiencias.length > 0">
+                <div *ngIf="mostrarPrimerExp">
                     <div class="d-flex align-items-baseline gap-1 container-titulo-primer-exp"> 
                         <p id="titulo-primer-exp">{{experiencias[0].puesto}}</p>                        
                         <div class="d-flex">                            
@@ -66,17 +67,20 @@
     </div>                     
 </section>
 <app-experiencia-laboral-modal
-
+    (actualizarTitulo)="modificarTitulo($event)"
 >
 </app-experiencia-laboral-modal>
-<app-experiencia-laboral-modal-crear>
-
+<app-experiencia-laboral-modal-crear
+    (enAgregarExperiencia)="agregarExperiencia($event)"
+    [experiencias]="experiencias">        
 </app-experiencia-laboral-modal-crear>
 <app-experiencia-laboral-modal-editar
     *ngFor="let experiencia of experiencias"
-    [experiencia]="experiencia">
+    [experiencia]="experiencia"
+    (enModificarExperiencia)="modificarExperiencia($event)">
 </app-experiencia-laboral-modal-editar>
 <app-experiencia-laboral-modal-eliminar
+    (enEliminarExperiencia)="eliminarExperiencia($event)"
     *ngFor="let experiencia of experiencias"
     [experiencia]="experiencia">
 </app-experiencia-laboral-modal-eliminar>

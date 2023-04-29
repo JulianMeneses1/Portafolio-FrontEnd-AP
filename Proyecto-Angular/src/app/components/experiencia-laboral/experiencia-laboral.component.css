@@ -1,7 +1,8 @@
 
-#container {   
-    height: 300px;    
-}
+.container-items-exp {
+    height: 230px;
+    overflow-y: scroll;
+} 
 
 h3{
     color: lightblue;
@@ -168,6 +169,16 @@ a:hover::after{
 
 .exp-bar-Y--90 {
     --exp-bar-position-Y:90px
+}
+
+.exp-bar-Y--135 {
+    --exp-bar-position-Y:135px
+}
+.exp-bar-Y--180 {
+    --exp-bar-position-Y:180px
+}
+.exp-bar-Y--225 {
+    --exp-bar-position-Y:225px
 }
 
 

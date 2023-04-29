@@ -52,6 +52,8 @@ export class ConocimientosModalCrearComponent implements OnInit {
                                                                               // o se apreta la tecla escape o se hace click en el botón cerrar
     $("#conocimiento-modal-crear").on('hidden.bs.modal',  () => {
       this.formularioConocimientos.reset();
+      this.formularioConocimientos.get('persona')?.setValue({"id":1});
+      this.formularioConocimientos.get('titulo_seccion')?.setValue({"id":1});
       this.formularioInvalido = false
       this.previsualizacionImagen="";
       this.nombreArchivo=""; 

@@ -33,7 +33,7 @@ export class ExpLaboralService {
 
   crearExperiencia(experiencia:Experiencia): Observable<Experiencia> {
  
-    return this.http.post<Experiencia>("http://localhost:8080/crear/Experiencia",experiencia,this.httpOptions)
+    return this.http.post<Experiencia>("http://localhost:8080/crear/experiencia",experiencia,this.httpOptions)
   }
 
 }

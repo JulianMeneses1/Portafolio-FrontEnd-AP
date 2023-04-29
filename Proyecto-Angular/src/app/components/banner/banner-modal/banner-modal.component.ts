@@ -48,7 +48,7 @@ export class BannerModalComponent implements OnInit{
       this.archivoSubidoUrlBanner=this.miBanner.imagen_banner;
       this.archivoSubidoUrlPerfil=this.miBanner.imagen_perfil
     })  
-    console.log("iniciandose modal")
+
 
   } 
   
