@@ -2,8 +2,10 @@ import { Component, OnInit} from '@angular/core';
 import { faSquarePen, faPlus, faX } from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
-import { Educacion } from 'src/app/interfaces/formacion-academica';
-import { FormacionAcademica } from 'src/app/interfaces/mosk-formacion-academica';
+import { Formacion } from 'src/app/interfaces/formacion-academica';
+import { TituloSeccionesService } from 'src/app/services/titulo-secciones.service';
+import { FormAcademicaService } from 'src/app/services/form-academica.service';
+import { TituloSeccion } from 'src/app/interfaces/titulo-seccion';
 
 
 @Component({
@@ -13,27 +15,61 @@ import { FormacionAcademica } from 'src/app/interfaces/mosk-formacion-academica'
 })
 export class FormacionAcademicaComponent implements OnInit {
 
-  titulo:string="Formación Académica"
   faSquarePen = faSquarePen;
   faPlus = faPlus;
   faX = faX;   
-  modoEdicion:boolean=false;
+  modoEdicion:boolean=true;
   suscripcionAlternarEdicion?:Subscription;
-  formacionAcademica: Educacion[] = FormacionAcademica  
+  formaciones!: Formacion[]
+  titulo!: TituloSeccion 
   
 
-  constructor(private servicioEdicion : ModoEdicionService) 
+  constructor(private servicioEdicion : ModoEdicionService,
+            private servicioTituloSeccion: TituloSeccionesService,
+            private servicioFormacionAcademica: FormAcademicaService) 
   {    
     this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
       value => this.modoEdicion = value)
     }
 
   ngOnInit ():void {
+
+    this.servicioTituloSeccion.obtenerTitulos().subscribe(data => {
+      this.titulo=data[3];
+    })
+    this.servicioFormacionAcademica.obtenerFormaciones().subscribe(data => {
+      this.formaciones=data
+    })
  
   }
 
-  cambiarTitulo (event:string) {
-    this.titulo=event
+ 
+  modificarTitulo(titulo:TituloSeccion) {
+    this.titulo=titulo
+  }
+
+  agregarFormacion(proyecto: Formacion) {
+    this.servicioFormacionAcademica.crearFormacion(proyecto).subscribe(() => {
+      //this.formaciones.push(proyecto)    
+      this.servicioFormacionAcademica.obtenerFormaciones().subscribe(data => {
+      this.formaciones=data
+      })
+    })
+   }
+
+   eliminarFormacion (id: number) {
+    this.servicioFormacionAcademica.eliminarFormacion(id).subscribe(() => {
+    this.formaciones = this.formaciones.filter( conoc => conoc.id !== id)
+    })
+  }
+
+  modificarFormacion (proyecto: any) {    
+    this.servicioFormacionAcademica.editarFormacion(proyecto).subscribe(() => {
+      this.servicioFormacionAcademica.obtenerFormaciones().subscribe(data => {
+        this.formaciones=data
+        })
+    })   
+
   }
   
 }

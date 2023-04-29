@@ -40,7 +40,7 @@ import { ContactoModalInfoComponent } from './components/contacto/contacto-modal
 import { InterceptorService } from './services/interceptor.service';
 import { ConocimientosModalEliminarComponent } from './components/conocimientos/conocimientos-modal-eliminar/conocimientos-modal-eliminar.component';
 import { ExperienciaLaboralModalEliminarComponent } from './components/experiencia-laboral/experiencia-laboral-modal-eliminar/experiencia-laboral-modal-eliminar.component';
-import { FormacionAcademicaModalEliminarComponent } from './componentes/formacion-academica/formacion-academica-modal-eliminar/formacion-academica-modal-eliminar.component';
+import { FormacionAcademicaModalEliminarComponent } from './components/formacion-academica/formacion-academica-modal-eliminar/formacion-academica-modal-eliminar.component';
 import { ProyectosModalEliminarComponent } from './components/proyectos/proyectos-modal-eliminar/proyectos-modal-eliminar.component';
 import { BannerModalComponent } from './components/banner/banner-modal/banner-modal.component';
 

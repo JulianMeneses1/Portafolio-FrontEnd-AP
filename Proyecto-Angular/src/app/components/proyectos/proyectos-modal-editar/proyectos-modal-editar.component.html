@@ -37,7 +37,6 @@
                             <div class="d-flex align-items-baseline modal-body-div">
                                 <label for="user" class="form-label etiquetaModal">Descripción</label>              
                                     <textarea
-                                        #Descripcion 
                                         maxlength="300"
                                         [ngClass]="{'is-invalid':formularioInvalido && formularioProyecto.get('descripcion')?.errors?.['required']}"           
                                         class="form-control inputModal2"

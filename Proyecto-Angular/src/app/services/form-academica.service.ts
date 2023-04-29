@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Educacion } from '../interfaces/formacion-academica';
+import { Formacion } from '../interfaces/formacion-academica';
 
 @Injectable({
   providedIn: 'root'
@@ -17,22 +17,22 @@ export class FormAcademicaService {
   constructor(private http: HttpClient) { }
 
 
-  obtenerFormaciones (): Observable<Educacion[]> {
-    return this.http.get<Educacion[]>("http://localhost:8080/obtener/formaciones")
+  obtenerFormaciones (): Observable<Formacion[]> {
+    return this.http.get<Formacion[]>("http://localhost:8080/obtener/formaciones")
   }
 
-  editarFormacion(formacion:Educacion): Observable<Educacion> {
+  editarFormacion(formacion:Formacion): Observable<Formacion> {
     const url:string=`${"http://localhost:8080/editar/formacion"}/${formacion.id}`; 
-    return this.http.put<Educacion>(url,formacion,this.httpOptions)
+    return this.http.put<Formacion>(url,formacion,this.httpOptions)
   }
 
-  eliminarFormacion(id:number): Observable<Educacion> {
+  eliminarFormacion(id:number): Observable<Formacion> {
     const url:string=`${"http://localhost:8080/eliminar/formacion"}/${id}`; 
-    return this.http.delete<Educacion>(url)
+    return this.http.delete<Formacion>(url)
   }
 
-  crearFormacion(formacion:Educacion): Observable<Educacion> {
+  crearFormacion(formacion:Formacion): Observable<Formacion> {
  
-    return this.http.post<Educacion>("http://localhost:8080/crear/formacion",formacion,this.httpOptions)
+    return this.http.post<Formacion>("http://localhost:8080/crear/formacion",formacion,this.httpOptions)
   }
 }

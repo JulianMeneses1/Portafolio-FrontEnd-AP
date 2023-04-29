@@ -1,11 +1,11 @@
-import { Component, ViewChild, ElementRef, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Formacion } from 'src/app/interfaces/formacion-academica';
+import { ArchivoService } from 'src/app/services/archivo.service';
 declare var $: any;  
-import { Educacion } from 'src/app/interfaces/formacion-academica';
-import { FormacionAcademica } from 'src/app/interfaces/mosk-formacion-academica';
+
+
 
 @Component({
   selector: 'app-formacion-academica-modal-editar',
@@ -14,97 +14,86 @@ import { FormacionAcademica } from 'src/app/interfaces/mosk-formacion-academica'
 })
 export class FormacionAcademicaModalEditarComponent implements OnInit {
 
-  titulo:string="Formación Académica"
-  modoEdicion:boolean=false;
-  suscripcionAlternarEdicion?:Subscription;
   nombreArchivo:string="";
   previsualizacionImagen: string="";
   formularioFormacion!: FormGroup;
   formularioInvalido: boolean = false;  
+  archivoSubidoUrl: string = "";
+  archivoCapturado: any;   
+
   urlPattern:string = "[-a-zA-Z0-9@:%_\\+.~#?&//=]{2,256}\\.[a-z]{2,4}\\b(\\/[-a-zA-Z0-9@:%_\\+.~#?&//=]*)?"
-  fechaPattern:string = "((Enero|Marzo|Febrero|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre|Abril)\\s\\d{4})|Actualidad"
+  fechaInicioPattern:string = "(Enero|Marzo|Febrero|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre|Abril)\\s\\d{4}"
+  fechaFinPattern:string = "((Enero|Marzo|Febrero|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre|Abril)\\s\\d{4})|Actualidad"
 
-  @Input() educacion: Educacion = FormacionAcademica[0];
+  @Input() formacion!: Formacion;
 
-  @Output() modificarTitulo: EventEmitter <string> = new EventEmitter ();
+  @Output() enModificarFormacion: EventEmitter <Formacion> = new EventEmitter ()
 
-  @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
-  @ViewChild('contenedorPrimerEducacion') contenedorPrimerEducacion!:ElementRef;
-  @ViewChild('nombre') nombre!:ElementRef;  
-  @ViewChild('institucion') institucion!:ElementRef;  
-  @ViewChild('urlCertificado') urlCertificado!:ElementRef;  
-  @ViewChild('urlInstitucion') urlInstitucion!:ElementRef;  
-  @ViewChild('fechaInicio') fechaInicio!:ElementRef;  
-  @ViewChild('fechaFin') fechaFin!:ElementRef;  
-  @ViewChild('descripcion') descripcion!:ElementRef;  
-
-  constructor(private servicioEdicion : ModoEdicionService, 
-    private sanitizer: DomSanitizer,
-    private formBuilder: FormBuilder) 
-  {    
-    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
-      value => this.modoEdicion = value)     
-  }
+  constructor(private sanitizer: DomSanitizer,
+    private formBuilder: FormBuilder,
+    private servicioArchivo: ArchivoService) 
+  { }
 
   ngOnInit ():void {
     this.formularioFormacion = this.formBuilder.group({
-      nombre: [this.educacion.nombre,[Validators.required]],
-      institucion: [this.educacion.institucion,[Validators.required]],
-      urlInstitucion: [this.educacion.urlInstitucion,[Validators.required,Validators.pattern(this.urlPattern)]],
-      urlCertificado: [this.educacion.urlCertificado,[Validators.pattern(this.urlPattern)]],
-      fechaInicio: [this.educacion.fechaInicio,[Validators.required,Validators.pattern(this.fechaPattern)]],
-      fechaFin: [this.educacion.fechaFin,[Validators.required,Validators.pattern(this.fechaPattern)]],
-      descripcion: [this.educacion.descripcion,[Validators.required]]
+      id: [this.formacion.id],
+      nombre: [this.formacion.nombre,[Validators.required]],
+      institucion: [this.formacion.institucion,[Validators.required]],
+      url_institucion: [this.formacion.url_institucion,[Validators.required,Validators.pattern(this.urlPattern)]],
+      url_certificado: [this.formacion.url_certificado,[Validators.pattern(this.urlPattern)]],
+      fecha_inicio: [this.formacion.fecha_inicio,[Validators.required,Validators.pattern(this.fechaInicioPattern)]],
+      fecha_fin: [this.formacion.fecha_fin,[Validators.required,Validators.pattern(this.fechaFinPattern)]],
+      descripcion: [this.formacion.descripcion,[Validators.required]],
+      imagen: [''],
+      persona: [{"id":1}],
+      titulo_seccion: [{"id":4}]
     })
+    this.archivoSubidoUrl=this.formacion.imagen
+  }  
+
+  resetearForm () {                                                           
+    $("#formacion-modal-editar-" + this.formacion.id).on('hidden.bs.modal',  () => {
+      this.formularioFormacion.patchValue(this.formacion);      
+      this.formularioInvalido = false;
+      this.previsualizacionImagen="";
+      this.nombreArchivo="";   
+      this.archivoSubidoUrl= "";  
+    }
+    ) 
   }
- 
 
   onSubmit ():void {
     if(this.formularioFormacion.invalid) {
-    this.formularioInvalido=true     
+      this.formularioInvalido=true     
     } else {
-      this.formularioFormacion.reset();    
-      this.formularioInvalido=false;
-      this.formularioFormacion.get('nombre')?.setValue(this.educacion.nombre);
-      this.formularioFormacion.get('institucion')?.setValue(this.educacion.institucion);
-      this.formularioFormacion.get('urlCertificado')?.setValue(this.educacion.urlCertificado);
-      this.formularioFormacion.get('urlInstitucion')?.setValue(this.educacion.urlInstitucion);
-      this.formularioFormacion.get('fechaInicio')?.setValue(this.educacion.fechaInicio);
-      this.formularioFormacion.get('fechaFin')?.setValue(this.educacion.fechaFin);
-      this.formularioFormacion.get('descripcion')?.setValue(this.educacion.descripcion);
-      $("#educacion-modal-editar-" + this.educacion.id).modal('hide');  
+      this.formularioFormacion.get('imagen')?.setValue(this.archivoSubidoUrl);    
+      this.formacion=this.formularioFormacion.value;    
+      this.enModificarFormacion.emit(this.formacion);
+      $("#formacion-modal-editar-" + this.formacion.id).modal('hide');  
     }
-  }
-
-
-  
-  resetearForm () {                                                           
-    $("#educacion-modal-editar-" + this.educacion.id).on('hidden.bs.modal',  () => {
-      this.formularioFormacion.reset();
-      this.formularioInvalido = false;
-      this.formularioFormacion.get('nombre')?.setValue(this.educacion.nombre);
-      this.formularioFormacion.get('institucion')?.setValue(this.educacion.institucion);
-      this.formularioFormacion.get('urlCertificado')?.setValue(this.educacion.urlCertificado);
-      this.formularioFormacion.get('urlInstitucion')?.setValue(this.educacion.urlInstitucion);
-      this.formularioFormacion.get('fechaInicio')?.setValue(this.educacion.fechaInicio);
-      this.formularioFormacion.get('fechaFin')?.setValue(this.educacion.fechaFin);
-      this.formularioFormacion.get('descripcion')?.setValue(this.educacion.descripcion);
-      this.previsualizacionImagen="";
-      this.nombreArchivo="";       
-    }
-    ) 
   }
 
   ocultarMensajeError () {   
     this.formularioInvalido=false
   }
   
+  subirArchivo() {
+
+    const formularioDeDatos = new FormData();
+    formularioDeDatos.append('file',this.archivoCapturado)
+    this.servicioArchivo.subirArchivo(formularioDeDatos)
+      .subscribe(response => {
+        this.archivoSubidoUrl = response.url      
+      }) 
+}
+
   capturarImagen(event:any) {
-    const archivoCapturado = event.target.files[0]
+    this.archivoCapturado = event.target.files[0]
     this.nombreArchivo=event.target.files[0].name
-    this.extraerURL(archivoCapturado).then((imagen:any) => {
+    this.extraerURL(this.archivoCapturado).then((imagen:any) => {
       this.previsualizacionImagen=imagen.base
-    })    
+    })  
+    this.subirArchivo();  
   }
 
     // FUNCIÓN PARA EXTRAER LA URL DE LA IMAGEN

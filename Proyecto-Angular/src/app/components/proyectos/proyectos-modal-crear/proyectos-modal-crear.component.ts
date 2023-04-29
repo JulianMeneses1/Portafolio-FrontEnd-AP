@@ -1,6 +1,4 @@
-import { Component, ViewChild, ElementRef, OnInit, Output, EventEmitter} from '@angular/core';
-import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ArchivoService } from 'src/app/services/archivo.service';
@@ -82,7 +80,7 @@ export class ProyectosModalCrearComponent implements OnInit {
         this.archivoSubidoUrl = response.url;
         this.formularioProyecto.get('imagen')?.setValue(this.archivoSubidoUrl);
       }) 
-}
+  }
 
   capturarImagen(event:any) {
     this.archivoCapturado = event.target.files[0]

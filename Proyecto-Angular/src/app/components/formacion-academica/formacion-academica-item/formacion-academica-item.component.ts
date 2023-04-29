@@ -1,8 +1,7 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
-import { Educacion } from 'src/app/interfaces/formacion-academica';
-import { FormacionAcademica } from 'src/app/interfaces/mosk-formacion-academica';
+import { Formacion } from 'src/app/interfaces/formacion-academica';
 import { faX, faSquarePen } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -10,13 +9,14 @@ import { faX, faSquarePen } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './formacion-academica-item.component.html',
   styleUrls: ['./formacion-academica-item.component.css']
 })
-export class FormacionAcademicaItemComponent implements OnInit {
-   
-  @Input() educacion: Educacion = FormacionAcademica[0];
-  modoEdicion:boolean=false;
+export class FormacionAcademicaItemComponent implements OnInit {  
+
+  modoEdicion:boolean=true;
   suscripcion?:Subscription;
   faX = faX;
   faSquarePen = faSquarePen;
+
+  @Input() formacion!: Formacion;
 
   constructor(private servicioEdicion : ModoEdicionService) {
          

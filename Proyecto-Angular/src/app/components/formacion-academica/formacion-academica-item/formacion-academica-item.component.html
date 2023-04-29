@@ -1,12 +1,12 @@
 <div class="d-flex flex-wrap contenedor">    
     <div class="w-25 d-flex flex-wrap justify-content-center align-items-center contenedor-imagen-fecha px-2" >
         <div class="d-flex align-items-center justify-content-center text-center w-100 mb-2" style="height: 50px">
-            <p>{{educacion.fechaInicio}} - {{educacion.fechaFin}}</p>
+            <p>{{formacion.fecha_inicio}} - {{formacion.fecha_fin}}</p>
         </div>
         <div style="position: relative; bottom: 5%; padding: 0px 5px;" >
             
-                <a href="{{educacion.urlInstitucion}}" target="_blank">
-                    <img class="img-fluid.rounded" src="{{educacion.imagen}}">
+                <a href="{{formacion.url_institucion}}" target="_blank">
+                    <img class="img-fluid.rounded" src="{{formacion.imagen}}">
                 </a>
             
         </div>
@@ -14,10 +14,16 @@
     </div>
     <div class="w-75 contenedor-texto">
         <div class="d-flex align-items-baseline">
-            <h5>{{educacion.nombre}}</h5>
+            <h5>{{formacion.nombre}}</h5>
             <div class="ms-auto">
                 <button>
-                    <fa-icon [icon]="faX" *ngIf="modoEdicion" class="icono-borrar"></fa-icon>    
+                    <fa-icon 
+                        [icon]="faX" 
+                        *ngIf="modoEdicion" 
+                        class="icono-borrar"
+                        data-bs-toggle="modal" 
+                        [attr.data-bs-target]="'#formacion-modal-eliminar-' + formacion.id">
+                    </fa-icon>    
                   </button>       
                   <button>
                       <fa-icon 
@@ -25,14 +31,23 @@
                               [icon]="faSquarePen" 
                               *ngIf="modoEdicion" 
                               data-bs-toggle="modal" 
-                              [attr.data-bs-target]="'#educacion-modal-editar-' + educacion.id">
+                              [attr.data-bs-target]="'#formacion-modal-editar-' + formacion.id">
                       </fa-icon> 
                   </button>
             </div> 
         </div>
-        <a href="{{educacion.urlInstitucion}}" target="_blank">@ {{educacion.institucion}}</a>
-        <p id="p-descripcion">{{educacion.descripcion}}</p>
-        <a href="{{educacion.urlCertificado}}" *ngIf="educacion.urlCertificado" target="_blank">@ Certificado</a>
+        <a href="{{formacion.url_institucion}}" target="_blank">@ {{formacion.institucion}}</a>
+        <div style="height: 150px">
+            <p style="margin-bottom: 0px;">{{formacion.descripcion}}</p> 
+        </div>     
+        <a 
+            href="{{formacion.url_certificado}}" 
+            *ngIf="formacion.url_certificado" 
+            target="_blank"
+            style="margin-top:15px; margin-bottom: 0px;">
+            @ Certificado
+        </a>
+     
     </div>
 </div>
 

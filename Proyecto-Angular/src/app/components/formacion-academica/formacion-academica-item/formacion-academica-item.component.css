@@ -37,7 +37,7 @@
 .contenedor-texto a{
     display: inline-block;
     position: relative;
-    color: lightblue;
+    color: lightblue !important;
     margin-bottom: 15px;
 }
 
@@ -75,11 +75,6 @@ img {
 img:hover {
     transform: scale(0.9);
     transition: transform 0.3s ease
-}
-
-#p-institucion {
-    margin-bottom: 15px;
-    color: white;
 }
 
 .contenedor-imagen-fecha {

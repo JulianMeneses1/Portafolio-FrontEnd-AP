@@ -1,13 +1,13 @@
-export interface Educacion {
+export interface Formacion {
     
     id?: number,
     nombre:string,
     institucion: string,
-    fechaInicio: string,
-    fechaFin: string,
+    fecha_inicio: string,
+    fecha_fin: string,
     descripcion: string,
-    urlCertificado?: string,
-    urlInstitucion: string,
+    url_certificado?: string,
+    url_institucion: string,
     imagen: string
 
 }

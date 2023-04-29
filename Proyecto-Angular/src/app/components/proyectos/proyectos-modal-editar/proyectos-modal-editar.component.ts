@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
 import { Proyecto } from 'src/app/interfaces/proyecto';
 import { ArchivoService } from 'src/app/services/archivo.service';
 

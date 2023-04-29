@@ -1,8 +1,7 @@
-import { Component, ViewChild, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
-import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
-import { Subscription } from 'rxjs';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { TituloSeccion } from 'src/app/interfaces/titulo-seccion';
+import { TituloSeccionesService } from 'src/app/services/titulo-secciones.service';
 declare var $: any;  
 
 @Component({
@@ -12,57 +11,50 @@ declare var $: any;
 })
 export class FormacionAcademicaModalComponent implements OnInit {
 
-  titulo:string="Formación Académica"
-  modoEdicion:boolean=false;
-  suscripcionAlternarEdicion?:Subscription;
   formularioFormacion!: FormGroup;
-  formularioInvalido: boolean = false;  
+  formularioInvalido: boolean = false; 
+  miTitulo!: TituloSeccion;
+
+  @Output() actualizarTitulo: EventEmitter <any> = new EventEmitter ();
 
 
-  @Output() modificarTitulo: EventEmitter <string> = new EventEmitter ();
-
-  @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
-
-
-  constructor(private servicioEdicion : ModoEdicionService,
-    private formBuilder: FormBuilder) 
-  {    
-    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
-      value => this.modoEdicion = value)     
-  }
+  constructor(private formBuilder: FormBuilder,
+    private servicioTituloSeccion: TituloSeccionesService) 
+  { }
 
   ngOnInit ():void {
-    this.formularioFormacion = this.formBuilder.group({
-      titulo: [this.titulo,[Validators.required]]      
+    this.servicioTituloSeccion.obtenerTitulos().subscribe(data => {
+      this.miTitulo=data[3];
+      this.formularioFormacion = this.formBuilder.group({
+        id: [''],
+        titulo: ['',[Validators.required]]
+      })
+      this.formularioFormacion.patchValue(this.miTitulo)
+
     })
   }
 
-  cambiarTitulo(){
-    this.titulo=this.nuevoTitulo.nativeElement.value;
-    this.modificarTitulo.emit(this.titulo)     
-}
-
-resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
+  resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
                                                                             // o se apreta la tecla escape o se hace click en el botón cerrar
-  $("#educacion-modal-titulo").on('hidden.bs.modal',  () => {
-    this.formularioFormacion.reset();
-    this.formularioFormacion.get('titulo')?.setValue(this.titulo);
-    this.formularioInvalido = false  
-    }
-  ) 
-}
-
-onSubmit ():void {
-  if(this.formularioFormacion.invalid) {    
-  this.formularioInvalido=true     
-  } else {
-  this.cambiarTitulo();
-  $("#educacion-modal-titulo").modal('hide');
-  this.formularioFormacion.get('titulo')?.setValue(this.titulo);      
+    $("#formacion-modal-titulo").on('hidden.bs.modal',  () => {
+        this.formularioFormacion.patchValue(this.miTitulo)
+        this.formularioInvalido = false  
+      }
+    ) 
   }
-}
 
-ocultarMensajeError () {   
-  this.formularioInvalido=false
-} 
+  onSubmit ():void {
+    if(this.formularioFormacion.invalid) {    
+    this.formularioInvalido=true     
+    } else {
+      this.miTitulo = this.formularioFormacion.value;
+      this.servicioTituloSeccion.editarTitulo(this.formularioFormacion.value).subscribe();
+      this.actualizarTitulo.emit(this.miTitulo)
+      $("#formacion-modal-titulo").modal('hide')    
+    }
+  }
+
+  ocultarMensajeError () {   
+    this.formularioInvalido=false
+  }  
 }
