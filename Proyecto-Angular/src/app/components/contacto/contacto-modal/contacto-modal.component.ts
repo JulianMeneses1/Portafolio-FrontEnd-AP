@@ -1,8 +1,7 @@
-import { Component, ViewChild, ElementRef, OnInit, Output, EventEmitter} from '@angular/core';
-import { faSquarePen, faUser, faEnvelope, faFileLines } from '@fortawesome/free-solid-svg-icons';
-import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { TituloSeccionesService } from 'src/app/services/titulo-secciones.service';
+import { TituloSeccion } from 'src/app/interfaces/titulo-seccion';
 declare var $: any;
 
 @Component({
@@ -11,44 +10,34 @@ declare var $: any;
   styleUrls: ['./contacto-modal.component.css']
 })
 
-
 export class ContactoModalComponent implements OnInit{
-
-
-  titulo:string = "¡Espero tu mensaje!"; 
-  modoEdicion:boolean=false;
-  suscripcionAlternarEdicion?:Subscription;
+ 
   formularioContacto!: FormGroup;
   formularioInvalido: boolean = false;
+  titulo !: TituloSeccion
 
-  @Output() modificarTitulo: EventEmitter <string> = new EventEmitter ();
+  @Output() actualizarTitulo: EventEmitter <TituloSeccion> = new EventEmitter ();
 
-  @ViewChild('nuevoTitulo') nuevoTitulo!:ElementRef;
-
-  constructor(private servicioEdicion : ModoEdicionService, 
-    private formBuilder: FormBuilder) 
-  {    
-    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
-      value => this.modoEdicion = value)
-  }
+  constructor(private formBuilder: FormBuilder, 
+              private servicioTituloSeccion : TituloSeccionesService) 
+  { }
 
   ngOnInit ():void {
-    
-    this.formularioContacto = this.formBuilder.group({
-      titulo: [this.titulo,[Validators.required]]
-    })
-  }
+    this.servicioTituloSeccion.obtenerTitulos().subscribe(data => {
+      this.titulo=data[4];
+      this.formularioContacto = this.formBuilder.group({
+        id: [''],
+        titulo: ['',[Validators.required]]
+      })
+      this.formularioContacto.patchValue(this.titulo)
 
-  cambiarTitulo(){
-    this.titulo=this.nuevoTitulo.nativeElement.value;
-    this.modificarTitulo.emit(this.titulo)     
+    })
   }
 
   resetearForm () {                                                           // para resetear el formulario cuando se hace click fuera del modal, 
                                                                               // o se apreta la tecla escape o se hace click en el botón cerrar
     $("#contacto-modal-titulo").on('hidden.bs.modal',  () => {
-      this.formularioContacto.reset();
-      this.formularioContacto.get('titulo')?.setValue(this.titulo);
+      this.formularioContacto.patchValue(this.titulo)
       this.formularioInvalido = false  
       }
     ) 
@@ -58,9 +47,10 @@ export class ContactoModalComponent implements OnInit{
     if(this.formularioContacto.invalid) {    
     this.formularioInvalido=true     
     } else {
-    this.cambiarTitulo();
-    $("#contacto-modal-titulo").modal('hide');
-    this.formularioContacto.get('titulo')?.setValue(this.titulo);      
+      this.titulo = this.formularioContacto.value;
+      this.servicioTituloSeccion.editarTitulo(this.formularioContacto.value).subscribe();
+      this.actualizarTitulo.emit(this.titulo)
+    $("#contacto-modal-titulo").modal('hide');  
     }
   }
 

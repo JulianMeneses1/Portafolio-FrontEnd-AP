@@ -1,7 +1,7 @@
 <section id="contacto" class="d-flex justify-content-center">
     <div id="container">        
         <div class="mb-4 d-flex justify-content-center align-items-baseline flex-wrap" data-aos="zoom-in" data-aos-duration="800" data-aos-easing="ease-in-out">
-            <h3><strong>{{titulo}}</strong></h3>
+            <h3><strong>{{titulo.titulo}}</strong></h3>
             <div class="ms-3">
                 <fa-icon
                         *ngIf="modoEdicion"
@@ -37,7 +37,6 @@
                                     <fa-icon [icon]="faUser" class="icono-contacto"></fa-icon>
                                 </span>                             
                                 <input
-                                    #nombreForm 
                                     type="text" 
                                     id="nombre" 
                                     name="nombre"
@@ -62,7 +61,6 @@
                                     <fa-icon [icon]="faFileLines" class="icono-contacto"></fa-icon>
                                 </span>                          
                                 <input
-                                    #asuntoForm 
                                     type="texto" 
                                     id="asunto" 
                                     name="asunto" 
@@ -87,7 +85,6 @@
                                     <fa-icon [icon]="faEnvelop" class="icono-contacto"></fa-icon>
                                 </span>                           
                                 <input
-                                    #correoForm 
                                     type="email" 
                                     id="correo" 
                                     name="correo" 
@@ -143,15 +140,15 @@
                 
                 <div>                    
                     <label>Ubicación</label>                                       
-                    <p #ubicacion>{{ubicacionContacto}}</p>
+                    <p>{{persona.ubicacion}}</p>
                 </div>
                 <div class="my-4">
                     <label>Teléfono</label>                    
-                    <p #telefono >{{telefonoContacto}}</p>                   
+                    <p  >{{persona.telefono}}</p>                   
                 </div>
                 <div class="my-4">
                     <label>Correo</label>
-                    <p #correo >{{correoContacto}}</p>
+                    <p  >{{persona.email}}</p>
                 </div>
             </div>
 
@@ -161,6 +158,9 @@
 </section>
 
 <app-contacto-modal
-    (modificarTitulo)="cambiarTitulo($event)">
+    (actualizarTitulo)="modificarTitulo($event)">
 </app-contacto-modal> 
-<app-contacto-modal-info></app-contacto-modal-info> 
+<app-contacto-modal-info
+    [persona]="persona"
+    (enModificarPersona)="modificarPersona($event)"
+></app-contacto-modal-info> 

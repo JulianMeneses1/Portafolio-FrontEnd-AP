@@ -19,7 +19,6 @@ aria-hidden="true"
                         <div class="d-flex align-items-baseline modal-body-div">
                             <label for="user" class="form-label etiquetaModal">Ubicación</label>
                             <input 
-                                #ubicacion 
                                 type="text"
                                 formControlName="ubicacion" 
                                 class="form-control inputModal"
@@ -38,7 +37,6 @@ aria-hidden="true"
                         <div class="d-flex flex-wrap align-items-baseline modal-body-div">
                             <label for="user" class="form-label etiquetaModal">Teléfono</label>
                             <input 
-                                #telefono
                                 type="text" 
                                 class="form-control inputModal"
                                 (click)="ocultarMensajeError()"
@@ -63,24 +61,23 @@ aria-hidden="true"
                         <div class="d-flex align-items-baseline modal-body-div">
                             <label for="user" class="form-label etiquetaModal">Correo</label>
                             <input 
-                                #correo
                                 type="text" 
                                 class="form-control inputModal"
-                                [ngClass]="{'is-invalid':formularioInvalido && (formularioContacto.get('correo')?.errors?.['required'] || 
-                                formularioContacto.get('correo')?.errors?.['email'])}" 
+                                [ngClass]="{'is-invalid':formularioInvalido && (formularioContacto.get('email')?.errors?.['required'] || 
+                                formularioContacto.get('email')?.errors?.['email'])}" 
                                 (click)="ocultarMensajeError()" 
-                                placeholder="Ingresar correo"
+                                placeholder="Ingresar email"
                                 maxlength="40"
-                                formControlName="correo">
+                                formControlName="email">
                         </div>
                         <p 
                             class="text-danger"
-                            *ngIf="formularioInvalido && formularioContacto.get('correo')?.errors?.['required']">
+                            *ngIf="formularioInvalido && formularioContacto.get('email')?.errors?.['required']">
                             Este campo es obligatorio
                         </p>
                         <p 
                             class="text-danger"
-                            *ngIf="formularioInvalido && formularioContacto.get('correo')?.errors?.['email']">
+                            *ngIf="formularioInvalido && formularioContacto.get('email')?.errors?.['email']">
                             El mail ingresado no es válido
                         </p> 
                     </div>                  

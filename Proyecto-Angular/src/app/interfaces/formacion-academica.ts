@@ -8,6 +8,8 @@ export interface Formacion {
     descripcion: string,
     url_certificado?: string,
     url_institucion: string,
-    imagen: string
+    imagen: string,
+    persona: object,
+    titulo_seccion: object 
 
 }

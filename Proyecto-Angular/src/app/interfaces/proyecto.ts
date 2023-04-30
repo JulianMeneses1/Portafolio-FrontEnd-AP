@@ -7,4 +7,6 @@ export interface Proyecto {
     url_github: string,
     url_sitio_web?: string,
     tecnologias: any,
+    persona: object,
+    titulo_seccion: object 
 }

@@ -12,23 +12,16 @@ declare var $: any;
   styleUrls: ['./acerca-de-mi-modal.component.css']
 })
 export class AcercaDeMiModalComponent implements OnInit {
-  modoEdicion:boolean=false;
-  suscripcionAlternarEdicion?:Subscription;
+
   formularioInvalido: boolean = false; 
   formularioAcercaDeMi!: FormGroup;
-  miAcercaDeMi!: AcercaDeMi; 
-  
+  miAcercaDeMi!: AcercaDeMi;   
   
   @Output() actualizarDatos: EventEmitter <AcercaDeMi> = new EventEmitter ()
 
-
-  constructor(private servicioEdicion : ModoEdicionService,
-          private formBuilder: FormBuilder,
+  constructor(private formBuilder: FormBuilder,
           private servicioAcercaDeMi : AcercaDeMiService) 
-  {
-    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
-      value => this.modoEdicion = value)
-  }
+  { }
 
   ngOnInit(): void {
     this.servicioAcercaDeMi.obtenerAcercaDeMi().subscribe(data=> {

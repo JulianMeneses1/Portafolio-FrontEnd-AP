@@ -1,6 +1,4 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
-import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
-import { Subscription } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TituloSeccion } from 'src/app/interfaces/titulo-seccion';
 import { TituloSeccionesService } from 'src/app/services/titulo-secciones.service';
@@ -12,22 +10,16 @@ declare var $: any;
   styleUrls: ['./conocimientos-modal.component.css']
 })
 export class ConocimientosModalComponent implements OnInit {
-  modoEdicion:boolean=false;
-  suscripcionAlternarEdicion?:Subscription;
   formularioConocimientos!: FormGroup;
   formularioInvalido: boolean = false; 
   miTitulo!: TituloSeccion
 
-  @Output() actualizarTitulo: EventEmitter <any> = new EventEmitter (); 
+  @Output() actualizarTitulo: EventEmitter <TituloSeccion> = new EventEmitter (); 
 
 
-  constructor(private servicioEdicion : ModoEdicionService,
-    private formBuilder: FormBuilder,
+  constructor(private formBuilder: FormBuilder,
     private servicioTituloSeccion: TituloSeccionesService) 
-  {
-    this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
-      value => this.modoEdicion = value)     
-  }
+  { }
 
   ngOnInit ():void {
     this.servicioTituloSeccion.obtenerTitulos().subscribe(data => {
