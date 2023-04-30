@@ -19,7 +19,7 @@ aria-hidden="true"
                         <div class="d-flex align-items-baseline modal-body-div">
                             <label for="user" class="form-label etiquetaModal">Ubicación</label>
                             <input 
-                                type="text"
+                                [value]="persona.ubicacion"
                                 formControlName="ubicacion" 
                                 class="form-control inputModal"
                                 [ngClass]="{'is-invalid':formularioInvalido && formularioContacto.get('ubicacion')?.errors?.['required']}"

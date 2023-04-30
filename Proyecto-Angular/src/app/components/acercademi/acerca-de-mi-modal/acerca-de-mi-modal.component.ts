@@ -1,6 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
-import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AcercaDeMiService } from 'src/app/services/acerca-de-mi.service';
 import { AcercaDeMi } from 'src/app/interfaces/acerca-de-mi';

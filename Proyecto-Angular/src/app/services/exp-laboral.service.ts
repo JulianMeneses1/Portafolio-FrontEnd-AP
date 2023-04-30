@@ -48,7 +48,4 @@ export class ExpLaboralService {
  
     return this.http.post<Experiencia>("http://localhost:8080/crear/experiencia",experiencia,this.httpOptions)
   }
-
-
-
 }

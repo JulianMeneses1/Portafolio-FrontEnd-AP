@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faSquarePen, faUser, faUserPen, faEnvelope, faFileLines } from '@fortawesome/free-solid-svg-icons';
+import { faSquarePen, faUser, faUserPen, faEnvelope, faFileLines, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -7,6 +7,8 @@ import { TituloSeccion } from 'src/app/interfaces/titulo-seccion';
 import { Persona } from 'src/app/interfaces/persona';
 import { TituloSeccionesService } from 'src/app/services/titulo-secciones.service';
 import { PersonaService } from 'src/app/services/persona.service';
+import { EmailService } from 'src/app/services/email.service';
+declare var $: any;
 
 
 @Component({
@@ -21,6 +23,7 @@ export class ContactoComponent implements OnInit{
   faUser = faUser;
   faEnvelop = faEnvelope;
   faFileLines = faFileLines;
+  faCircleCheck = faCircleCheck;
   modoEdicion:boolean=true;
   suscripcionAlternarEdicion?:Subscription;
   formularioContacto!: FormGroup;
@@ -33,7 +36,8 @@ export class ContactoComponent implements OnInit{
   constructor(private servicioEdicion : ModoEdicionService,
               private servicioTituloSeccion : TituloSeccionesService, 
               private formBuilder: FormBuilder,
-              private servicioPersona : PersonaService) 
+              private servicioPersona : PersonaService,
+              private servicioEmail : EmailService) 
   {    
     this.suscripcionAlternarEdicion = this.servicioEdicion.onAlternarEdicion().subscribe(
       value => this.modoEdicion = value)
@@ -60,7 +64,15 @@ export class ContactoComponent implements OnInit{
   onSubmit ():void {
     if(this.formularioContacto.invalid) {
     this.formularioInvalido=true      
-    } else {  
+    } else {
+    let datos = {
+      asunto: this.formularioContacto.get('asunto')?.value,
+      mensaje: `Nombre: ${this.formularioContacto.get('nombre')?.value}
+      \nMensaje: ${this.formularioContacto.get('mensaje')?.value}
+      \nCorreo: ${this.formularioContacto.get('correo')?.value}`
+    }
+    this.servicioEmail.enviarEmail(datos).subscribe();
+    $("#contacto-modal-confirmacion").modal('show');  
     this.formularioContacto.reset()
     }
   }  

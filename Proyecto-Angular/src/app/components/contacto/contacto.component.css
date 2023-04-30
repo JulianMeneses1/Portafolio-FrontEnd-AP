@@ -15,6 +15,12 @@ h3{
     cursor: pointer; 
 }
 
+#icono-confirmacion{
+    font-size:3em; 
+    color:rgb(36, 95, 184); 
+    padding: 7px;
+}
+
 .icono-contacto {
     font-size: 1.3em;
     position: relative;

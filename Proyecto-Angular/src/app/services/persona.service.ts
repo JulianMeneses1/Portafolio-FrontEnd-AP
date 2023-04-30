@@ -21,6 +21,6 @@ export class PersonaService {
   }
 
   editarPersona (persona: Persona): Observable<Persona> {
-    return this.http.put<Persona>(`${"http://localhost:8080/editar/persona"}/${persona.id}`,this.httpOptions);
+    return this.http.put<Persona>(`${"http://localhost:8080/editar/persona"}/${persona.id}`,persona,this.httpOptions);
   }
 }
