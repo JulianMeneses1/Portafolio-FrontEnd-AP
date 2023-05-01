@@ -20,9 +20,9 @@ export class ProyectosModalCrearComponent implements OnInit {
 
   @Output() enAgregarProyecto: EventEmitter <Proyecto> = new EventEmitter ()
 
-  urlWebPattern:string = "[-a-zA-Z0-9@:%_\\+.~#?&//=]{2,256}\\.[a-z]{2,4}\\b(\\/[-a-zA-Z0-9@:%_\\+.~#?&//=]*)?"
+  urlWebPattern:string = "([-a-zA-Z0-9@:%_\\+.~#?&//=]{2,256}\\.[a-z]{2,4}\\b(\\/[-a-zA-Z0-9@:%_\\+.~#?&//=]*)?) || (https?://)?(github\\.com)(/[\\w\\.@\\:/\\-~]+)+"
   urlGitHubPattern:string = "(https?://)?(github\\.com)(/[\\w\\.@\\:/\\-~]+)+"
-  tecnologiasPattern:RegExp = /(\w)((\,\w)+)?/
+  tecnologiasPattern:RegExp = /(\w\s)+/
 
   constructor(
           private servicioArchivo : ArchivoService,

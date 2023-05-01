@@ -78,7 +78,8 @@ export class BannerModalComponent implements OnInit{
       formularioDeDatos.append('file',this.archivoCapturadoPerfil)
       this.servicioArchivo.subirArchivo(formularioDeDatos)
         .subscribe(response => {
-          this.archivoSubidoUrlPerfil = response.url      
+          this.archivoSubidoUrlPerfil = response.url    
+          console.log(response.url)  
         }) 
   }
 
@@ -89,7 +90,8 @@ export class BannerModalComponent implements OnInit{
     formularioDeDatos.append('file',this.archivoCapturadoBanner)
     this.servicioArchivo.subirArchivo(formularioDeDatos)
       .subscribe(response => {
-        this.archivoSubidoUrlBanner = response.url      
+        this.archivoSubidoUrlBanner = response.url 
+        console.log(response.url)      
       }) 
 }
   

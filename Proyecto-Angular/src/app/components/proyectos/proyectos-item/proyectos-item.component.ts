@@ -24,7 +24,7 @@ export class ProyectosItemComponent  implements OnInit{
   { }
 
   ngOnInit () {
-    this.tecnologias = this.proyecto.tecnologias.split(",")
+    this.tecnologias = this.proyecto.tecnologias.split(" ")
 
   }
 
