@@ -1,0 +1,50 @@
+<div id="contenedor-imagen">  
+    <a *ngIf="proyecto.url_sitio_web" href="{{proyecto.url_sitio_web}}" target="_blank">
+      <img src="{{proyecto.imagen}}">
+    </a>
+    <a *ngIf="!proyecto.url_sitio_web" href="{{proyecto.url_github}}" target="_blank">
+      <img src="{{proyecto.imagen}}">
+    </a>   
+</div>  
+<div id="contenedor-texto"> 
+    <div class="d-flex align-items-baseline mb-3">
+      <h4>{{proyecto.nombre}}</h4>
+      <div class="ms-auto">
+        <button>
+          <fa-icon 
+              [icon]="faX" 
+              *ngIf="modoEdicion" 
+              class="icono-borrar"
+              data-bs-toggle="modal" 
+              [attr.data-bs-target]="'#proyecto-modal-eliminar-' + proyecto.id">
+          </fa-icon>    
+        </button>       
+        <button>
+            <fa-icon 
+                    id="icono-editar"
+                    [icon]="faSquarePen" 
+                    *ngIf="modoEdicion" 
+                    data-bs-toggle="modal" 
+                    [attr.data-bs-target]="'#proyecto-modal-editar-' + proyecto.id">
+            </fa-icon> 
+        </button> 
+      </div>  
+    </div>
+    <div id="contenedor-descripcion">
+      <p>{{proyecto.descripcion}}</p>
+    </div>
+    <div class="contenedor-tecnologias-iconos">
+        <div class="d-flex gap-3">
+          <label *ngFor="let tecnologia of tecnologias">{{tecnologia}}</label>
+        </div>    
+        <div class="contenedor-iconos d-flex gap-1">          
+          <a href="{{proyecto.url_github}}" target="_blank" title="GitHub">         
+              <img class="iconos" id="icono-github" src="../assets/GitHub.png">                    
+          </a>
+          <a *ngIf="proyecto.url_sitio_web" href="{{proyecto.url_sitio_web}}" target="_blank" title="Link Externo"> 
+            <fa-icon class="iconos" id="icono-flecha" [icon]="faArrow"></fa-icon> 
+          </a>          
+        </div>
+    </div>
+</div>       
+

@@ -1,0 +1,51 @@
+<div class="d-flex justify-content-center align-items-center" id="container">    
+    <div 
+        id="div-editar-banner"
+        class="d-flex align-items-start justify-content-end px-5"
+        *ngIf="modoEdicion">
+        <fa-icon
+            class="iconos-edicion" 
+            [icon]="faSquarePen" 
+            data-bs-toggle="modal" 
+            data-bs-target="#bannerModal">
+        </fa-icon>
+    </div>
+    <img 
+        *ngIf="miBanner"  
+        id="banner"
+        [src]="miBanner.imagen_banner"
+    >  
+    <div id="sub-container">     
+       
+        <img 
+            *ngIf="miBanner"
+            id="foto-perfil" 
+            [src]="miBanner.imagen_perfil"
+            >       
+        <h2 *ngIf="miBanner">{{miBanner.titulo}}</h2>
+        <h5 *ngIf="miBanner"> {{miBanner.subtitulo}}</h5>
+    </div>    
+</div>
+<div id="contenedor-iconos-redes">
+    <div class="d-flex">        
+        <button class="botones-redes">
+            <a title="Seguime en Instagram" class="link-redes" target="_blank" href="https://www.instagram.com/julianmeneses1/">
+                <img class="iconos-redes" src="../assets/Instagram.png">
+            </a>
+        </button>
+        <button class="botones-redes" >
+            <a title="Contactame en Linkedin" class="link-redes" target="_blank" href="https://www.linkedin.com/in/juli%C3%A1n-meneses-97316b245/">
+                <img class="iconos-redes" src="../assets/Linkedin.png">
+            </a>
+        </button>
+        <button id="boton-github">
+            <a title="Mira mi perfil en GitHub" target="_blank" href="https://github.com/JulianMeneses1">
+                <img id="icono-github" src="../assets/GitHub.png">
+            </a>
+        </button>      
+    </div>
+</div>
+<app-banner-modal   
+    (enActualizarBanner)="actualizarBanner($event)"    
+>
+</app-banner-modal>

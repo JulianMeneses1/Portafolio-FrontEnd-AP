@@ -1,0 +1,31 @@
+<div class="w-100">
+    <div class="conocimientos-iconos d-flex align-items-center justify-content-between me-5" >
+        <div class="d-flex align-items-center">
+            <label>{{conocimiento.nombre}}</label>
+            <img [src]="conocimiento.imagen">
+        </div>
+        <div>            
+            <button>
+                <fa-icon 
+                    *ngIf="modoEdicion"
+                    [icon]="faX"  
+                    class="icono-borrar"
+                    data-bs-toggle="modal" 
+                    [attr.data-bs-target]="'#conocimiento-modal-eliminar-' + conocimiento.id">
+                </fa-icon>    
+            </button>       
+            <button>
+                <fa-icon 
+                    *ngIf="modoEdicion"
+                    id="icono-editar"
+                    [icon]="faSquarePen"                          
+                    data-bs-toggle="modal" 
+                    [attr.data-bs-target]="'#conocimiento-modal-editar-' + conocimiento.id">
+                </fa-icon> 
+            </button>          
+        </div>         
+    </div>
+    <div [ngClass]=conocimiento.nivel appScrollConocimientos></div>  
+</div>
+
+

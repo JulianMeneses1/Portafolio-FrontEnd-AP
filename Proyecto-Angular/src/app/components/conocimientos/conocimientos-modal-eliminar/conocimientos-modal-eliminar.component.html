@@ -1,0 +1,37 @@
+<!-- MODAL ELIMINAR CONOCIMIENTO -->
+
+<div 
+class="modal fade modal"      
+id="conocimiento-modal-eliminar-{{conocimiento.id}}" tabindex="-1" 
+aria-labelledby="textoModalLabel"
+aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="d-flex align-items-center justify-content-center m-3">
+                <p class="m-0">¿Está seguro de querer eliminar el conocimiento <b>{{conocimiento.nombre}}</b>?</p>
+            </div>          
+                    
+            <div class="modal-footer d-flex justify-content-between p-2">
+                <button 
+                    type="button" 
+                    class="btn btn-danger"                            
+                    data-bs-dismiss="modal"
+                    >
+                    Cerrar
+                </button>
+                <button 
+                    type="button" 
+                    class="btn btn-primary"
+                    (click)="eliminarConocimiento()"
+                    data-bs-dismiss="modal"
+                    >
+                    Confirmar
+                </button>
+            </div>        
+        </div>  
+    </div>
+</div>
+                
+
+

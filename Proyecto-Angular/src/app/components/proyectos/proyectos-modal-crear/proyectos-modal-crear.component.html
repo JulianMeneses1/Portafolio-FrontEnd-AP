@@ -1,0 +1,159 @@
+
+  <!-- MODAL AÑADIR PROYECTO -->
+
+  <div 
+  class="modal fade modal-lg"      
+  id="proyecto-modal-crear" tabindex="-1" 
+  aria-labelledby="textoModalLabel"
+  aria-hidden="true"
+  >
+      <div class="modal-dialog modal-dialog-centered" role="document" (click)="resetearForm()">
+          <div class="modal-content">
+              <div class="modal-header justify-content-center modal-body-div">
+                  <h3 class="modal-title textoModal text-center" id="textoModalLabel">Añadir Proyecto</h3>                        
+              </div>
+              <div class="modal-body">
+                    <form (ngSubmit)="onSubmit()" [formGroup]="formularioProyecto">
+                        <div class="mb-3">
+                            <div class="d-flex align-items-baseline modal-body-div">
+                                <label for="user" class="form-label etiquetaModal">Nombre</label>
+                                <input    
+                                    type="text" 
+                                    class="form-control inputModal" 
+                                    placeholder="Ingrese nombre"
+                                    maxlength="40"
+                                    [ngClass]="{'is-invalid':formularioInvalido && formularioProyecto.get('nombre')?.errors?.['required']}"
+                                    formControlName="nombre"
+                                    (click)="ocultarMensajeError()">
+                            </div>
+                            <p 
+                                class="text-danger" 
+                                *ngIf="formularioInvalido && formularioProyecto.get('nombre')?.errors?.['required']">
+                                Este campo es obligatorio
+                            </p> 
+                        </div>                        
+                        <div class="mb-3">
+                            <div class="d-flex align-items-baseline modal-body-div">
+                                <label for="user" class="form-label etiquetaModal">Descripción</label>              
+                                    <textarea
+                                        #Descripcion 
+                                        maxlength="300"
+                                        [ngClass]="{'is-invalid':formularioInvalido && formularioProyecto.get('descripcion')?.errors?.['required']}"           
+                                        class="form-control inputModal2"
+                                        formControlName="descripcion" 
+                                        placeholder="Ingrese descripción del proyecto"
+                                        (click)="ocultarMensajeError()"></textarea>
+                            </div>
+                            <p 
+                                class="text-danger" 
+                                *ngIf="formularioInvalido && formularioProyecto.get('descripcion')?.errors?.['required']">
+                                Este campo es obligatorio
+                            </p> 
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex align-items-baseline modal-body-div">
+                                <label for="user" class="form-label etiquetaModal">URL Sitio Web</label>
+                                <input 
+                                    type="text" 
+                                    [ngClass]="{'is-invalid':formularioInvalido && formularioProyecto.get('url_sitio_web')?.errors?.['pattern']}"
+                                    class="form-control inputModal" 
+                                    placeholder="Ingrese url del sitio web del proyecto (si posee)"
+                                    maxlength="200"
+                                    formControlName="url_sitio_web"
+                                    (click)="ocultarMensajeError()">
+                            </div>                        
+                            <p 
+                                class="text-danger" 
+                                *ngIf="formularioInvalido && formularioProyecto.get('url_sitio_web')?.errors?.['pattern']">
+                                Debe ingresar una url válida
+                            </p>  
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex align-items-baseline modal-body-div">
+                                <label for="user" class="form-label etiquetaModal">URL GitHub</label>
+                                <input 
+
+                                    type="text"
+                                    [ngClass]="{'is-invalid':formularioInvalido && (formularioProyecto.get('url_github')?.errors?.['required'] || 
+                                    formularioInvalido && formularioProyecto.get('url_github')?.errors?.['pattern'])}" 
+                                    class="form-control inputModal" 
+                                    placeholder="Ingrese url del sitio del proyecto en GitHub"
+                                    maxlength="200"
+                                    formControlName="url_github"
+                                    (click)="ocultarMensajeError()">
+                            </div>
+                            <p 
+                                class="text-danger" 
+                                *ngIf="formularioInvalido && formularioProyecto.get('url_github')?.errors?.['required']">
+                                Este campo es obligatorio
+                            </p> 
+                            <p 
+                                class="text-danger" 
+                                *ngIf="formularioInvalido && formularioProyecto.get('url_github')?.errors?.['pattern']">
+                                Debe ingresar una url válida
+                            </p> 
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex align-items-baseline modal-body-div">
+                                <label for="user" class="form-label etiquetaModal">Tecnologías</label>
+                                <input 
+                                    #Tecnologias
+                                    type="text"
+                                    [ngClass]="{'is-invalid':formularioInvalido && (formularioProyecto.get('tecnologias')?.errors?.['required'] || 
+                                    formularioInvalido && formularioProyecto.get('tecnologias')?.errors?.['pattern'])}"  
+                                    class="form-control inputModal"
+                                    maxlength="100" 
+                                    placeholder="Ingrese las tecnologías utilizadas en el proyecto"
+                                    formControlName="tecnologias"
+                                    (click)="ocultarMensajeError()">
+                            </div>
+                            <p 
+                                class="text-danger" 
+                                *ngIf="formularioInvalido && formularioProyecto.get('tecnologias')?.errors?.['required']">
+                                Este campo es obligatorio
+                            </p> 
+                            <p 
+                                class="text-danger" 
+                                *ngIf="formularioInvalido && formularioProyecto.get('tecnologias')?.errors?.['pattern']">
+                                Las tecnologias deben ir en minúscula y separadas por un espacio, con un espacio al final
+                            </p> 
+                        </div>                      
+                        <div class="mb-3">
+                            <div class="mb-2 modal-body-div" >
+                                <label for="user" class="form-label etiquetaModal">Imagen</label>                                               
+                                <input 
+                                    class="inputEdicion me-2" 
+                                    (change)="capturarImagen($event)" 
+                                    (click)="ocultarMensajeError()" 
+                                    type="file"
+                                    accept="image/*">
+                                <label class="textoModal">{{nombreArchivo}}</label>             
+                            </div>
+                            <p 
+                                class="text-danger" 
+                                *ngIf="formularioInvalido && formularioProyecto.get('imagen')?.errors?.['required']">
+                                Este campo es obligatorio
+                            </p>
+                        </div> 
+                        <img *ngIf="previsualizacionImagen" class="imagenEdicion mb-1" [src]="previsualizacionImagen">                 
+                        
+                        <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
+                          <button 
+                              type="button" 
+                              class="btn btn-danger"                            
+                              data-bs-dismiss="modal"
+                              >
+                              Cerrar
+                          </button>
+                          <button 
+                              type="submit" 
+                              class="btn btn-primary"                                                                                                                                        
+                              >
+                              Aceptar
+                          </button>
+                        </div>
+                    </form>
+              </div>
+          </div>
+      </div>
+  </div>

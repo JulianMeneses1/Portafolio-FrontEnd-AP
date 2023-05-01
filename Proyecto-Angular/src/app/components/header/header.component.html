@@ -1,0 +1,123 @@
+<header> 
+    <nav class="navbar navbar-expand-xl fixed-top p-1" id="menu" appScrollMenu>        
+        <div class="container-fluid">
+            <a class="navbar-brand ms-3"  href="#">
+                <img id="logo" src="../assets/Logo.png">                
+            </a>
+            <button 
+                class="navbar-toggler me-1" 
+                type="button" 
+                data-bs-toggle="modal" 
+                data-bs-target="#menuColapsado"              
+                >
+                <span> 
+                    <fa-icon *ngIf="scrollVisible" [icon]="faBars"></fa-icon>
+                    
+                </span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end">
+                <ul class="navbar-nav mb-0 mt-2 align-items-center">                            
+                    <li class="nav-item">
+                        <a class="nav-link link"  href="#acerca de mi" >Acerca de mí</a>
+                    </li>                
+                    <li class="nav-item">
+                        <a class="nav-link link" href="#conocimientos" >Conocimientos</a>
+                    </li>                            
+                    <li class="nav-item">
+                        <a class="nav-link link" href="#experiencia laboral" >Experiencia Laboral</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link" href="#proyectos" >Proyectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link" href="#formacion academica" >Formación Académica</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link" href="#contacto" >Contacto</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class="nav-link" href="https://drive.google.com/file/d/1djeNMv7v-KXWdcmLdvFT51G94AKmZaUM/view?usp=share_link" target="_blank"> 
+                            <button id="boton_cv" >Currículum</button>
+                        </a>
+                    </li>                    
+                </ul>  
+                <div class="d-flex justify-content-end me-2 mt-2">                    
+                    <button 
+                        id="boton_login" 
+                         
+                        data-bs-toggle="modal" 
+                        data-bs-target="#loginModal"
+                        *ngIf="!modoEdicion">
+                        Login 
+                    </button>
+                    <button                        
+                        id="boton_logout" 
+                        (click)="alternarEdicion()" 
+                        *ngIf="modoEdicion">
+                        Logout 
+                    </button>
+                                                                  
+                </div>                      
+            </div>
+        </div>        
+    </nav>      
+</header> 
+
+<!-- MODAL MENU COLAPSADO -->
+
+<div class="modal fade" id="menuColapsado" tabindex="-1">    
+    <div class="modal-dialog">
+      <div class="modal-content">        
+        <div class="modal-header d-flex justify-content-end me-3 mt-2">
+            <fa-icon [icon]="faX" (click)="cerrarMenu()"></fa-icon>            
+        </div>        
+        <div class="modal-body">            
+            <ul id="nav-colapsado" class="navbar-nav">                            
+                <li class="nav-item">
+                    <a class="nav-link link"  (click)="cerrarMenuRetardo()" href="#acerca de mi" >Acerca de mí</a>
+                </li>                
+                <li class="nav-item">
+                    <a class="nav-link link" (click)="cerrarMenuRetardo()" href="#conocimientos"  >Conocimientos</a>
+                </li>                            
+                <li class="nav-item">
+                    <a class="nav-link link" (click)="cerrarMenuRetardo()" href="#experiencia laboral" >Experiencia Laboral</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link" (click)="cerrarMenuRetardo()" href="#proyectos" >Proyectos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link" (click)="cerrarMenuRetardo()" href="#formacion academica" >Formación Académica</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link"  (click)="cerrarMenuRetardo()" href="#contacto" >Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="cerrarMenuRetardo()" href="https://drive.google.com/file/d/1ydClG_5Vd0l7J2m0kDwPLylX8tpuMv9C/view" target="_blank"> 
+                        <button id="boton_cv" >Currículum</button>
+                    </a>
+                </li>                    
+            </ul>  
+            <div class="d-flex justify-content-center" id="contenedor-login-logout-colapsado">                    
+                <button 
+                    id="boton_login" 
+                     
+                    data-bs-toggle="modal" 
+                    data-bs-target="#loginModal"
+                    *ngIf="!modoEdicion">
+                    Login 
+                </button>
+                <button                        
+                    id="boton_logout" 
+                    (click)="alternarEdicion(); cerrarMenu()"
+                    *ngIf="modoEdicion">
+                    Logout 
+                </button>
+                                                              
+            </div>
+        </div>        
+      </div>
+    </div>
+  </div>
+
+  <app-modal-login></app-modal-login>
+

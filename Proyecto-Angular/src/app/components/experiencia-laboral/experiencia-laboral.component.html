@@ -1,0 +1,88 @@
+<section class="d-flex justify-content-center align-items-center" id="experiencia laboral">
+    <div class="card" id="container">
+        <div class="my-2 d-flex justify-content-between align-items-baseline flex-wrap" data-aos="fade-right" data-aos-duration="800" data-aos-easing="ease-in-out">
+            <h3><strong>{{miTitulo.titulo}}</strong></h3>
+            <div>
+                <fa-icon
+                    [icon]="faPlus" 
+                    *ngIf="modoEdicion"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#experiencia-modal">
+                </fa-icon> 
+                <fa-icon
+                    *ngIf="modoEdicion"
+                    [icon]="faSquarePen"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#experiencia-modal-titulo">
+                </fa-icon>
+            </div>
+            
+        </div>
+        <div class="d-flex my-2 position-relative" id="container-items-lista-exp" data-aos="fade-right" data-aos-duration="800" data-aos-easing="ease-in-out">
+            <div class="me-2 container-lista-exp">                 
+                <button  
+                    *ngFor="let experiencia of experiencias" 
+                    [ngClass]="{'boton-exp-item-seleccionado': experiencia == experienciaSeleccionada}"      
+                    class="boton-exp-item"
+                    (click)="desaparecerPrimerExp(); alternarExperiencias(experiencia)"
+                    > 
+                    {{experiencia.nombre_empresa}}                   
+                    <fa-icon 
+                            [icon]="faX" 
+                            *ngIf="modoEdicion" 
+                            id="icono-borrar"
+                            data-bs-toggle="modal" 
+                            [attr.data-bs-target]="'#experiencia-modal-eliminar-' + experiencia.id">
+                    </fa-icon> 
+                    <fa-icon 
+                            id="icono-editar"
+                            [icon]="faSquarePen" 
+                            *ngIf="modoEdicion"
+                            data-bs-toggle="modal" 
+                            [attr.data-bs-target]="'#experiencia-modal-editar-' + experiencia.id">
+                    </fa-icon>                   
+                </button>                                    
+                <div
+                    *ngIf="experiencias.length > 0"                        
+                    class="lista-seleccion animacion-lista-seleccion"
+                    [ngClass]=posicion_Y                    
+                    >
+                </div> 
+            </div>          
+            <div class="container-items-exp" *ngIf="experiencias.length > 0">
+                <div *ngIf="mostrarPrimerExp">
+                    <div class="d-flex align-items-baseline gap-1 container-titulo-primer-exp"> 
+                        <p id="titulo-primer-exp">{{experiencias[0].puesto}}</p>                        
+                        <div class="d-flex">                            
+                            <a *ngIf="experiencias[0].url" href="{{experiencias[0].url}}" target="_blank">@ {{experiencias[0].nombre_empresa}}</a> 
+                        </div>                       
+                    </div>
+                    <div>
+                        <p id="duracion-primer-exp">{{experiencias[0].fecha_inicio}} - {{experiencias[0].fecha_fin}}</p>
+                        <p>{{experiencias[0].descripcion}}</p>
+                    </div>
+                </div>
+                <router-outlet *ngIf="!mostrarPrimerExp"></router-outlet>                
+            </div>  
+        </div>              
+    </div>                     
+</section>
+<app-experiencia-laboral-modal
+    (actualizarTitulo)="modificarTitulo($event)"
+>
+</app-experiencia-laboral-modal>
+<app-experiencia-laboral-modal-crear
+    (enAgregarExperiencia)="agregarExperiencia($event)"
+    [experiencias]="experiencias">        
+</app-experiencia-laboral-modal-crear>
+<app-experiencia-laboral-modal-editar
+    *ngFor="let experiencia of experiencias"
+    [experiencia]="experiencia"
+    (enModificarExperiencia)="modificarExperiencia($event)">
+</app-experiencia-laboral-modal-editar>
+<app-experiencia-laboral-modal-eliminar
+    (enEliminarExperiencia)="eliminarExperiencia($event)"
+    *ngFor="let experiencia of experiencias"
+    [experiencia]="experiencia">
+</app-experiencia-laboral-modal-eliminar>
+

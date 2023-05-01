@@ -1,0 +1,133 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+:root {
+    --skills-bar-length: 0%;
+    --exp-bar-position-Y: 0px;
+}
+
+body {
+    font-family: 'Montserrat';
+    background-color: black !important;
+    color: white;
+    padding-top: 5em;
+    overflow-x: hidden !important;     
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.scroll-hidden {
+    overflow: hidden;    
+}
+
+section {
+    padding-top: 100px;
+}
+
+section > #container {
+    width: 70%;
+    background-color: black !important;
+}
+
+footer {
+    background: #000000;
+    height: auto;
+}
+.textoModal, .etiquetaModal, .inputModal {
+    color:black !important
+}
+
+.etiquetaModal {
+    width: 30%
+}
+
+.inputModal2 {
+    overflow: auto;
+    height: 100px;   
+    max-height: 150px;
+    width: 70%;
+}
+
+.inputModal {
+    width: 70%
+}
+
+.mensajeErrorContacto{   
+    padding: 4px !important;       
+    width: 95%;
+    margin-left: 3%;
+    margin-bottom: 0px;
+    
+}
+
+.mensajeErrorFormularios{   
+    padding: 4px !important   
+}
+
+/*  Para anular el efecto del color negro y el fondo blanco del autollenado de los inputs (en realidad no lo anula sino que pospone su efecto 600000s, o sea 10000 minutos) */
+
+input:-webkit-autofill, input:-webkit-autofill:focus {  
+    transition: background-color 600000s 0s, color 600000s 0s;
+  }
+
+/* Modificando la barra de desplazamiento (scrollbar) */
+
+/* Funciona en Firefox */
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #495670 black;
+  }
+  
+/* Funciona en Chrome, Edge, y Safari */
+
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+    
+::-webkit-scrollbar-track {
+    background: black;      
+ 
+}  
+
+::-webkit-scrollbar-thumb {
+    background-color: #495670;    
+    border-radius: 10px; 
+    border: 3px solid black;}
+    
+
+@media screen and (max-width:1000px){
+    section > #container {
+        width: 80% !important
+    }
+    
+}
+
+@media screen and (max-width:600px){
+    section > #container {
+        width: 87% !important;       
+    }
+   
+    .modal-body-div {
+        display: block !important;
+    }
+    
+    .etiquetaModal, .inputModal, .inputModal2, .etiquetaModal2 {
+        width: 100% !important;
+    }
+
+    .etiquetaModal, .etiquetaModal2{
+        font-weight: bold;
+    }
+}
+
+@media screen and (max-width:350px){
+    section > #container {
+        width: 107% !important;
+        margin-left: 6%        
+    }  
+    
+}

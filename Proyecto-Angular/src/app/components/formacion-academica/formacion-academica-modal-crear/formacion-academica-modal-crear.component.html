@@ -1,0 +1,201 @@
+<!-- MODAL AÑADIR EDUCACIÓN -->
+
+<div 
+class="modal fade modal-lg"      
+id="formacion-modal-crear" tabindex="-1" 
+aria-labelledby="textoModalLabel"
+aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered" role="document" (click)="resetearForm()">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center">
+                <h3 class="modal-title textoModal" id="textoModalLabel">Añadir Formación</h3>                        
+            </div>
+            <div class="modal-body">                          
+                
+                <form (ngSubmit)="onSubmit()" [formGroup]="formularioFormacion">
+                    <div class="mb-3">
+                        <div class="d-flex align-items-baseline modal-body-div">
+                            <label for="user" class="form-label etiquetaModal">Nombre</label>
+                            <input 
+                                #nombre 
+                                type="text"
+                                maxlength="60" 
+                                class="form-control inputModal"
+                                formControlName="nombre"
+                                [ngClass]="{'is-invalid':formularioInvalido && formularioFormacion.get('nombre')?.errors?.['required']}"
+                                placeholder="Ingrese el nombre del curso/carrera"
+                                (click)="ocultarMensajeError()">
+                        </div>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioFormacion.get('nombre')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p> 
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex align-items-baseline modal-body-div">
+                            <label for="user" class="form-label etiquetaModal">Institución</label>
+                            <input 
+                                #institucion
+                                type="text" 
+                                class="form-control inputModal"
+                                maxlength="40"
+                                [ngClass]="{'is-invalid':formularioInvalido && formularioFormacion.get('institucion')?.errors?.['required']}"
+                                formControlName="institucion"   
+                                placeholder="Ingrese el nombre de la institución en donde realiza/realizó los estudios"
+                                (click)="ocultarMensajeError()">
+                        </div>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioFormacion.get('institucion')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p> 
+                    </div> 
+                    <div class="mb-3">
+                        <div class="d-flex align-items-baseline modal-body-div">
+                            <label for="user" class="form-label etiquetaModal">URL Institución</label>
+                            <input 
+                                formControlName="url_institucion"
+                                type="text"
+                                maxlength="200"
+                                [ngClass]="{'is-invalid':formularioInvalido && (formularioFormacion.get('url_institucion')?.errors?.['required'] || 
+                                formularioInvalido && formularioFormacion.get('url_institucion')?.errors?.['pattern'])}" 
+                                class="form-control inputModal" 
+                                placeholder="Ingrese la url del sitio web de la institución"
+                                (click)="ocultarMensajeError()">
+                        </div>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioFormacion.get('url_institucion')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p>  
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioFormacion.get('url_institucion')?.errors?.['pattern']">
+                            Debe ingresar una url válida
+                        </p>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex align-items-baseline modal-body-div">
+                            <label for="user" class="form-label etiquetaModal">URL Certificado</label>
+                            <input 
+                                type="text" 
+                                class="form-control inputModal"
+                                maxlength="200"
+                                [ngClass]="{'is-invalid':formularioInvalido && formularioFormacion.get('url_certificado')?.errors?.['required']}" 
+                                placeholder="Ingrese la url del certificado"
+                                (click)="ocultarMensajeError()"
+                                formControlName="url_certificado">
+                        </div>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioFormacion.get('url_certificado')?.errors?.['pattern']">
+                            Debe ingresar una url válida
+                        </p>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex align-items-baseline modal-body-div">
+                            <label for="user" class="form-label etiquetaModal">Fecha Inicio</label>
+                            <input 
+                                type="text"
+                                maxlength="15"
+                                [ngClass]="{'is-invalid':formularioInvalido && (formularioFormacion.get('fecha_inicio')?.errors?.['required'] || 
+                                formularioInvalido && formularioFormacion.get('fecha_inicio')?.errors?.['pattern'])}" 
+                                class="form-control inputModal" 
+                                placeholder="Ingrese fecha de inicio (mes y año)"
+                                (click)="ocultarMensajeError()"
+                                formControlName="fecha_inicio">
+                        </div>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioFormacion.get('fecha_inicio')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p>                         
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioFormacion.get('fecha_inicio')?.errors?.['pattern']">
+                            Debe ingresar una fecha en el formato correcto, ejemplo: Diciembre 2022.
+                        </p>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex align-items-baseline modal-body-div">
+                            <label for="user" class="form-label etiquetaModal">Fecha Fin</label>
+                            <input 
+                                type="text"
+                                maxlength="15"
+                                [ngClass]="{'is-invalid':formularioInvalido && (formularioFormacion.get('fecha_fin')?.errors?.['required'] || 
+                                formularioInvalido && formularioFormacion.get('fecha_fin')?.errors?.['pattern'])}" 
+                                class="form-control inputModal" 
+                                placeholder="Ingrese fecha de finalización (mes y año)"
+                                (click)="ocultarMensajeError()"
+                                formControlName="fecha_fin">
+                        </div>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioFormacion.get('fecha_fin')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p>                         
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioFormacion.get('fecha_fin')?.errors?.['pattern']">
+                            Debe ingresar una fecha en el formato correcto, ejemplo: Diciembre 2022.
+                        </p>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex align-items-baseline modal-body-div">
+                            <label for="user" class="form-label etiquetaModal">Descripción</label>              
+                                <textarea
+                                    maxlength="400"
+                                    [ngClass]="{'is-invalid':formularioInvalido && formularioFormacion.get('descripcion')?.errors?.['required']}"           
+                                    class="form-control inputModal2" 
+                                    placeholder="Ingrese descripción del curso/carrera"
+                                    (click)="ocultarMensajeError()"
+                                    formControlName="descripcion"></textarea>
+                        </div>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioFormacion.get('descripcion')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p> 
+                    </div>
+                    <div class="mb-3">
+                        <div class="mb-2 modal-body-div" >
+                            <label for="user" class="form-label etiquetaModal">Imagen</label>                                               
+                            <input 
+                                class="inputEdicion me-2" 
+                                (change)="capturarImagen($event)" 
+                                #nuevaImagen
+                                (click)="ocultarMensajeError()" 
+                                type="file"
+                                accept="image/*">
+                            <label class="textoModal">{{nombreArchivo}}</label>             
+                        </div>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioFormacion.get('imagen')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p>
+                    </div>
+                    <img *ngIf="previsualizacionImagen" class="imagenEdicion mb-1" [src]="previsualizacionImagen">
+                    
+                    <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
+                        <button 
+                            type="button" 
+                            class="btn btn-danger"                            
+                            data-bs-dismiss="modal"
+                            >
+                            Cerrar
+                        </button>
+                        <button 
+                            type="submit" 
+                            class="btn btn-primary"                                                                                                         
+                            >
+                            Aceptar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>                                          

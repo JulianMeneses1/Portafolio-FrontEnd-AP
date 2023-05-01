@@ -1,0 +1,164 @@
+
+
+ <!-- MODAL AÑADIR EXPERIENCIA -->
+
+ <div 
+ class="modal fade modal-lg"      
+ id="experiencia-modal" tabindex="-1" 
+ aria-labelledby="textoModalLabel"
+ aria-hidden="true"
+ >
+     <div class="modal-dialog modal-dialog-centered" role="document" (click)="resetearForm()">
+         <div class="modal-content">
+             <div class="modal-header justify-content-center">
+                 <h3 class="modal-title textoModal" id="textoModalLabel">Añadir Experiencia</h3>                        
+             </div>
+             <div class="modal-body">                           
+                 
+                 <form (ngSubmit)="onSubmit()" [formGroup]="formularioExperiencia">
+                     <div class="mb-3">
+                        <div class="d-flex align-items-baseline modal-body-div">
+                            <label for="user" class="form-label etiquetaModal">Empresa</label>
+                            <input 
+                        
+                                type="text" 
+                                class="form-control inputModal"
+                                (click)="ocultarMensajeError()" 
+                                placeholder="Ingrese el nombre de la empresa"
+                                maxlength="30"
+                                [ngClass]="{'is-invalid':formularioInvalido && formularioExperiencia.get('nombre_empresa')?.errors?.['required']}"
+                                formControlName="nombre_empresa">
+                        </div>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioExperiencia.get('nombre_empresa')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p> 
+                     </div>
+                     <div class="mb-3">
+                        <div class="d-flex align-items-baseline modal-body-div">
+                            <label for="user" class="form-label etiquetaModal">Puesto</label>
+                            <input 
+                        
+                                type="text" 
+                                class="form-control inputModal"
+                                (click)="ocultarMensajeError()" 
+                                placeholder="Ingrese su puesto en la empresa"
+                                maxlength="50"
+                                [ngClass]="{'is-invalid':formularioInvalido && formularioExperiencia.get('puesto')?.errors?.['required']}"
+                                formControlName="puesto">
+                        </div>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioExperiencia.get('puesto')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p> 
+                     </div>
+                     <div class="mb-3">
+                        <div class="d-flex align-items-baseline modal-body-div">
+                            <label for="user" class="form-label etiquetaModal">URL</label>
+                            <input 
+                        
+                                type="text" 
+                                class="form-control inputModal"
+                                (click)="ocultarMensajeError()" 
+                                placeholder="Ingrese la url de la página web de la empresa"
+                                maxlength="200"
+                                [ngClass]="{'is-invalid':formularioInvalido && (formularioExperiencia.get('url')?.errors?.['required'] || 
+                                formularioExperiencia.get('url')?.errors?.['pattern'])}"
+                                formControlName="url">
+                        </div>
+                        <p 
+                            class="text-danger"  
+                            *ngIf="formularioInvalido && formularioExperiencia.get('url')?.errors?.['pattern']">
+                            Debe ingresar una url válida
+                        </p> 
+                     </div>
+                     <div class="mb-3">
+                        <div class="d-flex align-items-baseline modal-body-div">
+                            <label for="user" class="form-label etiquetaModal">Fecha Inicio</label>
+                            <input 
+                                type="text" 
+                                class="form-control inputModal"
+                                (click)="ocultarMensajeError()" 
+                                placeholder="Ingrese fecha de inicio (mes y año)"
+                                maxlength="15"
+                                [ngClass]="{'is-invalid':formularioInvalido && (formularioExperiencia.get('fecha_inicio')?.errors?.['required'] || 
+                                formularioExperiencia.get('fecha_inicio')?.errors?.['pattern'])}"
+                                formControlName="fecha_inicio">
+                        </div>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioExperiencia.get('fecha_inicio')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioExperiencia.get('fecha_inicio')?.errors?.['pattern']">
+                            Debe ingresar una fecha en el formato correcto, ejemplo: Marzo 2020.
+                        </p> 
+                     </div>
+                     <div class="mb-3">
+                        <div class="d-flex align-items-baseline modal-body-div">
+                            <label for="user" class="form-label etiquetaModal">Fecha Fin</label>
+                            <input 
+                                type="text" 
+                                class="form-control inputModal"
+                                (click)="ocultarMensajeError()" 
+                                placeholder="Ingrese fecha de finalización (mes y año)"
+                                maxlength="15"
+                                [ngClass]="{'is-invalid':formularioInvalido && (formularioExperiencia.get('fecha_fin')?.errors?.['required'] || 
+                                formularioExperiencia.get('fecha_fin')?.errors?.['pattern'])}"
+                                formControlName="fecha_fin">
+                        </div>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioExperiencia.get('fecha_fin')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioExperiencia.get('fecha_fin')?.errors?.['pattern']">
+                            Debe ingresar una fecha en el formato correcto, ejemplo: Junio 2022 o Actualidad.
+                        </p> 
+                     </div>
+                     <div class="mb-3">
+                        <div class="d-flex align-items-center modal-body-div">
+                            <label for="user" class="form-label etiquetaModal">Descripción</label>              
+                                <textarea
+                                    maxlength="300"           
+                                    class="form-control inputModal2"
+                                    (click)="ocultarMensajeError()" 
+                                    placeholder="Ingrese descripción de su puesto en la empresa"
+                                    maxlength="310"
+                                    [ngClass]="{'is-invalid':formularioInvalido && formularioExperiencia.get('descripcion')?.errors?.['required']}"
+                                    formControlName="descripcion"></textarea>
+                        </div>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioExperiencia.get('descripcion')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p>                     
+                     </div>
+                     
+                     <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
+                         <button 
+                             type="button" 
+                             class="btn btn-danger"                            
+                             data-bs-dismiss="modal"
+                             >
+                             Cerrar
+                         </button>
+                         <button 
+                             type="submit" 
+                             class="btn btn-primary"                                                       
+                             >
+                             Aceptar
+                         </button>
+                     </div>
+                 </form>
+             </div>
+         </div>
+     </div>
+ </div>                             
+

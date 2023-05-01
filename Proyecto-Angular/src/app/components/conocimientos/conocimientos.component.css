@@ -1,0 +1,22 @@
+
+h3{
+    color: lightblue;
+}
+
+
+fa-icon{
+    font-size:2.5em; 
+    color:rgb(36, 95, 184); 
+    padding: 7px;
+    cursor: pointer; 
+}
+
+fa-icon:hover{
+    color:lightblue
+}
+
+@media  screen and (max-width: 800px){
+    .conocimientos-div{
+        width: 100% !important;
+    }    
+} 

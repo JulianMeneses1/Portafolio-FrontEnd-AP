@@ -1,0 +1,114 @@
+
+#container {
+    width: 60%;    
+}
+
+h3{
+    color: lightblue;
+    text-align: center;
+}
+
+.icono-edicion{
+    font-size:2.5em; 
+    color:rgb(36, 95, 184); 
+    padding: 7px;
+    cursor: pointer; 
+}
+
+#icono-confirmacion{
+    font-size:3em; 
+    color:rgb(36, 95, 184); 
+    padding: 7px;
+}
+
+.icono-contacto {
+    font-size: 1.3em;
+    position: relative;
+    color:gray
+}
+
+.icono-edicion:hover{
+    color:lightblue
+}
+
+#container-info{
+    width: 50%;
+    padding: 10px 40px;
+}
+
+#container-form {
+    width: 50%;
+    padding: 10px 0px 10px 40px
+}
+
+#container-info label, #container-form p{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+form p {
+    margin-bottom: 2px !important;
+    font-weight: normal !important;
+}
+
+input, textarea {
+    background-color: black;
+    border-color: gray;
+    color: white !important;
+    padding-left: 50px;  
+}
+
+span {    
+    position: absolute;
+    margin-left: 10px;
+}
+
+input:focus, textarea:focus{
+    background-color: black;
+    border-color: green;
+    box-shadow: 0px 0px 7px green;
+    color: white;
+}
+
+textarea{
+    width: 100%;
+    padding: 0.375rem 0.75rem !important;
+    height: 90px;
+    overflow: auto;
+}
+
+#container-info div {
+    margin-left: 20%
+}
+
+
+@media  screen and  (max-width:1000px){
+
+    #container-form-info{
+        display:inline-block !important;
+        width: 100%;
+    }
+
+    #container-form, #container-info{
+        width: 100%;
+    }
+
+    #container-form{
+        margin-bottom:20px;
+       padding-right: 80px       
+    }
+
+    #container-info div {
+        margin-left: 0px;       
+    }
+       
+}
+
+@media  screen and  (max-width:500px){
+    #container-form{      
+       padding-right: 20px       
+    } 
+   
+}
+
+

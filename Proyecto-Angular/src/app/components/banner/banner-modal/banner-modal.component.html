@@ -1,0 +1,103 @@
+<!-- MODAL BANNER -->
+
+<form (ngSubmit)="onSubmit()" [formGroup]="formularioBanner">
+    <div 
+        class="modal fade modal-lg"     
+        id="bannerModal" tabindex="-1" 
+        aria-labelledby="bannerModalLabel"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog modal-dialog-centered" role="document" (click)="resetearForm()">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <h3 class="modal-title textoModal" id="bannerModalLabel">Editar Banner</h3>                        
+                </div>
+                <div class="modal-body">                                 
+                    <div class="mb-3 contenedorImagen">
+                        <label for="user"  class="form-label me-3 etiquetaModal">Imagen Banner</label>
+                        <img *ngIf="!previsualizacionImagenBanner" class="imagenEdicion" [src]="miBanner.imagen_banner">
+                        <img *ngIf="previsualizacionImagenBanner" class="imagenEdicion mb-1" [src]="previsualizacionImagenBanner">
+                    </div>                        
+                    <div class="mb-2">
+                        <label for="user" class="form-label etiquetaModal me-3">Nueva Imagen</label>                                               
+                        <input 
+                            class="inputEdicion me-3" 
+                            (change)="capturarImagenBanner($event)" 
+                            type="file" 
+                            accept="image/*"
+                            (click)="ocultarMensajeError()"> 
+                        <label class="textoModal">{{nombreArchivoBanner}}</label>       
+                    </div>                      
+                    
+                    <div class="mb-3 contenedorImagen">
+                        <label for="user" class="form-label me-3 etiquetaModal">Imagen Perfil</label>                        
+                        <img *ngIf="!previsualizacionImagenPerfil" class="imagenEdicion" [src]="miBanner.imagen_perfil">
+                        <img *ngIf="previsualizacionImagenPerfil" class="imagenEdicion mb-1" [src]="previsualizacionImagenPerfil">                         
+                    </div>                        
+                    <div class="mb-2">
+                        <label for="user" class="form-label etiquetaModal me-3">Nueva Imagen</label>
+                        <input 
+                            class="inputEdicion me-3" 
+                            (change)="capturarImagenPerfil($event)" 
+                            type="file" 
+                            accept="image/*"
+                            (click)="ocultarMensajeError()">  
+                        <label *ngIf="previsualizacionImagenPerfil" class="textoModal mb-1">{{nombreArchivoPerfil}}</label>                      
+                    </div>                    
+                    
+                    <div class="mb-3">
+                        <div class="d-flex modal-body-div align-items-baseline">
+                            <label for="user" class="form-label etiquetaModal me-3">Título</label>
+                            <input 
+                                type="text"
+                                [value]="miBanner.titulo"                           
+                                class="form-control inputModal"
+                                formControlName="titulo" 
+                                maxlength="20"
+                                placeholder="Ingrese nuevo título"
+                                [ngClass]="{'is-invalid':formularioInvalido && formularioBanner.get('titulo')?.errors?.['required']}"
+                                (click)="ocultarMensajeError()">                                     
+                        </div>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioBanner.get('titulo')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p> 
+                    </div>                
+                    <div class="mb-3">
+                        <div class="d-flex align-items-baseline modal-body-div">
+                            <label for="user" class="form-label etiquetaModal me-3">Subtítulo</label>                        
+                            <input 
+                                type="text" 
+                                class="form-control inputModal" 
+                                placeholder="Ingrese nuevo subtítulo"  
+                                maxlength="35"                                
+                                [ngClass]="{'is-invalid':formularioInvalido && formularioBanner.get('subtitulo')?.errors?.['required']}"
+                                (click)="ocultarMensajeError()"
+                                formControlName="subtitulo">
+                        </div>
+                        <p 
+                            class="text-danger" 
+                            *ngIf="formularioInvalido && formularioBanner.get('subtitulo')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p> 
+                    </div>               
+                    <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
+                        <button 
+                            type="button" 
+                            class="btn btn-danger"                        
+                            data-bs-dismiss="modal">
+                            Cerrar
+                        </button>
+                        <button 
+                            type="submit" 
+                            class="btn btn-primary">
+                            Aceptar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+</form>
+

@@ -1,0 +1,19 @@
+<section class="d-flex justify-content-center align-items-center " id="acerca de mi"  >
+    <div class="card" id="container" >
+        <div class="my-2 d-flex justify-content-between align-items-baseline" data-aos="fade-up" data-aos-duration="800" data-aos-easing="ease-in-out">                        
+            <h3><strong>{{miAcercaDeMi.titulo}}</strong></h3>                          
+            <fa-icon
+                    *ngIf="modoEdicion" 
+                    [icon]="faSquarePen"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#acerca-de-mi-modal">
+            </fa-icon> 
+        </div>        
+        <div data-aos="fade-up" data-aos-duration="800" data-aos-easing="ease-in-out">
+            <p class="card-text">{{miAcercaDeMi.descripcion}}</p> 
+        </div>                                                                     
+    </div>
+</section> 
+<app-acerca-de-mi-modal
+(actualizarDatos)="actualizarAcercaDeMi($event)">
+</app-acerca-de-mi-modal>   

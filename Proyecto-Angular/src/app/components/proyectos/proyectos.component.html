@@ -1,0 +1,48 @@
+<section  class="d-flex justify-content-center align-items-center" id="proyectos" >
+  <div class="card" id="container" >
+      <div class="my-2 d-flex justify-content-between align-items-baseline" data-aos="fade-left" data-aos-duration="600" data-aos-easing="ease-in-out">
+          <h3><strong>{{titulo.titulo}}</strong></h3>
+          <div>
+              <fa-icon 
+                  [icon]="faPlus" 
+                  *ngIf="modoEdicion" 
+                  data-bs-toggle="modal" 
+                  data-bs-target="#proyecto-modal-crear">
+              </fa-icon> 
+              <fa-icon
+                  *ngIf="modoEdicion" 
+                  [icon]="faSquarePen"
+                  data-bs-toggle="modal" 
+                  data-bs-target="#proyecto-modal-titulo">
+              </fa-icon>
+          </div>
+      </div>
+      <div class="d-flex flex-wrap">
+          <app-proyectos-item            
+              *ngFor="let proyecto of proyectos"
+              [modoEdicion]="modoEdicion"
+              [proyecto]="proyecto"
+              class="my-4 w-100 d-flex"
+              data-aos="fade-left" data-aos-duration="600" data-aos-easing="ease-in-out"                                         
+          >
+          </app-proyectos-item>  
+      </div>              
+  </div>                                               
+</section>
+<app-proyectos-modal
+    (actualizarTitulo)="modificarTitulo($event)">
+</app-proyectos-modal>
+<app-proyectos-modal-crear
+    (enAgregarProyecto)="agregarProyecto($event)">
+</app-proyectos-modal-crear>
+<app-proyectos-modal-editar
+    *ngFor="let proyecto of proyectos"
+    [proyecto]="proyecto"
+    (enModificarProyecto)="modificarProyecto($event)">
+</app-proyectos-modal-editar>
+<app-proyectos-modal-eliminar
+    *ngFor="let proyecto of proyectos"
+    [proyecto]="proyecto"
+    (enEliminarProyecto)="eliminarProyecto($event)">
+</app-proyectos-modal-eliminar>
+

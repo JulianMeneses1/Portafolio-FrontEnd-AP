@@ -1,0 +1,104 @@
+
+<!-- MODAL EDITAR INFORMACIÓN -->
+
+<div 
+class="modal fade modal-lg"      
+id="contacto-modal-info" tabindex="-1" 
+aria-labelledby="textoModalLabel"
+aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered" role="document" (click)="resetearForm()">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center">
+                <h3 class="modal-title textoModal" id="textoModalLabel">Editar Información de Contacto</h3>                        
+            </div>
+            <div class="modal-body">                                 
+                <form (ngSubmit)="onSubmit()" [formGroup]="formularioContacto">                      
+                    
+                    <div class="mb-3">
+                        <div class="d-flex align-items-baseline modal-body-div">
+                            <label for="user" class="form-label etiquetaModal">Ubicación</label>
+                            <input 
+                                [value]="persona.ubicacion"
+                                formControlName="ubicacion" 
+                                class="form-control inputModal"
+                                [ngClass]="{'is-invalid':formularioInvalido && formularioContacto.get('ubicacion')?.errors?.['required']}"
+                                (click)="ocultarMensajeError()" 
+                                placeholder="Ingrese ubicación (provincia, país)"
+                                maxlength="25">
+                        </div>
+                        <p 
+                            class="text-danger"
+                            *ngIf="formularioInvalido && formularioContacto.get('ubicacion')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p>
+                    </div>                 
+                    <div class="mb-3">
+                        <div class="d-flex flex-wrap align-items-baseline modal-body-div">
+                            <label for="user" class="form-label etiquetaModal">Teléfono</label>
+                            <input 
+                                type="text" 
+                                class="form-control inputModal"
+                                (click)="ocultarMensajeError()"
+                                [ngClass]="{'is-invalid':formularioInvalido && (formularioContacto.get('telefono')?.errors?.['required'] || 
+                                formularioContacto.get('telefono')?.errors?.['pattern'])}" 
+                                placeholder="Ingresar teléfono"
+                                maxlength="18"
+                                formControlName="telefono">
+                        </div>
+                        <p 
+                            class="text-danger"
+                            *ngIf="formularioInvalido && formularioContacto.get('telefono')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p>
+                        <p 
+                            class="text-danger"
+                            *ngIf="formularioInvalido && formularioContacto.get('telefono')?.errors?.['pattern']">
+                            Teléfono inválido, recuerde que debe incluir el código de área y el número separado por un -
+                        </p>
+                    </div> 
+                    <div class="mb-3">
+                        <div class="d-flex align-items-baseline modal-body-div">
+                            <label for="user" class="form-label etiquetaModal">Correo</label>
+                            <input 
+                                type="text" 
+                                class="form-control inputModal"
+                                [ngClass]="{'is-invalid':formularioInvalido && (formularioContacto.get('email')?.errors?.['required'] || 
+                                formularioContacto.get('email')?.errors?.['email'])}" 
+                                (click)="ocultarMensajeError()" 
+                                placeholder="Ingresar email"
+                                maxlength="40"
+                                formControlName="email">
+                        </div>
+                        <p 
+                            class="text-danger"
+                            *ngIf="formularioInvalido && formularioContacto.get('email')?.errors?.['required']">
+                            Este campo es obligatorio
+                        </p>
+                        <p 
+                            class="text-danger"
+                            *ngIf="formularioInvalido && formularioContacto.get('email')?.errors?.['email']">
+                            El mail ingresado no es válido
+                        </p> 
+                    </div>                  
+                    
+                    <div class="modal-footer d-flex justify-content-between pt-2 pe-0 pb-0 ps-0">
+                        <button 
+                            type="button" 
+                            class="btn btn-danger"                            
+                            data-bs-dismiss="modal"
+                            >
+                            Cerrar
+                        </button>
+                        <button 
+                            type="submit" 
+                            class="btn btn-primary"                                                          
+                            >
+                            Aceptar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>   

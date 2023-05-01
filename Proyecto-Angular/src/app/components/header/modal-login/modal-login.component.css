@@ -1,0 +1,12 @@
+label,h3 {
+    color:black
+}
+#user{
+    margin-bottom: 7px
+}
+
+.mensajeErrorCampo{   
+    padding: 4px !important;   
+    margin-bottom: 0px;
+    
+}

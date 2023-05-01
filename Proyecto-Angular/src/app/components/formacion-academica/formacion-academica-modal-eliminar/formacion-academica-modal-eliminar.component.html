@@ -1,0 +1,37 @@
+<!-- MODAL ELIMINAR FORMACION -->
+
+<div 
+class="modal fade modal"      
+id="formacion-modal-eliminar-{{formacion.id}}" tabindex="-1" 
+aria-labelledby="textoModalLabel"
+aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="d-flex align-items-center justify-content-center m-3">
+                <p class="m-0">¿Está seguro de querer eliminar la formación <b>{{formacion.nombre}}</b>?</p>
+            </div>          
+                    
+            <div class="modal-footer d-flex justify-content-between p-2">
+                <button 
+                    type="button" 
+                    class="btn btn-danger"                            
+                    data-bs-dismiss="modal"
+                    >
+                    Cerrar
+                </button>
+                <button 
+                    type="button" 
+                    class="btn btn-primary"
+                    (click)="eliminarFormacion()"
+                    data-bs-dismiss="modal"
+                    >
+                    Confirmar
+                </button>
+            </div>        
+        </div>  
+    </div>
+</div>
+                
+
+

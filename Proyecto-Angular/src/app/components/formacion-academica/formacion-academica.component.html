@@ -1,0 +1,50 @@
+<section class="d-flex justify-content-center align-items-center" id="formacion academica">
+    <div class="card" id="container"> 
+        <div class="my-3 d-flex justify-content-between align-items-baseline flex-wrap" data-aos="fade-right" data-aos-duration="600" data-aos-easing="ease-in-out">
+            <h3><strong>{{titulo.titulo}}</strong></h3>
+            <div>
+                <fa-icon
+                    [icon]="faPlus" 
+                    *ngIf="modoEdicion" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#formacion-modal-crear">
+                </fa-icon> 
+                <fa-icon
+                    id="a"
+                    *ngIf="modoEdicion" 
+                    [icon]="faSquarePen"
+                    data-bs-toggle="modal" 
+                    data-bs-target="#formacion-modal-titulo">
+                </fa-icon>
+            </div>  
+        </div>
+        <app-formacion-academica-item            
+              *ngFor="let formacion of formaciones"
+              [formacion]="formacion"
+              [modoEdicion]="modoEdicion"
+              class="my-3 w-100"
+              data-aos="fade-right" data-aos-duration="600" data-aos-easing="ease-in-out"                                                  
+          >
+          </app-formacion-academica-item> 
+         
+    </div>         
+</section>
+<app-formacion-academica-modal
+    (actualizarTitulo)="modificarTitulo($event)">
+</app-formacion-academica-modal>
+<app-formacion-academica-modal-crear
+    (enAgregarFormacion)="agregarFormacion($event)"
+>
+</app-formacion-academica-modal-crear>
+<app-formacion-academica-modal-editar
+    *ngFor="let formacion of formaciones"
+    [formacion]="formacion"
+    (enModificarFormacion)="modificarFormacion($event)">
+</app-formacion-academica-modal-editar>
+<app-formacion-academica-modal-eliminar
+    *ngFor="let formacion of formaciones"
+    [formacion]="formacion"
+    (enEliminarFormacion)="eliminarFormacion($event)">
+</app-formacion-academica-modal-eliminar>
+
+
