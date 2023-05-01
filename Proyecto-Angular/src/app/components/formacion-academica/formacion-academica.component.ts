@@ -18,7 +18,7 @@ export class FormacionAcademicaComponent implements OnInit {
   faSquarePen = faSquarePen;
   faPlus = faPlus;
   faX = faX;   
-  modoEdicion:boolean=true;
+  modoEdicion:boolean=false;
   suscripcionAlternarEdicion?:Subscription;
   formaciones!: Formacion[]
   titulo!: TituloSeccion 
@@ -52,7 +52,7 @@ export class FormacionAcademicaComponent implements OnInit {
     this.servicioFormacionAcademica.crearFormacion(proyecto).subscribe(() => {
       //this.formaciones.push(proyecto)    
       this.servicioFormacionAcademica.obtenerFormaciones().subscribe(data => {
-      this.formaciones=data
+      this.formaciones=data;
       })
     })
    }

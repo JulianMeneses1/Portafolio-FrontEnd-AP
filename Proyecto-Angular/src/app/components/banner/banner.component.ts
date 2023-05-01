@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faSquarePen} from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
@@ -14,7 +14,7 @@ import { Banner } from 'src/app/interfaces/banner';
 
 export class BannerComponent implements OnInit {
   faSquarePen = faSquarePen  
-  modoEdicion:boolean=true;
+  modoEdicion:boolean=false;
   suscripcionAlternarEdicion?:Subscription;  
   miBanner!:Banner;
 

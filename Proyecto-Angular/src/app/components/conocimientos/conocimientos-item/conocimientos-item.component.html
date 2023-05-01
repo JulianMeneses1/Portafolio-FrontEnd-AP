@@ -7,18 +7,20 @@
         <div>            
             <button>
                 <fa-icon 
-                        [icon]="faX"  
-                        class="icono-borrar"
-                        data-bs-toggle="modal" 
-                        [attr.data-bs-target]="'#conocimiento-modal-eliminar-' + conocimiento.id">
-                    </fa-icon>    
+                    *ngIf="modoEdicion"
+                    [icon]="faX"  
+                    class="icono-borrar"
+                    data-bs-toggle="modal" 
+                    [attr.data-bs-target]="'#conocimiento-modal-eliminar-' + conocimiento.id">
+                </fa-icon>    
             </button>       
             <button>
                 <fa-icon 
-                        id="icono-editar"
-                        [icon]="faSquarePen"                          
-                        data-bs-toggle="modal" 
-                        [attr.data-bs-target]="'#conocimiento-modal-editar-' + conocimiento.id">
+                    *ngIf="modoEdicion"
+                    id="icono-editar"
+                    [icon]="faSquarePen"                          
+                    data-bs-toggle="modal" 
+                    [attr.data-bs-target]="'#conocimiento-modal-editar-' + conocimiento.id">
                 </fa-icon> 
             </button>          
         </div>         

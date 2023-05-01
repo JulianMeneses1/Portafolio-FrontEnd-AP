@@ -20,6 +20,7 @@
       <div class="d-flex flex-wrap">
           <app-proyectos-item            
               *ngFor="let proyecto of proyectos"
+              [modoEdicion]="modoEdicion"
               [proyecto]="proyecto"
               class="my-4 w-100 d-flex"
               data-aos="fade-left" data-aos-duration="600" data-aos-easing="ease-in-out"                                         

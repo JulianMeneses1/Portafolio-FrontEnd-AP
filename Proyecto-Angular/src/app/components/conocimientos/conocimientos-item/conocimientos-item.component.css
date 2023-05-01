@@ -76,7 +76,6 @@ button {
     border: none;
 }
 
-
 @keyframes skills-bar-fill {
     to{
         transform: translateX(var(--skills-bar-length))

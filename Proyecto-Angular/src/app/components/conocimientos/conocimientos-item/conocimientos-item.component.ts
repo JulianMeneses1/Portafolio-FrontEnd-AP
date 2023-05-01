@@ -1,9 +1,6 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { faX, faSquarePen } from '@fortawesome/free-solid-svg-icons';
-import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
-import { Subscription } from 'rxjs';
 import { Conocimiento } from 'src/app/interfaces/conocimiento';
-
 
 
 @Component({
@@ -11,19 +8,20 @@ import { Conocimiento } from 'src/app/interfaces/conocimiento';
   templateUrl: './conocimientos-item.component.html',
   styleUrls: ['./conocimientos-item.component.css']
 })
-export class ConocimientosItemComponent {  
+export class ConocimientosItemComponent implements OnInit{  
   faX = faX;
   faSquarePen = faSquarePen;
-  modoEdicion:boolean=false;
-  suscripcion?:Subscription;  
 
+  @Input () modoEdicion!:boolean;
   @Input() conocimiento!: Conocimiento;
 
-  constructor(private servicioEdicion : ModoEdicionService) 
-  {
-    this.suscripcion = this.servicioEdicion.onAlternarEdicion().subscribe(
-      value => this.modoEdicion = value)
+  constructor() 
+  { }
+
+  ngOnInit(): void {
+
   }
+
 }
 
 

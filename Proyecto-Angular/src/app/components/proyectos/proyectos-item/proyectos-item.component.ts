@@ -14,18 +14,14 @@ import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 export class ProyectosItemComponent  implements OnInit{
   faX = faX;
   faSquarePen = faSquarePen;
-  faArrow = faArrowUpRightFromSquare
-  modoEdicion:boolean=true;
-  suscripcion?:Subscription;
+  faArrow = faArrowUpRightFromSquare 
   tecnologias !: string[];
 
+  @Input() modoEdicion!:boolean;
   @Input() proyecto!: Proyecto;
 
-  constructor(private servicioEdicion : ModoEdicionService) 
-  {
-    this.suscripcion = this.servicioEdicion.onAlternarEdicion().subscribe(
-      value => this.modoEdicion = value)
-  }
+  constructor() 
+  { }
 
   ngOnInit () {
     this.tecnologias = this.proyecto.tecnologias.split(",")

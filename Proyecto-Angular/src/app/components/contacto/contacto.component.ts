@@ -24,7 +24,7 @@ export class ContactoComponent implements OnInit{
   faEnvelop = faEnvelope;
   faFileLines = faFileLines;
   faCircleCheck = faCircleCheck;
-  modoEdicion:boolean=true;
+  modoEdicion:boolean=false;
   suscripcionAlternarEdicion?:Subscription;
   formularioContacto!: FormGroup;
   formularioInvalido: boolean = false;

@@ -11,18 +11,13 @@ import { faX, faSquarePen } from '@fortawesome/free-solid-svg-icons';
 })
 export class FormacionAcademicaItemComponent implements OnInit {  
 
-  modoEdicion:boolean=true;
-  suscripcion?:Subscription;
   faX = faX;
   faSquarePen = faSquarePen;
 
+  @Input() modoEdicion!: boolean;
   @Input() formacion!: Formacion;
 
-  constructor(private servicioEdicion : ModoEdicionService) {
-         
-    this.suscripcion = this.servicioEdicion.onAlternarEdicion().subscribe(
-      value => this.modoEdicion = value)
-  }
+  constructor() { }
 
   ngOnInit () {
    

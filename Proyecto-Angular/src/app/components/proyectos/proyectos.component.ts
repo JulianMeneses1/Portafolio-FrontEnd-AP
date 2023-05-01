@@ -17,7 +17,7 @@ export class ProyectosComponent implements OnInit {
   titulo!:TituloSeccion
   faSquarePen = faSquarePen;
   faPlus = faPlus 
-  modoEdicion:boolean=true;
+  modoEdicion:boolean=false;
   suscripcionAlternarEdicion?:Subscription;
   proyectos !: Proyecto[]
 
@@ -49,7 +49,7 @@ export class ProyectosComponent implements OnInit {
     this.servicioProyecto.crearProyecto(proyecto).subscribe(() => {
       //this.proyectos.push(proyecto)    
       this.servicioProyecto.obtenerProyectos().subscribe(data => {
-      this.proyectos=data
+      this.proyectos=data;
       })
     })
    }

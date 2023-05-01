@@ -48,9 +48,9 @@ export class ConocimientosComponent implements OnInit{
 
    agregarConocimiento(conocimiento: Conocimiento) {
     this.servicioConocimiento.crearConocimiento(conocimiento).subscribe(() => {
-      //this.conocimientos.push(conocimiento)    
+      //this.conocimientos.push(conocimiento);   
       this.servicioConocimiento.obtenerConocimientos().subscribe(data => {
-      this.conocimientos=data
+      this.conocimientos=data; 
       })
     })
    }

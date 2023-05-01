@@ -11,7 +11,7 @@ import { AcercaDeMiService } from 'src/app/services/acerca-de-mi.service';
   styleUrls: ['./acercademi.component.css']
 })
 export class AcercademiComponent implements OnInit{
-  modoEdicion:boolean=true;
+  modoEdicion:boolean=false;
   faSquarePen=faSquarePen;
   suscripcionAlternarEdicion?:Subscription;
   miAcercaDeMi!: AcercaDeMi;

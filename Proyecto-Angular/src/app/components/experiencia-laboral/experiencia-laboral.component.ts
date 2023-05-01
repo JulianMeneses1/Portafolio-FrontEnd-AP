@@ -28,8 +28,6 @@ export class ExperienciaLaboralComponent implements OnInit {
   miTitulo!: TituloSeccion  
 
   @Output() enModificarExperienciaHijo: EventEmitter <Experiencia> = new EventEmitter ()
-  @ViewChild('contenedorPrimerExp') contenedorPrimerExp!:ElementRef;  
-
 
   constructor(private servicioEdicion : ModoEdicionService,
      private ruta: Router,
