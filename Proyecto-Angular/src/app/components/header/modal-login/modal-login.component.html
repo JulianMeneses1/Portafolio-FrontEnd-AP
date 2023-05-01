@@ -9,12 +9,11 @@
             <div class="modal-header justify-content-center">
                 <h3 class="modal-title" id="loginModalLabel">Iniciar Sesión</h3>                        
             </div>
-            <form (ngSubmit)="onSubmit($event)" [formGroup]="formularioLogin" >
+            <form (ngSubmit)="onSubmit()" [formGroup]="formularioLogin" >
                 <div class="modal-body">
                     
                         <label for="user" class="form-label modal-body-div"><b>Usuario</b></label>         
                         <input
-                            #usuario
                             class="form-control" 
                             type="text" 
                             id="user" 
@@ -23,7 +22,7 @@
                             maxlength="15"
                             formControlName="usuario"
                             (click)="ocultarMensajeError()"
-                            [ngClass]="{'is-invalid':formularioInvalido && formularioLogin.get('usuario')?.errors?.['required']}">
+                            [ngClass]="{'is-invalid':(formularioInvalido && formularioLogin.get('usuario')?.errors?.['required'])||usuarioIncorrecto}">
                         <p 
                             class="text-danger"
                             style="margin-top: -7px"  
@@ -32,7 +31,6 @@
                         </p>
                         <label for="password" class="form-label"><b>Contraseña</b></label>                          
                         <input
-                            #contraseña
                             class="form-control" 
                             type="password" 
                             id="password" 
@@ -41,11 +39,16 @@
                             placeholder="Ingrese su contraseña"
                             formControlName="contraseña"
                             (click)="ocultarMensajeError()"
-                            [ngClass]="{'is-invalid':formularioInvalido && formularioLogin.get('usuario')?.errors?.['required']}">
+                            [ngClass]="{'is-invalid':(formularioInvalido && formularioLogin.get('contraseña')?.errors?.['required'])||usuarioIncorrecto}">
                         <p 
-                            class="text-danger" 
+                            class="text-danger mb-0" 
                             *ngIf="formularioInvalido && formularioLogin.get('contraseña')?.errors?.['required']">
                             Este campo es obligatorio
+                        </p>
+                        <p 
+                            class="text-danger mt-2 mb-0" 
+                            *ngIf="usuarioIncorrecto">
+                            Usuario y/o contraseña incorrectos
                         </p>                     
                 </div>
                 <div class="modal-footer d-flex justify-content-between">
@@ -56,7 +59,6 @@
                         Cerrar
                     </button>
                     <button
-                        #botonLogin 
                         type="submit" 
                         class="btn btn-primary">
                         Ingresar

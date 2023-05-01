@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -21,8 +21,7 @@ export class ModalLoginComponent implements OnInit {
   suscripcionAlternarEdicion?:Subscription;
   formularioLogin!: FormGroup;
   formularioInvalido: boolean = false;
-  @ViewChild('usuario') usuario!:ElementRef; 
-  @ViewChild('contraseña') contraseña!:ElementRef;  
+  usuarioIncorrecto:boolean = false;
 
   constructor(private servicioEdicion: ModoEdicionService,
     private servicioAutenticacion: AutenticacionService,
@@ -42,24 +41,33 @@ export class ModalLoginComponent implements OnInit {
   resetearForm () {                                                          
       $("#loginModal").on('hidden.bs.modal',  () => {
       this.formularioLogin.reset();
-      this.formularioInvalido = false;      
+      this.formularioInvalido = false;
+      this.usuarioIncorrecto=false;      
       }
     ) 
   }
 
-  onSubmit (event:Event):void {
+  onSubmit ():void {
     if(this.formularioLogin.invalid) {
-    this.formularioInvalido=true     
-    } else {
-      this.servicioAutenticacion.iniciarSesion(this.formularioLogin.value).subscribe(response=>{
-        this.servicioEdicion.alternarEdicion();
-        $("#loginModal").modal('hide')
-        })
+      this.formularioInvalido=true     
+    } else {     
+        this.servicioAutenticacion.iniciarSesion(this.formularioLogin.value).subscribe( {
+          // next se ejecuta si el observador no tiene errores, en este caso si el usuario es correcto. Si sólo se trabaja con el primer argumento de subscribe, es decir lo que pasa
+          // cuando se ejecuta exitosamente el observador, no hace falta poner "next", se puede poner directamente el parámetro o () si no lleva parámetros.
+          next: () => {
+            this.servicioEdicion.alternarEdicion();
+            $("#loginModal").modal('hide')
+          // si hay un error se ejecuta lo que está en error
+          }, error: () => {
+            this.usuarioIncorrecto=true
+          }
+        }) 
     }
   }  
 
   ocultarMensajeError () {   
-      this.formularioInvalido=false
+      this.formularioInvalido=false;
+      this.usuarioIncorrecto=false;
     } 
 
 }

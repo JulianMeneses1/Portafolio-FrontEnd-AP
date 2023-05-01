@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs'; // behaviorsubject es otro observable que la diferencia con los normales es que tiene una noción de estado, 
                                                     // por lo que al suscribirse a este vamos a poder acceder al último valor disponible
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Credenciales } from '../interfaces/credenciales-login';
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,7 @@ export class AutenticacionService {
    }
 
   iniciarSesion(credenciales:Credenciales):Observable<any>{
+    
     return this.http.post(this.url, credenciales, {
       observe: 'response'
     }).pipe(map((response: HttpResponse <any>)=>{
@@ -31,7 +32,7 @@ export class AutenticacionService {
                                                                   // indefinida, hasta que se borra la cache. En cambio en el session los datos son guardados 
                                                                   // mientras dure la sesión, la cual finaliza al cerrarse la pestaña de la app en el navegador
       return body;
-    }))    
+    }))
   }
 
   getToken () {
