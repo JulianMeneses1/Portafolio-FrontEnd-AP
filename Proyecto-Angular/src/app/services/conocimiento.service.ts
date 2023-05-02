@@ -18,21 +18,21 @@ export class ConocimientoService {
 
 
   obtenerConocimientos (): Observable<Conocimiento[]> {
-    return this.http.get<Conocimiento[]>("http://localhost:8080/obtener/conocimientos")
+    return this.http.get<Conocimiento[]>("https://ap-portafolio-backend.onrender.com/obtener/conocimientos")
   }
 
   editarConocimiento (conocimiento:Conocimiento): Observable<Conocimiento> {
-    const url:string=`${"http://localhost:8080/editar/conocimiento"}/${conocimiento.id}`; 
+    const url:string=`${"https://ap-portafolio-backend.onrender.com/editar/conocimiento"}/${conocimiento.id}`; 
     return this.http.put<Conocimiento>(url,conocimiento,this.httpOptions)
   }
 
   eliminarConocimiento (id:number): Observable<Conocimiento> {
-    const url:string=`${"http://localhost:8080/eliminar/conocimiento"}/${id}`; 
+    const url:string=`${"https://ap-portafolio-backend.onrender.com/eliminar/conocimiento"}/${id}`; 
     return this.http.delete<Conocimiento>(url)
   }
 
   crearConocimiento (conocimiento:Conocimiento): Observable<Conocimiento> {
  
-    return this.http.post<Conocimiento>("http://localhost:8080/crear/conocimiento",conocimiento,this.httpOptions)
+    return this.http.post<Conocimiento>("https://ap-portafolio-backend.onrender.com/crear/conocimiento",conocimiento,this.httpOptions)
   }
 }

@@ -16,12 +16,12 @@ export class TituloSeccionesService {
   constructor( private http: HttpClient) { }
 
   obtenerTitulos (): Observable<any> {
-    return this.http.get<any>("http://localhost:8080/obtener/titulosecciones")
+    return this.http.get<any>("https://ap-portafolio-backend.onrender.com/obtener/titulosecciones")
     
   }
 
   editarTitulo (titulo:any): Observable<any> {
-    const url:string=`${"http://localhost:8080/editar/tituloseccion"}/${titulo.id}`; 
+    const url:string=`${"https://ap-portafolio-backend.onrender.com/editar/tituloseccion"}/${titulo.id}`; 
     return this.http.put<any>(url,titulo,this.httpOptions)
   }
 }

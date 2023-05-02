@@ -17,11 +17,11 @@ export class AcercaDeMiService {
   constructor( private http: HttpClient) { }
 
   obtenerAcercaDeMi (): Observable<AcercaDeMi[]> {
-    return this.http.get<AcercaDeMi[]>("http://localhost:8080/obtener/acercademi")
+    return this.http.get<AcercaDeMi[]>("https://ap-portafolio-backend.onrender.com/obtener/acercademi")
   }
 
   editarAcercaDeMi (acercademi:AcercaDeMi): Observable<AcercaDeMi> {
-    const url:string=`${"http://localhost:8080/editar/acercademi"}/${acercademi.id}`; 
+    const url:string=`${"https://ap-portafolio-backend.onrender.com/editar/acercademi"}/${acercademi.id}`; 
     return this.http.put<AcercaDeMi>(url,acercademi,this.httpOptions)
   }
 }

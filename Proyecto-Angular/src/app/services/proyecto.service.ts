@@ -17,21 +17,21 @@ export class ProyectoService {
   constructor(private http: HttpClient) { }
 
   obtenerProyectos (): Observable<Proyecto[]> {
-    return this.http.get<Proyecto[]>("http://localhost:8080/obtener/proyectos")
+    return this.http.get<Proyecto[]>("https://ap-portafolio-backend.onrender.com/obtener/proyectos")
   }
 
   editarProyecto (proyecto:Proyecto): Observable<Proyecto> {
-    const url:string=`${"http://localhost:8080/editar/proyecto"}/${proyecto.id}`; 
+    const url:string=`${"https://ap-portafolio-backend.onrender.com/editar/proyecto"}/${proyecto.id}`; 
     return this.http.put<Proyecto>(url,proyecto,this.httpOptions)
   }
 
   eliminarProyecto (id:number): Observable<Proyecto> {
-    const url:string=`${"http://localhost:8080/eliminar/proyecto"}/${id}`; 
+    const url:string=`${"https://ap-portafolio-backend.onrender.com/eliminar/proyecto"}/${id}`; 
     return this.http.delete<Proyecto>(url)
   }
 
   crearProyecto (proyecto:Proyecto): Observable<Proyecto> {
  
-    return this.http.post<Proyecto>("http://localhost:8080/crear/proyecto",proyecto,this.httpOptions)
+    return this.http.post<Proyecto>("https://ap-portafolio-backend.onrender.com/crear/proyecto",proyecto,this.httpOptions)
   }
 }
