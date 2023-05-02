@@ -17,7 +17,7 @@ export class EmailService {
   constructor( private http: HttpClient) { }
 
   enviarEmail (datos: Email): Observable<Email> {
-    return this.http.post<Email>("http://localhost:8080/enviarmail",datos,this.httpOptions)
+    return this.http.post<Email>("https://ap-portafolio-backend.onrender.com/enviarmail",datos,this.httpOptions)
   }
 }
 

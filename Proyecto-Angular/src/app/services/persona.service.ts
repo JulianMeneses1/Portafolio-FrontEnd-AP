@@ -17,10 +17,10 @@ export class PersonaService {
   constructor( private http: HttpClient) { } 
 
   obtenerPersonas (): Observable<Persona[]> {
-    return this.http.get<Persona[]>("http://localhost:8080/obtener/personas")
+    return this.http.get<Persona[]>("https://ap-portafolio-backend.onrender.com/obtener/personas")
   }
 
   editarPersona (persona: Persona): Observable<Persona> {
-    return this.http.put<Persona>(`${"http://localhost:8080/editar/persona"}/${persona.id}`,persona,this.httpOptions);
+    return this.http.put<Persona>(`${"https://ap-portafolio-backend.onrender.com/editar/persona"}/${persona.id}`,persona,this.httpOptions);
   }
 }

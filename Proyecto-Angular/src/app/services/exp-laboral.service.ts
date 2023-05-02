@@ -20,11 +20,11 @@ export class ExpLaboralService {
   constructor(private http: HttpClient) { }
 
   obtenerExperiencias (): Observable<Experiencia[]> {
-    return this.http.get<Experiencia[]>("http://localhost:8080/obtener/experiencias")
+    return this.http.get<Experiencia[]>("https://ap-portafolio-backend.onrender.com/obtener/experiencias")
   }
 
   editarExperiencia(experiencia:Experiencia): Observable<Experiencia> {
-    const url:string=`${"http://localhost:8080/editar/experiencia"}/${experiencia.id}`; 
+    const url:string=`${"https://ap-portafolio-backend.onrender.com/editar/experiencia"}/${experiencia.id}`; 
     return this.http.put<Experiencia>(url,experiencia,this.httpOptions)
   }
 
@@ -40,12 +40,12 @@ export class ExpLaboralService {
   }
 
   eliminarExperiencia(id:number): Observable<Experiencia> {
-    const url:string=`${"http://localhost:8080/eliminar/experiencia"}/${id}`; 
+    const url:string=`${"https://ap-portafolio-backend.onrender.com/eliminar/experiencia"}/${id}`; 
     return this.http.delete<Experiencia>(url)
   }
 
   crearExperiencia(experiencia:Experiencia): Observable<Experiencia> {
  
-    return this.http.post<Experiencia>("http://localhost:8080/crear/experiencia",experiencia,this.httpOptions)
+    return this.http.post<Experiencia>("https://ap-portafolio-backend.onrender.com/crear/experiencia",experiencia,this.httpOptions)
   }
 }

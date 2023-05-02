@@ -14,7 +14,7 @@ export class ArchivoService {
   
 
   subirArchivo (formData: FormData): Observable<any> {
-   return this.http.post("http://localhost:8080/subir/archivo", formData);
+   return this.http.post("https://ap-portafolio-backend.onrender.com/subir/archivo", formData);
   }
   
 }

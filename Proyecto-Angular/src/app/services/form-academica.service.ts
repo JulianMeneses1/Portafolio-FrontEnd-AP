@@ -18,21 +18,21 @@ export class FormAcademicaService {
 
 
   obtenerFormaciones (): Observable<Formacion[]> {
-    return this.http.get<Formacion[]>("http://localhost:8080/obtener/formaciones")
+    return this.http.get<Formacion[]>("https://ap-portafolio-backend.onrender.com/obtener/formaciones")
   }
 
   editarFormacion(formacion:Formacion): Observable<Formacion> {
-    const url:string=`${"http://localhost:8080/editar/formacion"}/${formacion.id}`; 
+    const url:string=`${"https://ap-portafolio-backend.onrender.com/editar/formacion"}/${formacion.id}`; 
     return this.http.put<Formacion>(url,formacion,this.httpOptions)
   }
 
   eliminarFormacion(id:number): Observable<Formacion> {
-    const url:string=`${"http://localhost:8080/eliminar/formacion"}/${id}`; 
+    const url:string=`${"https://ap-portafolio-backend.onrender.com/eliminar/formacion"}/${id}`; 
     return this.http.delete<Formacion>(url)
   }
 
   crearFormacion(formacion:Formacion): Observable<Formacion> {
  
-    return this.http.post<Formacion>("http://localhost:8080/crear/formacion",formacion,this.httpOptions)
+    return this.http.post<Formacion>("https://ap-portafolio-backend.onrender.com/crear/formacion",formacion,this.httpOptions)
   }
 }
