@@ -1,24 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs'; // behaviorsubject es otro observable que la diferencia con los normales es que tiene una noción de estado, 
-                                                    // por lo que al suscribirse a este vamos a poder acceder al último valor disponible
-import { catchError, map } from 'rxjs/operators';
+import { Observable } from 'rxjs'; 
+import { map } from 'rxjs/operators';
 import { Credenciales } from '../interfaces/credenciales-login';
+import { environment } from '../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class AutenticacionService {
 
-  url="https://ap-portafolio-backend.onrender.com/login";
-  // currentUserSubject!: BehaviorSubject<any>;
+  url:string =environment.apiURL;
 
-  constructor( private http:HttpClient) {
-    // this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(sessionStorage.getItem('token') || '{}'));
-   }
+  constructor( private http:HttpClient) { }
 
   iniciarSesion(credenciales:Credenciales):Observable<any>{
     
-    return this.http.post(this.url, credenciales, {
+    return this.http.post(this.url+"login", credenciales, {
       observe: 'response'
     }).pipe(map((response: HttpResponse <any>)=>{
 

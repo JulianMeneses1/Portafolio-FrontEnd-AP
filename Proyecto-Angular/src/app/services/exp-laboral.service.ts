@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Experiencia } from '../interfaces/experiencia-laboral';
 import { Observable, Subject } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,14 +18,16 @@ export class ExpLaboralService {
     })
   }
 
+  url:string = environment.apiURL
+
   constructor(private http: HttpClient) { }
 
   obtenerExperiencias (): Observable<Experiencia[]> {
-    return this.http.get<Experiencia[]>("https://ap-portafolio-backend.onrender.com/obtener/experiencias")
+    return this.http.get<Experiencia[]>(this.url+"obtener/experiencias")
   }
 
   editarExperiencia(experiencia:Experiencia): Observable<Experiencia> {
-    const url:string=`${"https://ap-portafolio-backend.onrender.com/editar/experiencia"}/${experiencia.id}`; 
+    const url:string=this.url+"editar/experiencia/"+experiencia.id; 
     return this.http.put<Experiencia>(url,experiencia,this.httpOptions)
   }
 
@@ -40,12 +43,12 @@ export class ExpLaboralService {
   }
 
   eliminarExperiencia(id:number): Observable<Experiencia> {
-    const url:string=`${"https://ap-portafolio-backend.onrender.com/eliminar/experiencia"}/${id}`; 
+    const url:string=this.url+"eliminar/experiencia/"+id; 
     return this.http.delete<Experiencia>(url)
   }
 
   crearExperiencia(experiencia:Experiencia): Observable<Experiencia> {
  
-    return this.http.post<Experiencia>("https://ap-portafolio-backend.onrender.com/crear/experiencia",experiencia,this.httpOptions)
+    return this.http.post<Experiencia>(this.url+"crear/experiencia",experiencia,this.httpOptions)
   }
 }

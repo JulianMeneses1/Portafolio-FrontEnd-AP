@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Persona } from '../interfaces/persona';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +15,16 @@ export class PersonaService {
     })
   }
 
+  url:string = environment.apiURL
+
   constructor( private http: HttpClient) { } 
 
   obtenerPersonas (): Observable<Persona[]> {
-    return this.http.get<Persona[]>("https://ap-portafolio-backend.onrender.com/obtener/personas")
+    return this.http.get<Persona[]>(this.url+"obtener/personas")
   }
 
   editarPersona (persona: Persona): Observable<Persona> {
-    return this.http.put<Persona>(`${"https://ap-portafolio-backend.onrender.com/editar/persona"}/${persona.id}`,persona,this.httpOptions);
+    const url= this.url + "editar/persona/"+persona.id
+    return this.http.put<Persona>(url,persona,this.httpOptions);
   }
 }

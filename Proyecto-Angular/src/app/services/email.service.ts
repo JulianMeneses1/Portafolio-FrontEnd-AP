@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Email } from '../interfaces/email';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +15,12 @@ export class EmailService {
     })
   }
 
+  url:string = environment.apiURL
+
   constructor( private http: HttpClient) { }
 
   enviarEmail (datos: Email): Observable<Email> {
-    return this.http.post<Email>("https://ap-portafolio-backend.onrender.com/enviarmail",datos,this.httpOptions)
+    return this.http.post<Email>(this.url+"enviarmail",datos,this.httpOptions)
   }
 }
 
