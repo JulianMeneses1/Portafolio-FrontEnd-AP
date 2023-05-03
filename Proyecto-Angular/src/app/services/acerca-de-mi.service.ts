@@ -20,7 +20,7 @@ export class AcercaDeMiService {
   constructor( private http: HttpClient) { }
 
   obtenerAcercaDeMi (): Observable<AcercaDeMi[]> {
-    return this.http.get<AcercaDeMi[]>(this.url+"/obtener/acercademi")
+    return this.http.get<AcercaDeMi[]>(this.url+"obtener/acercademi")
   }
 
   editarAcercaDeMi (acercademi:AcercaDeMi): Observable<AcercaDeMi> {

@@ -15,7 +15,7 @@ export class AutenticacionService {
 
   iniciarSesion(credenciales:Credenciales):Observable<any>{
     
-    return this.http.post(this.url, credenciales, {
+    return this.http.post(this.url+"login", credenciales, {
       observe: 'response'
     }).pipe(map((response: HttpResponse <any>)=>{
 
