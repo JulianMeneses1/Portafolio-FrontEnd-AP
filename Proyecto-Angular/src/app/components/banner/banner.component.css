@@ -11,6 +11,7 @@
 
 #container{
     height: 82vh;
+    width: 100vw !important;
 }
 
 #sub-container{

@@ -37,14 +37,14 @@
             </div> 
         </div>
         <a href="{{formacion.url_institucion}}" target="_blank">@ {{formacion.institucion}}</a>
-        <div style="height: 150px">
+        <div id="contenedor-descripcion">
             <p style="margin-bottom: 0px;">{{formacion.descripcion}}</p> 
         </div>     
         <a 
             href="{{formacion.url_certificado}}" 
             *ngIf="formacion.url_certificado" 
             target="_blank"
-            style="margin-top:15px; margin-bottom: 0px;">
+            style="margin-top:5px; margin-bottom: 0px;">
             @ Certificado
         </a>
      

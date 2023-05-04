@@ -58,7 +58,7 @@ export class BannerModalComponent implements OnInit{
   capturarImagenPerfil(event:any) {
     this.archivoCapturadoPerfil = event.target.files[0]
     if(this.archivoCapturadoPerfil.size > this.tamañoMaximo) {
-      this.formularioInvalido=true;
+    
       this.errorImagenPerfil=true;
     } else {
       this.nombreArchivoPerfil=event.target.files[0].name
@@ -73,7 +73,7 @@ export class BannerModalComponent implements OnInit{
   capturarImagenBanner(event:any) {
     this.archivoCapturadoBanner = event.target.files[0]
     if(this.archivoCapturadoBanner.size > this.tamañoMaximo) {
-      this.formularioInvalido=true;
+     
       this.errorImagenBanner=true;
     } else {
       this.nombreArchivoBanner=event.target.files[0].name
