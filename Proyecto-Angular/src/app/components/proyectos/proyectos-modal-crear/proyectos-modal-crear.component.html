@@ -134,6 +134,11 @@
                                 *ngIf="formularioInvalido && formularioProyecto.get('imagen')?.errors?.['required']">
                                 Este campo es obligatorio
                             </p>
+                            <p 
+                                class="text-danger" 
+                                *ngIf="errorImagen">
+                                La imagen no puede pesar más de 3 MB
+                            </p> 
                         </div> 
                         <img *ngIf="previsualizacionImagen" class="imagenEdicion mb-1" [src]="previsualizacionImagen">                 
                         
