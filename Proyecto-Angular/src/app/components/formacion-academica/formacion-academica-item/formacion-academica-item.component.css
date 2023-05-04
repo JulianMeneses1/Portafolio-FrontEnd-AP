@@ -1,5 +1,6 @@
 .contenedor-texto {    
-    padding: 15px 15px;   
+    padding: 15px 15px; 
+    height: 250px;  
 }
 
 .contenedor-imagen-fecha p {
@@ -8,6 +9,11 @@
 
 .contenedor-imagen-fecha a {
     margin-left: 23px
+}
+
+#contenedor-descripcion {
+    height: 120px;
+    overflow-y: auto;
 }
 
 
@@ -109,6 +115,13 @@ img:hover {
     height: 130px !important;
     width: 250px !important;
     }
+    .contenedor-texto {         
+        height: 320px;  
+    }
+    #contenedor-descripcion {
+        height: 150px;
+    }
+ 
 }
 
 @media screen and (max-width: 500px) {     

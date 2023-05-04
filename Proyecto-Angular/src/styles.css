@@ -123,11 +123,3 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
         font-weight: bold;
     }
 }
-
-@media screen and (max-width:350px){
-    section > #container {
-        width: 107% !important;
-        margin-left: 6%        
-    }  
-    
-}

@@ -151,6 +151,10 @@ fa-icon{
     padding-bottom: 13px;
 }
 
+nav {
+    max-width: 100vw !important;
+}
+
 
 
 
