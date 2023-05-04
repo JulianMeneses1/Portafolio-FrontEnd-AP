@@ -88,9 +88,9 @@ export class ConocimientosModalCrearComponent implements OnInit {
 
   capturarImagen(event:any) {
     this.archivoCapturado = event.target.files[0]
-    if(this.archivoCapturado.size > this.tamañoMaximo) {
-      this.formularioInvalido=true;
+    if(this.archivoCapturado.size > this.tamañoMaximo) {     
       this.errorImagen=true;
+      console.log("error"+this.errorImagen)
     } else {
       this.nombreArchivo=event.target.files[0].name
       this.extraerURL(this.archivoCapturado).then((imagen:any) => {

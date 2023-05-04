@@ -71,16 +71,16 @@ export class BannerModalComponent implements OnInit{
   } 
 
   capturarImagenBanner(event:any) {
-    this.archivoCapturadoPerfil = event.target.files[0]
-    if(this.archivoCapturadoPerfil.size > this.tamañoMaximo) {
+    this.archivoCapturadoBanner = event.target.files[0]
+    if(this.archivoCapturadoBanner.size > this.tamañoMaximo) {
       this.formularioInvalido=true;
       this.errorImagenBanner=true;
     } else {
-      this.nombreArchivoPerfil=event.target.files[0].name
-      this.extraerURL(this.archivoCapturadoPerfil).then((imagen:any) => {
-        this.previsualizacionImagenPerfil=imagen.base;      
+      this.nombreArchivoBanner=event.target.files[0].name
+      this.extraerURL(this.archivoCapturadoBanner).then((imagen:any) => {
+        this.previsualizacionImagenBanner=imagen.base;      
       })
-      this.subirImagenPerfil();
+      this.subirImagenBanner();
     }
      
   } 

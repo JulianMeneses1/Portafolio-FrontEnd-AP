@@ -91,7 +91,6 @@ export class FormacionAcademicaModalCrearComponent implements OnInit {
 capturarImagen(event:any) {
   this.archivoCapturado = event.target.files[0]
   if(this.archivoCapturado.size > this.tamañoMaximo) {
-    this.formularioInvalido=true;
     this.errorImagen=true;
   } else {
     this.nombreArchivo=event.target.files[0].name
