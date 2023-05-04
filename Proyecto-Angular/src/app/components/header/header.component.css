@@ -127,8 +127,12 @@ fa-icon{
     font-size: 1.1em;
 }
 
-#nav-colapsado li:hover, #contenedor-login-logout-colapsado:hover {
+#nav-colapsado li:hover {
     border-bottom: 1px solid lightblue;
+}
+
+#nav-colapsado li:last-child:hover{
+    border-bottom: 0px !important;
 }
 
     
