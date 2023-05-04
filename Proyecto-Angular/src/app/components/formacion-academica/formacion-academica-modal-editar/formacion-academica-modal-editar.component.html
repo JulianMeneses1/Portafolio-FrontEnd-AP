@@ -170,7 +170,12 @@ aria-hidden="true"
                             (change)="capturarImagen($event)" 
                             type="file" 
                             accept="image/*"
-                            (click)="ocultarMensajeError()">                            
+                            (click)="ocultarMensajeError()"> 
+                        <p 
+                            class="text-danger" 
+                            *ngIf="errorImagen">
+                            La imagen no puede pesar más de 3 MB
+                        </p>                           
                     </div>
                     <label class="textoModal">{{nombreArchivo}}</label> 
                     

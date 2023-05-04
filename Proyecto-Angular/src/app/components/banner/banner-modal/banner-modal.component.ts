@@ -23,6 +23,9 @@ export class BannerModalComponent implements OnInit{
   archivoSubidoUrlPerfil: string = ""
   nombreArchivoPerfil:string="";
   miBanner!: Banner;
+  tamañoMaximo:number = 3000000;
+  errorImagenPerfil:boolean = false;
+  errorImagenBanner:boolean = false;
 
   @Output() enActualizarBanner: EventEmitter <Banner> = new EventEmitter ()
 
@@ -54,21 +57,31 @@ export class BannerModalComponent implements OnInit{
   
   capturarImagenPerfil(event:any) {
     this.archivoCapturadoPerfil = event.target.files[0]
-    this.nombreArchivoPerfil=event.target.files[0].name
-    this.extraerURL(this.archivoCapturadoPerfil).then((imagen:any) => {
-      this.previsualizacionImagenPerfil=imagen.base;      
-    })
-    this.subirImagenPerfil();
+    if(this.archivoCapturadoPerfil.size > this.tamañoMaximo) {
+      this.formularioInvalido=true;
+      this.errorImagenPerfil=true;
+    } else {
+      this.nombreArchivoPerfil=event.target.files[0].name
+      this.extraerURL(this.archivoCapturadoPerfil).then((imagen:any) => {
+        this.previsualizacionImagenPerfil=imagen.base;      
+      })
+      this.subirImagenPerfil();
+    }
      
   } 
 
   capturarImagenBanner(event:any) {
-    this.archivoCapturadoBanner = event.target.files[0]
-    this.nombreArchivoBanner=event.target.files[0].name
-    this.extraerURL(this.archivoCapturadoBanner).then((imagen:any) => {
-      this.previsualizacionImagenBanner=imagen.base;      
-    })
-    this.subirImagenBanner();
+    this.archivoCapturadoPerfil = event.target.files[0]
+    if(this.archivoCapturadoPerfil.size > this.tamañoMaximo) {
+      this.formularioInvalido=true;
+      this.errorImagenBanner=true;
+    } else {
+      this.nombreArchivoPerfil=event.target.files[0].name
+      this.extraerURL(this.archivoCapturadoPerfil).then((imagen:any) => {
+        this.previsualizacionImagenPerfil=imagen.base;      
+      })
+      this.subirImagenPerfil();
+    }
      
   } 
   
@@ -78,8 +91,8 @@ export class BannerModalComponent implements OnInit{
       formularioDeDatos.append('file',this.archivoCapturadoPerfil)
       this.servicioArchivo.subirArchivo(formularioDeDatos)
         .subscribe(response => {
-          this.archivoSubidoUrlPerfil = response.url    
-          console.log(response.url)  
+          this.archivoSubidoUrlPerfil = response.url
+ 
         }) 
   }
 
@@ -90,8 +103,7 @@ export class BannerModalComponent implements OnInit{
     formularioDeDatos.append('file',this.archivoCapturadoBanner)
     this.servicioArchivo.subirArchivo(formularioDeDatos)
       .subscribe(response => {
-        this.archivoSubidoUrlBanner = response.url 
-        console.log(response.url)      
+        this.archivoSubidoUrlBanner = response.url    
       }) 
 }
   
@@ -103,7 +115,9 @@ export class BannerModalComponent implements OnInit{
       this.previsualizacionImagenBanner="";
       this.nombreArchivoBanner="";
       this.previsualizacionImagenPerfil="";
-      this.nombreArchivoPerfil="";      
+      this.nombreArchivoPerfil="";  
+      this.errorImagenBanner=false;
+      this.errorImagenPerfil=false    
       }
     ) 
   }
@@ -117,15 +131,15 @@ export class BannerModalComponent implements OnInit{
       this.miBanner = this.formularioBanner.value;
       this.servicioBanner.editarBanner(this.formularioBanner.value).subscribe();
       this.enActualizarBanner.emit(this.miBanner)
-      console.log("mi banner" + JSON.stringify(this.miBanner))
-      console.log("formulario valor " + JSON.stringify(this.formularioBanner.value))
       $("#bannerModal").modal('hide');   // Usando jQuery                   
     }
   }
 
 
   ocultarMensajeError () {   
-    this.formularioInvalido=false
+    this.formularioInvalido=false;
+    this.errorImagenBanner=false;
+    this.errorImagenPerfil=false 
   } 
 
   // FUNCIÓN PARA EXTRAER LA URL DE LA IMAGEN

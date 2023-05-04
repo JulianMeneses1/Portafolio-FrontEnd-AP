@@ -20,6 +20,8 @@ export class FormacionAcademicaModalEditarComponent implements OnInit {
   formularioInvalido: boolean = false;  
   archivoSubidoUrl: string = "";
   archivoCapturado: any;   
+  tamañoMaximo:number = 3000000;
+  errorImagen:boolean = false
 
   urlPattern:string = "[-a-zA-Z0-9@:%_\\+.~#?&//=]{2,256}\\.[a-z]{2,4}\\b(\\/[-a-zA-Z0-9@:%_\\+.~#?&//=]*)?"
   fechaInicioPattern:string = "(Enero|Marzo|Febrero|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre|Abril)\\s\\d{4}"
@@ -57,7 +59,8 @@ export class FormacionAcademicaModalEditarComponent implements OnInit {
       this.formularioInvalido = false;
       this.previsualizacionImagen="";
       this.nombreArchivo="";   
-      this.archivoSubidoUrl= "";  
+      this.archivoSubidoUrl= ""; 
+      this.errorImagen=false  
     }
     ) 
   }
@@ -74,8 +77,9 @@ export class FormacionAcademicaModalEditarComponent implements OnInit {
   }
 
   ocultarMensajeError () {   
-    this.formularioInvalido=false
-  }
+    this.formularioInvalido=false;
+    this.errorImagen=false 
+  } 
   
   subirArchivo() {
 
@@ -87,14 +91,19 @@ export class FormacionAcademicaModalEditarComponent implements OnInit {
       }) 
 }
 
-  capturarImagen(event:any) {
-    this.archivoCapturado = event.target.files[0]
+capturarImagen(event:any) {
+  this.archivoCapturado = event.target.files[0]
+  if(this.archivoCapturado.size > this.tamañoMaximo) {
+    this.formularioInvalido=true;
+    this.errorImagen=true;
+  } else {
     this.nombreArchivo=event.target.files[0].name
     this.extraerURL(this.archivoCapturado).then((imagen:any) => {
-      this.previsualizacionImagen=imagen.base
-    })  
-    this.subirArchivo();  
-  }
+      this.previsualizacionImagen=imagen.base;      
+    })
+    this.subirArchivo();
+  }   
+}
 
     // FUNCIÓN PARA EXTRAER LA URL DE LA IMAGEN
 

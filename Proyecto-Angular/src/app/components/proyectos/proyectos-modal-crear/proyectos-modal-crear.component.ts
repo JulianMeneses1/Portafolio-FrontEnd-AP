@@ -16,7 +16,9 @@ export class ProyectosModalCrearComponent implements OnInit {
   formularioProyecto!: FormGroup;
   formularioInvalido: boolean = false;
   archivoCapturado: any;
-  archivoSubidoUrl: string = "" 
+  archivoSubidoUrl: string = "";
+  tamañoMaximo:number = 3000000;
+  errorImagen:boolean = false 
 
   @Output() enAgregarProyecto: EventEmitter <Proyecto> = new EventEmitter ()
 
@@ -52,7 +54,8 @@ export class ProyectosModalCrearComponent implements OnInit {
       this.formularioInvalido = false
       this.previsualizacionImagen="";
       this.nombreArchivo=""; 
-      this.archivoSubidoUrl= "";   
+      this.archivoSubidoUrl= "";  
+      this.errorImagen=false  
       }
     ) 
   }
@@ -68,7 +71,8 @@ export class ProyectosModalCrearComponent implements OnInit {
   }
 
   ocultarMensajeError () {   
-    this.formularioInvalido=false
+    this.formularioInvalido=false;
+    this.errorImagen=false 
   } 
 
   subirArchivo() {
@@ -84,11 +88,16 @@ export class ProyectosModalCrearComponent implements OnInit {
 
   capturarImagen(event:any) {
     this.archivoCapturado = event.target.files[0]
-    this.nombreArchivo=event.target.files[0].name
-    this.extraerURL(this.archivoCapturado).then((imagen:any) => {
-      this.previsualizacionImagen=imagen.base
-    }) 
-    this.subirArchivo();     
+    if(this.archivoCapturado.size > this.tamañoMaximo) {
+      this.formularioInvalido=true;
+      this.errorImagen=true;
+    } else {
+      this.nombreArchivo=event.target.files[0].name
+      this.extraerURL(this.archivoCapturado).then((imagen:any) => {
+        this.previsualizacionImagen=imagen.base;      
+      })
+      this.subirArchivo();
+    }   
   }
 
     // FUNCIÓN PARA EXTRAER LA URL DE LA IMAGEN

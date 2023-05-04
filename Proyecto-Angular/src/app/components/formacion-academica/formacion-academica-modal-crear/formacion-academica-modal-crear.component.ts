@@ -17,7 +17,9 @@ export class FormacionAcademicaModalCrearComponent implements OnInit {
   archivoCapturado: any;
   archivoSubidoUrl: string = ""; 
   formularioFormacion!: FormGroup;
-  formularioInvalido: boolean = false;  
+  formularioInvalido: boolean = false;
+  tamañoMaximo:number = 3000000;
+  errorImagen:boolean = false  
 
   @Output() enAgregarFormacion: EventEmitter <Formacion> = new EventEmitter ()
 
@@ -54,7 +56,8 @@ export class FormacionAcademicaModalCrearComponent implements OnInit {
       this.formularioInvalido = false
       this.previsualizacionImagen="";
       this.nombreArchivo=""; 
-      this.archivoSubidoUrl= "";           
+      this.archivoSubidoUrl= "";
+      this.errorImagen=false             
       }
     ) 
   }
@@ -70,8 +73,9 @@ export class FormacionAcademicaModalCrearComponent implements OnInit {
   }
 
   ocultarMensajeError () {   
-    this.formularioInvalido=false
-  }
+    this.formularioInvalido=false;
+    this.errorImagen=false 
+  } 
   
   subirArchivo() {
 
@@ -84,14 +88,19 @@ export class FormacionAcademicaModalCrearComponent implements OnInit {
       }) 
 }
 
-  capturarImagen(event:any) {
-    this.archivoCapturado = event.target.files[0]
+capturarImagen(event:any) {
+  this.archivoCapturado = event.target.files[0]
+  if(this.archivoCapturado.size > this.tamañoMaximo) {
+    this.formularioInvalido=true;
+    this.errorImagen=true;
+  } else {
     this.nombreArchivo=event.target.files[0].name
     this.extraerURL(this.archivoCapturado).then((imagen:any) => {
-      this.previsualizacionImagen=imagen.base
-    }) 
-    this.subirArchivo();     
-  }
+      this.previsualizacionImagen=imagen.base;      
+    })
+    this.subirArchivo();
+  }   
+}
 
     // FUNCIÓN PARA EXTRAER LA URL DE LA IMAGEN
 
