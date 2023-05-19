@@ -62,9 +62,10 @@ export class ProyectosComponent implements OnInit {
 
   modificarProyecto (proyecto: any) {    
     this.servicioProyecto.editarProyecto(proyecto).subscribe(() => {
-      this.servicioProyecto.obtenerProyectos().subscribe(data => {
-        this.proyectos=data
-        })
+
+      let proyectoModificado: any = this.proyectos.find(conoc => conoc.id == proyecto.id);
+      this.proyectos[this.proyectos.indexOf(proyectoModificado)]=proyecto 
+   
     })   
 
   }

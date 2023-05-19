@@ -88,10 +88,9 @@ export class ExperienciaLaboralComponent implements OnInit {
   modificarExperiencia (experiencia: Experiencia) {
     
     this.servicioExperiencia.editarExperiencia(experiencia).subscribe(() => {
-        this.servicioExperiencia.obtenerExperiencias().subscribe(data => {
-          this.experiencias=data;        
-         
-        })
+
+      let expModificada: any = this.experiencias.find(conoc => conoc.id == experiencia.id);
+      this.experiencias[this.experiencias.indexOf(expModificada)]=experiencia     
     })  
     
  

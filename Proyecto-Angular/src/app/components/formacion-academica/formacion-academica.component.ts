@@ -48,9 +48,9 @@ export class FormacionAcademicaComponent implements OnInit {
     this.titulo=titulo
   }
 
-  agregarFormacion(proyecto: Formacion) {
-    this.servicioFormacionAcademica.crearFormacion(proyecto).subscribe(() => {
-      //this.formaciones.push(proyecto)    
+  agregarFormacion(formacion: Formacion) {
+    this.servicioFormacionAcademica.crearFormacion(formacion).subscribe(() => {
+      //this.formaciones.push(formacion)    
       this.servicioFormacionAcademica.obtenerFormaciones().subscribe(data => {
       this.formaciones=data;
       })
@@ -63,11 +63,11 @@ export class FormacionAcademicaComponent implements OnInit {
     })
   }
 
-  modificarFormacion (proyecto: any) {    
-    this.servicioFormacionAcademica.editarFormacion(proyecto).subscribe(() => {
-      this.servicioFormacionAcademica.obtenerFormaciones().subscribe(data => {
-        this.formaciones=data
-        })
+  modificarFormacion (formacion: any) {    
+    this.servicioFormacionAcademica.editarFormacion(formacion).subscribe(() => {
+      let expModificada: any = this.formaciones.find(forma => forma.id == formacion.id);
+      this.formaciones[this.formaciones.indexOf(expModificada)]=formacion      
+    
     })   
 
   }

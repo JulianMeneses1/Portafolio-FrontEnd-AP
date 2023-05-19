@@ -66,8 +66,8 @@ export class FormacionAcademicaModalCrearComponent implements OnInit {
     if(this.formularioFormacion.invalid) {
     this.formularioInvalido=true     
     } else {  
-      const proyecto = this.formularioFormacion.value   
-      this.enAgregarFormacion.emit(proyecto)  
+      const formacion = this.formularioFormacion.value   
+      this.enAgregarFormacion.emit(formacion)  
       $("#formacion-modal-crear").modal('hide');  
     }
   }

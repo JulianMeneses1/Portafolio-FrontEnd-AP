@@ -48,10 +48,10 @@ export class ConocimientosComponent implements OnInit{
 
    agregarConocimiento(conocimiento: Conocimiento) {
     this.servicioConocimiento.crearConocimiento(conocimiento).subscribe(() => {
-      //this.conocimientos.push(conocimiento);   
-      this.servicioConocimiento.obtenerConocimientos().subscribe(data => {
-      this.conocimientos=data; 
-      })
+      // this.conocimientos.push(conocimiento);   
+       this.servicioConocimiento.obtenerConocimientos().subscribe(data => {
+       this.conocimientos=data; 
+       })
     })
    }
 
@@ -60,13 +60,12 @@ export class ConocimientosComponent implements OnInit{
     this.conocimientos = this.conocimientos.filter( conoc => conoc.id !== id)
     })
   }
-  modificarConocimiento (conocimiento: any) {
+  modificarConocimiento (conocimiento: Conocimiento) {
     
     this.servicioConocimiento.editarConocimiento(conocimiento).subscribe(() => {
-      // this.conocimientos[conocimiento.id-1]=conocimiento      
-      this.servicioConocimiento.obtenerConocimientos().subscribe(data => {
-        this.conocimientos=data
-        })
+      let conocimientoModificado: any = this.conocimientos.find(conoc => conoc.id == conocimiento.id);
+      this.conocimientos[this.conocimientos.indexOf(conocimientoModificado)]=conocimiento     
+     
     })   
 
   }
