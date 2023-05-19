@@ -63,6 +63,7 @@ export class ConocimientosComponent implements OnInit{
   modificarConocimiento (conocimiento: any) {
     
     this.servicioConocimiento.editarConocimiento(conocimiento).subscribe(() => {
+      // this.conocimientos[conocimiento.id-1]=conocimiento      
       this.servicioConocimiento.obtenerConocimientos().subscribe(data => {
         this.conocimientos=data
         })
