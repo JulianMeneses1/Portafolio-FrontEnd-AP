@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, OnInit, Renderer2, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faSquarePen, faPlus, faX } from '@fortawesome/free-solid-svg-icons';
 import { ModoEdicionService } from 'src/app/services/modo-edicion.service';
 import { Subscription } from 'rxjs';
@@ -27,7 +27,7 @@ export class ExperienciaLaboralComponent implements OnInit {
   mostrarPrimerExp:boolean = true;
   miTitulo!: TituloSeccion  
 
-  @Output() enModificarExperienciaHijo: EventEmitter <Experiencia> = new EventEmitter ()
+
 
   constructor(private servicioEdicion : ModoEdicionService,
      private ruta: Router,
@@ -89,8 +89,7 @@ export class ExperienciaLaboralComponent implements OnInit {
     
     this.servicioExperiencia.editarExperiencia(experiencia).subscribe(() => {
         this.servicioExperiencia.obtenerExperiencias().subscribe(data => {
-          this.experiencias=data;
-         
+          this.experiencias=data;        
          
         })
     })  
