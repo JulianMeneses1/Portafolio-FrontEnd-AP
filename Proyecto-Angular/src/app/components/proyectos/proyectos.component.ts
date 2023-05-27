@@ -46,11 +46,8 @@ export class ProyectosComponent implements OnInit {
   }
 
   agregarProyecto(proyecto: Proyecto) {
-    this.servicioProyecto.crearProyecto(proyecto).subscribe(() => {
-      //this.proyectos.push(proyecto)    
-      this.servicioProyecto.obtenerProyectos().subscribe(data => {
-      this.proyectos=data;
-      })
+    this.servicioProyecto.crearProyecto(proyecto).subscribe((proy) => {
+      this.proyectos.push(proy);
     })
    }
 

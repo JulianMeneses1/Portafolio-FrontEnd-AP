@@ -41,9 +41,7 @@ export class FormacionAcademicaModalCrearComponent implements OnInit {
       fecha_inicio: ['',[Validators.required,Validators.pattern(this.fechaInicioPattern)]],
       fecha_fin: ['',[Validators.required,Validators.pattern(this.fechaFinPattern)]],
       descripcion: ['',[Validators.required]],
-      imagen: ['',[Validators.required]],
-      persona: [{"id":1}],
-      titulo_seccion: [{"id":4}]
+      imagen: ['',[Validators.required]]
     })
   }
 
@@ -66,7 +64,11 @@ export class FormacionAcademicaModalCrearComponent implements OnInit {
     if(this.formularioFormacion.invalid) {
     this.formularioInvalido=true     
     } else {  
-      const formacion = this.formularioFormacion.value   
+      const formacion = { 
+        ...this.formularioFormacion.value,
+        persona: {"id":1},
+        titulo_seccion: {"id":4} 
+      }   
       this.enAgregarFormacion.emit(formacion)  
       $("#formacion-modal-crear").modal('hide');  
     }

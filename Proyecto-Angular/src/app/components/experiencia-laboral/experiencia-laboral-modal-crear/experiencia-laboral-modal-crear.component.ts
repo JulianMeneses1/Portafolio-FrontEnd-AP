@@ -32,9 +32,7 @@ export class ExperienciaLaboralModalCrearComponent implements OnInit {
       fecha_inicio: ['',[Validators.required,Validators.pattern(this.fechaInicioPattern)]],
       fecha_fin: ['',[Validators.required,Validators.pattern(this.fechaFinPattern)]],
       descripcion: ['',[Validators.required]],
-      posicion_Y: [''],
-      persona: [{"id":1}],
-      titulo_seccion: [{"id":2}]
+      posicion_Y: ['']
     })
 
   }
@@ -57,7 +55,11 @@ export class ExperienciaLaboralModalCrearComponent implements OnInit {
     } else {
       this.formularioExperiencia.get('posicion_Y')?.setValue("exp-bar-Y--" + 
         ((this.experiencias.length)*45));
-      const experiencia = this.formularioExperiencia.value;   
+      const experiencia = { 
+        ...this.formularioExperiencia.value,
+        persona: {"id":1},
+        titulo_seccion: {"id":2} 
+      }  
       this.enAgregarExperiencia.emit(experiencia);      
       $("#experiencia-modal").modal('hide');      
     

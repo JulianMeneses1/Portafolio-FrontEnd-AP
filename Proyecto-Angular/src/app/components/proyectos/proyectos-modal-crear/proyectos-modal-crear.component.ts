@@ -39,9 +39,7 @@ export class ProyectosModalCrearComponent implements OnInit {
       url_sitio_web: ['',[Validators.pattern(this.urlWebPattern)]],
       url_github: ['',[Validators.required,Validators.pattern(this.urlGitHubPattern)]],
       tecnologias: ['',[Validators.required,Validators.pattern(this.tecnologiasPattern)]],
-      imagen: ['',[Validators.required]],
-      persona: [{"id":1}],
-      titulo_seccion: [{"id":3}]
+      imagen: ['',[Validators.required]]
     })
   }
 
@@ -64,7 +62,11 @@ export class ProyectosModalCrearComponent implements OnInit {
     if(this.formularioProyecto.invalid) {    
       this.formularioInvalido=true     
       } else {
-      const proyecto = this.formularioProyecto.value   
+      const proyecto = { 
+        ...this.formularioProyecto.value,
+        persona: {"id":1},
+        titulo_seccion: {"id":3} 
+      }    
       this.enAgregarProyecto.emit(proyecto)
       $("#proyecto-modal-crear").modal('hide');  
     }

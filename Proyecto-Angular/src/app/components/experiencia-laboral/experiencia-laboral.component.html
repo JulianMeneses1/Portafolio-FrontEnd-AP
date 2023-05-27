@@ -24,7 +24,7 @@
                     *ngFor="let experiencia of experiencias" 
                     [ngClass]="{'boton-exp-item-seleccionado': experiencia == experienciaSeleccionada}"      
                     class="boton-exp-item"
-                    (click)="desaparecerPrimerExp(); alternarExperiencias(experiencia)"
+                    (click)="alternarExperiencias(experiencia)"
                     > 
                     {{experiencia.nombre_empresa}}                   
                     <fa-icon 

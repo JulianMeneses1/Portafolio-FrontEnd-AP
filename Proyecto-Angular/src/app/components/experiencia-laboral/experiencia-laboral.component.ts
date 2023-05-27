@@ -54,13 +54,10 @@ export class ExperienciaLaboralComponent implements OnInit {
     this.miTitulo=titulo
    
    }
-
-  desaparecerPrimerExp(){    
-    this.mostrarPrimerExp=false  
-  }  
   
   alternarExperiencias (experiencia: Experiencia): void {
     this.experienciaSeleccionada = experiencia; 
+    this.experiencias[0]==experiencia || (this.mostrarPrimerExp=false);
     this.posicion_Y=experiencia.posicion_Y; 
     this.ruta.navigate(['/experiencia'], {queryParams: 
       {posicionExp:this.experiencias.indexOf(experiencia)}})
@@ -68,13 +65,8 @@ export class ExperienciaLaboralComponent implements OnInit {
   }
 
   agregarExperiencia(experiencia: Experiencia) {
-    this.servicioExperiencia.crearExperiencia(experiencia).subscribe(() => {
-            
-      this.servicioExperiencia.obtenerExperiencias().subscribe(data => {
-      this.experiencias=data;            
-          })
-      this.mostrarPrimerExp=false;  
-        
+    this.servicioExperiencia.crearExperiencia(experiencia).subscribe((exp) => {            
+      this.experiencias.push(exp);        
     }) 
    }
 

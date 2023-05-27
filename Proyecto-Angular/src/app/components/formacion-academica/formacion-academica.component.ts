@@ -49,11 +49,8 @@ export class FormacionAcademicaComponent implements OnInit {
   }
 
   agregarFormacion(formacion: Formacion) {
-    this.servicioFormacionAcademica.crearFormacion(formacion).subscribe(() => {
-      //this.formaciones.push(formacion)    
-      this.servicioFormacionAcademica.obtenerFormaciones().subscribe(data => {
-      this.formaciones=data;
-      })
+    this.servicioFormacionAcademica.crearFormacion(formacion).subscribe((form) => {
+      this.formaciones.push(form);
     })
    }
 

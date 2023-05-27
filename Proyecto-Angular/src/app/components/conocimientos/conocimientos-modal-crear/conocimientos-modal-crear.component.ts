@@ -35,9 +35,7 @@ export class ConocimientosModalCrearComponent implements OnInit {
     this.formularioConocimientos = this.formBuilder.group({
       nombre: ['',[Validators.required]],
       nivel: ['',[Validators.required, Validators.pattern(this.nivelPattern)]],
-      imagen: ['',[Validators.required]],
-      persona: [{"id":1}],
-      titulo_seccion: [{"id":1}]
+      imagen: ['',[Validators.required]]
     })
 
   }
@@ -62,8 +60,12 @@ export class ConocimientosModalCrearComponent implements OnInit {
     this.formularioInvalido=true     
     } else {    
     this.formularioConocimientos.get('nivel')?.setValue("skills-bar--" + 
-    this.formularioConocimientos.get('nivel')?.value);
-    const conocimiento = this.formularioConocimientos.value   
+      this.formularioConocimientos.get('nivel')?.value);
+    const conocimiento = { 
+        ...this.formularioConocimientos.value,
+        persona: {"id":1},
+        titulo_seccion: {"id":1} 
+      }  
     this.enAgregarConocimiento.emit(conocimiento)
     
     $("#conocimiento-modal-crear").modal('hide');
