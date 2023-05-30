@@ -9,7 +9,7 @@ Status: ACTIVE :heavy_check_mark:
 ***
 Here are the technologies and libraries used in this project:
 ### Technologies
-* [Angular](https://angular.io/): Version 15.2.0
+* [Angular](https://angular.io/): Version 15.2.8
 * [NodeJS](https://nodejs.org/es): Version 18.16.0
 * [npm](https://www.npmjs.com/): Version 9.5.1
 * [TypeScript](https://www.typescriptlang.org/): Version: 5.0.4
