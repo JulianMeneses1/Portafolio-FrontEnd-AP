@@ -60,7 +60,7 @@ Great, now you only need to install the libraries that are used in this project.
 ```
 :warning: Remember that all the data is loaded from the Back End server, so you need to start the Back End server first to be able to see the data and successfully run the app. For more information visit the back end [repository](https://github.com/JulianMeneses1/Portafolio-BackEnd-AP) 
 
-## Collaboration
+## 4. Collaboration
 ***
 Feel free to make any suggestion that you think can help improve the quality of the project! :grinning:
 
