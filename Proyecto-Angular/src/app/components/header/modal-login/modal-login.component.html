@@ -18,7 +18,7 @@
                             type="text" 
                             id="user" 
                             name="user" 
-                            placeholder="Ingrese su usuario" 
+                            placeholder="Usuario: admin" 
                             maxlength="15"
                             formControlName="usuario"
                             (click)="ocultarMensajeError()"
@@ -36,7 +36,7 @@
                             id="password" 
                             name="password"
                             maxlength="20" 
-                            placeholder="Ingrese su contraseña"
+                            placeholder="Contraseña: ArgentinaPrograma"
                             formControlName="contraseña"
                             (click)="ocultarMensajeError()"
                             [ngClass]="{'is-invalid':(formularioInvalido && formularioLogin.get('contraseña')?.errors?.['required'])||usuarioIncorrecto}">
