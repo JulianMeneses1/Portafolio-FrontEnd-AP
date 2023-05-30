@@ -1,4 +1,4 @@
-# FrontEnd Portafolio Application
+# Front End Portafolio Application
 ***
 ## 1. :notebook_with_decorative_cover: General Info
 This project is a dynamic website that contains all the relevant profesional information about me, like my laboral experience, the technologies I know, etc and the possibility to edit this information, if you are logged in. Check the Back End repository [here](https://github.com/JulianMeneses1/Portafolio-BackEnd-AP)!
