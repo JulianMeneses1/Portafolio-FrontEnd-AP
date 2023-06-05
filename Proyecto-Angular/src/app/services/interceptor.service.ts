@@ -14,19 +14,26 @@ export class InterceptorService {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    const token = this.servicioAutenticacion.getToken();
+    const token = this.servicioAutenticacion.getToken();     
 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-      'Content-Type':'application/json'
-    })
+        'Authorization': `Bearer ${token}`,
+        'Content-Type':'application/json'
+      })    
 
     if (token) {
-      const cloned = request.clone ({
-        headers
-      })
-      // añade a la solicitud la cabecera Authorization con el token 
-      return next.handle(cloned);
+      if (request.url =="https://portafolio-backend-ap-production.up.railway.app/subir/archivo") {
+        const cloned = request.clone ({
+          headers: request.headers.set('Authorization', `Bearer ${token}`)        
+        });
+        return next.handle(cloned);
+      } else {
+        const cloned = request.clone ({
+          headers
+        });
+        // agrega a la solicitud los headers que establecimos
+        return next.handle(cloned);       
+      }   
     }
     // si no hay un token en el Session Storage, entonces deja pasar la solicitud sin añadirle nada
     return next.handle(request);
