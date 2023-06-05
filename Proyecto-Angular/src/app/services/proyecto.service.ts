@@ -9,11 +9,6 @@ import { environment } from '../environments/environment';
 })
 export class ProyectoService {
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':'application/json'
-    })
-  }
   url:string = environment.apiURL
 
   constructor(private http: HttpClient) { }
@@ -24,7 +19,7 @@ export class ProyectoService {
 
   editarProyecto (proyecto:Proyecto): Observable<Proyecto> {
     const url:string=this.url+"editar/proyecto/"+proyecto.id; 
-    return this.http.put<Proyecto>(url,proyecto,this.httpOptions)
+    return this.http.put<Proyecto>(url,proyecto)
   }
 
   eliminarProyecto (id:number): Observable<Proyecto> {
@@ -34,6 +29,6 @@ export class ProyectoService {
 
   crearProyecto (proyecto:Proyecto): Observable<Proyecto> {
  
-    return this.http.post<Proyecto>(this.url+"crear/proyecto",proyecto,this.httpOptions)
+    return this.http.post<Proyecto>(this.url+"crear/proyecto",proyecto)
   }
 }

@@ -25,7 +25,7 @@ export class AutenticacionService {
       const bearerToken = headers.get('Authorization')!;
       const token = bearerToken.replace('Bearer ', '');
 
-      localStorage.setItem('token', token);  // hay dos storage, el local y el session. El local almacena los datos en el navegador de forma 
+      sessionStorage.setItem('token', token);  // hay dos storage, el local y el session. El local almacena los datos en el navegador de forma 
                                                                   // indefinida, hasta que se borra la cache. En cambio en el session los datos son guardados 
                                                                   // mientras dure la sesión, la cual finaliza al cerrarse la pestaña de la app en el navegador
       return body;
@@ -33,7 +33,7 @@ export class AutenticacionService {
   }
 
   getToken () {
-  return localStorage.getItem('token');
+  return sessionStorage.getItem('token');
   }
 
 }

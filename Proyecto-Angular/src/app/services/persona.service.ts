@@ -9,12 +9,6 @@ import { environment } from '../environments/environment';
 })
 export class PersonaService {
 
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':'application/json'
-    })
-  }
-
   url:string = environment.apiURL
 
   constructor( private http: HttpClient) { } 
@@ -25,6 +19,6 @@ export class PersonaService {
 
   editarPersona (persona: Persona): Observable<Persona> {
     const url= this.url + "editar/persona/"+persona.id
-    return this.http.put<Persona>(url,persona,this.httpOptions);
+    return this.http.put<Persona>(url,persona);
   }
 }

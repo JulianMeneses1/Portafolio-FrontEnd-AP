@@ -8,12 +8,6 @@ import { environment } from '../environments/environment';
 })
 export class TituloSeccionesService {
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':'application/json'
-    })
-  }
-
   url:string = environment.apiURL
   constructor( private http: HttpClient) { }
 
@@ -24,6 +18,6 @@ export class TituloSeccionesService {
 
   editarTitulo (titulo:any): Observable<any> {
     const url:string=this.url+"editar/tituloseccion/"+titulo.id; 
-    return this.http.put<any>(url,titulo,this.httpOptions)
+    return this.http.put<any>(url,titulo)
   }
 }

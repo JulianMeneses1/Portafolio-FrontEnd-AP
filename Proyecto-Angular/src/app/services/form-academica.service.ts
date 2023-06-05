@@ -9,12 +9,6 @@ import { environment } from '../environments/environment';
 })
 export class FormAcademicaService {
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':'application/json'
-    })
-  }
-
   url:string = environment.apiURL
 
   constructor(private http: HttpClient) { }
@@ -26,7 +20,7 @@ export class FormAcademicaService {
 
   editarFormacion(formacion:Formacion): Observable<Formacion> {
     const url:string=this.url+"editar/formacion/"+formacion.id; 
-    return this.http.put<Formacion>(url,formacion,this.httpOptions)
+    return this.http.put<Formacion>(url,formacion)
   }
 
   eliminarFormacion(id:number): Observable<Formacion> {
@@ -36,6 +30,6 @@ export class FormAcademicaService {
 
   crearFormacion(formacion:Formacion): Observable<Formacion> {
  
-    return this.http.post<Formacion>(this.url+"crear/formacion",formacion,this.httpOptions)
+    return this.http.post<Formacion>(this.url+"crear/formacion",formacion)
   }
 }

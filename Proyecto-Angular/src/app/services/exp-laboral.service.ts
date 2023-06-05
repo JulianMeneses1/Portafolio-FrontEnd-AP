@@ -11,13 +11,6 @@ export class ExpLaboralService {
 
   private exp!:Experiencia;
   private subjectActualizarExp = new Subject<Experiencia>();
-
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':'application/json'
-    })
-  }
-
   url:string = environment.apiURL
 
   constructor(private http: HttpClient) { }
@@ -28,7 +21,7 @@ export class ExpLaboralService {
 
   editarExperiencia(experiencia:Experiencia): Observable<Experiencia> {
     const url:string=this.url+"editar/experiencia/"+experiencia.id; 
-    return this.http.put<Experiencia>(url,experiencia,this.httpOptions)
+    return this.http.put<Experiencia>(url,experiencia)
   }
 
   // para actualizar el componente hijo de experiencia que utiliza ruta dinámica
@@ -49,6 +42,6 @@ export class ExpLaboralService {
 
   crearExperiencia(experiencia:Experiencia): Observable<Experiencia> {
  
-    return this.http.post<Experiencia>(this.url+"crear/experiencia",experiencia,this.httpOptions)
+    return this.http.post<Experiencia>(this.url+"crear/experiencia",experiencia)
   }
 }

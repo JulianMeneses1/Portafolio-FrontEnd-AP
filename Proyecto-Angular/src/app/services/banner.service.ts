@@ -9,12 +9,6 @@ import { environment } from '../environments/environment';
 })
 export class BannerService {
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':'application/json'
-    })
-  }
-
   url:string = environment.apiURL
   
   constructor( private http:HttpClient) { }
@@ -25,7 +19,7 @@ export class BannerService {
 
   editarBanner (banner:Banner): Observable<Banner> {
     const url:string=this.url+"editar/banner/"+banner.id; 
-    return this.http.put<Banner>(url,banner,this.httpOptions)
+    return this.http.put<Banner>(url,banner)
   }
 }
 

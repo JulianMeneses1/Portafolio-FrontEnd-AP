@@ -9,12 +9,6 @@ import { environment } from '../environments/environment';
 })
 export class AcercaDeMiService {
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':'application/json'
-    })
-  }
-
   url: string = environment.apiURL  
   
   constructor( private http: HttpClient) { }
@@ -25,6 +19,6 @@ export class AcercaDeMiService {
 
   editarAcercaDeMi (acercademi:AcercaDeMi): Observable<AcercaDeMi> {
     const url:string =this.url+"editar/acercademi/"+acercademi.id 
-    return this.http.put<AcercaDeMi>(url,acercademi,this.httpOptions)
+    return this.http.put<AcercaDeMi>(url,acercademi)
   }
 }

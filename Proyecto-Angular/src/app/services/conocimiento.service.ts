@@ -9,12 +9,6 @@ import { environment } from '../environments/environment';
 })
 export class ConocimientoService {
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':'application/json'
-    })
-  }
-
   url:string = environment.apiURL
 
   constructor(private http: HttpClient) { }
@@ -26,7 +20,7 @@ export class ConocimientoService {
 
   editarConocimiento (conocimiento:Conocimiento): Observable<Conocimiento> {
     const url:string=this.url+"editar/conocimiento/"+conocimiento.id; 
-    return this.http.put<Conocimiento>(url,conocimiento,this.httpOptions)
+    return this.http.put<Conocimiento>(url,conocimiento)
   }
 
   eliminarConocimiento (id:number): Observable<Conocimiento> {
@@ -36,6 +30,6 @@ export class ConocimientoService {
 
   crearConocimiento (conocimiento:Conocimiento): Observable<Conocimiento> {
  
-    return this.http.post<Conocimiento>(this.url+"crear/conocimiento",conocimiento,this.httpOptions)
+    return this.http.post<Conocimiento>(this.url+"crear/conocimiento",conocimiento)
   }
 }
